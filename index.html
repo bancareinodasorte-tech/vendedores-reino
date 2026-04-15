@@ -2,9 +2,13 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
   <title>Vendedores Autorizados | Reino da Sorte</title>
-  <meta name="theme-color" content="#0b318f" />
+
+  <meta name="theme-color" content="#0c36a5" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
 
@@ -15,31 +19,31 @@
     }
 
     :root {
-      --bg1: #071b55;
-      --bg2: #0d3faa;
-      --bg3: #143fbe;
-      --card: rgba(255,255,255,.10);
-      --card2: rgba(255,255,255,.07);
-      --line: rgba(255,255,255,.14);
+      --bg-top: #2f58cf;
+      --bg-mid: #1844bb;
+      --bg-bottom: #0a2679;
+      --card: rgba(255, 255, 255, 0.1);
+      --card-2: rgba(255, 255, 255, 0.07);
+      --line: rgba(255, 255, 255, 0.14);
       --text: #ffffff;
-      --muted: #dbe6ff;
-      --gold: #ffd86f;
-      --gold2: #fff0b7;
-      --green1: #38e57f;
-      --green2: #25D366;
-      --shadow: 0 14px 34px rgba(0,0,0,.22);
-      --shadow-soft: 0 8px 20px rgba(0,0,0,.14);
-      --radius: 28px;
+      --muted: #dde8ff;
+      --gold: #ffd76c;
+      --gold-soft: #fff1bb;
+      --green-1: #3be67f;
+      --green-2: #25d366;
+      --shadow: 0 14px 34px rgba(0, 0, 0, 0.22);
+      --shadow-soft: 0 8px 18px rgba(0, 0, 0, 0.16);
     }
 
-    html, body {
+    html,
+    body {
       margin: 0;
       padding: 0;
       min-height: 100%;
       font-family: Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top center, #2159d7 0%, var(--bg3) 26%, var(--bg2) 58%, var(--bg1) 100%);
+        radial-gradient(circle at top center, var(--bg-top) 0%, var(--bg-mid) 45%, var(--bg-bottom) 100%);
     }
 
     body::before {
@@ -47,36 +51,35 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: .16;
+      opacity: 0.15;
       background:
-        radial-gradient(circle at 8% 12%, rgba(255,255,255,.8) 0 1.2px, transparent 2px) 0 0/130px 130px,
-        radial-gradient(circle at 84% 22%, rgba(255,220,120,.9) 0 1.2px, transparent 2px) 0 0/170px 170px,
-        radial-gradient(circle at 62% 78%, rgba(255,255,255,.75) 0 1.1px, transparent 2px) 0 0/150px 150px,
-        radial-gradient(circle at 24% 68%, rgba(255,220,120,.8) 0 1px, transparent 2px) 0 0/180px 180px;
+        radial-gradient(circle at 8% 12%, rgba(255,255,255,.8) 0 1px, transparent 2px) 0 0/130px 130px,
+        radial-gradient(circle at 85% 18%, rgba(255,220,120,.95) 0 1px, transparent 2px) 0 0/170px 170px,
+        radial-gradient(circle at 60% 76%, rgba(255,255,255,.75) 0 1px, transparent 2px) 0 0/150px 150px,
+        radial-gradient(circle at 25% 65%, rgba(255,220,120,.8) 0 1px, transparent 2px) 0 0/180px 180px;
     }
 
-    .app-shell {
+    .app {
       width: 100%;
       max-width: 520px;
       margin: 0 auto;
       min-height: 100vh;
-      padding: env(safe-area-inset-top) 14px calc(22px + env(safe-area-inset-bottom));
+      padding:
+        env(safe-area-inset-top)
+        14px
+        calc(24px + env(safe-area-inset-bottom));
       position: relative;
-    }
-
-    .top-status {
-      height: 8px;
     }
 
     .hero {
       text-align: center;
       padding: 10px 4px 20px;
-      animation: fadeUp .55s ease both;
+      animation: fadeUp 0.55s ease both;
     }
 
     .logo-wrap {
-      width: min(290px, 76vw);
-      margin: 6px auto 16px;
+      width: min(290px, 78vw);
+      margin: 8px auto 16px;
       position: relative;
     }
 
@@ -103,16 +106,16 @@
       display: none;
       align-items: center;
       justify-content: center;
-      text-align: center;
       width: 220px;
       height: 220px;
       margin: 0 auto;
       border-radius: 50%;
       padding: 18px;
+      text-align: center;
       font-weight: 800;
-      color: var(--gold2);
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
-      border: 1px solid rgba(255,255,255,.14);
+      color: var(--gold-soft);
+      background: linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.15);
       box-shadow: var(--shadow);
       position: relative;
       z-index: 1;
@@ -132,7 +135,7 @@
       font-size: clamp(28px, 9vw, 58px);
       line-height: 1.02;
       font-weight: 900;
-      letter-spacing: -.8px;
+      letter-spacing: -0.8px;
       text-shadow: 0 4px 16px rgba(0,0,0,.16);
     }
 
@@ -151,13 +154,13 @@
       color: #fff2ca;
       font-size: 15px;
       line-height: 1.5;
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      background: linear-gradient(180deg, rgba(255,255,255,.1), rgba(255,255,255,.06));
       border: 1px solid var(--line);
       border-radius: 24px;
       box-shadow: var(--shadow-soft);
       backdrop-filter: blur(10px);
-      animation: fadeUp .6s ease both;
-      animation-delay: .06s;
+      animation: fadeUp 0.62s ease both;
+      animation-delay: 0.05s;
     }
 
     .list {
@@ -171,12 +174,12 @@
       background: linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.07));
       border: 1px solid var(--line);
       border-radius: 30px;
-      padding: 18px 18px 18px;
+      padding: 18px;
       box-shadow: var(--shadow);
       backdrop-filter: blur(12px);
-      transform: translateY(18px);
+      transform: translateY(22px) scale(0.985);
       opacity: 0;
-      animation: cardIn .55s ease forwards;
+      animation: cardIn 0.55s ease forwards;
     }
 
     .card::before {
@@ -268,9 +271,9 @@
       color: #fff;
       font-size: 17px;
       font-weight: 900;
-      padding: 16px 16px;
+      padding: 16px;
       border-radius: 18px;
-      background: linear-gradient(180deg, var(--green1), var(--green2));
+      background: linear-gradient(180deg, var(--green-1), var(--green-2));
       box-shadow:
         0 12px 22px rgba(31,170,83,.28),
         inset 0 1px 0 rgba(255,255,255,.16);
@@ -285,8 +288,8 @@
 
     .btn:active,
     .btn.touching {
-      transform: scale(.985);
-      filter: brightness(.98);
+      transform: scale(0.985);
+      filter: brightness(0.98);
       box-shadow:
         0 8px 16px rgba(31,170,83,.24),
         inset 0 1px 0 rgba(255,255,255,.14);
@@ -305,9 +308,9 @@
       font-size: 13px;
       margin-top: 18px;
       padding-bottom: 6px;
-      opacity: .96;
-      animation: fadeUp .7s ease both;
-      animation-delay: .12s;
+      opacity: 0.96;
+      animation: fadeUp 0.72s ease both;
+      animation-delay: 0.12s;
     }
 
     @keyframes fadeUp {
@@ -324,7 +327,7 @@
     @keyframes cardIn {
       from {
         opacity: 0;
-        transform: translateY(22px) scale(.985);
+        transform: translateY(22px) scale(0.985);
       }
       to {
         opacity: 1;
@@ -350,9 +353,7 @@
   </style>
 </head>
 <body>
-  <main class="app-shell">
-    <div class="top-status"></div>
-
+  <main class="app">
     <section class="hero">
       <div class="logo-wrap">
         <img
@@ -396,19 +397,19 @@ Forma de pagamento:
     );
 
     const vendedores = [
-      { nome: "Aline dos Maroto", telefone: "5588981176361", foto: "imagens/aline-dos-maroto.jpg" },
-      { nome: "Jamilles Izidório", telefone: "5588981477848", foto: "imagens/jamilles-izidorio.jpg" },
-      { nome: "Dan", telefone: "5588981703564", foto: "imagens/dan.jpg" },
-      { nome: "Alice Nabor", telefone: "5588981296930", foto: "imagens/alice-nabor.jpg" },
-      { nome: "Jéssica Ferreira", telefone: "5588981794095", foto: "imagens/jessica-ferreira.jpg" },
-      { nome: "Taína Fideles", telefone: "5588981805250", foto: "imagens/taina-fideles.jpg" },
-      { nome: "Samara", telefone: "5588988158745", foto: "imagens/samara.jpg" },
-      { nome: "Maria Oliveira", telefone: "5588996263082", foto: "imagens/maria-oliveira.jpg" },
-      { nome: "Caeline", telefone: "5588981612830", foto: "imagens/caeline.jpg" },
-      { nome: "Kyara", telefone: "5585988725043", foto: "imagens/kyara.jpg" },
-      { nome: "Taty", telefone: "5588988653443", foto: "imagens/taty.jpg" },
-      { nome: "Ana Raíssa", telefone: "5588988940412", foto: "imagens/ana-raissa.jpg" },
-      { nome: "Beta", telefone: "5588981438746", foto: "imagens/beta.jpg" }
+      { nome: "Aline dos Maroto", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg" },
+      { nome: "Jamilles Izidório", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg" },
+      { nome: "Dan", telefone: "5588981703564", foto: "images/dan.jpg" },
+      { nome: "Alice Nabor", telefone: "5588981296930", foto: "images/alice-nabor.jpg" },
+      { nome: "Jéssica Ferreira", telefone: "5588981794095", foto: "images/jessica-ferreira.jpg" },
+      { nome: "Taína Fideles", telefone: "5588981805250", foto: "images/taina-fideles.jpg" },
+      { nome: "Samara", telefone: "5588988158745", foto: "images/samara.jpg" },
+      { nome: "Maria Oliveira", telefone: "5588996263082", foto: "images/maria-oliveira.jpg" },
+      { nome: "Caeline", telefone: "5588981612830", foto: "images/caeline.jpg" },
+      { nome: "Kyara", telefone: "5585988725043", foto: "images/kyara.jpg" },
+      { nome: "Taty", telefone: "5588988653443", foto: "images/taty.jpg" },
+      { nome: "Ana Raíssa", telefone: "5588988940412", foto: "images/ana-raissa.jpg" },
+      { nome: "Beta", telefone: "5588981438746", foto: "images/beta.jpg" }
     ];
 
     const medals = ["🥇", "🥈", "🥉"];
@@ -420,7 +421,7 @@ Forma de pagamento:
         .split(" ")
         .filter(Boolean)
         .slice(0, 2)
-        .map(p => p[0])
+        .map(parte => parte[0])
         .join("")
         .toUpperCase();
 
@@ -446,7 +447,13 @@ Forma de pagamento:
 
         <h2 class="name">${vendedor.nome}</h2>
 
-        <a class="btn" href="${linkWhatsapp}" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp com ${vendedor.nome}">
+        <a
+          class="btn"
+          href="${linkWhatsapp}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Falar no WhatsApp com ${vendedor.nome}"
+        >
           <svg class="btn-icon" viewBox="0 0 32 32" aria-hidden="true">
             <path fill="currentColor" d="M19.11 17.24c-.29-.15-1.69-.83-1.95-.92-.26-.1-.45-.15-.64.15-.19.29-.73.92-.9 1.11-.16.19-.33.22-.62.07-.29-.15-1.2-.44-2.28-1.39-.84-.75-1.4-1.66-1.56-1.95-.16-.29-.02-.44.12-.58.12-.12.29-.33.43-.49.14-.16.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.64-1.55-.88-2.12-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.49.07-.75.36-.26.29-.98.95-.98 2.31s1 2.67 1.14 2.86c.14.19 1.96 2.99 4.76 4.19.67.29 1.19.46 1.6.59.67.21 1.28.18 1.77.11.54-.08 1.69-.69 1.93-1.35.24-.66.24-1.22.17-1.34-.07-.12-.26-.19-.55-.34z"/>
             <path fill="currentColor" d="M16.02 3.2c-7.05 0-12.76 5.7-12.76 12.73 0 2.24.59 4.43 1.7 6.35L3.2 28.8l6.72-1.75a12.8 12.8 0 0 0 6.1 1.55h.01c7.04 0 12.77-5.7 12.77-12.73A12.75 12.75 0 0 0 16.02 3.2zm0 23.25h-.01c-1.92 0-3.8-.52-5.45-1.51l-.39-.23-3.99 1.04 1.07-3.89-.25-.4a10.54 10.54 0 0 1-1.63-5.61c0-5.83 4.76-10.58 10.62-10.58 2.83 0 5.48 1.1 7.48 3.09a10.47 10.47 0 0 1 3.11 7.49c0 5.83-4.77 10.58-10.56 10.58z"/>
@@ -459,15 +466,15 @@ Forma de pagamento:
     });
 
     document.querySelectorAll(".btn").forEach(btn => {
-      const addTouch = () => btn.classList.add("touching");
-      const removeTouch = () => btn.classList.remove("touching");
+      const ligar = () => btn.classList.add("touching");
+      const desligar = () => btn.classList.remove("touching");
 
-      btn.addEventListener("touchstart", addTouch, { passive: true });
-      btn.addEventListener("touchend", removeTouch);
-      btn.addEventListener("touchcancel", removeTouch);
-      btn.addEventListener("mousedown", addTouch);
-      btn.addEventListener("mouseup", removeTouch);
-      btn.addEventListener("mouseleave", removeTouch);
+      btn.addEventListener("touchstart", ligar, { passive: true });
+      btn.addEventListener("touchend", desligar);
+      btn.addEventListener("touchcancel", desligar);
+      btn.addEventListener("mousedown", ligar);
+      btn.addEventListener("mouseup", desligar);
+      btn.addEventListener("mouseleave", desligar);
     });
   </script>
 </body>
