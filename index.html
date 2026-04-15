@@ -2,9 +2,12 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VENDEDORES AUTORIZADOS | Reino da Sorte</title>
-  <meta name="theme-color" content="#0c2f86" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Vendedores Autorizados | Reino da Sorte</title>
+  <meta name="theme-color" content="#0b318f" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+
   <style>
     * {
       box-sizing: border-box;
@@ -12,30 +15,31 @@
     }
 
     :root {
-      --bg-1: #081f61;
-      --bg-2: #0f43b6;
-      --bg-3: #061844;
-      --card: rgba(255,255,255,0.10);
-      --card-2: rgba(255,255,255,0.07);
-      --line: rgba(255,255,255,0.14);
-      --gold: #ffd86f;
-      --gold-2: #fff1bf;
+      --bg1: #071b55;
+      --bg2: #0d3faa;
+      --bg3: #143fbe;
+      --card: rgba(255,255,255,.10);
+      --card2: rgba(255,255,255,.07);
+      --line: rgba(255,255,255,.14);
       --text: #ffffff;
       --muted: #dbe6ff;
-      --green-1: #38e57f;
-      --green-2: #25D366;
-      --shadow: 0 14px 34px rgba(0,0,0,.20);
-      --radius: 24px;
+      --gold: #ffd86f;
+      --gold2: #fff0b7;
+      --green1: #38e57f;
+      --green2: #25D366;
+      --shadow: 0 14px 34px rgba(0,0,0,.22);
+      --shadow-soft: 0 8px 20px rgba(0,0,0,.14);
+      --radius: 28px;
     }
 
     html, body {
       margin: 0;
       padding: 0;
+      min-height: 100%;
       font-family: Arial, sans-serif;
       color: var(--text);
       background:
-        radial-gradient(circle at top center, #1a56d3 0%, var(--bg-2) 25%, var(--bg-1) 65%, var(--bg-3) 100%);
-      min-height: 100%;
+        radial-gradient(circle at top center, #2159d7 0%, var(--bg3) 26%, var(--bg2) 58%, var(--bg1) 100%);
     }
 
     body::before {
@@ -43,164 +47,171 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      opacity: .12;
+      opacity: .16;
       background:
-        radial-gradient(circle at 20% 20%, #ffffff 0 1px, transparent 2px) 0 0/110px 110px,
-        radial-gradient(circle at 80% 40%, #ffe38d 0 1px, transparent 2px) 0 0/140px 140px,
-        radial-gradient(circle at 40% 80%, #ffffff 0 1px, transparent 2px) 0 0/130px 130px;
+        radial-gradient(circle at 8% 12%, rgba(255,255,255,.8) 0 1.2px, transparent 2px) 0 0/130px 130px,
+        radial-gradient(circle at 84% 22%, rgba(255,220,120,.9) 0 1.2px, transparent 2px) 0 0/170px 170px,
+        radial-gradient(circle at 62% 78%, rgba(255,255,255,.75) 0 1.1px, transparent 2px) 0 0/150px 150px,
+        radial-gradient(circle at 24% 68%, rgba(255,220,120,.8) 0 1px, transparent 2px) 0 0/180px 180px;
     }
 
-    .app {
+    .app-shell {
       width: 100%;
       max-width: 520px;
       margin: 0 auto;
-      padding: 16px 14px 28px;
+      min-height: 100vh;
+      padding: env(safe-area-inset-top) 14px calc(22px + env(safe-area-inset-bottom));
       position: relative;
     }
 
-    .status-space {
-      height: 4px;
+    .top-status {
+      height: 8px;
     }
 
     .hero {
       text-align: center;
-      padding: 10px 8px 20px;
+      padding: 10px 4px 20px;
+      animation: fadeUp .55s ease both;
     }
 
     .logo-wrap {
-      width: min(280px, 72vw);
-      height: min(280px, 72vw);
-      margin: 0 auto 14px;
-      display: grid;
-      place-items: center;
+      width: min(290px, 76vw);
+      margin: 6px auto 16px;
       position: relative;
     }
 
     .logo-wrap::before {
       content: "";
       position: absolute;
-      inset: 8%;
+      inset: 10% 8%;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,.16), rgba(255,255,255,0) 70%);
-      filter: blur(12px);
+      background: radial-gradient(circle, rgba(255,255,255,.18), rgba(255,255,255,0) 70%);
+      filter: blur(16px);
+      z-index: 0;
     }
 
     .logo {
       width: 100%;
-      max-width: 260px;
-      object-fit: contain;
       display: block;
+      object-fit: contain;
       position: relative;
-      z-index: 2;
-      filter: drop-shadow(0 12px 24px rgba(0,0,0,.28));
+      z-index: 1;
+      filter: drop-shadow(0 14px 26px rgba(0,0,0,.24));
     }
 
     .logo-fallback {
       display: none;
       align-items: center;
       justify-content: center;
+      text-align: center;
       width: 220px;
       height: 220px;
+      margin: 0 auto;
       border-radius: 50%;
       padding: 18px;
-      text-align: center;
       font-weight: 800;
-      line-height: 1.15;
-      color: var(--gold-2);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border: 1px solid rgba(255,255,255,.16);
+      color: var(--gold2);
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.05));
+      border: 1px solid rgba(255,255,255,.14);
       box-shadow: var(--shadow);
+      position: relative;
+      z-index: 1;
     }
 
     .brand {
-      font-size: 15px;
-      font-weight: 800;
       color: var(--gold);
-      letter-spacing: 2px;
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: 3px;
       margin-bottom: 8px;
+      text-shadow: 0 2px 10px rgba(0,0,0,.12);
     }
 
     .hero h1 {
       margin: 0;
-      font-size: clamp(28px, 8vw, 58px);
+      font-size: clamp(28px, 9vw, 58px);
       line-height: 1.02;
       font-weight: 900;
-      letter-spacing: -.5px;
-      text-shadow: 0 4px 16px rgba(0,0,0,.14);
+      letter-spacing: -.8px;
+      text-shadow: 0 4px 16px rgba(0,0,0,.16);
     }
 
     .hero p {
       margin: 14px auto 0;
-      max-width: 92%;
+      max-width: 94%;
       color: var(--muted);
       font-size: 15px;
-      line-height: 1.5;
+      line-height: 1.52;
     }
 
     .alert {
-      margin: 0 0 16px;
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
-      border: 1px solid var(--line);
-      border-radius: 22px;
+      margin: 0 0 18px;
       padding: 16px 18px;
       text-align: center;
-      color: #fff2c7;
-      line-height: 1.45;
+      color: #fff2ca;
       font-size: 15px;
-      box-shadow: var(--shadow);
+      line-height: 1.5;
+      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow-soft);
       backdrop-filter: blur(10px);
+      animation: fadeUp .6s ease both;
+      animation-delay: .06s;
     }
 
-    .grid {
+    .list {
       display: grid;
       gap: 16px;
     }
 
     .card {
       position: relative;
+      overflow: hidden;
       background: linear-gradient(180deg, rgba(255,255,255,.11), rgba(255,255,255,.07));
       border: 1px solid var(--line);
       border-radius: 30px;
       padding: 18px 18px 18px;
       box-shadow: var(--shadow);
-      overflow: hidden;
       backdrop-filter: blur(12px);
+      transform: translateY(18px);
+      opacity: 0;
+      animation: cardIn .55s ease forwards;
     }
 
     .card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.05), transparent 35%),
-        radial-gradient(circle at top center, rgba(255,255,255,.05), transparent 45%);
       pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.05), transparent 34%),
+        radial-gradient(circle at top center, rgba(255,255,255,.06), transparent 48%);
     }
 
     .badge {
       position: absolute;
       top: 16px;
       right: 16px;
-      min-width: 48px;
-      height: 36px;
+      min-width: 52px;
+      height: 38px;
       padding: 0 12px;
       border-radius: 999px;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(180deg, #ffe99e, #ffd86f);
-      color: #16306f;
-      font-weight: 900;
+      background: linear-gradient(180deg, #ffe99d, #ffd86f);
+      color: #19357b;
       font-size: 13px;
-      box-shadow: 0 8px 18px rgba(0,0,0,.18);
+      font-weight: 900;
+      box-shadow: 0 8px 18px rgba(0,0,0,.16);
       z-index: 2;
     }
 
     .photo-wrap {
       display: flex;
       justify-content: center;
-      margin-top: 6px;
-      margin-bottom: 16px;
+      margin: 8px 0 16px;
     }
 
     .photo {
@@ -211,7 +222,7 @@
       object-position: center;
       display: block;
       background: #fff;
-      border: 4px solid rgba(255, 238, 173, .95);
+      border: 4px solid rgba(255,238,173,.96);
       box-shadow:
         0 10px 22px rgba(0,0,0,.22),
         inset 0 0 0 2px rgba(255,255,255,.35);
@@ -224,48 +235,68 @@
       width: 118px;
       height: 118px;
       border-radius: 50%;
-      background: linear-gradient(180deg, #fff1bd, #ffd86f);
+      background: linear-gradient(180deg, #fff0bc, #ffd86f);
       color: #17397f;
       font-size: 34px;
       font-weight: 900;
-      border: 4px solid rgba(255, 238, 173, .95);
+      border: 4px solid rgba(255,238,173,.96);
       box-shadow: 0 10px 22px rgba(0,0,0,.22);
     }
 
     .name {
-      margin: 0 0 18px;
+      margin: 0 0 16px;
       text-align: center;
       font-size: 28px;
-      font-weight: 900;
       line-height: 1.08;
+      font-weight: 900;
       min-height: 60px;
       display: flex;
       align-items: center;
       justify-content: center;
-      text-shadow: 0 4px 14px rgba(0,0,0,.15);
+      text-shadow: 0 4px 14px rgba(0,0,0,.14);
     }
 
     .btn {
-      display: block;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
       width: 100%;
-      border: 0;
       text-decoration: none;
       text-align: center;
-      font-weight: 900;
-      font-size: 17px;
       color: #fff;
+      font-size: 17px;
+      font-weight: 900;
       padding: 16px 16px;
       border-radius: 18px;
-      background: linear-gradient(180deg, var(--green-1), var(--green-2));
+      background: linear-gradient(180deg, var(--green1), var(--green2));
       box-shadow:
-        0 12px 20px rgba(31, 170, 83, .28),
-        inset 0 1px 0 rgba(255,255,255,.18);
-      transition: transform .14s ease, filter .14s ease;
+        0 12px 22px rgba(31,170,83,.28),
+        inset 0 1px 0 rgba(255,255,255,.16);
+      transform: translateY(0) scale(1);
+      transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+      user-select: none;
     }
 
-    .btn:active {
+    .btn:hover {
+      filter: brightness(1.03);
+    }
+
+    .btn:active,
+    .btn.touching {
       transform: scale(.985);
       filter: brightness(.98);
+      box-shadow:
+        0 8px 16px rgba(31,170,83,.24),
+        inset 0 1px 0 rgba(255,255,255,.14);
+    }
+
+    .btn-icon {
+      width: 22px;
+      height: 22px;
+      flex: 0 0 22px;
+      display: block;
     }
 
     .footer {
@@ -273,10 +304,35 @@
       color: var(--muted);
       font-size: 13px;
       margin-top: 18px;
-      padding-bottom: 10px;
+      padding-bottom: 6px;
+      opacity: .96;
+      animation: fadeUp .7s ease both;
+      animation-delay: .12s;
     }
 
-    @media (max-width: 380px) {
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes cardIn {
+      from {
+        opacity: 0;
+        transform: translateY(22px) scale(.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @media (max-width: 390px) {
       .name {
         font-size: 24px;
       }
@@ -294,8 +350,8 @@
   </style>
 </head>
 <body>
-  <main class="app">
-    <div class="status-space"></div>
+  <main class="app-shell">
+    <div class="top-status"></div>
 
     <section class="hero">
       <div class="logo-wrap">
@@ -303,15 +359,13 @@
           class="logo"
           src="logo-reino.png"
           alt="Logo Reino da Sorte"
-          onerror="this.style.display='none'; document.getElementById('logoFallback').style.display='flex';"
+          onerror="this.style.display='none';document.getElementById('logoFallback').style.display='flex';"
         />
-        <div class="logo-fallback" id="logoFallback">
-          Logo Reino da Sorte
-        </div>
+        <div class="logo-fallback" id="logoFallback">Logo Reino da Sorte</div>
       </div>
 
       <div class="brand">REINO DA SORTE</div>
-      <h1>Vendedores Autorizados</h1>
+      <h1>Vendedores<br>Autorizados</h1>
       <p>
         Escolha um vendedor autorizado e envie seu pedido de forma rápida,
         prática e segura pelo WhatsApp.
@@ -322,7 +376,7 @@
       Toque no botão do vendedor para abrir a conversa já com o pedido pronto para preenchimento.
     </div>
 
-    <section class="grid" id="lista"></section>
+    <section class="list" id="lista"></section>
 
     <div class="footer">
       REINO DA SORTE • Atendimento oficial
@@ -342,19 +396,19 @@ Forma de pagamento:
     );
 
     const vendedores = [
-      { nome: "Aline dos Maroto", telefone: "5588981176361", foto: "aline-dos-maroto.jpg.JPG" },
-      { nome: "Jamilles Izidório", telefone: "5588981477848", foto: "jamilles-izidorio.jpg.JPG" },
-      { nome: "Dan", telefone: "5588981703564", foto: "dan.jpg.JPG" },
-      { nome: "Alice Nabor", telefone: "5588981296930", foto: "alice-nabor.jpg.JPG" },
-      { nome: "Jéssica Ferreira", telefone: "5588981794095", foto: "jessica-ferreira.jpg.jpg" },
-      { nome: "Taína Fideles", telefone: "5588981805250", foto: "taina-fideles.jpg.JPG" },
-      { nome: "Samara", telefone: "5588988158745", foto: "samara.jpg.JPG" },
-      { nome: "Maria Oliveira", telefone: "5588996263082", foto: "maria-oliveira.jpg.JPG" },
-      { nome: "Caeline", telefone: "5588981612830", foto: "caeline.jpg.JPG" },
-      { nome: "Kyara", telefone: "5585988725043", foto: "kyara.jpg.JPG" },
-      { nome: "Taty", telefone: "5588988653443", foto: "taty.jpg.JPG" },
-      { nome: "Ana Raíssa", telefone: "5588988940412", foto: "ana-raissa.jpg.JPG" },
-      { nome: "Beta", telefone: "5588981438746", foto: "beta.jpg.JPG" }
+      { nome: "Aline dos Maroto", telefone: "5588981176361", foto: "imagens/aline-dos-maroto.jpg" },
+      { nome: "Jamilles Izidório", telefone: "5588981477848", foto: "imagens/jamilles-izidorio.jpg" },
+      { nome: "Dan", telefone: "5588981703564", foto: "imagens/dan.jpg" },
+      { nome: "Alice Nabor", telefone: "5588981296930", foto: "imagens/alice-nabor.jpg" },
+      { nome: "Jéssica Ferreira", telefone: "5588981794095", foto: "imagens/jessica-ferreira.jpg" },
+      { nome: "Taína Fideles", telefone: "5588981805250", foto: "imagens/taina-fideles.jpg" },
+      { nome: "Samara", telefone: "5588988158745", foto: "imagens/samara.jpg" },
+      { nome: "Maria Oliveira", telefone: "5588996263082", foto: "imagens/maria-oliveira.jpg" },
+      { nome: "Caeline", telefone: "5588981612830", foto: "imagens/caeline.jpg" },
+      { nome: "Kyara", telefone: "5585988725043", foto: "imagens/kyara.jpg" },
+      { nome: "Taty", telefone: "5588988653443", foto: "imagens/taty.jpg" },
+      { nome: "Ana Raíssa", telefone: "5588988940412", foto: "imagens/ana-raissa.jpg" },
+      { nome: "Beta", telefone: "5588981438746", foto: "imagens/beta.jpg" }
     ];
 
     const medals = ["🥇", "🥈", "🥉"];
@@ -374,6 +428,7 @@ Forma de pagamento:
 
       const card = document.createElement("article");
       card.className = "card";
+      card.style.animationDelay = `${0.05 + index * 0.04}s`;
 
       card.innerHTML = `
         <div class="badge">${posicao}</div>
@@ -383,6 +438,7 @@ Forma de pagamento:
             class="photo"
             src="${vendedor.foto}"
             alt="${vendedor.nome}"
+            loading="lazy"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
           />
           <div class="fallback">${iniciais}</div>
@@ -390,12 +446,28 @@ Forma de pagamento:
 
         <h2 class="name">${vendedor.nome}</h2>
 
-        <a class="btn" href="${linkWhatsapp}" target="_blank" rel="noopener noreferrer">
-          Falar no WhatsApp
+        <a class="btn" href="${linkWhatsapp}" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp com ${vendedor.nome}">
+          <svg class="btn-icon" viewBox="0 0 32 32" aria-hidden="true">
+            <path fill="currentColor" d="M19.11 17.24c-.29-.15-1.69-.83-1.95-.92-.26-.1-.45-.15-.64.15-.19.29-.73.92-.9 1.11-.16.19-.33.22-.62.07-.29-.15-1.2-.44-2.28-1.39-.84-.75-1.4-1.66-1.56-1.95-.16-.29-.02-.44.12-.58.12-.12.29-.33.43-.49.14-.16.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.64-1.55-.88-2.12-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.49.07-.75.36-.26.29-.98.95-.98 2.31s1 2.67 1.14 2.86c.14.19 1.96 2.99 4.76 4.19.67.29 1.19.46 1.6.59.67.21 1.28.18 1.77.11.54-.08 1.69-.69 1.93-1.35.24-.66.24-1.22.17-1.34-.07-.12-.26-.19-.55-.34z"/>
+            <path fill="currentColor" d="M16.02 3.2c-7.05 0-12.76 5.7-12.76 12.73 0 2.24.59 4.43 1.7 6.35L3.2 28.8l6.72-1.75a12.8 12.8 0 0 0 6.1 1.55h.01c7.04 0 12.77-5.7 12.77-12.73A12.75 12.75 0 0 0 16.02 3.2zm0 23.25h-.01c-1.92 0-3.8-.52-5.45-1.51l-.39-.23-3.99 1.04 1.07-3.89-.25-.4a10.54 10.54 0 0 1-1.63-5.61c0-5.83 4.76-10.58 10.62-10.58 2.83 0 5.48 1.1 7.48 3.09a10.47 10.47 0 0 1 3.11 7.49c0 5.83-4.77 10.58-10.56 10.58z"/>
+          </svg>
+          <span>Falar no WhatsApp</span>
         </a>
       `;
 
       lista.appendChild(card);
+    });
+
+    document.querySelectorAll(".btn").forEach(btn => {
+      const addTouch = () => btn.classList.add("touching");
+      const removeTouch = () => btn.classList.remove("touching");
+
+      btn.addEventListener("touchstart", addTouch, { passive: true });
+      btn.addEventListener("touchend", removeTouch);
+      btn.addEventListener("touchcancel", removeTouch);
+      btn.addEventListener("mousedown", addTouch);
+      btn.addEventListener("mouseup", removeTouch);
+      btn.addEventListener("mouseleave", removeTouch);
     });
   </script>
 </body>
