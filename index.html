@@ -1,97 +1,191 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Vendedores Reino da Sorte</title>
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vendedores Autorizados | Reino da Sorte</title>
   <style>
+    * { box-sizing: border-box; }
     body {
-      font-family: Arial;
-      background: #0b2c6b;
       margin: 0;
-      color: white;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, #06245e 0%, #0b3b98 100%);
+      color: #fff;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 20px 14px 40px;
+    }
+    .hero {
       text-align: center;
+      padding: 18px 12px 24px;
     }
-
-    .topo {
-      padding: 20px;
+    .hero .marca {
+      font-size: 14px;
+      letter-spacing: 1px;
+      color: #ffd76a;
+      font-weight: 700;
     }
-
-    .topo img {
-      width: 180px;
+    .hero h1 {
+      margin: 8px 0 6px;
+      font-size: 30px;
+      line-height: 1.1;
     }
-
-    h1 {
-      margin: 10px 0;
+    .hero p {
+      margin: 0 auto;
+      max-width: 620px;
+      color: #dfe9ff;
+      font-size: 15px;
     }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      padding: 15px;
-    }
-
-    .card {
-      background: #123c8d;
-      padding: 10px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    }
-
-    .card img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      border: 3px solid gold;
-    }
-
-    .nome {
-      font-weight: bold;
-      margin: 10px 0;
-    }
-
-    .botao {
-      display: inline-block;
-      padding: 8px 12px;
-      background: #25D366;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
+    .aviso {
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin: 0 0 18px;
+      text-align: center;
+      color: #fff5c2;
       font-size: 14px;
     }
-
-    .rodape {
-      margin: 20px;
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.20);
+      position: relative;
+      overflow: hidden;
+    }
+    .top-badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #ffd76a;
+      color: #102a5f;
+      font-weight: 700;
+      border-radius: 999px;
+      padding: 6px 10px;
       font-size: 12px;
+    }
+    .foto {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #ffd76a, #fff1b7);
+      color: #11306f;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      border: 3px solid rgba(255,255,255,0.45);
+    }
+    .nome {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 0 0 6px;
+    }
+    .meta {
+      color: #d8e5ff;
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+    .meta strong {
+      color: #ffd76a;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      background: #25D366;
+      color: #fff;
+      font-weight: 700;
+      padding: 12px 14px;
+      border-radius: 12px;
+      margin-top: 10px;
+      font-size: 15px;
+    }
+    .rodape {
+      text-align: center;
+      margin-top: 24px;
+      color: #d8e5ff;
+      font-size: 13px;
     }
   </style>
 </head>
-
 <body>
+  <div class="wrap">
+    <div class="hero">
+      <div class="marca">REINO DA SORTE</div>
+      <h1>Vendedores Autorizados</h1>
+      <p>Escolha um vendedor e fale direto no WhatsApp com a mensagem pronta para atendimento.</p>
+    </div>
 
-<div class="topo">
-  <img src="https://i.imgur.com/SeuLogoAqui.png">
-  <h1>TOP VENDEDORES</h1>
-  <p>Escolha e fale direto no WhatsApp</p>
-</div>
+    <div class="aviso">
+      Ranking diário provisório com base no relatório atual. Sem contatos repetidos.
+    </div>
 
-<div class="container">
+    <div id="lista" class="grid"></div>
 
-  <!-- EXEMPLO (vamos substituir depois) -->
-  <div class="card">
-    <img src="https://via.placeholder.com/100">
-    <div class="nome">Nome Vendedor</div>
-    <a class="botao" href="https://wa.me/5500000000000?text=Olá%20quero%20comprar%20bilhetes">
-      Falar no WhatsApp
-    </a>
+    <div class="rodape">
+      Atendimento oficial • Reino da Sorte
+    </div>
   </div>
 
-</div>
+  <script>
+    const vendedores = [
+      { nome: "Aline dos Maroto", telefone: "5588981176361", vendas: 161 },
+      { nome: "Jamilles Izidório", telefone: "5588981477848", vendas: 112 },
+      { nome: "Dan", telefone: "5588981703564", vendas: 103 },
+      { nome: "Alice Nabor", telefone: "5588981296930", vendas: 46 },
+      { nome: "Jéssica Ferreira", telefone: "5588981794095", vendas: 41 },
+      { nome: "Taína Fideles", telefone: "5588981805250", vendas: 39 },
+      { nome: "Luana", telefone: "5587991841301", vendas: 30 },
+      { nome: "Samara", telefone: "5588988158745", vendas: 24 },
+      { nome: "Maria Oliveira", telefone: "5588996263082", vendas: 19 },
+      { nome: "Caeline", telefone: "5588981612830", vendas: 6 },
+      { nome: "Kyara", telefone: "5585988725043", vendas: 4 },
+      { nome: "Taty", telefone: "5588988653443", vendas: 2 },
+      { nome: "Ana Raíssa", telefone: "5588988940412", vendas: 1 },
+      { nome: "Beta", telefone: "5588981438746", vendas: 0 }
+    ];
 
-<div class="rodape">
-  REINO DA SORTE • Vendedores autorizados
-</div>
+    vendedores.sort((a, b) => b.vendas - a.vendas);
 
+    const medals = ["🥇", "🥈", "🥉"];
+    const lista = document.getElementById("lista");
+
+    vendedores.forEach((v, i) => {
+      const iniciais = v.nome
+        .split(" ")
+        .slice(0, 2)
+        .map(p => p[0])
+        .join("")
+        .toUpperCase();
+
+      const msg = encodeURIComponent("Olá, quero comprar bilhetes.");
+      const link = `https://wa.me/${v.telefone}?text=${msg}`;
+
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="top-badge">${i < 3 ? medals[i] : "#" + (i + 1)}</div>
+        <div class="foto">${iniciais}</div>
+        <div class="nome">${v.nome}</div>
+        <div class="meta"><strong>Vendas do dia:</strong> ${v.vendas}</div>
+        <a class="btn" href="${link}" target="_blank">Falar no WhatsApp</a>
+      `;
+      lista.appendChild(card);
+    });
+  </script>
 </body>
 </html>
