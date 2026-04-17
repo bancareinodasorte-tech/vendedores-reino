@@ -90,7 +90,7 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   width: 100%;
-  padding: 0 10px;
+  padding: 0 20px;
 }
 
 /* BOTÕES LATERAIS */
@@ -110,10 +110,12 @@
 
 .top-link.left {
   justify-self: start;
+  margin-left: 5px;
 }
 
 .top-link.right {
   justify-self: end;
+  margin-right: 5px;
 }
 
 .top-link:hover {
@@ -122,6 +124,10 @@
 
 .top-link:active {
   transform: scale(.96);
+}
+
+.top-link span {
+  display: none !important;
 }
 
 /* ÍCONES */
@@ -569,7 +575,7 @@
       <div class="brand">REINO DA SORTE</div>
       <h1>PAINEL DE VENDEDORES</h1>
       <p>
-        <div class="brand">COMPRE SEU BILHETE - 20 CHANCES - APENAS R$ 2,00</div>
+        <div class="brand">CADA BILHETE COM 20 CHANCES - APENAS R$ 2,00</div>
       </p>
     </section>
 
@@ -597,25 +603,23 @@
         <div class="mini-photo-wrap">
           <img class="mini-photo" src="premio-18042026.png" alt="Prêmio do dia" onerror="this.style.display='none';" />
         </div>
-        <div class="mini-name">R$ 2 MIL REAIS+5 GIROS DE R$ 100 - Não Acumulativo</div>
+        <div class="mini-name">R$ 2 MIL +5 GIROS EXTRAS DE R$ 100 - Não Acumula</div>
         <div class="mini-sub">SORTTEIO EM 18/04/2026</div>
       </article>
 
       <article class="mini-card">
-        <div class="mini-title">Ganhador recente</div>
+        <div class="mini-title">ÚLTIMO GANHADOR recente</div>
         <div class="mini-photo-wrap">
           <img class="mini-photo" src="ganhador-15042026.png" alt="Ganhador recente" onerror="this.style.display='none';" />
         </div>
-        <div class="mini-name">R$ 2.500,00</div>
+        <div class="mini-name">PRÊMIO: R$ 2.500,00</div>
         <div class="mini-sub">PAGO EM 15/04/2026</div>
       </article>
     </section>
 
     <div class="alert">
-      Toque em COMPRAR > Preencha o pedido > Envie > Efetue o pagamento > Envie o comprovante > Receba seus bilhetes.
+      <h2 class="section-title">ESCOLHA SEU VENDEDOR E TOQUE EM COMPRAR</h2>
     </div>
-
-    <h2 class="section-title">ESCOLHA SEU VENDEDOR</h2>
 
     <section class="list" id="lista"></section>
 
