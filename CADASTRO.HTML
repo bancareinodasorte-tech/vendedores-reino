@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro de Vendedor | Reino da Sorte</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #335fdb 0%, #264ec3 45%, #1d3fa7 100%);
+      padding: 20px 10px 40px;
+      min-height: 100vh;
+    }
+
+    .box {
+      width: min(720px, 100%);
+      margin: 0 auto;
+      background: #eef1f8;
+      border-radius: 24px;
+      padding: 22px 16px 26px;
+      box-shadow: 0 18px 35px rgba(0,0,0,.25);
+    }
+
+    h1 {
+      text-align: center;
+      color: #17459e;
+      font-size: clamp(26px, 6vw, 48px);
+      line-height: 1.05;
+      font-weight: 900;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+
+    label {
+      display: block;
+      font-size: 16px;
+      font-weight: 800;
+      color: #111;
+      margin: 16px 0 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid #c9cfdd;
+      border-radius: 14px;
+      background: #fff;
+      padding: 16px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .check {
+      margin-top: 18px;
+      background: #fff;
+      border: 1px solid #c9cfdd;
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .check input {
+      width: 28px;
+      height: 28px;
+      margin-top: 2px;
+      flex: 0 0 28px;
+    }
+
+    .check span {
+      font-size: 16px;
+      font-weight: 800;
+      line-height: 1.35;
+      color: #111;
+    }
+
+    .btn {
+      margin-top: 18px;
+      width: 100%;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #34d84f 0%, #25b63d 100%);
+      color: #fff;
+      font-weight: 900;
+      font-size: 18px;
+      padding: 17px;
+      cursor: pointer;
+      box-shadow: 0 12px 24px rgba(12, 110, 31, .28);
+    }
+
+    .btn:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .instrucao {
+      margin-top: 12px;
+      text-align: center;
+      color: #555;
+      font-size: 14px;
+    }
+
+    .voltar {
+      display: inline-block;
+      margin-bottom: 16px;
+      color: #fff;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .msg {
+      display: none;
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .msg.ok {
+      display: block;
+      background: #e9fff0;
+      color: #157038;
+      border: 1px solid #bde8c9;
+    }
+
+    .msg.erro {
+      display: block;
+      background: #fff0f0;
+      color: #a12828;
+      border: 1px solid #f0b8b8;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <a class="voltar" href="index.html">← Voltar para o painel</a>
+
+    <h1>Seja um vendedor autorizado</h1>
+
+    <form id="cadastroForm">
+      <label for="nome">Nome completo</label>
+      <input type="text" id="nome" required>
+
+      <label for="cpf">CPF</label>
+      <input type="text" id="cpf" required>
+
+      <label for="email">E-mail para acesso</label>
+      <input type="email" id="email" required>
+
+      <label for="senha">Crie uma senha (mínimo 6 caracteres)</label>
+      <input type="password" id="senha" minlength="6" required>
+
+      <label for="telefone">Telefone</label>
+      <input type="text" id="telefone" required>
+
+      <label for="cidade">Cidade</label>
+      <input type="text" id="cidade" required>
+
+      <label for="modalidade">Escolha modalidade</label>
+      <select id="modalidade" required>
+        <option value="">Selecione</option>
+        <option>Online (celular)</option>
+        <option>Maquininha</option>
+        <option>Banca c/maquininha</option>
+        <option>Maquininha + Online</option>
+        <option>Banca + Online</option>
+      </select>
+
+      <label for="celular">Seu celular é?</label>
+      <select id="celular" required>
+        <option value="">Selecione</option>
+        <option>Android</option>
+        <option>iPhone</option>
+      </select>
+
+      <label for="disponibilidade">Disponibilidade (descreva)</label>
+      <textarea id="disponibilidade" placeholder="Ex.: 8h às 16h diariamente" required></textarea>
+
+      <label class="check">
+        <input type="checkbox" id="confirmacao">
+        <span>Sim, tenho interesse e disponibilidade diária para trabalhar como vendedor(a).</span>
+      </label>
+
+      <button type="submit" class="btn" id="btnEnviar" disabled>Enviar para análise</button>
+      <div class="instrucao">Clique no botão e confirme o envio pelo WhatsApp</div>
+
+      <div id="msg" class="msg"></div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('cadastroForm');
+    const btnEnviar = document.getElementById('btnEnviar');
+    const confirmacao = document.getElementById('confirmacao');
+    const msg = document.getElementById('msg');
+
+    const STORAGE_KEY = 'reino_cadastros_enviados';
+
+    function somenteNumeros(valor) {
+      return String(valor || '').replace(/\D/g, '');
+    }
+
+    function getCadastros() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+      } catch {
+        return {};
+      }
+    }
+
+    function setCadastros(obj) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(obj));
+    }
+
+    confirmacao.addEventListener('change', () => {
+      btnEnviar.disabled = !confirmacao.checked;
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const nome = document.getElementById('nome').value.trim();
+      const cpf = somenteNumeros(document.getElementById('cpf').value);
+      const email = document.getElementById('email').value.trim();
+      const senha = document.getElementById('senha').value.trim();
+      const telefone = somenteNumeros(document.getElementById('telefone').value);
+      const cidade = document.getElementById('cidade').value.trim();
+      const modalidade = document.getElementById('modalidade').value;
+      const celular = document.getElementById('celular').value;
+      const disponibilidade = document.getElementById('disponibilidade').value.trim();
+
+      msg.className = 'msg';
+      msg.textContent = '';
+
+      if (!confirmacao.checked) {
+        msg.className = 'msg erro';
+        msg.textContent = 'Marque a confirmação de interesse antes de enviar.';
+        return;
+      }
+
+      if (!cpf) {
+        msg.className = 'msg erro';
+        msg.textContent = 'Informe o CPF.';
+        return;
+      }
+
+      const enviados = getCadastros();
+
+      if (enviados[cpf]) {
+        msg.className = 'msg erro';
+        msg.textContent = 'Este CPF já enviou solicitação neste aparelho. Aguarde análise do escritório.';
+        return;
+      }
+
+      const texto =
+`Quero ser vendedor autorizado
+
+Nome: ${nome}
+CPF: ${cpf}
+E-mail: ${email}
+Senha: ${senha}
+Telefone: ${telefone}
+Cidade: ${cidade}
+Modalidade: ${modalidade}
+Celular: ${celular}
+Interesse: Sim, tenho interesse e disponibilidade diária para trabalhar como vendedor(a).
+Disponibilidade informada: ${disponibilidade}`;
+
+      enviados[cpf] = {
+        nome,
+        data: new Date().toISOString()
+      };
+      setCadastros(enviados);
+
+      form.reset();
+      btnEnviar.disabled = true;
+
+      msg.className = 'msg ok';
+      msg.textContent = 'Cadastro preparado. O WhatsApp será aberto para confirmar o envio.';
+
+      const url = 'https://wa.me/5588994943632?text=' + encodeURIComponent(texto);
+      window.location.href = url;
+    });
+  </script>
+</body>
+</html>
