@@ -135,32 +135,35 @@ Clique no botão e confirme o envio pelo WhatsApp
 </div>
 
 <script>
-const botao = document.getElementById('enviar');
-const checkbox = document.getElementById('confirmacao');
 
-checkbox.addEventListener('change', () => {
-    if (checkbox.checked) {
-        botao.disabled = false;
-        botao.classList.add('active');
-    } else {
-        botao.disabled = true;
-        botao.classList.remove('active');
-    }
-});
+function enviarCadastro() {
+  const nome = document.getElementById('nome').value;
+  const cpf = document.getElementById('cpf').value;
 
-botao.addEventListener('click', () => {
+  // 🔴 BLOQUEIO DE CPF DUPLICADO
+  const ultimoCpf = localStorage.getItem('cpf_enviado');
 
-    const nome = document.getElementById('nome').value;
-    const cpf = document.getElementById('cpf').value;
-    const email = document.getElementById('email').value;
-    const senha = document.getElementById('senha').value;
-    const telefone = document.getElementById('telefone').value;
-    const cidade = document.getElementById('cidade').value;
-    const modalidade = document.getElementById('modalidade').value;
-    const celular = document.getElementById('celular').value;
-    const disponibilidade = document.getElementById('disponibilidade').value;
+  if (ultimoCpf === cpf) {
+    alert('⚠️ Este CPF já foi enviado para análise.');
+    return;
+  }
 
-    const mensagem = `Quero ser vendedor autorizado
+  const email = document.getElementById('email').value;
+  const senha = document.getElementById('senha').value;
+  const telefone = document.getElementById('telefone').value;
+  const cidade = document.getElementById('cidade').value;
+  const modalidade = document.getElementById('modalidade').value;
+  const celular = document.getElementById('celular').value;
+  const disponibilidade = document.getElementById('disponibilidade').value;
+  const confirmacao = document.getElementById('confirmacao');
+
+  if (!confirmacao.checked) {
+    alert('Você precisa confirmar disponibilidade.');
+    return;
+  }
+
+  const mensagem =
+`Quero ser vendedor autorizado
 
 Nome: ${nome}
 CPF: ${cpf}
@@ -172,12 +175,21 @@ Modalidade: ${modalidade}
 Celular: ${celular}
 Disponibilidade: ${disponibilidade}`;
 
-    const numero = "5588994943632";
+  const numero = '5588994943632';
 
-    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
+  const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensagem)}`;
 
-    window.open(url, '_blank');
-});
+  // 🔴 SALVA CPF COMO ENVIADO
+  localStorage.setItem('cpf_enviado', cpf);
+
+  // 🔴 ABRE WHATSAPP
+  window.open(url, '_blank');
+
+  // 🔴 LIMPA FORMULÁRIO
+  document.querySelectorAll('input, select').forEach(el => el.value = '');
+
+}
+
 </script>
 
 </body>
