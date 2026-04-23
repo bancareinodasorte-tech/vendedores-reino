@@ -620,9 +620,9 @@
       <article class="mini-card">
         <div class="mini-title">TOP 1</div>
         <div class="mini-photo-wrap">
-          <img class="mini-photo" src="images/tamiles-mimi.jpg" alt="Top 1" onerror="this.style.display='none';" />
+          <img class="mini-photo" src="images/alice-nabor.jpg" alt="Top 1" onerror="this.style.display='none';" />
         </div>
-        <div class="mini-name">Tamilles mimi</div>
+        <div class="mini-name">Alice Nabor</div>
         <div class="mini-sub">Vendedor(a) destaque</div>
       </article>
 
@@ -638,19 +638,19 @@
       <article class="mini-card">
         <div class="mini-title">PRÓXIMO SORTEIO</div>
         <div class="mini-photo-wrap">
-          <img class="mini-photo" src="sorteio22042026.png" alt="Prêmio do dia" onerror="this.style.display='none';" />
+          <img class="mini-photo" src="sorteio25042026.png" alt="Prêmio do dia" onerror="this.style.display='none';" />
         </div>
-        <div class="mini-name">R$ 1.000,00 +3 Giros de R$100 *Não Acumula*</div>
-        <div class="mini-sub">Sorteio: Quarta-Feira, 22/04/2026</div>
+        <div class="mini-name">R$ 1.500,00 +3 Giros de R$200 *Não Acumula*</div>
+        <div class="mini-sub">Sorteio: Sábado, 25/04/2026</div>
       </article>
 
       <article class="mini-card">
         <div class="mini-title">ÚLTIMO GANHADOR</div>
         <div class="mini-photo-wrap">
-          <img class="mini-photo" src="ganhador-18042026.png" alt="Ganhador recente" onerror="this.style.display='none';" />
+          <img class="mini-photo" src="ganhador-22042026.png" alt="Ganhador recente" onerror="this.style.display='none';" />
         </div>
-        <div class="mini-name">PRÊMIO: R$ 2.000,00</div>
-        <div class="mini-sub">PAGO EM 18/04/2026</div>
+        <div class="mini-name">PRÊMIO: R$ 1.000,00</div>
+        <div class="mini-sub">PAGO EM 22/04/2026</div>
       </article>
     </section>
 
@@ -690,23 +690,25 @@ Telefone:`
     */
 
     const vendedores = [
-      { nome: "Tamilles mimi", telefone: "5588981703564", foto: "images/tamiles-mimi.jpg" },
-      { nome: "Dan", telefone: "5588981703564", foto: "images/dan.jpg" },
-      { nome: "Aline dos Maroto", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg" },
-      { nome: "Márcia Silva", telefone: "5588988216885", foto: "images/marcia-silva.jpg" },
-      { nome: "Alice Nabor", telefone: "5588981296930", foto: "images/alice-nabor.jpg" },
-      { nome: "Taty", telefone: "5588988653443", foto: "images/taty.jpg" },
-      { nome: "Luana", telefone: "5588988132520", foto: "images/vendedora-semfoto.jpg" },
-      { nome: "Jamilles Izidório", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg" },
-      { nome: "Taína Fideles", telefone: "5588981805250", foto: "images/taina-fideles.jpg" },
-      { nome: "Maria Oliveira", telefone: "5588996263082", foto: "images/maria-oliveira.jpg" },
-      { nome: "Ana Raíssa", telefone: "5588988940412", foto: "images/ana-raissa.jpg" },
-      { nome: "Jéssica Ferreira", telefone: "5588981794095", foto: "images/jessica-ferreira.jpg" },
-      { nome: "Samara", telefone: "5588988158745", foto: "images/samara.jpg" },
-      { nome: "Kyara", telefone: "5585988725043", foto: "images/kyara.jpg" },
-      { nome: "Caeline", telefone: "5588981612830", foto: "images/caeline.jpg" },
-      { nome: "Beta", telefone: "5588981438746", foto: "images/beta.jpg" }
-    ];
+  { nome: "Alice Nabor", telefone: "5588981296930", foto: "images/alice-nabor.jpg" },
+  { nome: "Dam", telefone: "5588981703564", foto: "images/dan.jpg" },
+  { nome: "Tamiles Mimi", telefone: "5588981703564", foto: "images/tamiles-mimi.jpg" },
+  { nome: "Jamilles Izidório", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg" },
+  { nome: "Aline dos Maroto", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg" },
+  { nome: "Márcia Silva", telefone: "5588988216885", foto: "images/marcia-silva.jpg" },
+  { nome: "Taína Fideles", telefone: "5588981805250", foto: "images/taina-fideles.jpg" },
+  { nome: "Elaine Mariano", telefone: "", foto: "images/vendedora-semfoto.jpg" },
+  { nome: "Taty", telefone: "5588988653443", foto: "images/taty.jpg" },
+  { nome: "Luana", telefone: "5588988132520", foto: "images/vendedora-semfoto.jpg" },
+  { nome: "Maria Oliveira", telefone: "5588996263082", foto: "images/maria-oliveira.jpg" },
+  { nome: "Samara", telefone: "5588988158745", foto: "images/samara.jpg" },
+  { nome: "Ana Raíssa", telefone: "5588988940412", foto: "images/ana-raissa.jpg" },
+  { nome: "Caeline", telefone: "5588981612830", foto: "images/caeline.jpg" },
+  { nome: "Kyara", telefone: "5585988725043", foto: "images/kyara.jpg" },
+  { nome: "Jéssica Ferreira", telefone: "5588981794095", foto: "images/jessica-ferreira.jpg" },
+  { nome: "Carro de Som - Reino da Sorte", telefone: "", foto: "images/vendedora-semfoto.jpg" },
+  { nome: "Beta", telefone: "5588981438746", foto: "images/beta.jpg" }
+];
 
     const medals = ["🥇", "🥈", "🥉"];
     const lista = document.getElementById("lista");
