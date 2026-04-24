@@ -1,0 +1,4 @@
+[
+  { "id": "alice", "nome": "Alice Nabor", "posicao": 1, "percentual": 10.0 },
+  { "id": "dan", "nome": "Dam", "posicao": 2, "percentual": 8.5 }
+]
