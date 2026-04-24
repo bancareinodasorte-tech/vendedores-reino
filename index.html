@@ -66,8 +66,6 @@
     <section class="hero"><div class="brand">REINO DA SORTE</div><h1>PAINEL DE VENDEDORES</h1><div class="subtitle">CADA BILHETE COM 20 CHANCES - APENAS R$ 2,00</div></section>
 
     <section class="highlights">
-      <article class="mini-card"><div class="mini-title">TOP 1</div><div class="mini-photo-wrap"><img id="top1Foto" class="mini-photo" src="images/alice-nabor.jpg" alt="Top 1" onerror="this.style.display='none';" /></div><div id="top1Nome" class="mini-name">Alice Nabor</div><div id="top1Perc" class="mini-sub">Participação: 0,0%</div></article>
-      <article class="mini-card"><div class="mini-title">TOP 2</div><div class="mini-photo-wrap"><img id="top2Foto" class="mini-photo" src="images/dan.jpg" alt="Top 2" onerror="this.style.display='none';" /></div><div id="top2Nome" class="mini-name">Dam</div><div id="top2Perc" class="mini-sub">Participação: 0,0%</div></article>
       <article class="mini-card"><div class="mini-title">PRÓXIMO SORTEIO</div><div class="mini-photo-wrap"><img class="mini-photo" src="sorteio25042026.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div><div class="mini-name">PRINCIPAL: R$ 1.500,00</div><div class="mini-sub">EXTRAS: 3 Giros Extras de R$200</div><div class="mini-sub">SORTEIO: Sábado, 25/04/2026</div></article>
       <article class="mini-card"><div class="mini-title">ÚLTIMO GANHADOR</div><div class="mini-photo-wrap"><img class="mini-photo" src="ganhador-22042026.png" alt="Ganhador recente" onerror="this.style.display='none';" /></div><div class="mini-name">PRÊMIO: R$ 1.000,00</div><div class="mini-sub">GANHADOR: GEAN</div><div class="mini-sub">VENDEDOR: ELAINE-Online</div><div class="mini-sub">PAGO EM 22/04/2026</div></article>
     </section>
@@ -102,7 +100,6 @@
       { id:"yohani", nome:"Yohani", telefone:"5588988613539", foto:"images/yohani.jpg", percentual:0 },
       { id:"maria-luana", nome:"Maria Luana", telefone:"5588988898619", foto:"images/vendedora.jpg", percentual:0 }
     ];
-    const medals = ["TOP 1 🥇", "TOP 2 🥈", "TOP 3 🥉"];
     const lista = document.getElementById("lista");
     function normalizar(texto){ return String(texto||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim(); }
     function encontrarVendedor(itemRanking){ const id=normalizar(itemRanking.id); const nome=normalizar(itemRanking.nome); return vendedoresBase.find(v=>{ const aliases=(v.aliases||[]).map(normalizar); return id===normalizar(v.id)||nome===normalizar(v.nome)||aliases.includes(id)||aliases.includes(nome); }); }
