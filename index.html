@@ -100,6 +100,7 @@
       { id:"yohani", nome:"Yohani", telefone:"5588988613539", foto:"images/yohani.jpg", percentual:0 },
       { id:"maria-luana", nome:"Maria Luana", telefone:"5588988898619", foto:"images/vendedora.jpg", percentual:0 }
     ];
+    const medals = ["1", "2", "3"];
     const lista = document.getElementById("lista");
     function normalizar(texto){ return String(texto||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim(); }
     function encontrarVendedor(itemRanking){ const id=normalizar(itemRanking.id); const nome=normalizar(itemRanking.nome); return vendedoresBase.find(v=>{ const aliases=(v.aliases||[]).map(normalizar); return id===normalizar(v.id)||nome===normalizar(v.nome)||aliases.includes(id)||aliases.includes(nome); }); }
