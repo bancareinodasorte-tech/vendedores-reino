@@ -3,343 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Atualizar Ranking | Reino da Sorte</title>
+  <title>Painel Privado | Ranking e Prestação de Contas</title>
   <style>
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: Arial, sans-serif; background: #eef3fb; color: #10213f; }
-    header { background: linear-gradient(180deg, #123ca7, #08266f); color: #fff; padding: 18px 14px; text-align: center; }
-    header img { width: 76px; height: 76px; object-fit: contain; display: block; margin: 0 auto 8px; }
-    header h1 { margin: 0; font-size: 24px; font-weight: 900; }
-    header p { margin: 8px auto 0; max-width: 900px; font-size: 14px; color: #dce8ff; line-height: 1.4; }
-    main { max-width: 1180px; margin: 0 auto; padding: 18px 12px 40px; }
-    .card { background: #fff; border: 1px solid #dce5f5; border-radius: 18px; box-shadow: 0 8px 22px rgba(14, 34, 82, .08); padding: 16px; margin-bottom: 16px; }
-    .card h2 { margin: 0 0 12px; font-size: 18px; color: #123ca7; }
-    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-    label { display: block; font-size: 13px; font-weight: 800; margin-bottom: 6px; }
-    input, textarea { width: 100%; border: 1px solid #cfdaf0; border-radius: 12px; padding: 12px; font-size: 15px; outline: none; background: #fff; }
-    input:focus, textarea:focus { border-color: #1f7bff; box-shadow: 0 0 0 3px rgba(31, 123, 255, .13); }
-    textarea { min-height: 300px; resize: vertical; font-family: Consolas, monospace; line-height: 1.35; white-space: pre; }
-    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-    button { border: 0; border-radius: 14px; padding: 13px 16px; font-size: 15px; font-weight: 900; cursor: pointer; }
-    .primary { background: #1677ff; color: #fff; }
-    .success { background: #20b455; color: #fff; }
-    .warning { background: #ffb020; color: #1d2a3d; }
-    .danger { background: #ff4d4f; color: #fff; }
-    .muted { background: #e7eefc; color: #123ca7; }
-    .summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 12px; }
-    .metric { background: #f6f9ff; border: 1px solid #dce5f5; border-radius: 14px; padding: 14px; }
-    .metric span { display: block; color: #6b7892; font-size: 13px; margin-bottom: 7px; }
-    .metric strong { display: block; color: #123ca7; font-size: 24px; line-height: 1; }
-    .table-wrap { overflow-x: auto; border: 1px solid #dce5f5; border-radius: 14px; background: #fff; }
-    table { width: 100%; border-collapse: collapse; min-width: 920px; }
-    th, td { border-bottom: 1px solid #e8eef8; padding: 10px; text-align: left; font-size: 13px; vertical-align: middle; }
-    th { background: #f4f7fd; color: #18386f; font-weight: 900; position: sticky; top: 0; z-index: 1; }
-    tr:last-child td { border-bottom: 0; }
-    .rank { font-weight: 900; color: #123ca7; white-space: nowrap; }
-    .money { font-weight: 800; color: #087a2f; white-space: nowrap; }
-    .pill { display: inline-block; padding: 5px 8px; border-radius: 999px; background: #eaf4ff; color: #123ca7; font-weight: 900; font-size: 12px; }
-    .output { min-height: 220px; background: #071d4f; color: #dce8ff; border-color: #071d4f; }
-    .notice { padding: 12px 14px; border-radius: 14px; background: #fff7df; border: 1px solid #ffd46b; color: #5e4200; font-size: 14px; line-height: 1.45; }
-    .ok { background: #eafaf0; border-color: #a9ebbf; color: #145d29; }
-    @media (max-width: 780px) { .grid, .summary { grid-template-columns: 1fr; } header h1 { font-size: 20px; } textarea { min-height: 240px; } button { width: 100%; } }
+    *{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef3fb;color:#10213f}header{background:linear-gradient(180deg,#123ca7,#08266f);color:#fff;padding:18px 14px;text-align:center}header img{width:76px;height:76px;object-fit:contain;display:block;margin:0 auto 8px}header h1{margin:0;font-size:23px;font-weight:900}header p{margin:8px auto 0;max-width:980px;font-size:14px;color:#dce8ff;line-height:1.4}main{max-width:1220px;margin:0 auto;padding:18px 12px 40px}.card{background:#fff;border:1px solid #dce5f5;border-radius:18px;box-shadow:0 8px 22px rgba(14,34,82,.08);padding:16px;margin-bottom:16px}.card h2{margin:0 0 12px;font-size:18px;color:#123ca7}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}input,textarea{width:100%;border:1px solid #cfdaf0;border-radius:12px;padding:12px;font-size:15px;outline:none;background:#fff}input:focus,textarea:focus{border-color:#1f7bff;box-shadow:0 0 0 3px rgba(31,123,255,.13)}textarea{min-height:250px;resize:vertical;font-family:Consolas,monospace;line-height:1.35;white-space:pre}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}button{border:0;border-radius:14px;padding:13px 16px;font-size:15px;font-weight:900;cursor:pointer}.primary{background:#1677ff;color:#fff}.success{background:#20b455;color:#fff}.warning{background:#ffb020;color:#1d2a3d}.danger{background:#ff4d4f;color:#fff}.muted{background:#e7eefc;color:#123ca7}.dark{background:#071d4f;color:#fff}.summary{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:12px}.metric{background:#f6f9ff;border:1px solid #dce5f5;border-radius:14px;padding:14px}.metric span{display:block;color:#6b7892;font-size:13px;margin-bottom:7px}.metric strong{display:block;color:#123ca7;font-size:22px;line-height:1.08}.metric.green strong{color:#087a2f}.metric.orange strong{color:#c77700}.table-wrap{overflow-x:auto;border:1px solid #dce5f5;border-radius:14px;background:#fff}table{width:100%;border-collapse:collapse;min-width:1050px}th,td{border-bottom:1px solid #e8eef8;padding:10px;text-align:left;font-size:13px;vertical-align:middle}th{background:#f4f7fd;color:#18386f;font-weight:900;position:sticky;top:0;z-index:1}tr:last-child td{border-bottom:0}.rank{font-weight:900;color:#123ca7;white-space:nowrap}.money{font-weight:900;color:#087a2f;white-space:nowrap}.negative{color:#c77700;font-weight:900;white-space:nowrap}.pill{display:inline-block;padding:5px 8px;border-radius:999px;background:#eaf4ff;color:#123ca7;font-weight:900;font-size:12px}.pill-green{background:#eafaf0;color:#087a2f}.pill-orange{background:#fff4df;color:#b66b00}.output{min-height:210px;background:#071d4f;color:#dce8ff;border-color:#071d4f}.notice{padding:12px 14px;border-radius:14px;background:#fff7df;border:1px solid #ffd46b;color:#5e4200;font-size:14px;line-height:1.45}.ok{background:#eafaf0;border-color:#a9ebbf;color:#145d29}.small{font-size:12px;color:#6b7892;line-height:1.35}.history-list{display:grid;gap:10px}.history-item{border:1px solid #dce5f5;border-radius:14px;padding:12px;background:#f8fbff}.history-title{font-weight:900;color:#123ca7}.history-info{color:#51617d;font-size:13px;margin-top:5px}.history-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.history-actions button{padding:9px 11px;font-size:12px;border-radius:10px}.compare-box{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.compare-card{border:1px solid #dce5f5;border-radius:14px;padding:12px;background:#f6f9ff}.compare-card b{display:block;color:#123ca7;margin-bottom:5px}@media print{body{background:#fff}header,.no-print,textarea,.actions,.notice,#saidaJsonCard,#historicoCard{display:none!important}.card{box-shadow:none;border:0;padding:0}main{max-width:100%;padding:0}table{min-width:0}th,td{font-size:11px;padding:6px}}@media(max-width:900px){.summary,.compare-box{grid-template-columns:repeat(2,1fr)}}@media(max-width:780px){.grid,.summary,.compare-box{grid-template-columns:1fr}header h1{font-size:20px}textarea{min-height:240px}button{width:100%}}
   </style>
 </head>
 <body>
-  <header>
-    <img src="logo-reino.png" alt="Logo Reino da Sorte" onerror="this.style.display='none'">
-    <h1>Atualização Manual de Ranking</h1>
-    <p>Área privada para colar os dados da Prestação de Contas, calcular ranking, participação pública e valores de prestação de cada vendedor.</p>
-  </header>
-
-  <main>
-    <section class="card">
-      <h2>1. Dados do Sorteio</h2>
-      <div class="grid">
-        <div>
-          <label>Nome do sorteio</label>
-          <input id="nomeSorteio" value="R$ 1.500,00 - SABADOUUUU > NAO ACUMULATIVO <" />
-        </div>
-        <div>
-          <label>Valor do bilhete</label>
-          <input id="valorBilhete" type="number" step="0.01" value="2.00" />
-        </div>
-        <div>
-          <label>Comissão do vendedor (%)</label>
-          <input id="comissao" type="number" step="0.01" value="30" />
-        </div>
-      </div>
-
-      <div class="grid" style="margin-top:12px;">
-        <div>
-          <label>Meta para começar bônus</label>
-          <input id="metaBase" type="number" value="100" />
-        </div>
-        <div>
-          <label>Máximo de bilhetes de bônus</label>
-          <input id="bonusMaximo" type="number" value="10" />
-        </div>
-        <div>
-          <label>Total geral vendido manual (opcional)</label>
-          <input id="totalManual" type="number" placeholder="Pode deixar vazio. O sistema soma automático." />
-        </div>
-      </div>
-
-      <div class="notice" style="margin-top:12px;">
-        Nome público sugerido: <b>Participação</b>. Regra aplicada: cada bilhete vale R$ 2,00; comissão de 30%; bônus de até 10 bilhetes ao passar de 100 vendidos.
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>2. Cole aqui a tabela copiada da Prestação de Contas</h2>
-      <textarea id="entrada" placeholder="Cole aqui os dados copiados do painel ADM..."></textarea>
-      <div class="actions">
-        <button class="primary" onclick="processar()">PROCESSAR RANKING</button>
-        <button class="success" onclick="copiarJson()">COPIAR JSON DO RANKING</button>
-        <button class="warning" onclick="baixarJson()">BAIXAR ranking.json</button>
-        <button class="muted" onclick="carregarExemplo()">CARREGAR EXEMPLO</button>
-        <button class="danger" onclick="limparTudo()">LIMPAR</button>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>3. Resumo Privado</h2>
-      <div class="summary">
-        <div class="metric"><span>Total vendido</span><strong id="mTotalVendido">0</strong></div>
-        <div class="metric"><span>Valor bruto</span><strong id="mValorBruto">R$ 0,00</strong></div>
-        <div class="metric"><span>Comissão total</span><strong id="mComissao">R$ 0,00</strong></div>
-        <div class="metric"><span>Total a prestar</span><strong id="mPrestar">R$ 0,00</strong></div>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>4. Ranking Público Gerado</h2>
-      <div class="notice ok">Esse ranking pode ir para o painel público. Ele não mostra quantidade de bilhetes nem valores, somente posição e participação em %.</div>
-      <div class="table-wrap" style="margin-top:12px;">
-        <table>
-          <thead><tr><th>Posição</th><th>Vendedor</th><th>Participação pública</th><th>Texto do card</th></tr></thead>
-          <tbody id="tRanking"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>5. Prestação de Contas Privada</h2>
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr><th>Vendedor</th><th>Bilhetes vendidos</th><th>Valor bruto</th><th>Comissão 30%</th><th>Bônus meta</th><th>Desconto bônus</th><th>Total a prestar</th></tr>
-          </thead>
-          <tbody id="tPrestacao"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="card">
-      <h2>6. JSON pronto para o painel público</h2>
-      <textarea id="saidaJson" class="output" readonly></textarea>
-    </section>
-  </main>
-
-  <script>
-    const vendedoresBase = [
-      { id: "alice", nome: "Alice Nabor", telefone: "5588981296930", foto: "images/alice-nabor.jpg", aliases: ["alice nabor", "alice nabor online", "alice nabor m"] },
-      { id: "dan", nome: "Dam", telefone: "5588981703564", foto: "images/dan.jpg", aliases: ["dam", "dan", "dam vendas online"] },
-      { id: "tamiles", nome: "Tamiles Mimi", telefone: "5588981703564", foto: "images/tamiles-mimi.jpg", aliases: ["tamiles mimi", "tamilles", "tamilles mimi", "tamiles mimi online"] },
-      { id: "jamilles", nome: "Jamilles Izidório", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg", aliases: ["jamilles izidoro", "jamilles izidorio", "jamilles izidorio online"] },
-      { id: "aline", nome: "Aline dos Maroto", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg", aliases: ["aline dos maroto", "banca aline dos maroto", "aline dos maroto online"] },
-      { id: "marcia", nome: "Márcia Silva", telefone: "5588988216885", foto: "images/marcia-silva.jpg", aliases: ["marcia silva", "marcia silva online"] },
-      { id: "taina", nome: "Taína Fideles", telefone: "5588981805250", foto: "images/taina-fideles.jpg", aliases: ["taina fideles", "taina fideles online"] },
-      { id: "elaine", nome: "Elaine Mariano", telefone: "5588981642062", foto: "images/eliane-mariano.jpg", aliases: ["elaine mariano", "elaine", "elaine online", "eliane mariano"] },
-      { id: "taty", nome: "Taty", telefone: "5588988653443", foto: "images/taty.jpg", aliases: ["taty", "banca taty", "taty vendas online"] },
-      { id: "luana", nome: "Luana", telefone: "5588988132520", foto: "images/vendedora-semfoto.jpg", aliases: ["luana"] },
-      { id: "maria", nome: "Maria Oliveira", telefone: "5588996263082", foto: "images/maria-oliveira.jpg", aliases: ["maria oliveira", "maria oliveira vendas online"] },
-      { id: "samara", nome: "Samara", telefone: "5588988158745", foto: "images/samara.jpg", aliases: ["samara", "samara online", "banca samara"] },
-      { id: "ana-raissa", nome: "Ana Raíssa", telefone: "5588988940412", foto: "images/ana-raissa.jpg", aliases: ["ana raissa", "ana raissa vendas online"] },
-      { id: "caeline", nome: "Caeline", telefone: "5588981612830", foto: "images/caeline.jpg", aliases: ["caeline", "caeline vendas online"] },
-      { id: "kyara", nome: "Kyara", telefone: "5585988725043", foto: "images/kyara.jpg", aliases: ["kyara", "kyara 2", "kyara vendas online"] },
-      { id: "jessica", nome: "Jéssica Ferreira", telefone: "5588981794095", foto: "images/jessica-ferreira.jpg", aliases: ["jessica ferreira"] },
-      { id: "carro-som", nome: "Carro de Som - Reino da Sorte", telefone: "5588994943632", foto: "images/carrodesom.jpg", aliases: ["carro de som", "carro de som reino da sorte"] },
-      { id: "beta", nome: "Beta", telefone: "5588981438746", foto: "images/beta.jpg", aliases: ["beta", "beta vendas online"] },
-      { id: "giovanna", nome: "Giovanna", telefone: "5588982354554", foto: "images/giovanna.jpg", aliases: ["giovanna", "giovanna online"] },
-      { id: "yohani", nome: "Yohani", telefone: "5588988613539", foto: "images/yohani.jpg", aliases: ["yohani", "yohani alves", "yohani alves online"] },
-      { id: "maria-luana", nome: "Maria Luana", telefone: "5588988898619", foto: "images/vendedora.jpg", aliases: ["maria luana", "maria luana online"] }
-    ];
-
-    let ultimoJson = [];
-
-    function normalizar(texto) {
-      return String(texto || "")
-        .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .replace(/r\$\s*\d+[,.]\d+/g, "")
-        .replace(/[^a-z0-9]+/g, " ")
-        .replace(/\b(vendas|venda|banca|online|m)\b/g, " ")
-        .replace(/\s+/g, " ").trim();
-    }
-
-    function moeda(valor) {
-      return Number(valor || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
-    }
-
-    function numero(valor) {
-      return Number(valor || 0).toLocaleString("pt-BR");
-    }
-
-    function encontrarBase(nome) {
-      const nomeNorm = normalizar(nome);
-      let achado = vendedoresBase.find(v => normalizar(v.nome) === nomeNorm);
-      if (achado) return achado;
-
-      achado = vendedoresBase.find(v => (v.aliases || []).map(normalizar).includes(nomeNorm));
-      if (achado) return achado;
-
-      achado = vendedoresBase.find(v => {
-        const base = normalizar(v.nome);
-        return nomeNorm.includes(base) || base.includes(nomeNorm);
-      });
-
-      return achado || { id: nomeNorm.replace(/\s+/g, "-"), nome, telefone: "", foto: "images/vendedora-semfoto.jpg", aliases: [] };
-    }
-
-    function extrairLinhas(texto) {
-      return texto.split(/\n+/).map(l => l.trim()).filter(l => l && !l.toLowerCase().includes("status\tvendedor") && !l.toLowerCase().includes("bilhetes distribu"));
-    }
-
-    function parseLinha(linha) {
-      const partesTab = linha.split("\t").map(p => p.trim()).filter(Boolean);
-      if (partesTab.length >= 4) {
-        const nome = partesTab[0];
-        const vendidos = parseInt(String(partesTab[2]).replace(/\D/g, ""), 10) || 0;
-        return { nome, vendidos };
-      }
-      const match = linha.match(/^(.+?)\s+(\d+)\s+(\d+)\s+R\$\s*[\d.,]+/i);
-      if (match) return { nome: match[1].trim(), vendidos: parseInt(match[3], 10) || 0 };
-      return null;
-    }
-
-    function processar() {
-      const texto = document.getElementById("entrada").value;
-      const valorBilhete = Number(document.getElementById("valorBilhete").value || 2);
-      const comissaoPercent = Number(document.getElementById("comissao").value || 30);
-      const metaBase = Number(document.getElementById("metaBase").value || 100);
-      const bonusMaximo = Number(document.getElementById("bonusMaximo").value || 10);
-      const totalManual = Number(document.getElementById("totalManual").value || 0);
-
-      const acumulado = new Map();
-
-      extrairLinhas(texto).forEach(linha => {
-        const item = parseLinha(linha);
-        if (!item) return;
-        const base = encontrarBase(item.nome);
-        const atual = acumulado.get(base.id) || { ...base, vendidos: 0, origens: [] };
-        atual.vendidos += item.vendidos;
-        atual.origens.push(item.nome);
-        acumulado.set(base.id, atual);
-      });
-
-      vendedoresBase.forEach(v => {
-        if (!acumulado.has(v.id)) acumulado.set(v.id, { ...v, vendidos: 0, origens: [] });
-      });
-
-      const vendedores = Array.from(acumulado.values());
-      const totalVendidoCalculado = vendedores.reduce((soma, v) => soma + Number(v.vendidos || 0), 0);
-      const totalVendido = totalManual > 0 ? totalManual : totalVendidoCalculado;
-
-      const ranking = vendedores.map(v => {
-        const vendidos = Number(v.vendidos || 0);
-        const valorBruto = vendidos * valorBilhete;
-        const comissao = valorBruto * (comissaoPercent / 100);
-        const bonusBilhetes = Math.min(Math.max(vendidos - metaBase, 0), bonusMaximo);
-        const descontoBonus = bonusBilhetes * valorBilhete;
-        const totalPrestar = Math.max(valorBruto - comissao - descontoBonus, 0);
-        const percentual = totalVendido > 0 ? (vendidos / totalVendido) * 100 : 0;
-        return { ...v, vendidos, percentual, valorBruto, comissao, bonusBilhetes, descontoBonus, totalPrestar };
-      }).sort((a, b) => b.vendidos - a.vendidos || a.nome.localeCompare(b.nome, "pt-BR"));
-
-      ultimoJson = ranking.map((v, index) => ({
-        id: v.id,
-        nome: v.nome,
-        posicao: index + 1,
-        percentual: Number(v.percentual.toFixed(1)),
-        participacao: `${v.percentual.toFixed(1)}%`
-      }));
-
-      renderResumo(ranking);
-      renderRanking(ranking);
-      renderPrestacao(ranking);
-      document.getElementById("saidaJson").value = JSON.stringify(ultimoJson, null, 2);
-    }
-
-    function renderResumo(ranking) {
-      const totalBilhetes = ranking.reduce((soma, v) => soma + v.vendidos, 0);
-      const valorBruto = ranking.reduce((soma, v) => soma + v.valorBruto, 0);
-      const comissao = ranking.reduce((soma, v) => soma + v.comissao, 0);
-      const prestar = ranking.reduce((soma, v) => soma + v.totalPrestar, 0);
-      document.getElementById("mTotalVendido").textContent = numero(totalBilhetes);
-      document.getElementById("mValorBruto").textContent = moeda(valorBruto);
-      document.getElementById("mComissao").textContent = moeda(comissao);
-      document.getElementById("mPrestar").textContent = moeda(prestar);
-    }
-
-    function medalha(posicao) {
-      if (posicao === 1) return "1";
-      if (posicao === 2) return "2";
-      if (posicao === 3) return "3";
-      return `#${posicao}`;
-    }
-
-    function renderRanking(ranking) {
-      const tbody = document.getElementById("tRanking");
-      tbody.innerHTML = "";
-      ranking.forEach((v, index) => {
-        const posicao = index + 1;
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<td class="rank">${medalha(posicao)}</td><td>${v.nome}</td><td><span class="pill">${v.percentual.toFixed(1)}%</span></td><td>${medalha(posicao)} • ${v.nome} • Participação: ${v.percentual.toFixed(1)}%</td>`;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function renderPrestacao(ranking) {
-      const tbody = document.getElementById("tPrestacao");
-      tbody.innerHTML = "";
-      ranking.forEach(v => {
-        const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${v.nome}</td><td>${numero(v.vendidos)}</td><td class="money">${moeda(v.valorBruto)}</td><td class="money">${moeda(v.comissao)}</td><td>${v.bonusBilhetes} bilhete(s)</td><td class="money">${moeda(v.descontoBonus)}</td><td class="money">${moeda(v.totalPrestar)}</td>`;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function copiarJson() {
-      const saida = document.getElementById("saidaJson");
-      saida.select(); saida.setSelectionRange(0, 999999);
-      document.execCommand("copy");
-      alert("JSON copiado!");
-    }
-
-    function baixarJson() {
-      if (!ultimoJson.length) { alert("Processe o ranking primeiro."); return; }
-      const blob = new Blob([JSON.stringify(ultimoJson, null, 2)], { type: "application/json;charset=utf-8" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url; a.download = "ranking.json";
-      document.body.appendChild(a); a.click(); a.remove();
-      URL.revokeObjectURL(url);
-    }
-
-    function limparTudo() {
-      document.getElementById("entrada").value = "";
-      document.getElementById("saidaJson").value = "";
-      document.getElementById("tRanking").innerHTML = "";
-      document.getElementById("tPrestacao").innerHTML = "";
-      document.getElementById("mTotalVendido").textContent = "0";
-      document.getElementById("mValorBruto").textContent = "R$ 0,00";
-      document.getElementById("mComissao").textContent = "R$ 0,00";
-      document.getElementById("mPrestar").textContent = "R$ 0,00";
-      ultimoJson = [];
-    }
-
-    function carregarExemplo() {
-      document.getElementById("entrada").value = `Status	Vendedor	Bilhetes Distribuídos	Bilhetes Vendidos	Valor Total	Situação	Ações
+<header><img src="logo-reino.png" alt="Logo Reino da Sorte" onerror="this.style.display='none'"><h1>Painel Privado de Ranking e Prestação de Contas</h1><p>Área privada para colar os dados do ADM, somar vendedores repetidos, gerar ranking público, calcular prestação e salvar histórico das últimas atualizações do sorteio.</p></header>
+<main>
+<section class="card no-print"><h2>1. Configuração do Sorteio</h2><div class="grid"><div><label>Nome do sorteio</label><input id="nomeSorteio" value="R$ 1.500,00 - SABADOUUUU > NAO ACUMULATIVO <"></div><div><label>Data inicial das vendas</label><input id="dataInicial" type="date"></div><div><label>Data do sorteio / encerramento</label><input id="dataSorteio" type="date"></div></div><div class="grid" style="margin-top:12px"><div><label>Valor do bilhete</label><input id="valorBilhete" type="number" step="0.01" value="2.00"></div><div><label>Comissão do vendedor (%)</label><input id="comissao" type="number" step="0.01" value="30"></div><div><label>Total geral vendido manual (opcional)</label><input id="totalManual" type="number" placeholder="Pode deixar vazio. O sistema soma automático."></div></div><div class="grid" style="margin-top:12px"><div><label>Meta para bônus</label><input id="metaBase" type="number" value="100"></div><div><label>Máximo de bilhetes de bônus</label><input id="bonusMaximo" type="number" value="10"></div><div><label>Chave do ciclo/histórico</label><input id="chaveCiclo" readonly placeholder="Gera automático pelo nome + data final"></div></div><div class="notice" style="margin-top:12px">O histórico fica salvo neste aparelho/navegador. Para cada dia, o painel guarda no máximo as 3 últimas atualizações. O ranking público usa somente posição e participação em %.</div></section>
+<section class="card no-print"><h2>2. Cole aqui a tabela copiada da Prestação de Contas</h2><textarea id="entrada" placeholder="Cole aqui os dados copiados do painel ADM..."></textarea><div class="actions"><button class="primary" onclick="processar()">PROCESSAR E SALVAR HISTÓRICO</button><button class="success" onclick="copiarJson()">COPIAR ranking.json</button><button class="warning" onclick="baixarJson()">BAIXAR ranking.json</button><button class="muted" onclick="baixarCSV()">BAIXAR PRESTAÇÃO CSV</button><button class="dark" onclick="window.print()">IMPRIMIR PRESTAÇÃO</button><button class="muted" onclick="carregarExemplo()">CARREGAR EXEMPLO</button><button class="danger" onclick="limparTudo()">LIMPAR TELA</button></div></section>
+<section class="card"><h2>3. Resumo Privado do Sorteio</h2><div class="summary"><div class="metric"><span>Total vendido</span><strong id="mTotalVendido">0</strong></div><div class="metric"><span>Valor bruto apurado</span><strong id="mValorBruto">R$ 0,00</strong></div><div class="metric green"><span>Comissão total vendedores</span><strong id="mComissao">R$ 0,00</strong></div><div class="metric orange"><span>Bônus/meta total</span><strong id="mBonus">R$ 0,00</strong></div><div class="metric"><span>Total que volta para banca</span><strong id="mPrestar">R$ 0,00</strong></div></div><p class="small" id="mInfo"></p></section>
+<section class="card"><h2>4. Comparativo com a atualização anterior</h2><div class="compare-box"><div class="compare-card"><b>Vendas desde a última atualização</b><span id="cTotal">Sem dados anteriores</span></div><div class="compare-card"><b>Maior crescimento</b><span id="cMaior">Sem dados anteriores</span></div><div class="compare-card"><b>Observação</b><span id="cObs">O comparativo aparece depois da segunda atualização salva no mesmo ciclo.</span></div></div></section>
+<section class="card" id="historicoCard"><h2>5. Histórico de Atualizações</h2><div class="notice ok no-print">Guarda as 3 últimas atualizações de cada dia neste aparelho. Use “Reabrir”, “Baixar JSON” ou “Baixar CSV” quando precisar conferir.</div><div id="historicoLista" class="history-list" style="margin-top:12px"></div></section>
+<section class="card"><h2>6. Ranking Público Gerado</h2><div class="notice ok no-print">Esse ranking é o que vai para o painel público. Ele não mostra quantidade de bilhetes nem valores, somente posição e participação em %.</div><div class="table-wrap" style="margin-top:12px"><table><thead><tr><th>Posição</th><th>Vendedor</th><th>Participação pública</th><th>Texto do card</th></tr></thead><tbody id="tRanking"></tbody></table></div></section>
+<section class="card"><h2>7. Prestação de Contas Privada</h2><div class="table-wrap"><table><thead><tr><th>Vendedor</th><th>Bilhetes vendidos</th><th>Valor bruto</th><th>Comissão 30%</th><th>Bônus meta</th><th>Desconto bônus</th><th>Total do vendedor</th><th>Total que volta para banca</th></tr></thead><tbody id="tPrestacao"></tbody></table></div></section>
+<section id="saidaJsonCard" class="card no-print"><h2>8. ranking.json pronto para o painel público</h2><textarea id="saidaJson" class="output" readonly></textarea></section>
+</main>
+<script>
+const vendedoresBase=[{id:"alice",nome:"Alice Nabor",aliases:["alice nabor","alice nabor online","alice nabor m"]},{id:"dan",nome:"Dam",aliases:["dam","dan","dam vendas online"]},{id:"tamiles",nome:"Tamiles Mimi",aliases:["tamiles mimi","tamilles","tamilles mimi","tamiles mimi online"]},{id:"jamilles",nome:"Jamilles Izidório",aliases:["jamilles izidoro","jamilles izidorio","jamilles izidorio online"]},{id:"aline",nome:"Aline dos Maroto",aliases:["aline dos maroto","banca aline dos maroto","aline dos maroto online"]},{id:"marcia",nome:"Márcia Silva",aliases:["marcia silva","marcia silva online"]},{id:"taina",nome:"Taína Fideles",aliases:["taina fideles","taina fideles online"]},{id:"elaine",nome:"Elaine Mariano",aliases:["elaine mariano","elaine","elaine online","eliane mariano"]},{id:"taty",nome:"Taty",aliases:["taty","banca taty","taty vendas online"]},{id:"luana",nome:"Luana",aliases:["luana"]},{id:"maria",nome:"Maria Oliveira",aliases:["maria oliveira","maria oliveira vendas online"]},{id:"samara",nome:"Samara",aliases:["samara","samara online","banca samara"]},{id:"ana-raissa",nome:"Ana Raíssa",aliases:["ana raissa","ana raissa vendas online"]},{id:"caeline",nome:"Caeline",aliases:["caeline","caeline vendas online"]},{id:"kyara",nome:"Kyara",aliases:["kyara","kyara 2","kyara vendas online"]},{id:"jessica",nome:"Jéssica Ferreira",aliases:["jessica ferreira"]},{id:"carro-som",nome:"Carro de Som - Reino da Sorte",aliases:["carro de som","carro de som reino da sorte"]},{id:"beta",nome:"Beta",aliases:["beta","beta vendas online"]},{id:"giovanna",nome:"Giovanna",aliases:["giovanna","giovanna online"]},{id:"yohani",nome:"Yohani",aliases:["yohani","yohani alves","yohani alves online"]},{id:"maria-luana",nome:"Maria Luana",aliases:["maria luana","maria luana online"]}];
+let ultimoPacote=null,ultimaPrestacao=[];
+function normalizar(t){return String(t||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/r\$\s*\d+[,.]\d+/g,"").replace(/[^a-z0-9]+/g," ").replace(/\b(vendas|venda|banca|online|m)\b/g," ").replace(/\s+/g," ").trim()}function moeda(v){return Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}function numero(v){return Number(v||0).toLocaleString("pt-BR")}function hojeISO(){return new Date().toISOString().slice(0,10)}function agoraBR(){return new Date().toLocaleString("pt-BR")}function slug(t){return normalizar(t).replace(/\s+/g,"-").slice(0,80)||"sorteio"}function chaveCicloAtual(){const n=document.getElementById("nomeSorteio").value||"sorteio",df=document.getElementById("dataSorteio").value||"sem-data",di=document.getElementById("dataInicial").value||"inicio",c=`${slug(n)}_${di}_${df}`;document.getElementById("chaveCiclo").value=c;return c}
+function encontrarBase(nome){const nn=normalizar(nome);let a=vendedoresBase.find(v=>normalizar(v.nome)===nn);if(a)return a;a=vendedoresBase.find(v=>(v.aliases||[]).map(normalizar).includes(nn));if(a)return a;a=vendedoresBase.find(v=>{const b=normalizar(v.nome);return nn.includes(b)||b.includes(nn)});return a||{id:nn.replace(/\s+/g,"-"),nome,aliases:[]}}
+function extrairLinhas(t){return t.split(/\n+/).map(l=>l.trim()).filter(l=>l&&!l.toLowerCase().includes("status\tvendedor")&&!l.toLowerCase().includes("bilhetes distribu"))}function parseLinha(linha){const p=linha.split("\t").map(x=>x.trim()).filter(Boolean);if(p.length>=4){return{nome:p[0],vendidos:parseInt(String(p[2]).replace(/\D/g,""),10)||0}}const m=linha.match(/^(.+?)\s+(\d+)\s+(\d+)\s+R\$\s*[\d.,]+/i);if(m)return{nome:m[1].trim(),vendidos:parseInt(m[3],10)||0};return null}
+function processar(){const texto=document.getElementById("entrada").value;if(!texto.trim()){alert("Cole os dados da prestação primeiro.");return}const vb=Number(document.getElementById("valorBilhete").value||2),cp=Number(document.getElementById("comissao").value||30),mb=Number(document.getElementById("metaBase").value||100),bm=Number(document.getElementById("bonusMaximo").value||10),tm=Number(document.getElementById("totalManual").value||0),ns=document.getElementById("nomeSorteio").value||"",di=document.getElementById("dataInicial").value||"",ds=document.getElementById("dataSorteio").value||"",ciclo=chaveCicloAtual(),atualizadoEm=agoraBR(),diaAtualizacao=hojeISO();const ac=new Map();extrairLinhas(texto).forEach(l=>{const item=parseLinha(l);if(!item)return;const base=encontrarBase(item.nome),at=ac.get(base.id)||{...base,vendidos:0,origens:[]};at.vendidos+=item.vendidos;at.origens.push(item.nome);ac.set(base.id,at)});vendedoresBase.forEach(v=>{if(!ac.has(v.id))ac.set(v.id,{...v,vendidos:0,origens:[]})});const vendedores=Array.from(ac.values()),totalCalc=vendedores.reduce((s,v)=>s+Number(v.vendidos||0),0),totalPct=tm>0?tm:totalCalc;const ranking=vendedores.map(v=>{const vendidos=Number(v.vendidos||0),valorBruto=vendidos*vb,comissao=valorBruto*(cp/100),bonusBilhetes=Math.min(Math.max(vendidos-mb,0),bm),descontoBonus=bonusBilhetes*vb,totalVendedor=comissao+descontoBonus,totalPrestar=Math.max(valorBruto-totalVendedor,0),percentual=totalPct>0?(vendidos/totalPct)*100:0;return{...v,vendidos,percentual,valorBruto,comissao,bonusBilhetes,descontoBonus,totalVendedor,totalPrestar}}).sort((a,b)=>b.vendidos-a.vendidos||a.nome.localeCompare(b.nome,"pt-BR"));const rankingPublico=ranking.map((v,i)=>({id:v.id,nome:v.nome,posicao:i+1,percentual:Number(v.percentual.toFixed(1)),participacao:`${v.percentual.toFixed(1)}%`}));ultimaPrestacao=ranking.map((v,i)=>({posicao:i+1,vendedor:v.nome,id:v.id,vendidos:v.vendidos,valorBruto:v.valorBruto,comissao:v.comissao,bonusBilhetes:v.bonusBilhetes,descontoBonus:v.descontoBonus,totalVendedor:v.totalVendedor,totalPrestar:v.totalPrestar}));const pacote={sorteio:ns,dataInicial:di,dataSorteio:ds,ciclo,atualizadoEm,diaAtualizacao,totalVendidoCalculado:totalCalc,totalVendidoUsadoNoPercentual:totalPct,ranking:rankingPublico};ultimoPacote=pacote;renderResumo(ranking,pacote);renderRanking(ranking);renderPrestacao(ranking);document.getElementById("saidaJson").value=JSON.stringify(pacote,null,2);renderComparativo(pacote,ultimaPrestacao);salvarHistorico(pacote,ultimaPrestacao);renderHistorico()}
+function renderResumo(r,p){document.getElementById("mTotalVendido").textContent=numero(r.reduce((s,v)=>s+v.vendidos,0));document.getElementById("mValorBruto").textContent=moeda(r.reduce((s,v)=>s+v.valorBruto,0));document.getElementById("mComissao").textContent=moeda(r.reduce((s,v)=>s+v.comissao,0));document.getElementById("mBonus").textContent=moeda(r.reduce((s,v)=>s+v.descontoBonus,0));document.getElementById("mPrestar").textContent=moeda(r.reduce((s,v)=>s+v.totalPrestar,0));document.getElementById("mInfo").textContent=`Atualizado em ${p.atualizadoEm}. Total usado no percentual público: ${numero(p.totalVendidoUsadoNoPercentual)} bilhetes.`}
+function renderRanking(r){const tb=document.getElementById("tRanking");tb.innerHTML="";r.forEach((v,i)=>{const pos=i+1,pct=v.percentual.toFixed(1).replace(".",",")+"%",tr=document.createElement("tr");tr.innerHTML=`<td class="rank">#${pos}</td><td>${v.nome}</td><td><span class="pill">${pct}</span></td><td>#${pos} • ${v.nome} • Participação: ${pct}</td>`;tb.appendChild(tr)})}
+function renderPrestacao(r){const tb=document.getElementById("tPrestacao");tb.innerHTML="";r.forEach(v=>{const tr=document.createElement("tr");tr.innerHTML=`<td>${v.nome}</td><td>${numero(v.vendidos)}</td><td class="money">${moeda(v.valorBruto)}</td><td class="money">${moeda(v.comissao)}</td><td><span class="pill ${v.bonusBilhetes>0?"pill-green":"pill-orange"}">${v.bonusBilhetes} bilhete(s)</span></td><td class="negative">${moeda(v.descontoBonus)}</td><td class="money">${moeda(v.totalVendedor)}</td><td class="money">${moeda(v.totalPrestar)}</td>`;tb.appendChild(tr)})}
+function chaveStorage(){return"reino_historico_"+chaveCicloAtual()}function getHistorico(){try{return JSON.parse(localStorage.getItem(chaveStorage())||"[]")}catch{return[]}}function setHistorico(l){localStorage.setItem(chaveStorage(),JSON.stringify(l))}function salvarHistorico(pacote,prestacao){let h=getHistorico();h.push({pacote,prestacao,criadoEmISO:new Date().toISOString()});const porDia={};h.forEach(item=>{const d=item.pacote.diaAtualizacao||item.criadoEmISO.slice(0,10);(porDia[d]=porDia[d]||[]).push(item)});let novo=[];Object.keys(porDia).forEach(d=>{porDia[d].sort((a,b)=>new Date(a.criadoEmISO)-new Date(b.criadoEmISO));novo=novo.concat(porDia[d].slice(-3))});novo.sort((a,b)=>new Date(b.criadoEmISO)-new Date(a.criadoEmISO));setHistorico(novo)}
+function renderHistorico(){const box=document.getElementById("historicoLista"),h=getHistorico();if(!h.length){box.innerHTML='<div class="history-item"><div class="history-title">Nenhuma atualização salva ainda.</div><div class="history-info">Depois de processar, o histórico aparecerá aqui.</div></div>';return}box.innerHTML="";h.forEach((item,i)=>{const div=document.createElement("div");div.className="history-item";div.innerHTML=`<div class="history-title">${i+1}ª atualização salva • ${item.pacote.atualizadoEm}</div><div class="history-info">Sorteio: ${item.pacote.sorteio||"-"} • Total vendido: ${numero(item.pacote.totalVendidoCalculado||0)} bilhetes • Data final: ${item.pacote.dataSorteio||"-"}</div><div class="history-actions"><button class="primary" onclick="reabrirHistorico(${i})">REABRIR</button><button class="success" onclick="baixarJsonHistorico(${i})">BAIXAR JSON</button><button class="muted" onclick="baixarCSVHistorico(${i})">BAIXAR CSV</button><button class="danger" onclick="apagarHistorico(${i})">APAGAR</button></div>`;box.appendChild(div)})}
+function renderComparativo(pacoteAtual,prestacaoAtual){const h=getHistorico(),ant=h.find(item=>item.pacote&&item.pacote.atualizadoEm!==pacoteAtual.atualizadoEm);if(!ant){document.getElementById("cTotal").textContent="Primeira atualização deste ciclo.";document.getElementById("cMaior").textContent="Sem comparação ainda.";document.getElementById("cObs").textContent="Na próxima atualização, o painel mostrará crescimento por período.";return}const dif=Number(pacoteAtual.totalVendidoCalculado||0)-Number(ant.pacote.totalVendidoCalculado||0),map=new Map((ant.prestacao||[]).map(v=>[v.id,v]));let maior={vendedor:"-",diff:-999999};prestacaoAtual.forEach(v=>{const a=map.get(v.id),d=Number(v.vendidos||0)-Number(a?a.vendidos:0);if(d>maior.diff)maior={vendedor:v.vendedor,diff:d}});document.getElementById("cTotal").textContent=`${dif>=0?"+":""}${numero(dif)} bilhete(s)`;document.getElementById("cMaior").textContent=`${maior.vendedor}: ${maior.diff>=0?"+":""}${numero(maior.diff)} bilhete(s)`;document.getElementById("cObs").textContent=`Comparado com ${ant.pacote.atualizadoEm}.`}
+function reabrirHistorico(i){const item=getHistorico()[i];if(!item)return;ultimoPacote=item.pacote;ultimaPrestacao=item.prestacao||[];document.getElementById("nomeSorteio").value=item.pacote.sorteio||"";document.getElementById("dataInicial").value=item.pacote.dataInicial||"";document.getElementById("dataSorteio").value=item.pacote.dataSorteio||"";document.getElementById("totalManual").value=item.pacote.totalVendidoUsadoNoPercentual||"";document.getElementById("saidaJson").value=JSON.stringify(item.pacote,null,2);const fake=(item.prestacao||[]).map(v=>({nome:v.vendedor,vendidos:v.vendidos,percentual:((v.vendidos||0)/(item.pacote.totalVendidoUsadoNoPercentual||1))*100,valorBruto:v.valorBruto,comissao:v.comissao,bonusBilhetes:v.bonusBilhetes,descontoBonus:v.descontoBonus,totalVendedor:v.totalVendedor,totalPrestar:v.totalPrestar}));renderResumo(fake,item.pacote);renderRanking(fake);renderPrestacao(fake);window.scrollTo({top:0,behavior:"smooth"})}function apagarHistorico(i){let h=getHistorico();h.splice(i,1);setHistorico(h);renderHistorico()}
+function downloadArquivo(nome,texto,tipo){const blob=new Blob([texto],{type:tipo||"text/plain;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=nome;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)}function copiarJson(){const s=document.getElementById("saidaJson");if(!s.value){alert("Processe primeiro.");return}s.select();s.setSelectionRange(0,999999);document.execCommand("copy");alert("ranking.json copiado!")}function baixarJson(){const t=document.getElementById("saidaJson").value;if(!t){alert("Processe o ranking primeiro.");return}downloadArquivo("ranking.json",t,"application/json;charset=utf-8")}function baixarJsonHistorico(i){const item=getHistorico()[i];if(item)downloadArquivo("ranking.json",JSON.stringify(item.pacote,null,2),"application/json;charset=utf-8")}function csvDaPrestacao(p){const cab=["Posição","Vendedor","Bilhetes vendidos","Valor bruto","Comissão","Bônus bilhetes","Desconto bônus","Total do vendedor","Total volta banca"],lin=(p||[]).map(v=>[v.posicao,v.vendedor,v.vendidos,Number(v.valorBruto).toFixed(2),Number(v.comissao).toFixed(2),v.bonusBilhetes,Number(v.descontoBonus).toFixed(2),Number(v.totalVendedor).toFixed(2),Number(v.totalPrestar).toFixed(2)]);return[cab,...lin].map(l=>l.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(";")).join("\n")}function baixarCSV(){if(!ultimaPrestacao.length){alert("Processe primeiro.");return}downloadArquivo("prestacao-contas.csv","\ufeff"+csvDaPrestacao(ultimaPrestacao),"text/csv;charset=utf-8")}function baixarCSVHistorico(i){const item=getHistorico()[i];if(item)downloadArquivo("prestacao-contas.csv","\ufeff"+csvDaPrestacao(item.prestacao||[]),"text/csv;charset=utf-8")}
+function limparTudo(){document.getElementById("entrada").value="";document.getElementById("saidaJson").value="";document.getElementById("tRanking").innerHTML="";document.getElementById("tPrestacao").innerHTML="";document.getElementById("mTotalVendido").textContent="0";document.getElementById("mValorBruto").textContent="R$ 0,00";document.getElementById("mComissao").textContent="R$ 0,00";document.getElementById("mBonus").textContent="R$ 0,00";document.getElementById("mPrestar").textContent="R$ 0,00";document.getElementById("mInfo").textContent="";document.getElementById("cTotal").textContent="Sem dados anteriores";document.getElementById("cMaior").textContent="Sem dados anteriores";document.getElementById("cObs").textContent="O comparativo aparece depois da segunda atualização salva no mesmo ciclo.";ultimoPacote=null;ultimaPrestacao=[]}
+function carregarExemplo(){document.getElementById("entrada").value=`Status	Vendedor	Bilhetes Distribuídos	Bilhetes Vendidos	Valor Total	Situação	Ações
 ELAINE MARIANO	110	0	R$ 0.00	0 Vendas
 MARCIA SILVA	110	0	R$ 0.00	0 Vendas
 BETA vendas online	50	0	R$ 0.00	0 Vendas
@@ -370,8 +67,8 @@ MARIA OLIVEIRA	110	6	R$ 12.00	Pendente
 ANA RAÍSSA - VENDAS ONLINE	110	6	R$ 12.00	Pendente
 Jamilles Izidorio - Online	110	94	R$ 188.00	Pendente
 Maria Luana - Online	50	12	R$ 24.00	Pendente
-GIOVANNA - Online	110	5	R$ 10.00	Pendente`;
-    }
-  </script>
+GIOVANNA - Online	110	5	R$ 10.00	Pendente`}
+["nomeSorteio","dataInicial","dataSorteio"].forEach(id=>document.addEventListener("input",e=>{if(e.target&&e.target.id===id){chaveCicloAtual();renderHistorico()}}));document.getElementById("dataInicial").value=hojeISO();document.getElementById("dataSorteio").value=hojeISO();chaveCicloAtual();renderHistorico();
+</script>
 </body>
 </html>
