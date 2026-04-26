@@ -1,12 +1,12 @@
 {
   "sorteio": "R$ 1.500,00 - SABADOUUUU > NAO ACUMULATIVO <",
-  "dataInicial": "2026-04-25",
+  "dataInicial": "2026-04-23",
   "dataSorteio": "2026-04-25",
-  "ciclo": "00-sabadouuuu-nao-acumulativo_2026-04-25_2026-04-25",
-  "atualizadoEm": "25/04/2026, 16:27:15",
-  "diaAtualizacao": "2026-04-25",
-  "totalVendidoCalculado": 1969,
-  "totalVendidoUsadoNoPercentual": 1969,
+  "ciclo": "00-sabadouuuu-nao-acumulativo_2026-04-23_2026-04-25",
+  "atualizadoEm": "26/04/2026, 00:50:39",
+  "diaAtualizacao": "2026-04-26",
+  "totalVendidoCalculado": 2073,
+  "totalVendidoUsadoNoPercentual": 2073,
   "ranking": [
     {
       "id": "jamilles",
@@ -19,50 +19,50 @@
       "id": "alice",
       "nome": "Alice Nabor",
       "posicao": 2,
-      "percentual": 14.8,
-      "participacao": "14.8%"
+      "percentual": 15.4,
+      "participacao": "15.4%"
     },
     {
       "id": "tamiles",
       "nome": "Tamiles Mimi",
       "posicao": 3,
-      "percentual": 12.6,
-      "participacao": "12.6%"
+      "percentual": 12.2,
+      "participacao": "12.2%"
     },
     {
       "id": "aline",
       "nome": "Aline dos Maroto",
       "posicao": 4,
-      "percentual": 11.2,
-      "participacao": "11.2%"
+      "percentual": 11,
+      "participacao": "11.0%"
     },
     {
       "id": "giovanna",
       "nome": "Giovanna",
       "posicao": 5,
-      "percentual": 11.1,
-      "participacao": "11.1%"
+      "percentual": 10.8,
+      "participacao": "10.8%"
     },
     {
       "id": "dan",
       "nome": "Dam",
       "posicao": 6,
-      "percentual": 8.7,
-      "participacao": "8.7%"
+      "percentual": 8.8,
+      "participacao": "8.8%"
     },
     {
       "id": "marcia",
       "nome": "Márcia Silva",
       "posicao": 7,
-      "percentual": 5.4,
-      "participacao": "5.4%"
+      "percentual": 5.6,
+      "participacao": "5.6%"
     },
     {
       "id": "maria-luana",
       "nome": "Maria Luana",
       "posicao": 8,
-      "percentual": 4.6,
-      "participacao": "4.6%"
+      "percentual": 4.5,
+      "participacao": "4.5%"
     },
     {
       "id": "taina",
@@ -75,15 +75,15 @@
       "id": "luana",
       "nome": "Luana",
       "posicao": 10,
-      "percentual": 3,
-      "participacao": "3.0%"
+      "percentual": 3.1,
+      "participacao": "3.1%"
     },
     {
       "id": "elaine",
       "nome": "Elaine Mariano",
       "posicao": 11,
-      "percentual": 2.3,
-      "participacao": "2.3%"
+      "percentual": 2.7,
+      "participacao": "2.7%"
     },
     {
       "id": "maria",
@@ -117,8 +117,8 @@
       "id": "taty",
       "nome": "Taty",
       "posicao": 16,
-      "percentual": 0.6,
-      "participacao": "0.6%"
+      "percentual": 0.5,
+      "participacao": "0.5%"
     },
     {
       "id": "yohani",
@@ -131,8 +131,8 @@
       "id": "caeline",
       "nome": "Caeline",
       "posicao": 18,
-      "percentual": 0.3,
-      "participacao": "0.3%"
+      "percentual": 0.2,
+      "participacao": "0.2%"
     },
     {
       "id": "beta",
