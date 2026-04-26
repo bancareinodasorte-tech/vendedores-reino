@@ -68,11 +68,39 @@
     .mini-sub { text-align:center; color:var(--muted); font-size:12px; line-height:1.25; }
 
     .last-update { margin:0 0 18px; padding:14px 16px; text-align:center; color:#fff2ca; font-size:13px; line-height:1.4; background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.06)); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow-soft); backdrop-filter:blur(10px); animation:fadeUp .62s ease both; }
+
+    .office-card {
+      margin:0 0 18px;
+      padding:14px;
+      min-height:142px;
+      border-radius:24px;
+      border:1px solid rgba(255,215,108,.72);
+      background:
+        linear-gradient(90deg,rgba(5,18,58,.94),rgba(7,32,96,.84)),
+        url("sorteio-atual.png");
+      background-size:cover;
+      background-position:center;
+      box-shadow:0 14px 30px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.12);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      overflow:hidden;
+      animation:fadeUp .62s ease both;
+    }
+    .office-left { flex:1; min-width:0; }
+    .office-title { color:var(--gold); font-size:22px; font-weight:900; line-height:1.02; text-shadow:0 4px 14px rgba(0,0,0,.28); }
+    .office-text { color:#fff; font-size:13px; font-weight:800; margin-top:8px; line-height:1.25; text-shadow:0 3px 10px rgba(0,0,0,.22); }
+    .office-right { flex:1; min-width:0; text-align:center; }
+    .office-call { color:var(--gold-soft); font-size:15px; font-weight:900; line-height:1.15; margin-bottom:10px; text-shadow:0 3px 10px rgba(0,0,0,.22); }
+    .office-btn { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; text-decoration:none; color:#fff; font-size:14px; font-weight:900; padding:12px 9px; border-radius:16px; background:linear-gradient(180deg,#35df68,#128c4a); box-shadow:0 12px 22px rgba(18,140,74,.35), inset 0 1px 0 rgba(255,255,255,.16); }
+    .office-btn:active { transform:scale(.985); }
+
     .alert { margin:0 0 18px; padding:16px 18px; text-align:center; color:#fff2ca; font-size:15px; line-height:1.5; background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.06)); border:1px solid var(--line); border-radius:24px; box-shadow:var(--shadow-soft); backdrop-filter:blur(10px); }
     .section-title { margin:0; text-align:center; font-size:22px; font-weight:900; color:#fff; letter-spacing:-.3px; text-shadow:0 4px 14px rgba(0,0,0,.12); }
 
     .list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
-    .card { position:relative; overflow:hidden; background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.07)); border:1px solid var(--line); border-radius:28px; padding:16px; box-shadow:var(--shadow); backdrop-filter:blur(12px); transform:translateY(22px) scale(.985); opacity:0; animation:cardIn .55s ease forwards; min-height:252px; display:flex; flex-direction:column; justify-content:space-between; gap:12px; }
+    .card { position:relative; overflow:hidden; background:linear-gradient(180deg,rgba(255,255,255,.11),rgba(255,255,255,.07)); border:1px solid var(--line); border-radius:28px; padding:16px; box-shadow:var(--shadow); backdrop-filter:blur(12px); transform:translateY(22px) scale(.985); opacity:0; animation:cardIn .55s ease forwards; min-height:222px; display:flex; flex-direction:column; justify-content:space-between; gap:12px; }
     .card::before { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg,rgba(255,255,255,.05),transparent 34%),radial-gradient(circle at top center,rgba(255,255,255,.06),transparent 48%); }
 
     .rank-hidden { display:none; }
@@ -80,17 +108,7 @@
     .photo { width:96px; height:96px; border-radius:50%; object-fit:cover; object-position:center; display:block; background:#fff; border:4px solid rgba(255,238,173,.96); box-shadow:0 10px 22px rgba(0,0,0,.22),inset 0 0 0 2px rgba(255,255,255,.35); }
     .fallback { display:none; align-items:center; justify-content:center; width:96px; height:96px; border-radius:50%; background:linear-gradient(180deg,#fff0bc,#ffd86f); color:#17397f; font-size:30px; font-weight:900; border:4px solid rgba(255,238,173,.96); box-shadow:0 10px 22px rgba(0,0,0,.22); }
     .name { margin:0; text-align:center; font-size:24px; line-height:1.08; font-weight:900; min-height:52px; display:flex; align-items:center; justify-content:center; text-shadow:0 4px 14px rgba(0,0,0,.14); position:relative; z-index:2; }
-    .percentual {
-  display:none; /* porcentagem desativada por enquanto */
-  margin:0;
-  text-align:center;
-  font-size:19px;
-  font-weight:900;
-  letter-spacing:.2px;
-  position:relative;
-  z-index:2;
-  text-shadow:0 3px 10px rgba(0,0,0,.18);
-}
+    .percentual { display:none; margin:0; text-align:center; font-size:19px; font-weight:900; letter-spacing:.2px; position:relative; z-index:2; text-shadow:0 3px 10px rgba(0,0,0,.18); }
     .percentual.top { color:var(--pct-green); }
     .percentual.middle { color:var(--pct-orange); }
     .percentual.zero { color:var(--pct-red); }
@@ -108,18 +126,16 @@
     @media (max-width:560px) {
       .topbar-inner{padding:0 8px;} .top-link{width:64px;height:64px;border-radius:16px;} .top-link img{width:28px;height:28px;} .top-logo img{width:80px;height:80px;}
       .highlights{grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px;} .mini-card{min-height:142px; padding:12px;}
-      .list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;} .card{min-height:235px;padding:14px;}
+      .office-card{min-height:128px; padding:12px; gap:10px;}
+      .office-title{font-size:18px;}
+      .office-text{font-size:12px;}
+      .office-call{font-size:13px;}
+      .office-btn{font-size:12px; padding:11px 7px;}
+      .list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;} .card{min-height:210px;padding:14px;}
       .photo,.fallback{width:82px;height:82px;} .name{font-size:20px;min-height:46px;} .btn{font-size:14px;padding:13px 10px;} .cta-cadastro{font-size:16px;padding:16px 14px;} .percentual{font-size:17px;}
     }
 
     @media (max-width:390px) { .name{font-size:18px;} .photo,.fallback{width:74px;height:74px;} .btn{font-size:13px;} .cta-cadastro{font-size:15px;} .percentual{font-size:16px;} }
-
-    /*
-      PARA ATIVAR POSIÇÃO / MEDALHA NO FUTURO:
-      Troque .rank-hidden de display:none para display:flex e estilize como desejar.
-      PARA MOSTRAR TEXTO "PARTICIPAÇÃO":
-      Troque .participacao-label de display:none para display:inline.
-    */
   </style>
 </head>
 
@@ -171,52 +187,21 @@
     </section>
 
     <div class="last-update" id="ultimaAtualizacao">Última atualização: aguardando ranking.json</div>
+
     <section class="office-card">
-  <div class="office-title">🏢 ESCRITÓRIO OFICIAL</div>
-  <div class="office-text">Compre direto pelo atendimento da empresa</div>
-  <a class="office-btn" href="https://wa.me/5588994943632?text=Olá!%20Quero%20comprar%20bilhetes%20🎟️%0A%0AQuantidade%20de%20bilhetes:%0ANome:%0ATelefone:" target="_blank" rel="noopener noreferrer">
-    FALAR COM O ESCRITÓRIO
-  </a>
-      .office-card {
-  margin:0 0 18px;
-  padding:18px 16px;
-  text-align:center;
-  background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.08));
-  border:1px solid rgba(255,215,108,.45);
-  border-radius:24px;
-  box-shadow:var(--shadow-soft);
-  backdrop-filter:blur(10px);
-}
+      <div class="office-left">
+        <div class="office-title">REINO<br>DA SORTE</div>
+        <div class="office-text">Atendimento oficial da empresa</div>
+      </div>
 
-.office-title {
-  color:var(--gold);
-  font-size:16px;
-  font-weight:900;
-  letter-spacing:1px;
-  margin-bottom:8px;
-}
+      <div class="office-right">
+        <div class="office-call">COMPRE DIRETO<br>PELO ESCRITÓRIO</div>
+        <a class="office-btn" href="https://wa.me/5588994943632?text=Olá!%20Quero%20comprar%20bilhetes%20🎟️%0A%0AQuantidade%20de%20bilhetes:%0ANome:%0ATelefone:" target="_blank" rel="noopener noreferrer">
+          🟢 COMPRAR AQUI
+        </a>
+      </div>
+    </section>
 
-.office-text {
-  color:var(--muted);
-  font-size:14px;
-  font-weight:700;
-  margin-bottom:14px;
-}
-
-.office-btn {
-  display:block;
-  width:100%;
-  text-decoration:none;
-  text-align:center;
-  color:#fff;
-  font-size:15px;
-  font-weight:900;
-  padding:14px;
-  border-radius:16px;
-  background:linear-gradient(180deg,#25d366,#128c4a);
-  box-shadow:0 12px 22px rgba(18,140,74,.25);
-}
-</section>
     <div class="alert"><h2 class="section-title">VENDEDORES AUTORIZADOS</h2></div>
     <section class="list" id="lista"></section>
     <div class="footer">REINO DA SORTE • Atendimento oficial</div>
