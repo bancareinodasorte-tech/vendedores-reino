@@ -59,15 +59,14 @@
     .hero h1 { margin:0; font-size:clamp(28px,6vw,52px); line-height:1.02; font-weight:900; letter-spacing:-.8px; text-shadow:0 4px 16px rgba(0,0,0,.16); }
     .subtitle { margin:14px auto 0; color:var(--gold); font-size:15px; font-weight:900; letter-spacing:3px; line-height:1.52; }
 
-    .highlights { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:0 0 18px; animation:fadeUp .62s ease both; animation-delay:.05s; }
-    .mini-card { background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.06)); border:1px solid var(--line); border-radius:20px; padding:12px; box-shadow:var(--shadow-soft); backdrop-filter:blur(10px); min-height:170px; display:flex; flex-direction:column; justify-content:flex-start; align-items:stretch; gap:7px; }
-    .mini-title { font-size:12px; color:var(--gold-soft); font-weight:800; letter-spacing:.4px; text-transform:uppercase; text-align:center; min-height:28px; display:flex; align-items:flex-start; justify-content:center; }
-    .mini-photo-wrap { display:flex; justify-content:center; align-items:center; width:100%; margin:0 auto 4px; }
-    .mini-photo { width:66px; height:66px; border-radius:50%; object-fit:cover; object-position:center; border:3px solid rgba(255,238,173,.96); background:#fff; box-shadow:0 8px 16px rgba(0,0,0,.18); }
-    .highlights .mini-card:first-child .mini-photo-wrap { width:112px; height:86px; border-radius:14px; padding:5px; border:2px solid rgba(255,238,173,.96); background:rgba(255,255,255,.96); box-shadow:0 8px 16px rgba(0,0,0,.18); overflow:hidden; }
-    .highlights .mini-card:first-child .mini-photo { width:100%; height:100%; border:0; border-radius:10px; object-fit:contain; object-position:center; box-shadow:none; background:transparent; }
+    .highlights { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:0 0 18px; animation:fadeUp .62s ease both; animation-delay:.05s; }
+    .mini-card { background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.07)); border:1px solid var(--line); border-radius:24px; padding:13px 12px 14px; box-shadow:var(--shadow-soft); backdrop-filter:blur(10px); min-height:220px; display:flex; flex-direction:column; justify-content:flex-start; align-items:stretch; gap:8px; }
+    .mini-title { font-size:12px; color:var(--gold-soft); font-weight:900; letter-spacing:.5px; text-transform:uppercase; text-align:center; min-height:28px; display:flex; align-items:flex-start; justify-content:center; line-height:1.15; }
+    .mini-photo-wrap { display:flex; justify-content:center; align-items:center; width:136px; height:104px; margin:0 auto 6px; border-radius:17px; padding:6px; border:2px solid rgba(255,238,173,.96); background:rgba(255,255,255,.96); box-shadow:0 10px 20px rgba(0,0,0,.20); overflow:hidden; cursor:pointer; transition:transform .15s ease, filter .15s ease; }
+    .mini-photo-wrap:active { transform:scale(.98); filter:brightness(.96); }
+    .mini-photo { width:100%; height:100%; border:0; border-radius:12px; object-fit:contain; object-position:center; background:transparent; box-shadow:none; display:block; }
     .mini-name { text-align:center; font-weight:800; font-size:14px; line-height:1.12; min-height:28px; display:flex; align-items:center; justify-content:center; }
-    .mini-sub { color:#fff; font-size:11px; line-height:1.22; width:100%; text-align:left; padding-left:2px; box-sizing:border-box; word-break:normal; }
+    .mini-sub { color:#fff; font-size:10.5px; line-height:1.22; width:100%; text-align:left; padding-left:3px; box-sizing:border-box; word-break:normal; }
 
     .last-update { margin:0 0 18px; padding:14px 16px; text-align:center; color:#fff2ca; font-size:13px; line-height:1.4; background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.06)); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow-soft); backdrop-filter:blur(10px); animation:fadeUp .62s ease both; }
 
@@ -255,7 +254,7 @@
     .card::before { content:""; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg,rgba(255,255,255,.05),transparent 34%),radial-gradient(circle at top center,rgba(255,255,255,.06),transparent 48%); }
 
     .rank-hidden { display:none; }
-    .photo-wrap { display:flex; justify-content:center; margin:6px 0 2px; position:relative; z-index:2; }
+    .photo-wrap { display:flex; justify-content:center; margin:6px 0 2px; position:relative; z-index:2; cursor:pointer; }
     .photo { width:96px; height:96px; border-radius:50%; object-fit:cover; object-position:center; display:block; background:#fff; border:4px solid rgba(255,238,173,.96); box-shadow:0 10px 22px rgba(0,0,0,.22),inset 0 0 0 2px rgba(255,255,255,.35); }
     .fallback { display:none; align-items:center; justify-content:center; width:96px; height:96px; border-radius:50%; background:linear-gradient(180deg,#fff0bc,#ffd86f); color:#17397f; font-size:30px; font-weight:900; border:4px solid rgba(255,238,173,.96); box-shadow:0 10px 22px rgba(0,0,0,.22); }
     .name { margin:0; text-align:center; font-size:24px; line-height:1.08; font-weight:900; min-height:52px; display:flex; align-items:center; justify-content:center; text-shadow:0 4px 14px rgba(0,0,0,.14); position:relative; z-index:2; }
@@ -276,7 +275,7 @@
 
     @media (max-width:560px) {
       .topbar-inner{padding:0 8px;} .top-link{width:64px;height:64px;border-radius:16px;} .top-link img{width:28px;height:28px;} .top-logo img{width:80px;height:80px;}
-      .highlights{grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px;} .mini-card{min-height:170px; padding:12px;}
+      .highlights{grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px;} .mini-card{min-height:210px; padding:12px 10px;} .mini-photo-wrap{width:124px;height:96px;}
       .office-card{min-height:158px; padding:13px; gap:9px; grid-template-columns:1fr 1px 1fr;} .office-card::after{min-width:150px;font-size:10px;padding:6px 12px 8px;} .office-divider{height:88px;} .office-title{font-size:20px;} .office-title::before,.office-title::after{font-size:13px;margin:0 2px;} .office-text{font-size:11px;} .office-features{font-size:8px; gap:3px; margin-top:10px;} .office-call{font-size:14px;} .office-btn{font-size:13px; padding:12px 7px; border-radius:18px;} .office-btn svg{width:21px;height:21px;flex-basis:21px;} .office-lock{font-size:8px;margin-top:8px;}
       .list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;} .card{min-height:210px;padding:14px;}
       .photo,.fallback{width:82px;height:82px;} .name{font-size:20px;min-height:46px;} .btn{font-size:14px;padding:13px 10px;} .cta-cadastro{font-size:16px;padding:16px 14px;} .percentual{font-size:17px;}
@@ -327,7 +326,7 @@
     <section class="highlights">
       <article class="mini-card">
         <div class="mini-title">PRÓXIMO SORTEIO</div>
-        <div class="mini-photo-wrap"><img class="mini-photo" src="sorteio-atual.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div>
+        <div class="mini-photo-wrap" data-zoom-src="sorteio-atual.png" data-zoom-title="Próximo sorteio"><img class="mini-photo" src="sorteio-atual.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div>
         <div class="mini-sub">19/05:1 MIL +3 de R$ 50,00 </div>
         <div class="mini-sub">21/05:1 MIL +3 de R$ 50,00</div>
         <div class="mini-sub">23/05:2 MIL +6 de R$ 50,00</div>
@@ -335,7 +334,7 @@
 
       <article class="mini-card">
         <div class="mini-title">ÚLTIMO GANHADOR</div>
-        <div class="mini-photo-wrap"><img class="mini-photo" src="ganhador-atual.png" alt="Ganhador recente" onerror="this.style.display='none';" /></div>
+        <div class="mini-photo-wrap" data-zoom-src="ganhador-atual.png" data-zoom-title="Último ganhador"><img class="mini-photo" src="ganhador-atual.png" alt="Ganhador recente" onerror="this.style.display='none';" /></div>
         <div class="mini-sub">PRÊMIO:R$ 3.000,00</div>
         <div class="mini-sub">GANHADOR:João Algusto</div>
         <div class="mini-sub">VENDEDOR:Aline dos Marotos</div>
@@ -373,6 +372,8 @@
     <section class="list" id="lista"></section>
     <div class="footer">REINO DA SORTE • Atendimento oficial</div>
   </main>
+
+  <div class="image-modal" id="imageModal" aria-hidden="true"><button class="image-modal-close" id="imageModalClose" type="button">×</button><img id="imageModalImg" src="" alt="Imagem ampliada"><div class="image-modal-caption" id="imageModalCaption"></div></div>
 
   <script>
     const mensagem = encodeURIComponent(
@@ -470,7 +471,7 @@ Telefone:`
         card.style.animationDelay = `${0.05 + index * 0.03}s`;
         card.innerHTML = `
           <div class="rank-hidden" data-posicao="${posicao}">#${posicao}</div>
-          <div class="photo-wrap">
+          <div class="photo-wrap" data-zoom-src="${vendedor.foto}" data-zoom-title="${vendedor.nome}">
             <img class="photo" src="${vendedor.foto}" alt="${vendedor.nome}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
             <div class="fallback">${iniciais}</div>
           </div>
@@ -493,6 +494,31 @@ Telefone:`
         btn.addEventListener("mouseleave", desligar);
       });
     }
+
+
+    function abrirImagem(src, titulo) {
+      if (!src) return;
+      const modal = document.getElementById("imageModal");
+      const img = document.getElementById("imageModalImg");
+      const caption = document.getElementById("imageModalCaption");
+      img.src = src;
+      caption.textContent = titulo || "";
+      modal.classList.add("active");
+      modal.setAttribute("aria-hidden", "false");
+    }
+    function fecharImagem() {
+      const modal = document.getElementById("imageModal");
+      const img = document.getElementById("imageModalImg");
+      modal.classList.remove("active");
+      modal.setAttribute("aria-hidden", "true");
+      img.src = "";
+    }
+    document.addEventListener("click", event => {
+      const zoom = event.target.closest("[data-zoom-src]");
+      if (zoom) abrirImagem(zoom.dataset.zoomSrc, zoom.dataset.zoomTitle);
+      if (event.target.id === "imageModal" || event.target.id === "imageModalClose") fecharImagem();
+    });
+    document.addEventListener("keydown", event => { if (event.key === "Escape") fecharImagem(); });
 
     async function carregarRanking() {
       let vendedoresOrdenados = listaPadrao();
