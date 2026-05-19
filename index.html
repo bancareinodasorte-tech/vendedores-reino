@@ -65,7 +65,14 @@
     .mini-photo-wrap { display:flex; justify-content:center; }
     .mini-photo { width:64px; height:64px; border-radius:50%; object-fit:cover; object-position:center; border:3px solid rgba(255,238,173,.96); background:#fff; box-shadow:0 8px 16px rgba(0,0,0,.18); }
     .mini-name { text-align:center; font-weight:800; font-size:15px; line-height:1.15; min-height:32px; display:flex; align-items:center; justify-content:center; }
-    .mini-sub { text-align:center; color:var(--muted); font-size:12px; line-height:1.25; }
+    .mini-sub{
+  color:#fff;
+  font-size:20px;
+  width:100%;
+  text-align:left;
+  padding-left:20px;
+  box-sizing:border-box;
+}
 
     .last-update { margin:0 0 18px; padding:14px 16px; text-align:center; color:#fff2ca; font-size:13px; line-height:1.4; background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.06)); border:1px solid var(--line); border-radius:22px; box-shadow:var(--shadow-soft); backdrop-filter:blur(10px); animation:fadeUp .62s ease both; }
 
@@ -325,27 +332,21 @@
     <section class="highlights">
       <article class="mini-card">
         <div class="mini-title">PRÓXIMO SORTEIO</div>
-        <div class="mini-photo-wrap"><img class="mini-photo" src="aguardandosorteio.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div>
+        <div class="mini-photo-wrap"><img class="mini-photo" src="sorteio-atual.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div>
         <div class="mini-sub">19/05:1 MIL +3 de R$ 50,00 </div>
         <div class="mini-sub">21/05:1 MIL +3 de R$ 50,00</div>
         <div class="mini-sub">23/05:2 MIL +6 de R$ 50,00</div>
-        .mini-sub {
-    width: 100%;
-    text-align: left;
-    padding-left: 20px;
-    box-sizing: border-box;
-}
       </article>
 
       <article class="mini-card">
         <div class="mini-title">ÚLTIMO GANHADOR</div>
         <div class="mini-photo-wrap"><img class="mini-photo" src="ganhador-atual.png" alt="Ganhador recente" onerror="this.style.display='none';" /></div>
-        <div class="mini-sub">Prêmio:R$ 4.000,00</div>
-        <div class="mini-sub">Ganhador:Victor</div>
-        <div class="mini-sub">Vendedor:Escritório-Online</div>
-        <div class="mini-sub">Milhar:37763</div>
-        <div class="mini-sub">PAGO 09/05/2026</div>
+        <div class="mini-sub">PRÊMIO:R$ 3.000,00</div>
+        <div class="mini-sub">GANHADOR:João Algusto</div>
+        <div class="mini-sub">VENDEDOR:Aline dos Marotos/div>
+        <div class="mini-sub">MILHAR:05503</div>
       </article>
+      
     </section>
 
     <div class="last-update" id="ultimaAtualizacao">Última atualização: aguardando ranking.json</div>
