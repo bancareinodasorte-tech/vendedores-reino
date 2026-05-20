@@ -457,6 +457,24 @@
   }
 </style>
 
+
+<style>
+  .conference-card{margin:18px auto;padding:18px;border-radius:24px;border:1px solid rgba(255,255,255,.22);background:linear-gradient(180deg,rgba(19,63,190,.94),rgba(10,35,132,.97));box-shadow:0 16px 35px rgba(0,0,0,.28),inset 0 1px 0 rgba(255,255,255,.18);text-align:center;color:#fff;max-width:680px}
+  .conference-card h2{margin:0 0 8px;font-size:22px;letter-spacing:.06em;color:#ffe27a;text-transform:uppercase}
+  .conference-card p{margin:0 auto 14px;font-size:14px;line-height:1.35;opacity:.96;max-width:420px}
+  .conference-content{display:grid;grid-template-columns:132px 1fr;gap:14px;align-items:center}
+  .conference-qr-wrap{background:#fff;border-radius:18px;padding:10px;box-shadow:0 10px 25px rgba(0,0,0,.24)}
+  .conference-qr{width:100%;display:block;border-radius:8px}
+  .conference-actions{display:grid;gap:9px;text-align:left}
+  .conference-seal{display:inline-flex;align-items:center;justify-content:center;width:fit-content;gap:6px;padding:7px 12px;border-radius:999px;background:rgba(255,226,122,.14);border:1px solid rgba(255,226,122,.35);color:#ffe27a;font-weight:800;font-size:12px}
+  .conference-btn{display:block;text-align:center;text-decoration:none;border-radius:16px;padding:13px 14px;font-weight:900;letter-spacing:.02em;color:#fff;background:linear-gradient(180deg,#71df58,#2eaa31);box-shadow:0 8px 18px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.35)}
+  .conference-copy{width:100%;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.09);color:#fff;border-radius:14px;padding:11px 12px;font-weight:800;cursor:pointer}
+  .conference-note{font-size:11px;opacity:.78;line-height:1.3}
+  .panel-counter{max-width:680px;margin:10px auto 14px;text-align:center;color:rgba(255,255,255,.9);font-size:13px;font-weight:800;letter-spacing:.03em}
+  .vendor-counter{display:block;margin:4px auto 0;text-align:center;font-size:10px;color:rgba(255,255,255,.70);font-weight:700}
+  @media(max-width:480px){.conference-card{margin:14px 8px 16px;padding:14px;border-radius:20px}.conference-card h2{font-size:17px}.conference-card p{font-size:12px}.conference-content{grid-template-columns:96px 1fr;gap:10px}.conference-seal{font-size:10px;padding:6px 9px}.conference-btn{padding:11px 10px;font-size:13px}.conference-copy{font-size:12px;padding:10px}.conference-note{font-size:10px}}
+</style>
+
 </head>
 
 <body>
@@ -484,6 +502,8 @@
     <section class="hero">
       <div class="brand">REINO DA SORTE</div>
       <h1>PAINEL DE VENDEDORES</h1>
+<div class="panel-counter" id="panelAccessCounter">👁️ Acessos ao painel: carregando...</div>
+
       <div class="subtitle">CADA BILHETE COM 20 CHANCES - APENAS R$ 2,00</div>
     </section>
 
@@ -491,17 +511,18 @@
       <article class="mini-card">
         <div class="mini-title">PRÓXIMO SORTEIO</div>
         <div class="mini-photo-wrap" data-zoom-src="sorteio-atual.png" data-zoom-title="Próximo sorteio"><img class="mini-photo zoomable-img" src="sorteio-atual.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div>
-        <div class="mini-sub">🥇19/05:  FINALIZADO ✅</div>
-        <div class="mini-sub">🥈21/05: 1 MIL +3 de R$ 50,00</div>
-        <div class="mini-sub">🥉23/05: 2 MIL +6 de R$ 50,00</div>
+        <div class="mini-sub">19/05:1 MIL +3 de R$ 50,00 </div>
+        <div class="mini-sub">21/05:1 MIL +3 de R$ 50,00</div>
+        <div class="mini-sub">23/05:2 MIL +6 de R$ 50,00</div>
       </article>
 
       <article class="mini-card">
         <div class="mini-title">ÚLTIMO GANHADOR</div>
         <div class="mini-photo-wrap" data-zoom-src="ganhador-atual.png" data-zoom-title="Último ganhador"><img class="mini-photo zoomable-img" src="ganhador-atual.png" alt="Ganhador recente" onerror="this.style.display='none';" /></div>
-        <div class="mini-sub">💰 GANHOU:R$ 1.000,00</div>
-        <div class="mini-sub">🏆 PREMIADO:Felipe Coelho</div>
-        <div class="mini-sub">🍀 VENDEDOR:Alice Nabor</div>
+        <div class="mini-sub">PRÊMIO:R$ 3.000,00</div>
+        <div class="mini-sub">GANHADOR:João Algusto</div>
+        <div class="mini-sub">VENDEDOR:Aline dos Marotos</div>
+        <div class="mini-sub">MILHAR:05503</div>
       </article>
       
     </section>
@@ -523,7 +544,7 @@
 
       <div class="office-right">
         <div class="office-call">COMPRE DIRETO<br>PELO SITE</div>
-        <a class="office-btn" href="https://wa.me/5588988072177?text=Olá!%20Quero%20comprar%20bilhetes%20🎟️%0A%0AQuantidade%20de%20bilhetes:%0ANome:%0ATelefone:" target="_blank" rel="noopener noreferrer">
+        <a class="office-btn" href="https://wa.me/558894943632?text=Olá!%20Quero%20comprar%20bilhetes%20🎟️%0A%0AQuantidade%20de%20bilhetes:%0ANome:%0ATelefone:" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.24c-.29-.15-1.69-.83-1.95-.92-.26-.1-.45-.15-.64.15-.19.29-.73.92-.9 1.11-.16.19-.33.22-.62.07-.29-.15-1.2-.44-2.28-1.39-.84-.75-1.4-1.66-1.56-1.95-.16-.29-.02-.44.12-.58.12-.12.29-.33.43-.49.14-.16.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.64-1.55-.88-2.12-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.49.07-.75.36-.26.29-.98.95-.98 2.31s1 2.67 1.14 2.86c.14.19 1.96 2.99 4.76 4.19.67.29 1.19.46 1.6.59.67.21 1.28.18 1.77.11.54-.08 1.69-.69 1.93-1.35.24-.66.24-1.22.17-1.34-.07-.12-.26-.19-.55-.34z"/><path fill="currentColor" d="M16.02 3.2c-7.05 0-12.76 5.7-12.76 12.73 0 2.24.59 4.43 1.7 6.35L3.2 28.8l6.72-1.75a12.8 12.8 0 0 0 6.1 1.55h.01c7.04 0 12.77-5.7 12.77-12.73A12.75 12.75 0 0 0 16.02 3.2zm0 23.25h-.01c-1.92 0-3.8-.52-5.45-1.51l-.39-.23-3.99 1.04 1.07-3.89-.25-.4a10.54 10.54 0 0 1-1.63-5.61c0-5.83 4.76-10.58 10.62-10.58 2.83 0 5.48 1.1 7.48 3.09a10.47 10.47 0 0 1 3.11 7.49c0 5.83-4.77 10.58-10.56 10.58z"/></svg>
           <span>COMPRAR AQUI</span>
         </a>
@@ -532,6 +553,23 @@
     </section>
 
     <div class="alert"><div class="image-hint">Toque nas imagens para ampliar</div>
+
+<section class="conference-card" id="conferencia-oficial">
+  <h2>🔎 Conferência Oficial</h2>
+  <p>Perdeu o bilhete ou não acompanhou ao vivo? Consulte o resultado oficial do sorteio pelo QR Code ou botão abaixo.</p>
+  <div class="conference-content">
+    <div class="conference-qr-wrap">
+      <img class="conference-qr zoomable-img" src="qr-conferencia.png" alt="QR Code para conferência oficial do resultado">
+    </div>
+    <div class="conference-actions">
+      <span class="conference-seal">✅ Resultado oficial e seguro</span>
+      <a class="conference-btn" href="https://admin.reinodasorte.com.br/sorteio/bWAzp63e5Rta16-nICFiM8_OppkZg9Zqh1Ri2UJgHPs" target="_blank" rel="noopener">CONFERIR RESULTADO</a>
+      <button class="conference-copy" type="button" data-copy-link="https://admin.reinodasorte.com.br/sorteio/bWAzp63e5Rta16-nICFiM8_OppkZg9Zqh1Ri2UJgHPs">COPIAR LINK</button>
+      <div class="conference-note">Use o mesmo QR Code impresso no bilhete. Link oficial do Reino da Sorte.</div>
+    </div>
+  </div>
+</section>
+
 <h2 class="section-title">VENDEDORES AUTORIZADOS</h2></div>
     <section class="list" id="lista"></section>
     <div class="footer">REINO DA SORTE • Atendimento oficial</div>
@@ -541,11 +579,11 @@
 
   <script>
     const mensagem = encodeURIComponent(
-`Olá! Quero comprar bilhetes 🎰
+`Olá! Quero comprar bilhetes 🎟️
 
-🔢 Quantidade:
-✍️ Nome:
-📱 Telefone:`
+Quantidade de bilhetes:
+Nome:
+Telefone:`
 );
 
     const vendedoresBase = [
@@ -555,14 +593,16 @@
       { id: "jamilles", nome: "Jamilles Izidório", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg", percentual: 0 },
       { id: "aline", nome: "Aline dos Maroto", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg", percentual: 0 },
       { id: "marcia", nome: "Márcia Silva", telefone: "5588988216885", foto: "images/marcia-silva.jpg", percentual: 0 },
+      { id: "taina", nome: "Taína Fideles", telefone: "5588981805250", foto: "images/taina-fideles.jpg", percentual: 0 },
+      { id: "elaine", nome: "Elaine Mariano", telefone: "5588981642062", foto: "images/eliane-mariano.jpg", percentual: 0, aliases: ["eliane"] },
+      { id: "luana", nome: "Luana", telefone: "5588988132520", foto: "images/vendedora-semfoto.jpg", percentual: 0 },
       { id: "maria", nome: "Maria Oliveira", telefone: "5588996263082", foto: "images/maria-oliveira.jpg", percentual: 0 },
       { id: "ana-raissa", nome: "Ana Raíssa", telefone: "5588988940412", foto: "images/ana-raissa.jpg", percentual: 0 },
-      { id: "matheus-cantor", nome: "Matheus Cantor", telefone: "5588988019597", foto: "images/matheus-cantor.jpg", percentual: 0 },
       { id: "kyara", nome: "Kyara", telefone: "5585988725043", foto: "images/kyara.jpg", percentual: 0 },
-      { id: "carro-som", nome: "Carro de Som - Reino da Sorte", telefone: "5588988072177", foto: "images/carrodesom.jpg", percentual: 0 },
+      { id: "carro-som", nome: "Carro de Som - Reino da Sorte", telefone: "5588994943632", foto: "images/carrodesom.jpg", percentual: 0 },
       { id: "giovanna", nome: "Giovanna", telefone: "5588982354554", foto: "images/giovanna.jpg", percentual: 0 },
       { id: "maria-luana", nome: "Maria Luana", telefone: "5588988898619", foto: "images/vendedora.jpg", percentual: 0 },
-      { id: "monica-maria", nome: "Mônica Maria (Barbalha/CE)", telefone: "5588999744938", foto: "images/vendedora-semfoto1.jpg", percentual: 0 }
+      { id: "monica-maria", nome: "Mônica Maria (Barbalha/CE)", telefone: "5588999744938", foto: "vendedora-semfoto.jpg", percentual: 0 }
     ];
 
     const lista = document.getElementById("lista");
@@ -771,6 +811,52 @@
   btn.addEventListener('click',function(){
     window.scrollTo({top:0,behavior:'smooth'});
   });
+})();
+</script>
+
+
+<script>
+(function(){
+  const ACCESS_KEY='reinoPainelAcessosGeral';
+  let total=parseInt(localStorage.getItem(ACCESS_KEY)||'0',10);
+  total+=1;
+  localStorage.setItem(ACCESS_KEY,String(total));
+  const el=document.getElementById('panelAccessCounter');
+  if(el) el.textContent='👁️ Acessos ao painel: '+total.toLocaleString('pt-BR');
+
+  document.addEventListener('click',function(e){
+    const btn=e.target.closest&&e.target.closest('[data-copy-link]');
+    if(btn){
+      const link=btn.getAttribute('data-copy-link');
+      if(navigator.clipboard){
+        navigator.clipboard.writeText(link).then(function(){
+          btn.textContent='LINK COPIADO ✅';
+          setTimeout(function(){btn.textContent='COPIAR LINK';},1800);
+        }).catch(function(){prompt('Copie o link:',link);});
+      }else{prompt('Copie o link:',link);}
+    }
+  });
+
+  function addVendorCounters(){
+    const links=Array.from(document.querySelectorAll('a[href*="wa.me"],a[href*="api.whatsapp"],a[href*="whatsapp"]'));
+    links.forEach(function(link,index){
+      if(link.closest('.conference-card')) return;
+      const card=link.closest('article,.card,.vendedor-card,.seller-card,.seller,.vendor-card,div');
+      if(!card||card.querySelector('.vendor-counter')) return;
+      const key='reinoVendedorClick_'+index;
+      const count=parseInt(localStorage.getItem(key)||'0',10);
+      const span=document.createElement('span');
+      span.className='vendor-counter';
+      span.textContent='👁️ visitas: '+count.toLocaleString('pt-BR');
+      link.insertAdjacentElement('afterend',span);
+      link.addEventListener('click',function(){
+        const next=parseInt(localStorage.getItem(key)||'0',10)+1;
+        localStorage.setItem(key,String(next));
+        span.textContent='👁️ visitas: '+next.toLocaleString('pt-BR');
+      });
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',addVendorCounters);else addVendorCounters();
 })();
 </script>
 
