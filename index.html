@@ -376,6 +376,87 @@
   }
 </style>
 
+
+<style>
+  html{scroll-behavior:smooth;}
+
+  .seller-card,.vendedor-card,.card-vendedor,.seller,.vendor-card{
+    transition:transform .18s ease,box-shadow .18s ease;
+  }
+
+  .seller-card:active,.vendedor-card:active,.card-vendedor:active,.seller:active,.vendor-card:active{
+    transform:scale(.985);
+  }
+
+  a[href*="wa.me"],a[href*="whatsapp"],.btn-comprar,.comprar,.buy-button,button{
+    -webkit-tap-highlight-color:transparent;
+  }
+
+  a[href*="wa.me"],.btn-comprar,.comprar,.buy-button{
+    transition:transform .16s ease,filter .16s ease,box-shadow .16s ease;
+  }
+
+  a[href*="wa.me"]:active,.btn-comprar:active,.comprar:active,.buy-button:active{
+    transform:scale(.97);
+    filter:brightness(1.05);
+  }
+
+  img.zoomable-img{
+    transition:transform .16s ease,filter .16s ease;
+  }
+
+  img.zoomable-img:active{
+    transform:scale(.97);
+    filter:brightness(1.08);
+  }
+
+  .image-lightbox-caption{
+    padding:0 12px;
+    font-weight:700;
+    text-shadow:0 2px 8px rgba(0,0,0,.8);
+  }
+
+  #backToTop{
+    position:fixed;
+    right:16px;
+    bottom:18px;
+    z-index:9999;
+    width:48px;
+    height:48px;
+    border-radius:999px;
+    border:1px solid rgba(255,255,255,.35);
+    background:linear-gradient(180deg,#79dc58,#3fa82e);
+    color:#fff;
+    font-size:24px;
+    font-weight:900;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 26px rgba(0,0,0,.35);
+    cursor:pointer;
+  }
+
+  #backToTop.show{display:flex;}
+
+  .image-hint{
+    text-align:center;
+    color:rgba(255,255,255,.72);
+    font-size:12px;
+    margin-top:8px;
+    font-weight:700;
+  }
+
+  @media(max-width:480px){
+    #backToTop{
+      right:12px;
+      bottom:14px;
+      width:44px;
+      height:44px;
+      font-size:22px;
+    }
+  }
+</style>
+
 </head>
 
 <body>
@@ -451,7 +532,8 @@
       </div>
     </section>
 
-    <div class="alert"><h2 class="section-title">VENDEDORES AUTORIZADOS</h2></div>
+    <div class="alert"><div class="image-hint">Toque nas imagens para ampliar</div>
+<h2 class="section-title">VENDEDORES AUTORIZADOS</h2></div>
     <section class="list" id="lista"></section>
     <div class="footer">REINO DA SORTE • Atendimento oficial</div>
   </main>
@@ -628,7 +710,7 @@ Telefone:`
   <div class="image-lightbox-box">
     <img id="imageLightboxImg" src="" alt="Imagem ampliada">
   </div>
-  <div class="image-lightbox-caption" id="imageLightboxCaption">Toque fora da imagem para fechar</div>
+  <div class="image-lightbox-caption" id="imageLightboxCaption">Imagem ampliada • toque fora para fechar</div>
 </div>
 
 <script>
@@ -670,6 +752,27 @@ Telefone:`
 
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape') closeLightbox();
+  });
+})();
+</script>
+
+
+<button id="backToTop" type="button" aria-label="Voltar ao topo">↑</button>
+
+<script>
+(function(){
+  const btn=document.getElementById('backToTop');
+  if(!btn) return;
+
+  function toggleTopButton(){
+    if(window.scrollY>500){btn.classList.add('show');}
+    else{btn.classList.remove('show');}
+  }
+
+  window.addEventListener('scroll',toggleTopButton,{passive:true});
+
+  btn.addEventListener('click',function(){
+    window.scrollTo({top:0,behavior:'smooth'});
   });
 })();
 </script>
