@@ -293,6 +293,89 @@
          Troque .rank-hidden de display:none; para display:flex;
     */
   </style>
+
+<style>
+  .zoomable-img{
+    cursor: zoom-in;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .image-lightbox{
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(0,0,0,.86);
+    backdrop-filter: blur(6px);
+  }
+
+  .image-lightbox.active{
+    display: flex;
+  }
+
+  .image-lightbox-box{
+    position: relative;
+    width: min(94vw, 520px);
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .image-lightbox img{
+    max-width: 100%;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 18px 60px rgba(0,0,0,.55);
+    animation: zoomInImage .18s ease-out;
+  }
+
+  .image-lightbox-close{
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 100000;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,.35);
+    background: rgba(0,0,0,.55);
+    color: #fff;
+    font-size: 28px;
+    line-height: 42px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  .image-lightbox-caption{
+    position: fixed;
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    color: #fff;
+    font-size: 13px;
+    text-align: center;
+    opacity: .9;
+    pointer-events: none;
+  }
+
+  body.lightbox-open{
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  @keyframes zoomInImage{
+    from{transform: scale(.92); opacity: .65;}
+    to{transform: scale(1); opacity: 1;}
+  }
+</style>
+
 </head>
 
 <body>
@@ -300,17 +383,17 @@
     <div class="topbar">
       <div class="topbar-inner">
         <a class="top-link left" href="https://wa.me/5588994943632?text=Olá!%20Quero%20comprar%20bilhetes%20🎟️%0A%0AQuantidade%20de%20bilhetes:%0ANome:%0ATelefone:" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-          <img src="icon-whatsapp.png" alt="WhatsApp">
+          <img class="zoomable-img" src="icon-whatsapp.png" alt="WhatsApp">
           <span>WhatsApp</span>
         </a>
 
         <div class="top-logo">
-          <img src="logo-reino.png" alt="Logo Reino da Sorte">
+          <img class="zoomable-img" src="logo-reino.png" alt="Logo Reino da Sorte">
         </div>
 
         <a class="top-link right" href="https://www.instagram.com/reinodasorteoficial?igsh=MWw4endwd3Joczc4dg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <span>@Instagram</span>
-          <img src="icon-instagram.png" alt="Instagram">
+          <img class="zoomable-img" src="icon-instagram.png" alt="Instagram">
         </a>
       </div>
     </div>
@@ -326,7 +409,7 @@
     <section class="highlights">
       <article class="mini-card">
         <div class="mini-title">PRÓXIMO SORTEIO</div>
-        <div class="mini-photo-wrap" data-zoom-src="sorteio-atual.png" data-zoom-title="Próximo sorteio"><img class="mini-photo" src="sorteio-atual.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div>
+        <div class="mini-photo-wrap" data-zoom-src="sorteio-atual.png" data-zoom-title="Próximo sorteio"><img class="mini-photo zoomable-img" src="sorteio-atual.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div>
         <div class="mini-sub">19/05:1 MIL +3 de R$ 50,00 </div>
         <div class="mini-sub">21/05:1 MIL +3 de R$ 50,00</div>
         <div class="mini-sub">23/05:2 MIL +6 de R$ 50,00</div>
@@ -334,7 +417,7 @@
 
       <article class="mini-card">
         <div class="mini-title">ÚLTIMO GANHADOR</div>
-        <div class="mini-photo-wrap" data-zoom-src="ganhador-atual.png" data-zoom-title="Último ganhador"><img class="mini-photo" src="ganhador-atual.png" alt="Ganhador recente" onerror="this.style.display='none';" /></div>
+        <div class="mini-photo-wrap" data-zoom-src="ganhador-atual.png" data-zoom-title="Último ganhador"><img class="mini-photo zoomable-img" src="ganhador-atual.png" alt="Ganhador recente" onerror="this.style.display='none';" /></div>
         <div class="mini-sub">PRÊMIO:R$ 3.000,00</div>
         <div class="mini-sub">GANHADOR:João Algusto</div>
         <div class="mini-sub">VENDEDOR:Aline dos Marotos</div>
@@ -373,7 +456,7 @@
     <div class="footer">REINO DA SORTE • Atendimento oficial</div>
   </main>
 
-  <div class="image-modal" id="imageModal" aria-hidden="true"><button class="image-modal-close" id="imageModalClose" type="button">×</button><img id="imageModalImg" src="" alt="Imagem ampliada"><div class="image-modal-caption" id="imageModalCaption"></div></div>
+  </div>
 
   <script>
     const mensagem = encodeURIComponent(
@@ -472,7 +555,7 @@ Telefone:`
         card.innerHTML = `
           <div class="rank-hidden" data-posicao="${posicao}">#${posicao}</div>
           <div class="photo-wrap" data-zoom-src="${vendedor.foto}" data-zoom-title="${vendedor.nome}">
-            <img class="photo" src="${vendedor.foto}" alt="${vendedor.nome}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <img class="photo zoomable-img" src="${vendedor.foto}" alt="${vendedor.nome}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
             <div class="fallback">${iniciais}</div>
           </div>
           <h2 class="name">${vendedor.nome}</h2>
@@ -539,5 +622,57 @@ Telefone:`
     atualizarFundoCardEscritorio();
     carregarRanking();
   </script>
+
+<div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+  <button class="image-lightbox-close" type="button" id="imageLightboxClose" aria-label="Fechar">×</button>
+  <div class="image-lightbox-box">
+    <img id="imageLightboxImg" src="" alt="Imagem ampliada">
+  </div>
+  <div class="image-lightbox-caption" id="imageLightboxCaption">Toque fora da imagem para fechar</div>
+</div>
+
+<script>
+(function(){
+  const modal = document.getElementById('imageLightbox');
+  const modalImg = document.getElementById('imageLightboxImg');
+  const closeBtn = document.getElementById('imageLightboxClose');
+
+  function openLightbox(img){
+    const src = img.getAttribute('src');
+    if(!src) return;
+    modalImg.src = src;
+    modalImg.alt = img.getAttribute('alt') || 'Imagem ampliada';
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden','false');
+    document.body.classList.add('lightbox-open');
+  }
+
+  function closeLightbox(){
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('lightbox-open');
+    setTimeout(function(){ modalImg.src = ''; }, 120);
+  }
+
+  document.addEventListener('click', function(e){
+    const img = e.target.closest && e.target.closest('img.zoomable-img');
+    if(img){
+      e.preventDefault();
+      e.stopPropagation();
+      openLightbox(img);
+      return;
+    }
+
+    if(e.target === modal || e.target === closeBtn){
+      closeLightbox();
+    }
+  }, true);
+
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeLightbox();
+  });
+})();
+</script>
+
 </body>
 </html>
