@@ -630,18 +630,18 @@
     <section class="highlights">
       <article class="mini-card">
         <div class="mini-title">PRÓXIMO SORTEIO</div>
-        <div class="mini-photo-wrap" data-zoom-src="sorteio-atual.png" data-zoom-title="Próximo sorteio"><img class="mini-photo zoomable-img" src="sorteio-atual.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div>
-        <div class="mini-sub">🥇Principa: R$ 2.500,00</div>
-        <div class="mini-sub">🥈Extra: 3 Giros de R$ 100,00</div>
-        <div class="mini-sub">📆 Data:Sabado, 23/05/2026</div>
+        <div class="mini-photo-wrap" data-zoom-src="aguardando-sorteio.png" data-zoom-title="Próximo sorteio"><img class="mini-photo zoomable-img" src="sorteio-atual.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div>
+        <div class="mini-sub">🥇Principa: Aguardando...</div>
+        <div class="mini-sub">🥈Extra: Aguardando...</div>
+        <div class="mini-sub">📆 Data: Aguardando...</div>
       </article>
 
       <article class="mini-card">
         <div class="mini-title">ÚLTIMO GANHADOR</div>
         <div class="mini-photo-wrap" data-zoom-src="ganhador-atual.png" data-zoom-title="Último ganhador"><img class="mini-photo zoomable-img" src="ganhador-atual.png" alt="Ganhador recente" onerror="this.style.display='none';" /></div>
-        <div class="mini-sub">🏆Ganhador: Felipe Coelho</div>
-        <div class="mini-sub">💰Prêmio: R$1.000,00</div>
-        <div class="mini-sub">🍀Pé-quente: Alice Nabor</div>
+        <div class="mini-sub">🏆Ganhador: Carlito(Jardim/Ce)</div>
+        <div class="mini-sub">💰Prêmio: R$2.500,00</div>
+        <div class="mini-sub">🍀Vendedor: Giovana</div>
       </article>
       
     </section>
@@ -700,11 +700,11 @@
 
   <script>
     const mensagem = encodeURIComponent(
-`Olá! Quero comprar bilhetes ✅
+`Olá! Quero comprar bilhetes
 
-🔢 Quantidade:
-✍️ Nome:
-📱 Telefone:`
+Quantidade:
+Nome:
+Telefone:`
 );
 
     const vendedoresBase = [
@@ -941,7 +941,7 @@
   total+=1;
   localStorage.setItem(ACCESS_KEY,String(total));
   const el=document.getElementById('panelAccessCounter');
-  if(el) el.textContent='👁️ Acessos ao painel: '+total.toLocaleString('pt-BR');
+  if(el) el.textContent='👁️ Acessos ao painel: '9.202('pt-BR');
 
   document.addEventListener('click',function(e){
     const btn=e.target.closest&&e.target.closest('[data-copy-link]');
