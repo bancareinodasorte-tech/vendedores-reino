@@ -630,7 +630,7 @@
     <section class="highlights">
       <article class="mini-card">
         <div class="mini-title">PRÓXIMO SORTEIO</div>
-        <div class="mini-photo-wrap" data-zoom-src="aguardando-sorteio.png" data-zoom-title="Próximo sorteio"><img class="mini-photo zoomable-img" src="sorteio-atual.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div>
+        <div class="mini-photo-wrap" data-zoom-src="aguardandosorteio.png" data-zoom-title="Próximo sorteio"><img class="mini-photo zoomable-img" src="sorteio-atual.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div>
         <div class="mini-sub">🥇Principa: Aguardando...</div>
         <div class="mini-sub">🥈Extra: Aguardando...</div>
         <div class="mini-sub">📆 Data: Aguardando...</div>
@@ -941,7 +941,7 @@ Telefone:`
   total+=1;
   localStorage.setItem(ACCESS_KEY,String(total));
   const el=document.getElementById('panelAccessCounter');
-  if(el) el.textContent='👁️ Acessos ao painel: '9.202('pt-BR');
+  if(el) el.textContent='👁️ Acessos ao painel: '+total.toLocaleString('pt-BR');
 
   document.addEventListener('click',function(e){
     const btn=e.target.closest&&e.target.closest('[data-copy-link]');
