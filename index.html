@@ -602,7 +602,7 @@
     <div class="topbar">
       <div class="topbar-inner">
         <a class="top-link left" href="https://wa.me/5588988072177?text=Olá!%20Quero%20comprar%20bilhetes%20🎟️%0A%0AQuantidade%20de%20bilhetes:%0ANome:%0ATelefone:" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-          <img class="zoomable-img" src="icon-whatsapp.png" alt="WhatsApp">
+          <img src="icon-whatsapp.png" alt="WhatsApp">
           <span>WhatsApp</span>
         </a>
 
@@ -612,7 +612,7 @@
 
         <a class="top-link right" href="https://www.instagram.com/reinodasorteoficial?igsh=MWw4endwd3Joczc4dg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <span>@Instagram</span>
-          <img class="zoomable-img" src="icon-instagram.png" alt="Instagram">
+          <img src="icon-instagram.png" alt="Instagram">
         </a>
       </div>
     </div>
@@ -630,7 +630,7 @@
     <section class="highlights">
       <article class="mini-card">
         <div class="mini-title">PRÓXIMO SORTEIO</div>
-        <div class="mini-photo-wrap" data-zoom-src="aguardando-sorteio.png" data-zoom-title="Próximo sorteio"><img class="mini-photo zoomable-img" src="sorteio-atual.png" alt="Prêmio do dia" onerror="this.style.display='none';" /></div>
+        <div class="mini-photo-wrap" data-zoom-src="aguardando-sorteio.png" data-zoom-title="Próximo sorteio"><img class="mini-photo zoomable-img" src="aguardando-sorteio.png" alt="Próximo sorteio" onerror="this.style.display='none';" /></div>
         <div class="mini-sub">🥇Principal: Aguardando...</div>
         <div class="mini-sub">🥈Extra: Aguardando...</div>
         <div class="mini-sub">📆 Data: Aguardando...</div>
@@ -895,6 +895,8 @@ Telefone:`
   document.addEventListener('click', function(e){
     const img = e.target.closest && e.target.closest('img.zoomable-img');
     if(img){
+      const linkPai = img.closest('a');
+      if(linkPai && linkPai.getAttribute('href')) return;
       e.preventDefault();
       e.stopPropagation();
       openLightbox(img);
