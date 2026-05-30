@@ -573,92 +573,6 @@
   }
 </style>
 
-
-<style>
-  /* AJUSTE PROFISSIONAL: painel sem ranking/percentual público */
-  .last-update, .percentual, .participacao-label, .rank-hidden, .vendor-counter{
-    display:none !important;
-  }
-
-  .list{
-    align-items:stretch;
-  }
-
-  .card{
-    min-height:205px !important;
-    padding:16px 14px !important;
-    gap:12px !important;
-    justify-content:space-between !important;
-  }
-
-  .photo-wrap{
-    margin:4px 0 0 !important;
-  }
-
-  .photo,.fallback{
-    width:92px !important;
-    height:92px !important;
-  }
-
-  .name{
-    min-height:54px !important;
-    font-size:20px !important;
-    line-height:1.08 !important;
-    padding:0 2px;
-  }
-
-  .btn{
-    margin-top:auto;
-  }
-
-  @media(max-width:480px){
-    .card{
-      min-height:198px !important;
-      padding:14px 10px !important;
-    }
-
-    .photo,.fallback{
-      width:80px !important;
-      height:80px !important;
-    }
-
-    .name{
-      font-size:17px !important;
-      min-height:50px !important;
-    }
-  }
-</style>
-
-
-<style>
-  /* AJUSTE FINAL: painel sem ranking, sem participação e com cards mais limpos */
-  .last-update, .rank-hidden, .percentual, .participacao-label, .vendor-counter{
-    display:none!important;
-  }
-
-  .card{
-    min-height:200px!important;
-    padding:16px 14px!important;
-    justify-content:space-between!important;
-  }
-
-  .photo-wrap{
-    margin:4px 0 4px!important;
-  }
-
-  .name{
-    min-height:48px!important;
-    font-size:21px!important;
-    line-height:1.06!important;
-  }
-
-  @media(max-width:560px){
-    .card{min-height:190px!important;padding:14px 12px!important;}
-    .name{font-size:18px!important;min-height:44px!important;}
-    .photo,.fallback{width:78px!important;height:78px!important;}
-  }
-</style>
-
 </head>
 
 <body>
@@ -789,22 +703,22 @@ Telefone:`
 );
 
     const vendedoresBase = [
-      { id: "alice", nome: "Alice Nabor (Jardim/Ce)", telefone: "5588981296930", foto: "images/alice-nabor.jpg", percentual: 0 },
-      { id: "dan", nome: "Dam (Jardim/Ce)", telefone: "5588981703564", foto: "images/dan.jpg", percentual: 0, aliases: ["dam"] },
-      { id: "tamiles", nome: "Tamiles Mimi (Jardim/Ce)", telefone: "5588981243042", foto: "images/tamiles-mimi.jpg", percentual: 0, aliases: ["tamilles", "tamilles mimi"] },
-      { id: "jamilles", nome: "Jamilles Izidório (Jardim/Ce)", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg", percentual: 0 },
-      { id: "aline", nome: "Aline dos Maroto (Jardim/Ce)", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg", percentual: 0 },
-      { id: "marcia", nome: "Márcia Silva (Jardim/Ce)", telefone: "5588988216885", foto: "images/marcia-silva.jpg", percentual: 0 },
-      { id: "taina", nome: "Taína Fideles (Jardim/Ce)", telefone: "5588981805250", foto: "images/taina-fideles.jpg", percentual: 0 },
-      { id: "maria", nome: "Maria Oliveira (Jardim/Ce)", telefone: "5588996263082", foto: "images/maria-oliveira.jpg", percentual: 0 },
-      { id: "ana-raissa", nome: "Ana Raíssa (Jardim/Ce)", telefone: "5588988940412", foto: "images/ana-raissa.jpg", percentual: 0 },
-      { id: "kyara", nome: "Kyara (Jardim/Ce)", telefone: "5585988725043", foto: "images/kyara.jpg", percentual: 0 },
-      { id: "carro-som", nome: "Carro de Som - Reino da Sorte", telefone: "5588988072177", foto: "images/carrodesom.jpg", percentual: 0 },
-      { id: "giovanna", nome: "Giovanna (Jardim/Ce)", telefone: "5588982354554", foto: "images/giovanna.jpg", percentual: 0 },
-      { id: "maria-luana", nome: "Maria Luana (Jardim/Ce)", telefone: "5588988898619", foto: "images/vendedora-semfoto.jpg", percentual: 0 },
-      { id: "fabiola-porteiras", nome: "Fabíola (Porteiras/CE)", telefone: "5588988204146", foto: "images/fabiola-porteiras.jpg", percentual: 0 },
-      { id: "felipe", nome: "Lipeh (Jardim/Ce)", telefone: "5588981090716", foto: "images/vendedora-semfoto.jpg", percentual: 0 },
-      { id: "yohani", nome: "Yohani (Jardim/Ce)", telefone: "5588999744938", foto: "images/yohani.jpg", percentual: 0 }
+      { id: "alice", nome: "Alice Nabor (Jardim/Ce)", telefone: "5588981296930", foto: "images/alice-nabor.jpg", aliases: ["alice nabor"] },
+      { id: "dan", nome: "Dam (Jardim/Ce)", telefone: "5588981703564", foto: "images/dan.jpg", aliases: ["dam", "dan"] },
+      { id: "tamiles", nome: "Tamiles Mimi (Jardim/Ce)", telefone: "5588981243042", foto: "images/tamiles-mimi.jpg", aliases: ["tamilles", "tamilles mimi", "tamiles mimi"] },
+      { id: "jamilles", nome: "Jamilles Izidório (Jardim/Ce)", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg", aliases: ["jamilles izidorio", "jamilles izidório"] },
+      { id: "aline", nome: "Aline dos Maroto (Jardim/Ce)", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg", aliases: ["aline dos maroto"] },
+      { id: "marcia", nome: "Márcia Silva (Jardim/Ce)", telefone: "5588988216885", foto: "images/marcia-silva.jpg", aliases: ["marcia silva", "márcia silva"] },
+      { id: "taina", nome: "Taína Fideles (Jardim/Ce)", telefone: "5588981805250", foto: "images/taina-fideles.jpg", aliases: ["taina fideles", "taína fideles"] },
+      { id: "maria", nome: "Maria Oliveira (Jardim/Ce)", telefone: "5588996263082", foto: "images/maria-oliveira.jpg", aliases: ["maria oliveira"] },
+      { id: "ana-raissa", nome: "Ana Raíssa (Jardim/Ce)", telefone: "5588988940412", foto: "images/ana-raissa.jpg", aliases: ["ana raissa", "ana raíssa"] },
+      { id: "kyara", nome: "Kyara (Jardim/Ce)", telefone: "5585988725043", foto: "images/kyara.jpg", aliases: ["kyara"] },
+      { id: "carro-som", nome: "Carro de Som - Reino da Sorte", telefone: "5588988072177", foto: "images/carrodesom.jpg", aliases: ["carro de som", "carro de som reino da sorte"] },
+      { id: "giovanna", nome: "Giovanna (Jardim/Ce)", telefone: "5588982354554", foto: "images/giovanna.jpg", aliases: ["giovanna", "giovana"] },
+      { id: "maria-luana", nome: "Maria Luana (Jardim/Ce)", telefone: "5588988898619", foto: "images/vendedora-semfoto.jpg", aliases: ["maria luana", "luana"] },
+      { id: "fabiola-porteiras", nome: "Fabíola (Porteiras/CE)", telefone: "5588988204146", foto: "images/fabiola-porteiras.jpg", aliases: ["fabiola", "fabíola", "fabiola de porteiras", "fabiola-de-porteiras", "fabiola de porteiras vendas online"] },
+      { id: "felipe", nome: "Lipeh (Jardim/Ce)", telefone: "5588981090716", foto: "images/vendedora-semfoto.jpg", aliases: ["felipe", "lipeh", "felipe vendas online"] },
+      { id: "yohani", nome: "Yohani (Jardim/Ce)", telefone: "5588999744938", foto: "images/yohani.jpg", aliases: ["yohani"] }
     ];
 
     const lista = document.getElementById("lista");
@@ -825,20 +739,68 @@ Telefone:`
       return `https://wa.me/${limparTelefone(vendedor.telefone)}?text=${mensagem}`;
     }
 
+    function normalizar(texto) {
+      return String(texto || "")
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+    }
+
     function listaPadrao() {
       return [...vendedoresBase];
+    }
+
+    function extrairRanking(payload) {
+      return Array.isArray(payload) ? payload : (payload && Array.isArray(payload.ranking) ? payload.ranking : []);
+    }
+
+    function encontrarVendedorNoIndex(itemRanking) {
+      const idRanking = normalizar(itemRanking.id);
+      const nomeRanking = normalizar(itemRanking.nome);
+
+      return vendedoresBase.find(v => {
+        const idBase = normalizar(v.id);
+        const nomeBase = normalizar(v.nome);
+        const aliases = (v.aliases || []).map(normalizar);
+        return idRanking === idBase || nomeRanking === nomeBase || aliases.includes(idRanking) || aliases.includes(nomeRanking);
+      });
+    }
+
+    function montarListaComRankingSeguro(payload) {
+      const ranking = extrairRanking(payload);
+      if (!ranking.length) return listaPadrao();
+
+      const usados = new Set();
+      const ordenados = [];
+
+      ranking
+        .slice()
+        .sort((a, b) => Number(a.posicao || 9999) - Number(b.posicao || 9999))
+        .forEach(item => {
+          const vendedor = encontrarVendedorNoIndex(item);
+          if (vendedor && !usados.has(vendedor.id)) {
+            ordenados.push(vendedor);
+            usados.add(vendedor.id);
+          }
+        });
+
+      vendedoresBase.forEach(v => {
+        if (!usados.has(v.id)) ordenados.push(v);
+      });
+
+      return ordenados;
     }
 
     function renderizarVendedores(vendedores) {
       lista.innerHTML = "";
       vendedores.forEach((vendedor, index) => {
-        const posicao = index + 1;
         const iniciais = vendedor.nome.split(" ").filter(Boolean).slice(0, 2).map(parte => parte[0]).join("").toUpperCase();
         const card = document.createElement("article");
         card.className = "card";
         card.style.animationDelay = `${0.05 + index * 0.03}s`;
         card.innerHTML = `
-          <div class="rank-hidden" data-posicao="${posicao}">#${posicao}</div>
           <div class="photo-wrap" data-zoom-src="${cacheImg(vendedor.foto)}" data-zoom-title="${vendedor.nome}">
             <img class="photo zoomable-img" src="${cacheImg(vendedor.foto)}" alt="${vendedor.nome}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
             <div class="fallback">${iniciais}</div>
@@ -850,6 +812,7 @@ Telefone:`
           </a>`;
         lista.appendChild(card);
       });
+
       document.querySelectorAll(".btn").forEach(btn => {
         const ligar = () => btn.classList.add("touching");
         const desligar = () => btn.classList.remove("touching");
@@ -862,7 +825,6 @@ Telefone:`
       });
     }
 
-
     function abrirImagem(src, titulo) {
       if (!src) return;
       const modal = document.getElementById("imageModal");
@@ -873,6 +835,7 @@ Telefone:`
       modal.classList.add("active");
       modal.setAttribute("aria-hidden", "false");
     }
+
     function fecharImagem() {
       const modal = document.getElementById("imageModal");
       const img = document.getElementById("imageModalImg");
@@ -880,20 +843,31 @@ Telefone:`
       modal.setAttribute("aria-hidden", "true");
       img.src = "";
     }
+
     document.addEventListener("click", event => {
       const zoom = event.target.closest("[data-zoom-src]");
       if (zoom) abrirImagem(zoom.dataset.zoomSrc, zoom.dataset.zoomTitle);
       if (event.target.id === "imageModal" || event.target.id === "imageModalClose") fecharImagem();
     });
+
     document.addEventListener("keydown", event => { if (event.key === "Escape") fecharImagem(); });
 
-    function iniciarPainel() {
+    async function carregarRanking() {
       renderizarVendedores(listaPadrao());
+
+      try {
+        const resposta = await fetch(`ranking.json?v=${Date.now()}`, { cache: "no-store" });
+        if (!resposta.ok) throw new Error("ranking.json não encontrado");
+        const payload = await resposta.json();
+        renderizarVendedores(montarListaComRankingSeguro(payload));
+      } catch (erro) {
+        console.warn("ranking.json não carregou. Mantendo vendedores do index.html.", erro);
+      }
     }
 
     aplicarCacheNasImagensEstaticas();
     atualizarFundoCardEscritorio();
-    iniciarPainel();
+    carregarRanking();
   </script>
 
 <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
