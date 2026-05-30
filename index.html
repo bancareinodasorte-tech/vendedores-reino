@@ -629,6 +629,36 @@
   }
 </style>
 
+
+<style>
+  /* AJUSTE FINAL: painel sem ranking, sem participação e com cards mais limpos */
+  .last-update, .rank-hidden, .percentual, .participacao-label, .vendor-counter{
+    display:none!important;
+  }
+
+  .card{
+    min-height:200px!important;
+    padding:16px 14px!important;
+    justify-content:space-between!important;
+  }
+
+  .photo-wrap{
+    margin:4px 0 4px!important;
+  }
+
+  .name{
+    min-height:48px!important;
+    font-size:21px!important;
+    line-height:1.06!important;
+  }
+
+  @media(max-width:560px){
+    .card{min-height:190px!important;padding:14px 12px!important;}
+    .name{font-size:18px!important;min-height:44px!important;}
+    .photo,.fallback{width:78px!important;height:78px!important;}
+  }
+</style>
+
 </head>
 
 <body>
@@ -793,6 +823,10 @@ Telefone:`
 
     function linkDoWhatsapp(vendedor) {
       return `https://wa.me/${limparTelefone(vendedor.telefone)}?text=${mensagem}`;
+    }
+
+    function listaPadrao() {
+      return [...vendedoresBase];
     }
 
     function renderizarVendedores(vendedores) {
