@@ -3,80 +3,80 @@
   "dataInicial": "2026-05-30",
   "dataSorteio": "2026-05-30",
   "ciclo": "00-sabadouuuu-nao-acumulativo_2026-05-30_2026-05-30",
-  "atualizadoEm": "30/05/2026, 10:25:22",
+  "atualizadoEm": "30/05/2026, 12:22:19",
   "diaAtualizacao": "2026-05-30",
-  "totalVendidoCalculado": 287,
-  "totalVendidoUsadoNoPercentual": 287,
+  "totalVendidoCalculado": 344,
+  "totalVendidoUsadoNoPercentual": 344,
   "ranking": [
     {
-      "id": "tamiles",
-      "nome": "Tamiles Mimi",
+      "id": "giovanna",
+      "nome": "Giovanna",
       "posicao": 1,
-      "percentual": 22.3,
-      "participacao": "22.3%"
+      "percentual": 22.4,
+      "participacao": "22.4%"
     },
     {
       "id": "alice",
       "nome": "Alice Nabor",
       "posicao": 2,
-      "percentual": 22,
-      "participacao": "22.0%"
+      "percentual": 20.1,
+      "participacao": "20.1%"
+    },
+    {
+      "id": "tamiles",
+      "nome": "Tamiles Mimi",
+      "posicao": 3,
+      "percentual": 18.6,
+      "participacao": "18.6%"
     },
     {
       "id": "jamilles",
       "nome": "Jamilles Izidório",
-      "posicao": 3,
-      "percentual": 21.3,
-      "participacao": "21.3%"
-    },
-    {
-      "id": "giovanna",
-      "nome": "Giovanna",
       "posicao": 4,
-      "percentual": 14.6,
-      "participacao": "14.6%"
+      "percentual": 17.7,
+      "participacao": "17.7%"
     },
     {
       "id": "fabiola-de-porteiras",
       "nome": "Fabiola de Porteiras - Vendas Online",
       "posicao": 5,
-      "percentual": 8.7,
-      "participacao": "8.7%"
+      "percentual": 10.2,
+      "participacao": "10.2%"
     },
     {
       "id": "felipe",
       "nome": "Felipe - Vendas Online",
       "posicao": 6,
-      "percentual": 4.5,
-      "participacao": "4.5%"
+      "percentual": 5.5,
+      "participacao": "5.5%"
     },
     {
       "id": "maria",
       "nome": "Maria Oliveira",
       "posicao": 7,
-      "percentual": 2.8,
-      "participacao": "2.8%"
+      "percentual": 2.3,
+      "participacao": "2.3%"
     },
     {
       "id": "aline",
       "nome": "Aline dos Maroto",
       "posicao": 8,
-      "percentual": 1.7,
-      "participacao": "1.7%"
+      "percentual": 1.5,
+      "participacao": "1.5%"
     },
     {
       "id": "matheus-locutor",
       "nome": "matheus locutor",
       "posicao": 9,
-      "percentual": 1,
-      "participacao": "1.0%"
+      "percentual": 0.9,
+      "participacao": "0.9%"
     },
     {
       "id": "taina",
       "nome": "Taína Fideles",
       "posicao": 10,
-      "percentual": 1,
-      "participacao": "1.0%"
+      "percentual": 0.9,
+      "participacao": "0.9%"
     },
     {
       "id": "ana-raissa",
