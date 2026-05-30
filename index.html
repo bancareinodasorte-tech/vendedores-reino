@@ -607,7 +607,7 @@
     <section class="highlights">
       <article class="mini-card">
         <div class="mini-title">PRÓXIMO SORTEIO</div>
-        <div class="mini-photo-wrap" data-zoom-src="aguardando-sorteio.png" data-zoom-title="Próximo sorteio"><img class="mini-photo zoomable-img" src="aguardando-sorteio.png" alt="Próximo sorteio" onerror="this.style.display='none';" /></div>
+        <div class="mini-photo-wrap" data-zoom-src="sorteio-atual.png" data-zoom-title="Próximo sorteio"><img class="mini-photo zoomable-img" src="sorteio-atual.png" alt="Próximo sorteio" onerror="this.style.display='none';" /></div>
         <div class="mini-sub">🥇Principal: R$ 1.500,00</div>
         <div class="mini-sub">🥈Extra: 3 Giros de R$ 50,00</div>
         <div class="mini-sub">📆 Data: 03/06/2026</div>
@@ -676,6 +676,26 @@
   </div>
 
   <script>
+    const CACHE_VERSION = Date.now();
+
+    function cacheImg(caminho) {
+      caminho = String(caminho || "").trim();
+      if (!caminho || caminho.startsWith("data:") || caminho.startsWith("blob:")) return caminho;
+      if (/^(https?:)?\/\//i.test(caminho)) return caminho;
+      return caminho + (caminho.includes("?") ? "&" : "?") + "v=" + CACHE_VERSION;
+    }
+
+    function aplicarCacheNasImagensEstaticas() {
+      document.querySelectorAll("img[src]").forEach(img => {
+        const srcOriginal = img.getAttribute("src");
+        if (srcOriginal) img.setAttribute("src", cacheImg(srcOriginal));
+      });
+      document.querySelectorAll("[data-zoom-src]").forEach(el => {
+        const zoomOriginal = el.getAttribute("data-zoom-src");
+        if (zoomOriginal) el.setAttribute("data-zoom-src", cacheImg(zoomOriginal));
+      });
+    }
+
     const mensagem = encodeURIComponent(
 `Olá! Quero comprar bilhetes
 
@@ -697,33 +717,13 @@ Telefone:`
       { id: "kyara", nome: "Kyara (Jardim/Ce)", telefone: "5585988725043", foto: "images/kyara.jpg", percentual: 0 },
       { id: "carro-som", nome: "Carro de Som - Reino da Sorte", telefone: "5588988072177", foto: "images/carrodesom.jpg", percentual: 0 },
       { id: "giovanna", nome: "Giovanna (Jardim/Ce)", telefone: "5588982354554", foto: "images/giovanna.jpg", percentual: 0 },
-      { id: "maria-luana", nome: "Maria Luana (Jardim/Ce)", telefone: "5588988898619", foto: "images/vendedora.jpg", percentual: 0 },
-      { id: "fabiola-porteiras", nome: "Fabíola (Porteiras/CE)", telefone: "5588988204146", foto: "fabiola-porteiras.jpg", percentual: 0 },
-      { id: "felipe", nome: "Lipeh (Jardim/Ce)", telefone: "5588981090716", foto: "vendedora-semfoto.jpg", percentual: 0 },
-      { id: "yohani", nome: "Yohani (Jardim/Ce)", telefone: "5588999744938", foto: "yohani.jpg", percentual: 0 }
+      { id: "maria-luana", nome: "Maria Luana (Jardim/Ce)", telefone: "5588988898619", foto: "images/vendedora-semfoto.jpg", percentual: 0 },
+      { id: "fabiola-porteiras", nome: "Fabíola (Porteiras/CE)", telefone: "5588988204146", foto: "images/fabiola-porteiras.jpg", percentual: 0 },
+      { id: "felipe", nome: "Lipeh (Jardim/Ce)", telefone: "5588981090716", foto: "images/vendedora-semfoto.jpg", percentual: 0 },
+      { id: "yohani", nome: "Yohani (Jardim/Ce)", telefone: "5588999744938", foto: "images/yohani.jpg", percentual: 0 }
     ];
 
     const lista = document.getElementById("lista");
-    const VERSAO_IMAGENS = Date.now();
-
-    function imagemAtualizada(caminho) {
-      if (!caminho) return caminho;
-      if (/^(https?:|data:|blob:)/i.test(caminho)) return caminho;
-      if (caminho.includes("?v=")) return caminho;
-      return `${caminho}?v=${VERSAO_IMAGENS}`;
-    }
-
-    function aplicarAtualizacaoNasImagensFixas() {
-      document.querySelectorAll("img[src]").forEach(img => {
-        const src = img.getAttribute("src");
-        img.setAttribute("src", imagemAtualizada(src));
-      });
-
-      document.querySelectorAll("[data-zoom-src]").forEach(el => {
-        const src = el.getAttribute("data-zoom-src");
-        el.setAttribute("data-zoom-src", imagemAtualizada(src));
-      });
-    }
 
     function atualizarFundoCardEscritorio() {
       const imagemProximoSorteio = document.querySelector(".highlights .mini-card:first-child .mini-photo");
@@ -791,8 +791,8 @@ Telefone:`
         card.style.animationDelay = `${0.05 + index * 0.03}s`;
         card.innerHTML = `
           <div class="rank-hidden" data-posicao="${posicao}">#${posicao}</div>
-          <div class="photo-wrap" data-zoom-src="${imagemAtualizada(vendedor.foto)}" data-zoom-title="${vendedor.nome}">
-            <img class="photo zoomable-img" src="${imagemAtualizada(vendedor.foto)}" alt="${vendedor.nome}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="photo-wrap" data-zoom-src="${cacheImg(vendedor.foto)}" data-zoom-title="${vendedor.nome}">
+            <img class="photo zoomable-img" src="${cacheImg(vendedor.foto)}" alt="${vendedor.nome}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
             <div class="fallback">${iniciais}</div>
           </div>
           <h2 class="name">${vendedor.nome}</h2>
@@ -856,7 +856,7 @@ Telefone:`
       }
     }
 
-    aplicarAtualizacaoNasImagensFixas();
+    aplicarCacheNasImagensEstaticas();
     atualizarFundoCardEscritorio();
     carregarRanking();
   </script>
