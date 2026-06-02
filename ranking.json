@@ -1,206 +1,213 @@
 {
   "sorteio": "R$ 1.500,00 - SABADOUUUU > NAO ACUMULATIVO <",
-  "dataInicial": "2026-05-30",
-  "dataSorteio": "2026-05-30",
-  "ciclo": "00-sabadouuuu-nao-acumulativo_2026-05-30_2026-05-30",
-  "atualizadoEm": "30/05/2026, 12:22:19",
-  "diaAtualizacao": "2026-05-30",
-  "totalVendidoCalculado": 344,
-  "totalVendidoUsadoNoPercentual": 344,
+  "dataInicial": "2026-06-02",
+  "dataSorteio": "2026-06-02",
+  "ciclo": "00-sabadouuuu-nao-acumulativo_2026-06-02_2026-06-02",
+  "atualizadoEm": "02/06/2026, 07:24:17",
+  "diaAtualizacao": "2026-06-02",
+  "totalVendidoCalculado": 621,
+  "totalVendidoUsadoNoPercentual": 621,
   "ranking": [
     {
-      "id": "giovanna",
-      "nome": "Giovanna",
+      "id": "tamiles",
+      "nome": "Tamiles Mimi",
       "posicao": 1,
-      "percentual": 22.4,
-      "participacao": "22.4%"
+      "percentual": 27.1,
+      "participacao": "27.1%"
     },
     {
       "id": "alice",
       "nome": "Alice Nabor",
       "posicao": 2,
-      "percentual": 20.1,
-      "participacao": "20.1%"
+      "percentual": 26.7,
+      "participacao": "26.7%"
     },
     {
-      "id": "tamiles",
-      "nome": "Tamiles Mimi",
+      "id": "giovanna",
+      "nome": "Giovanna",
       "posicao": 3,
-      "percentual": 18.6,
-      "participacao": "18.6%"
+      "percentual": 17.7,
+      "participacao": "17.7%"
     },
     {
       "id": "jamilles",
       "nome": "Jamilles Izidório",
       "posicao": 4,
-      "percentual": 17.7,
-      "participacao": "17.7%"
+      "percentual": 10.8,
+      "participacao": "10.8%"
     },
     {
       "id": "fabiola-de-porteiras",
       "nome": "Fabiola de Porteiras - Vendas Online",
       "posicao": 5,
-      "percentual": 10.2,
-      "participacao": "10.2%"
+      "percentual": 7.2,
+      "participacao": "7.2%"
     },
     {
       "id": "felipe",
       "nome": "Felipe - Vendas Online",
       "posicao": 6,
-      "percentual": 5.5,
-      "participacao": "5.5%"
-    },
-    {
-      "id": "maria",
-      "nome": "Maria Oliveira",
-      "posicao": 7,
-      "percentual": 2.3,
-      "participacao": "2.3%"
+      "percentual": 3.7,
+      "participacao": "3.7%"
     },
     {
       "id": "aline",
       "nome": "Aline dos Maroto",
-      "posicao": 8,
-      "percentual": 1.5,
-      "participacao": "1.5%"
+      "posicao": 7,
+      "percentual": 1.9,
+      "participacao": "1.9%"
     },
     {
-      "id": "matheus-locutor",
-      "nome": "matheus locutor",
+      "id": "myrella",
+      "nome": "Myrella - vendas online",
+      "posicao": 8,
+      "percentual": 1.8,
+      "participacao": "1.8%"
+    },
+    {
+      "id": "maria",
+      "nome": "Maria Oliveira",
       "posicao": 9,
-      "percentual": 0.9,
-      "participacao": "0.9%"
+      "percentual": 1.6,
+      "participacao": "1.6%"
     },
     {
       "id": "taina",
       "nome": "Taína Fideles",
       "posicao": 10,
-      "percentual": 0.9,
-      "participacao": "0.9%"
+      "percentual": 0.6,
+      "participacao": "0.6%"
+    },
+    {
+      "id": "matheus-locutor",
+      "nome": "matheus locutor",
+      "posicao": 11,
+      "percentual": 0.5,
+      "participacao": "0.5%"
+    },
+    {
+      "id": "dan",
+      "nome": "Dam",
+      "posicao": 12,
+      "percentual": 0.3,
+      "participacao": "0.3%"
     },
     {
       "id": "ana-raissa",
       "nome": "Ana Raíssa",
-      "posicao": 11,
+      "posicao": 13,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "beta",
       "nome": "Beta",
-      "posicao": 12,
+      "posicao": 14,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "caeline",
       "nome": "Caeline",
-      "posicao": 13,
+      "posicao": 15,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "carro-som",
       "nome": "Carro de Som - Reino da Sorte",
-      "posicao": 14,
-      "percentual": 0,
-      "participacao": "0.0%"
-    },
-    {
-      "id": "dan",
-      "nome": "Dam",
-      "posicao": 15,
+      "posicao": 16,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "elaine",
       "nome": "Elaine Mariano",
-      "posicao": 16,
+      "posicao": 17,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "fatima-silva",
       "nome": "FATIMA SILVA-Vendas Online",
-      "posicao": 17,
+      "posicao": 18,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "jessica",
       "nome": "Jéssica Ferreira",
-      "posicao": 18,
+      "posicao": 19,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "kyara",
       "nome": "Kyara",
-      "posicao": 19,
+      "posicao": 20,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "luana",
       "nome": "Luana",
-      "posicao": 20,
+      "posicao": 21,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "macilda",
       "nome": "Macilda - vendas online",
-      "posicao": 21,
+      "posicao": 22,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "marcia",
       "nome": "Márcia Silva",
-      "posicao": 22,
+      "posicao": 23,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "maria-luana",
       "nome": "Maria Luana",
-      "posicao": 23,
+      "posicao": 24,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "monica-maria-barbalha-ce",
       "nome": "MONICA MARIA (Barbalha/CE) - Online",
-      "posicao": 24,
+      "posicao": 25,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "reino-da-sorte-escritorio",
       "nome": "REINO DA SORTE - ESCRITORIO",
-      "posicao": 25,
+      "posicao": 26,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "samara",
       "nome": "Samara",
-      "posicao": 26,
+      "posicao": 27,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "taty",
       "nome": "Taty",
-      "posicao": 27,
+      "posicao": 28,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "yohani",
       "nome": "Yohani",
-      "posicao": 28,
+      "posicao": 29,
       "percentual": 0,
       "participacao": "0.0%"
     }
