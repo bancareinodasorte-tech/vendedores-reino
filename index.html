@@ -605,7 +605,6 @@
     </section>
 
     <section class="highlights">
-      
       <article class="mini-card">
         <div class="mini-title">PRÓXIMO SORTEIO</div>
         <div class="mini-photo-wrap" data-zoom-src="sorteio-atual.png" data-zoom-title="Próximo sorteio"><img class="mini-photo zoomable-img" src="sorteio-atual.png" alt="Próximo sorteio" onerror="this.style.display='none';" /></div>
@@ -704,22 +703,22 @@ Telefone:`
 );
 
     const vendedoresBase = [
-      { id: "alice", nome: "Alice Nabor (Jardim/Ce)", telefone: "5588981296930", foto: "images/alice-nabor.jpg", aliases: ["alice nabor"] },
+      { id: "alice", nome: "Alice Nabor (Jardim/Ce)", telefone: "5588981296930", foto: "images/alice-nabor.jpg", aliases: ["alice", "alice nabor"] },
       { id: "dan", nome: "Dam (Jardim/Ce)", telefone: "5588981703564", foto: "images/dan.jpg", aliases: ["dam", "dan"] },
       { id: "tamiles", nome: "Tamiles Mimi (Jardim/Ce)", telefone: "5588981243042", foto: "images/tamiles-mimi.jpg", aliases: ["tamilles", "tamilles mimi", "tamiles mimi"] },
-      { id: "jamilles", nome: "Jamilles Izidório (Jardim/Ce)", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg", aliases: ["jamilles izidorio", "jamilles izidório"] },
-      { id: "aline", nome: "Aline dos Maroto (Jardim/Ce)", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg", aliases: ["aline dos maroto"] },
-      { id: "taina", nome: "Taína Fideles (Jardim/Ce)", telefone: "5588981805250", foto: "images/taina-fideles.jpg", aliases: ["taina fideles", "taína fideles"] },
-      { id: "maria", nome: "Maria Oliveira (Jardim/Ce)", telefone: "5588996263082", foto: "images/maria-oliveira.jpg", aliases: ["maria oliveira"] },
+      { id: "jamilles", nome: "Jamilles Izidório (Jardim/Ce)", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg", aliases: ["jamilles", "jamilles izidorio", "jamilles izidório"] },
+      { id: "aline", nome: "Aline dos Maroto (Jardim/Ce)", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg", aliases: ["aline", "aline dos maroto", "aline vendas online"] },
+      { id: "taina", nome: "Taína Fideles (Jardim/Ce)", telefone: "5588981805250", foto: "images/taina-fideles.jpg", aliases: ["taina", "taina fideles", "taína fideles"] },
+      { id: "maria", nome: "Maria Oliveira (Jardim/Ce)", telefone: "5588996263082", foto: "images/maria-oliveira.jpg", aliases: ["maria", "maria oliveira"] },
       { id: "ana-raissa", nome: "Ana Raíssa (Jardim/Ce)", telefone: "5588988940412", foto: "images/ana-raissa.jpg", aliases: ["ana raissa", "ana raíssa"] },
       { id: "kyara", nome: "Kyara (Jardim/Ce)", telefone: "5585988725043", foto: "images/kyara.jpg", aliases: ["kyara"] },
       { id: "carro-som", nome: "Carro de Som - Reino da Sorte", telefone: "5588988072177", foto: "images/carrodesom.jpg", aliases: ["carro de som", "carro de som reino da sorte"] },
       { id: "giovanna", nome: "Giovanna (Jardim/Ce)", telefone: "5588982354554", foto: "images/giovanna.jpg", aliases: ["giovanna", "giovana"] },
       { id: "maria-luana", nome: "Maria Luana (Jardim/Ce)", telefone: "5588988898619", foto: "images/vendedora-semfoto.jpg", aliases: ["maria luana", "luana"] },
-      { id: "fabiola-porteiras", nome: "Fabíola (Porteiras/CE)", telefone: "5588988204146", foto: "images/fabiola-porteiras.jpg", aliases: ["fabiola", "fabíola", "fabiola de porteiras", "fabiola-de-porteiras", "fabiola de porteiras vendas online"] },
-      { id: "felipe", nome: "Lipeh (Jardim/Ce)", telefone: "5588981090716", foto: "images/vendedora-semfoto.jpg", aliases: ["felipe", "lipeh", "felipe vendas online"] },
-      { id: "macilda", nome: "Macilda (Jardim/Ce)", telefone: "5588996137984", foto: "images/marcilda.jpg", aliases: ["macilda", "macilda", "Macilda vendas online"] },
-      { id: "fatima-feitosa", nome: "Fatima Feitosa (Jardim/Ce)", telefone: "5588999247023", foto: "images/fatima-feitosa.jpg", aliases: ["fatima", "fatima feitosa"] },
+      { id: "fabiola-porteiras", nome: "Fabíola (Porteiras/CE)", telefone: "5588988204146", foto: "images/fabiola-porteiras.jpg", aliases: ["fabiola", "fabíola", "fabiola porteiras", "fabiola-de-porteiras", "fabiola de porteiras", "fabiola de porteiras vendas online"] },
+      { id: "felipe", nome: "Lipeh (Jardim/Ce)", telefone: "5588981090716", foto: "images/vendedora-semfoto.jpg", aliases: ["felipe", "lipeh", "felipe m", "felipe vendas online"] },
+      { id: "macilda", nome: "Macilda (Jardim/Ce)", telefone: "5588996137984", foto: "images/marcilda.jpg", aliases: ["macilda", "macilda vendas online", "macilda - vendas online"] },
+      { id: "fatima-feitosa", nome: "Fatima Feitosa (Jardim/Ce)", telefone: "5588999247023", foto: "images/fatima-feitosa.jpg", aliases: ["fatima", "fátima", "fatima feitosa", "fatima silva", "fátima silva", "fatima-silva", "fatima silva vendas online", "fátima silva - vendas online"] },
       { id: "yohani", nome: "Yohani (Jardim/Ce)", telefone: "5588999744938", foto: "images/yohani.jpg", aliases: ["yohani"] }
     ];
 
@@ -744,10 +743,17 @@ Telefone:`
     function normalizar(texto) {
       return String(texto || "")
         .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[̀-ͯ]/g, "")
         .toLowerCase()
+        .replace(/\([^)]*\)/g, " ")
+        .replace(/vendas online/g, " ")
+        .replace(/online/g, " ")
         .replace(/[^a-z0-9]+/g, " ")
         .trim();
+    }
+
+    function normalizarId(texto) {
+      return normalizar(texto).replace(/\s+/g, "-");
     }
 
     function listaPadrao() {
@@ -758,15 +764,33 @@ Telefone:`
       return Array.isArray(payload) ? payload : (payload && Array.isArray(payload.ranking) ? payload.ranking : []);
     }
 
+    function chavesDoVendedor(vendedor) {
+      const chaves = new Set();
+      chaves.add(normalizar(vendedor.id));
+      chaves.add(normalizarId(vendedor.id));
+      chaves.add(normalizar(vendedor.nome));
+      chaves.add(normalizarId(vendedor.nome));
+
+      (vendedor.aliases || []).forEach(alias => {
+        chaves.add(normalizar(alias));
+        chaves.add(normalizarId(alias));
+      });
+
+      return Array.from(chaves).filter(Boolean);
+    }
+
     function encontrarVendedorNoIndex(itemRanking) {
       const idRanking = normalizar(itemRanking.id);
+      const idRankingHifen = normalizarId(itemRanking.id);
       const nomeRanking = normalizar(itemRanking.nome);
+      const nomeRankingHifen = normalizarId(itemRanking.nome);
 
-      return vendedoresBase.find(v => {
-        const idBase = normalizar(v.id);
-        const nomeBase = normalizar(v.nome);
-        const aliases = (v.aliases || []).map(normalizar);
-        return idRanking === idBase || nomeRanking === nomeBase || aliases.includes(idRanking) || aliases.includes(nomeRanking);
+      return vendedoresBase.find(vendedor => {
+        const chaves = chavesDoVendedor(vendedor);
+        return chaves.includes(idRanking) ||
+               chaves.includes(idRankingHifen) ||
+               chaves.includes(nomeRanking) ||
+               chaves.includes(nomeRankingHifen);
       });
     }
 
@@ -779,7 +803,12 @@ Telefone:`
 
       ranking
         .slice()
-        .sort((a, b) => Number(a.posicao || 9999) - Number(b.posicao || 9999))
+        .sort((a, b) => {
+          const pa = Number(a.posicao || 9999);
+          const pb = Number(b.posicao || 9999);
+          if (pa !== pb) return pa - pb;
+          return Number(b.percentual || 0) - Number(a.percentual || 0);
+        })
         .forEach(item => {
           const vendedor = encontrarVendedorNoIndex(item);
           if (vendedor && !usados.has(vendedor.id)) {
@@ -788,8 +817,8 @@ Telefone:`
           }
         });
 
-      vendedoresBase.forEach(v => {
-        if (!usados.has(v.id)) ordenados.push(v);
+      vendedoresBase.forEach(vendedor => {
+        if (!usados.has(vendedor.id)) ordenados.push(vendedor);
       });
 
       return ordenados;
