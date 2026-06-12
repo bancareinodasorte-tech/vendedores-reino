@@ -1,33 +1,33 @@
 {
-  "sorteio": "Moto Ray 50 - SABADOUUUU > NAO ACUMULATIVO <",
-  "dataInicial": "2026-06-08",
-  "dataSorteio": "2026-06-11",
-  "ciclo": "moto-ray-50-sabadouuuu-nao-acumulativo_2026-06-08_2026-06-11",
-  "atualizadoEm": "11/06/2026, 20:25:51",
-  "diaAtualizacao": "2026-06-11",
-  "totalVendidoCalculado": 2767,
-  "totalVendidoUsadoNoPercentual": 2767,
+  "sorteio": "R$ 1.500,00 - SABADOUUUU > NAO ACUMULATIVO <",
+  "dataInicial": "2026-06-07",
+  "dataSorteio": "2026-06-13",
+  "ciclo": "00-sabadouuuu-nao-acumulativo_2026-06-07_2026-06-13",
+  "atualizadoEm": "12/06/2026, 07:38:43",
+  "diaAtualizacao": "2026-06-12",
+  "totalVendidoCalculado": 2791,
+  "totalVendidoUsadoNoPercentual": 2791,
   "ranking": [
     {
       "id": "tamiles",
       "nome": "Tamiles Mimi",
       "posicao": 1,
-      "percentual": 21.8,
-      "participacao": "21.8%"
+      "percentual": 21.6,
+      "participacao": "21.6%"
     },
     {
       "id": "alice",
       "nome": "Alice Nabor",
       "posicao": 2,
-      "percentual": 19.2,
-      "participacao": "19.2%"
+      "percentual": 19.5,
+      "participacao": "19.5%"
     },
     {
       "id": "jamilles",
       "nome": "Jamilles Izidório",
       "posicao": 3,
-      "percentual": 14.8,
-      "participacao": "14.8%"
+      "percentual": 14.7,
+      "participacao": "14.7%"
     },
     {
       "id": "dan",
@@ -61,8 +61,8 @@
       "id": "maria-luana",
       "nome": "Maria Luana",
       "posicao": 8,
-      "percentual": 4,
-      "participacao": "4.0%"
+      "percentual": 3.9,
+      "participacao": "3.9%"
     },
     {
       "id": "fabiola-de-porteiras",
@@ -93,15 +93,15 @@
       "participacao": "1.4%"
     },
     {
-      "id": "ivina-credo-pe",
-      "nome": "Ivina-Vendas Online(Credo/PE)",
-      "posicao": 13,
-      "percentual": 0.7,
-      "participacao": "0.7%"
-    },
-    {
       "id": "kyara",
       "nome": "Kyara",
+      "posicao": 13,
+      "percentual": 1,
+      "participacao": "1.0%"
+    },
+    {
+      "id": "ivina-credo-pe",
+      "nome": "Ivina-Vendas Online(Credo/PE)",
       "posicao": 14,
       "percentual": 0.7,
       "participacao": "0.7%"
