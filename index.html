@@ -674,70 +674,78 @@
   </div>
 
   <script>
+    "use strict";
+
+    /* ==========================================================
+       CONFIGURAÇÃO SIMPLES DO PAINEL
+       true  = usa a ordem do ranking.json quando ele estiver válido
+       false = usa ordemManual + promoverPara definidos abaixo
+       ========================================================== */
+    const USAR_RANKING_JSON = true;
     const CACHE_VERSION = Date.now();
+    const FOTO_PADRAO = "images/vendedora-semfoto.jpg";
 
-    function cacheImg(caminho) {
-      caminho = String(caminho || "").trim();
-      if (!caminho || caminho.startsWith("data:") || caminho.startsWith("blob:")) return caminho;
-      if (/^(https?:)?\/\//i.test(caminho)) return caminho;
-      return caminho + (caminho.includes("?") ? "&" : "?") + "v=" + CACHE_VERSION;
-    }
-
-    function aplicarCacheNasImagensEstaticas() {
-      document.querySelectorAll("img[src]").forEach(img => {
-        const srcOriginal = img.getAttribute("src");
-        if (srcOriginal) img.setAttribute("src", cacheImg(srcOriginal));
-      });
-      document.querySelectorAll("[data-zoom-src]").forEach(el => {
-        const zoomOriginal = el.getAttribute("data-zoom-src");
-        if (zoomOriginal) el.setAttribute("data-zoom-src", cacheImg(zoomOriginal));
-      });
-    }
-
-    const mensagem = encodeURIComponent(
-`Olá! Quero comprar bilhetes
+    const mensagem = encodeURIComponent(`Olá! Quero comprar bilhetes
 
 Quantidade:
 Nome:
-Telefone:`
-);
+Telefone:`);
 
+    /*
+      COMO ADMINISTRAR CADA VENDEDOR:
+      ativo: true   -> aparece no painel
+      ativo: false  -> fica guardado no index.html, mas não aparece
+      ordemManual: 1, 2, 3... -> ordem normal usada quando USAR_RANKING_JSON = false
+      promoverPara: null -> não promove; coloque um número (ex.: 4) para mover SOMENTE esse vendedor à posição desejada
+      Exemplo: promoverPara: 4 move o vendedor para a posição 4 e empurra os demais automaticamente
+    */
     const vendedoresBase = [
-      { id: "alice", nome: "Alice Nabor (Jardim/Ce)", telefone: "5588988172685", foto: "images/alice-nabor.jpg", aliases: ["alice", "alice nabor"] },
-      { id: "dan", nome: "Dam (Jardim/Ce)", telefone: "5588981703564", foto: "images/dan.jpg", aliases: ["dam", "dan"] },
-      { id: "tamiles", nome: "Tamiles Mimi (Jardim/Ce)", telefone: "5588981243042", foto: "images/tamiles-mimi.jpg", aliases: ["tamilles", "tamilles mimi", "tamiles mimi"] },
-      { id: "jamilles", nome: "Jamilles Izidório (Jardim/Ce)", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg", aliases: ["jamilles", "jamilles izidorio", "jamilles izidório"] },
-      { id: "aline", nome: "Aline dos Maroto (Jardim/Ce)", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg", aliases: ["aline", "aline dos maroto", "aline vendas online"] },
-      { id: "taina", nome: "Taína Fideles (Jardim/Ce)", telefone: "5588981805250", foto: "images/taina-fideles.jpg", aliases: ["taina", "taina fideles", "taína fideles"] },
-      { id: "maria", nome: "Maria Oliveira (Jardim/Ce)", telefone: "5588996263082", foto: "images/maria-oliveira.jpg", aliases: ["maria", "maria oliveira"] },
-      { id: "ana-raissa", nome: "Ana Raíssa (Jardim/Ce)", telefone: "5588988940412", foto: "images/ana-raissa.jpg", aliases: ["ana raissa", "ana raíssa"] },
-      { id: "giovanna", nome: "Giovanna (Jardim/Ce)", telefone: "5588982354554", foto: "images/giovanna.jpg", aliases: ["giovanna", "giovana"] },
-      { id: "maria-luana", nome: "Maria Luana (Jardim/Ce)", telefone: "5588988898619", foto: "images/vendedora-semfoto.jpg", aliases: ["maria luana", "luana"] },
-      { id: "fabiola-porteiras", nome: "Fabíola (Porteiras/CE)", telefone: "5588988204146", foto: "images/fabiola-porteiras.jpg", aliases: ["fabiola", "fabíola", "fabiola porteiras", "fabiola-de-porteiras", "fabiola de porteiras", "fabiola de porteiras vendas online"] },
-      { id: "macilda", nome: "Macilda (Jardim/Ce)", telefone: "5588996137984", foto: "images/marcilda.jpg", aliases: ["macilda", "macilda vendas online", "macilda - vendas online"] },
-      { id: "fatima-feitosa", nome: "Fatima Feitosa (Jardim/Ce)", telefone: "5588999247023", foto: "images/fatima-feitosa.jpg", aliases: ["fatima", "fátima", "fatima feitosa", "fatima silva", "fátima silva", "fatima-silva", "fatima silva vendas online", "fátima silva - vendas online"] },
-      { id: "nadja-myrnna", nome: "Nadja Myrnna (Jardim/Ce)", telefone: "5588981336570", foto: "images/vendedora-semfoto.jpg", aliases: ["Nadja Myrnna"] },
-      { id: "Ivina", nome: "Ivina (Cedro/Pe)", telefone: "5587981623301", foto: "images/vendedora-semfoto.jpg", aliases: ["Ivina"] },
-      { id: "ana-kaline", nome: "Ana Kaline (Jardim/Ce)", telefone: "5588981750512", foto: "images/ana-Kaline.jpg", aliases: ["ana-kaline"] },
-      { id: "Tailane", nome: "Tailane (Jardim/Ce)", telefone: "5588981997692", foto: "images/tailane.jpg", aliases: ["Tailane"] },
-      { id: "Wedna-sitio-bom-sucesso", nome: "Wedna-Sitio Bom Sucesso (Jardim/Ce)", telefone: "5588981973062", foto: "images/vendedora-semfoto.jpg", aliases: ["Wedna-Sitio-Bom-Sucesso"] },
-      { id: "Keke", nome: "Keke (Jardim/Ce)", telefone: "5588988921037", foto: "images/keke.jpg", aliases: ["Keke"] },
-      { id: "Ádna-Novaes", nome: "Ádna Novaes (Jardim/Ce)", telefone: "5588988503130", foto: "images/vendedora-semfoto.jpg", aliases: ["Ádna Novaes"] },
-      { id: "Iraneide-vidal", nome: "Iraneide Vidal (Jardim/Ce)", telefone: "5588981303316", foto: "images/vendedora-semfoto.jpg", aliases: ["Iraneide Vidal"] },
-      { id: "Marcos", nome: "Marcos (Jardim/Ce)", telefone: "5588981901358", foto: "images/vendedor-semfoto.jpg", aliases: ["Marcos"] },
-      { id: "Damiana-gonçalves", nome: "Damiana Gonçalves (Jardim/Ce)", telefone: "5588997156753", foto: "images/vendedor-semfot.jpg", aliases: ["Damiana Gonçalves"] },
-      { id: "Marcia-silva", nome: "Marcia Silva (Jardim/Ce)", telefone: "5588988216885", foto: "images/marcia-silva.jpg", aliases: ["Marcia Silva"] },
-      { id: "Eliane-sitio-bom-sucesso", nome: "Eliane-Sitio Bom Sucesso (Jardim/Ce)", telefone: "5561981438605", foto: "images/vendedor-semfoto.jpg", aliases: ["Eliane-Sitio Bom Sucess"] }  
+      { ativo: true, ordemManual: 1, promoverPara: null, id: "alice", nome: "Alice Nabor (Jardim/Ce)", telefone: "5588988172685", foto: "images/alice-nabor.jpg", aliases: ["alice", "alice nabor"] },
+      { ativo: true, ordemManual: 2, promoverPara: null, id: "dan", nome: "Dam (Jardim/Ce)", telefone: "5588981703564", foto: "images/dan.jpg", aliases: ["dam", "dan"] },
+      { ativo: true, ordemManual: 3, promoverPara: null, id: "tamiles", nome: "Tamiles Mimi (Jardim/Ce)", telefone: "5588981243042", foto: "images/tamiles-mimi.jpg", aliases: ["tamilles", "tamilles mimi", "tamiles mimi"] },
+      { ativo: true, ordemManual: 4, promoverPara: null, id: "jamilles", nome: "Jamilles Izidório (Jardim/Ce)", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg", aliases: ["jamilles", "jamilles izidorio", "jamilles izidório"] },
+      { ativo: true, ordemManual: 5, promoverPara: null, id: "aline", nome: "Aline dos Maroto (Jardim/Ce)", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg", aliases: ["aline", "aline dos maroto", "aline vendas online"] },
+      { ativo: true, ordemManual: 6, promoverPara: null, id: "taina", nome: "Taína Fideles (Jardim/Ce)", telefone: "5588981805250", foto: "images/taina-fideles.jpg", aliases: ["taina", "taina fideles", "taína fideles"] },
+      { ativo: true, ordemManual: 7, promoverPara: null, id: "maria", nome: "Maria Oliveira (Jardim/Ce)", telefone: "5588996263082", foto: "images/maria-oliveira.jpg", aliases: ["maria", "maria oliveira"] },
+      { ativo: true, ordemManual: 8, promoverPara: null, id: "ana-raissa", nome: "Ana Raíssa (Jardim/Ce)", telefone: "5588988940412", foto: "images/ana-raissa.jpg", aliases: ["ana raissa", "ana raíssa"] },
+      { ativo: true, ordemManual: 9, promoverPara: null, id: "giovanna", nome: "Giovanna (Jardim/Ce)", telefone: "5588982354554", foto: "images/giovanna.jpg", aliases: ["giovanna", "giovana"] },
+      { ativo: true, ordemManual: 10, promoverPara: null, id: "maria-luana", nome: "Maria Luana (Jardim/Ce)", telefone: "5588988898619", foto: "images/vendedora-semfoto.jpg", aliases: ["maria luana", "luana"] },
+      { ativo: true, ordemManual: 11, promoverPara: null, id: "fabiola-porteiras", nome: "Fabíola (Porteiras/CE)", telefone: "5588988204146", foto: "images/fabiola-porteiras.jpg", aliases: ["fabiola", "fabíola", "fabiola porteiras", "fabiola-de-porteiras", "fabiola de porteiras", "fabiola de porteiras vendas online"] },
+      { ativo: true, ordemManual: 12, promoverPara: null, id: "macilda", nome: "Macilda (Jardim/Ce)", telefone: "5588996137984", foto: "images/marcilda.jpg", aliases: ["macilda", "macilda vendas online", "macilda - vendas online"] },
+      { ativo: true, ordemManual: 13, promoverPara: null, id: "fatima-feitosa", nome: "Fatima Feitosa (Jardim/Ce)", telefone: "5588999247023", foto: "images/fatima-feitosa.jpg", aliases: ["fatima", "fátima", "fatima feitosa", "fatima silva", "fátima silva", "fatima-silva"] },
+      { ativo: true, ordemManual: 14, promoverPara: null, id: "nadja-myrnna", nome: "Nadja Myrnna (Jardim/Ce)", telefone: "5588981336570", foto: "images/vendedora-semfoto.jpg", aliases: ["nadja myrnna"] },
+      { ativo: true, ordemManual: 15, promoverPara: null, id: "ivina", nome: "Ivina (Cedro/PE)", telefone: "5587981623301", foto: "images/vendedora-semfoto.jpg", aliases: ["ivina"] },
+      { ativo: true, ordemManual: 16, promoverPara: null, id: "ana-kaline", nome: "Ana Kaline (Jardim/Ce)", telefone: "5588981750512", foto: "images/ana-Kaline.jpg", aliases: ["ana kaline", "ana-kaline"] },
+      { ativo: true, ordemManual: 17, promoverPara: null, id: "tailane", nome: "Tailane (Jardim/Ce)", telefone: "5588981997692", foto: "images/tailane.jpg", aliases: ["tailane"] },
+      { ativo: true, ordemManual: 18, promoverPara: null, id: "wedna-sitio-bom-sucesso", nome: "Wedna - Sítio Bom Sucesso (Jardim/Ce)", telefone: "5588981973062", foto: "images/vendedora-semfoto.jpg", aliases: ["wedna", "wedna sitio bom sucesso", "wedna-sitio-bom-sucesso"] },
+      { ativo: true, ordemManual: 19, promoverPara: null, id: "keke", nome: "Keke (Jardim/Ce)", telefone: "5588988921037", foto: "images/keke.jpg", aliases: ["keke"] },
+      { ativo: true, ordemManual: 20, promoverPara: null, id: "adna-novaes", nome: "Ádna Novaes (Jardim/Ce)", telefone: "5588988503130", foto: "images/vendedora-semfoto.jpg", aliases: ["adna novaes", "ádna novaes"] },
+      { ativo: true, ordemManual: 21, promoverPara: null, id: "iraneide-vidal", nome: "Iraneide Vidal (Jardim/Ce)", telefone: "5588981303316", foto: "images/vendedora-semfoto.jpg", aliases: ["iraneide vidal"] },
+      { ativo: true, ordemManual: 22, promoverPara: null, id: "marcos", nome: "Marcos (Jardim/Ce)", telefone: "5588981901358", foto: "images/vendedora-semfoto.jpg", aliases: ["marcos"] },
+      { ativo: true, ordemManual: 23, promoverPara: null, id: "damiana-goncalves", nome: "Damiana Gonçalves (Jardim/Ce)", telefone: "5588997156753", foto: "images/vendedora-semfoto.jpg", aliases: ["damiana goncalves", "damiana gonçalves"] },
+      { ativo: true, ordemManual: 24, promoverPara: null, id: "marcia-silva", nome: "Márcia Silva (Jardim/Ce)", telefone: "5588988216885", foto: "images/marcia-silva.jpg", aliases: ["marcia silva", "márcia silva"] },
+      { ativo: true, ordemManual: 25, promoverPara: null, id: "eliane-sitio-bom-sucesso", nome: "Eliane - Sítio Bom Sucesso (Jardim/Ce)", telefone: "5561981438605", foto: "images/vendedora-semfoto.jpg", aliases: ["eliane", "eliane sitio bom sucesso"] }
     ];
 
     const lista = document.getElementById("lista");
 
+    function cacheImg(caminho) {
+      const valor = String(caminho || "").trim();
+      if (!valor || valor.startsWith("data:") || valor.startsWith("blob:") || /^(https?:)?\/\//i.test(valor)) return valor;
+      return valor + (valor.includes("?") ? "&" : "?") + "v=" + CACHE_VERSION;
+    }
+
+    function aplicarCacheNasImagensEstaticas() {
+      document.querySelectorAll("img[src]").forEach(img => {
+        const original = img.getAttribute("src");
+        if (original) img.src = cacheImg(original);
+      });
+    }
+
     function atualizarFundoCardEscritorio() {
-      const imagemProximoSorteio = document.querySelector(".highlights .mini-card:first-child .mini-photo");
-      const cardEscritorio = document.getElementById("officeCard");
-      if (imagemProximoSorteio && cardEscritorio && imagemProximoSorteio.getAttribute("src")) {
-        cardEscritorio.style.setProperty("--office-bg", `url("${imagemProximoSorteio.getAttribute("src")}")`);
-      }
+      const imagem = document.querySelector(".highlights .mini-card:first-child .mini-photo");
+      const card = document.getElementById("officeCard");
+      if (imagem && card) card.style.setProperty("--office-bg", `url("${imagem.src}")`);
     }
 
     function limparTelefone(numero) {
@@ -751,162 +759,161 @@ Telefone:`
     function normalizar(texto) {
       return String(texto || "")
         .normalize("NFD")
-        .replace(/[̀-ͯ]/g, "")
+        .replace(/[\u0300-\u036f]/g, "")
         .toLowerCase()
         .replace(/\([^)]*\)/g, " ")
-        .replace(/vendas online/g, " ")
+        .replace(/vendas? online/g, " ")
         .replace(/online/g, " ")
         .replace(/[^a-z0-9]+/g, " ")
         .trim();
     }
 
-    function normalizarId(texto) {
-      return normalizar(texto).replace(/\s+/g, "-");
-    }
+    function ativosEmOrdemManual() {
+      const ativos = vendedoresBase
+        .filter(v => v.ativo !== false)
+        .slice()
+        .sort((a, b) => {
+          const ordemA = Number(a.ordemManual);
+          const ordemB = Number(b.ordemManual);
+          const valorA = Number.isFinite(ordemA) && ordemA > 0 ? ordemA : 9999;
+          const valorB = Number.isFinite(ordemB) && ordemB > 0 ? ordemB : 9999;
+          if (valorA !== valorB) return valorA - valorB;
+          return String(a.nome || "").localeCompare(String(b.nome || ""), "pt-BR");
+        });
 
-    function listaPadrao() {
-      return [...vendedoresBase];
+      /*
+        PROMOÇÃO MANUAL SEM CONFLITO:
+        - Deixe promoverPara: null para manter a ordem normal.
+        - Coloque promoverPara: 4 para mover somente esse vendedor à posição 4.
+        - Os demais são empurrados automaticamente; não é necessário renumerar ninguém.
+        - Esta promoção só é usada quando USAR_RANKING_JSON = false ou quando ranking.json não carregar.
+      */
+      const promovidos = ativos
+        .filter(v => {
+          const posicao = Number(v.promoverPara);
+          return Number.isInteger(posicao) && posicao > 0;
+        })
+        .sort((a, b) => {
+          const diferenca = Number(a.promoverPara) - Number(b.promoverPara);
+          if (diferenca !== 0) return diferenca;
+          return Number(a.ordemManual || 9999) - Number(b.ordemManual || 9999);
+        });
+
+      promovidos.forEach(vendedor => {
+        const indiceAtual = ativos.findIndex(item => item.id === vendedor.id);
+        if (indiceAtual < 0) return;
+        ativos.splice(indiceAtual, 1);
+        const destino = Math.min(Math.max(Number(vendedor.promoverPara), 1), ativos.length + 1) - 1;
+        ativos.splice(destino, 0, vendedor);
+      });
+
+      return ativos;
     }
 
     function extrairRanking(payload) {
-      return Array.isArray(payload) ? payload : (payload && Array.isArray(payload.ranking) ? payload.ranking : []);
+      if (Array.isArray(payload)) return payload;
+      return payload && Array.isArray(payload.ranking) ? payload.ranking : [];
     }
 
     function chavesDoVendedor(vendedor) {
-      const chaves = new Set();
-      chaves.add(normalizar(vendedor.id));
-      chaves.add(normalizarId(vendedor.id));
-      chaves.add(normalizar(vendedor.nome));
-      chaves.add(normalizarId(vendedor.nome));
-
-      (vendedor.aliases || []).forEach(alias => {
-        chaves.add(normalizar(alias));
-        chaves.add(normalizarId(alias));
-      });
-
-      return Array.from(chaves).filter(Boolean);
+      return [vendedor.id, vendedor.nome, ...(vendedor.aliases || [])]
+        .map(normalizar)
+        .filter(Boolean);
     }
 
-    function encontrarVendedorNoIndex(itemRanking) {
-      const idRanking = normalizar(itemRanking.id);
-      const idRankingHifen = normalizarId(itemRanking.id);
-      const nomeRanking = normalizar(itemRanking.nome);
-      const nomeRankingHifen = normalizarId(itemRanking.nome);
-
-      return vendedoresBase.find(vendedor => {
-        const chaves = chavesDoVendedor(vendedor);
-        return chaves.includes(idRanking) ||
-               chaves.includes(idRankingHifen) ||
-               chaves.includes(nomeRanking) ||
-               chaves.includes(nomeRankingHifen);
-      });
+    function encontrarVendedor(itemRanking) {
+      const chavesRanking = [itemRanking && itemRanking.id, itemRanking && itemRanking.nome]
+        .map(normalizar)
+        .filter(Boolean);
+      return vendedoresBase.find(v => v.ativo !== false && chavesDoVendedor(v).some(chave => chavesRanking.includes(chave)));
     }
 
-    function montarListaComRankingSeguro(payload) {
+    function ordenarPeloRanking(payload) {
       const ranking = extrairRanking(payload);
-      if (!ranking.length) return listaPadrao();
+      if (!ranking.length) return ativosEmOrdemManual();
 
       const usados = new Set();
-      const ordenados = [];
+      const resultado = [];
 
-      ranking
-        .slice()
-        .sort((a, b) => {
-          const pa = Number(a.posicao || 9999);
-          const pb = Number(b.posicao || 9999);
-          if (pa !== pb) return pa - pb;
-          return Number(b.percentual || 0) - Number(a.percentual || 0);
-        })
-        .forEach(item => {
-          const vendedor = encontrarVendedorNoIndex(item);
-          if (vendedor && !usados.has(vendedor.id)) {
-            ordenados.push(vendedor);
-            usados.add(vendedor.id);
-          }
-        });
-
-      vendedoresBase.forEach(vendedor => {
-        if (!usados.has(vendedor.id)) ordenados.push(vendedor);
+      ranking.slice().sort((a, b) => {
+        const posA = Number(a.posicao);
+        const posB = Number(b.posicao);
+        const aValida = Number.isFinite(posA) && posA > 0 ? posA : 9999;
+        const bValida = Number.isFinite(posB) && posB > 0 ? posB : 9999;
+        if (aValida !== bValida) return aValida - bValida;
+        return Number(b.percentual || 0) - Number(a.percentual || 0);
+      }).forEach(item => {
+        const vendedor = encontrarVendedor(item);
+        if (vendedor && !usados.has(vendedor.id)) {
+          resultado.push(vendedor);
+          usados.add(vendedor.id);
+        }
       });
 
-      return ordenados;
+      ativosEmOrdemManual().forEach(vendedor => {
+        if (!usados.has(vendedor.id)) resultado.push(vendedor);
+      });
+
+      return resultado;
+    }
+
+    function iniciaisDoNome(nome) {
+      return String(nome || "VS").split(" ").filter(Boolean).slice(0, 2).map(p => p[0]).join("").toUpperCase();
+    }
+
+    function escaparHtml(valor) {
+      return String(valor || "").replace(/[&<>"']/g, caractere => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
+      }[caractere]));
     }
 
     function renderizarVendedores(vendedores) {
+      if (!lista) return;
       lista.innerHTML = "";
+
       vendedores.forEach((vendedor, index) => {
-        const iniciais = vendedor.nome.split(" ").filter(Boolean).slice(0, 2).map(parte => parte[0]).join("").toUpperCase();
+        const nomeSeguro = escaparHtml(vendedor.nome);
+        const foto = cacheImg(vendedor.foto || FOTO_PADRAO);
+        const fotoPadrao = cacheImg(FOTO_PADRAO);
         const card = document.createElement("article");
         card.className = "card";
-        card.style.animationDelay = `${0.05 + index * 0.03}s`;
+        card.style.animationDelay = `${Math.min(0.05 + index * 0.025, 0.5)}s`;
         card.innerHTML = `
-          <div class="photo-wrap" data-zoom-src="${cacheImg(vendedor.foto)}" data-zoom-title="${vendedor.nome}">
-            <img class="photo zoomable-img" src="${cacheImg(vendedor.foto)}" alt="${vendedor.nome}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="fallback">${iniciais}</div>
+          <div class="photo-wrap" data-zoom-title="${nomeSeguro}">
+            <img class="photo zoomable-img" src="${foto}" alt="${nomeSeguro}" loading="lazy"
+              data-fallback="${fotoPadrao}"
+              onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fallback;}else{this.style.display='none';this.nextElementSibling.style.display='flex';}" />
+            <div class="fallback">${iniciaisDoNome(vendedor.nome)}</div>
           </div>
-          <h2 class="name">${vendedor.nome}</h2>
-          <a class="btn" href="${linkDoWhatsapp(vendedor)}" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp com ${vendedor.nome}">
+          <h2 class="name">${nomeSeguro}</h2>
+          <a class="btn" href="${linkDoWhatsapp(vendedor)}" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp com ${nomeSeguro}">
             <svg class="btn-icon" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.24c-.29-.15-1.69-.83-1.95-.92-.26-.1-.45-.15-.64.15-.19.29-.73.92-.9 1.11-.16.19-.33.22-.62.07-.29-.15-1.2-.44-2.28-1.39-.84-.75-1.4-1.66-1.56-1.95-.16-.29-.02-.44.12-.58.12-.12.29-.33.43-.49.14-.16.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.64-1.55-.88-2.12-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.49.07-.75.36-.26.29-.98.95-.98 2.31s1 2.67 1.14 2.86c.14.19 1.96 2.99 4.76 4.19.67.29 1.19.46 1.6.59.67.21 1.28.18 1.77.11.54-.08 1.69-.69 1.93-1.35.24-.66.24-1.22.17-1.34-.07-.12-.26-.19-.55-.34z"/><path fill="currentColor" d="M16.02 3.2c-7.05 0-12.76 5.7-12.76 12.73 0 2.24.59 4.43 1.7 6.35L3.2 28.8l6.72-1.75a12.8 12.8 0 0 0 6.1 1.55h.01c7.04 0 12.77-5.7 12.77-12.73A12.75 12.75 0 0 0 16.02 3.2zm0 23.25h-.01c-1.92 0-3.8-.52-5.45-1.51l-.39-.23-3.99 1.04 1.07-3.89-.25-.4a10.54 10.54 0 0 1-1.63-5.61c0-5.83 4.76-10.58 10.62-10.58 2.83 0 5.48 1.1 7.48 3.09a10.47 10.47 0 0 1 3.11 7.49c0 5.83-4.77 10.58-10.56 10.58z"/></svg>
             <span>COMPRAR</span>
           </a>`;
         lista.appendChild(card);
       });
-
-      document.querySelectorAll(".btn").forEach(btn => {
-        const ligar = () => btn.classList.add("touching");
-        const desligar = () => btn.classList.remove("touching");
-        btn.addEventListener("touchstart", ligar, { passive: true });
-        btn.addEventListener("touchend", desligar);
-        btn.addEventListener("touchcancel", desligar);
-        btn.addEventListener("mousedown", ligar);
-        btn.addEventListener("mouseup", desligar);
-        btn.addEventListener("mouseleave", desligar);
-      });
     }
 
-    function abrirImagem(src, titulo) {
-      if (!src) return;
-      const modal = document.getElementById("imageModal");
-      const img = document.getElementById("imageModalImg");
-      const caption = document.getElementById("imageModalCaption");
-      img.src = src;
-      caption.textContent = titulo || "";
-      modal.classList.add("active");
-      modal.setAttribute("aria-hidden", "false");
-    }
+    async function carregarPainel() {
+      const ordemManual = ativosEmOrdemManual();
+      renderizarVendedores(ordemManual);
 
-    function fecharImagem() {
-      const modal = document.getElementById("imageModal");
-      const img = document.getElementById("imageModalImg");
-      modal.classList.remove("active");
-      modal.setAttribute("aria-hidden", "true");
-      img.src = "";
-    }
-
-    document.addEventListener("click", event => {
-      const zoom = event.target.closest("[data-zoom-src]");
-      if (zoom) abrirImagem(zoom.dataset.zoomSrc, zoom.dataset.zoomTitle);
-      if (event.target.id === "imageModal" || event.target.id === "imageModalClose") fecharImagem();
-    });
-
-    document.addEventListener("keydown", event => { if (event.key === "Escape") fecharImagem(); });
-
-    async function carregarRanking() {
-      renderizarVendedores(listaPadrao());
+      if (!USAR_RANKING_JSON) return;
 
       try {
-        const resposta = await fetch(`ranking.json?v=${Date.now()}`, { cache: "no-store" });
-        if (!resposta.ok) throw new Error("ranking.json não encontrado");
+        const resposta = await fetch(`./ranking.json?nocache=${Date.now()}`, { cache: "no-store" });
+        if (!resposta.ok) throw new Error(`HTTP ${resposta.status}`);
         const payload = await resposta.json();
-        renderizarVendedores(montarListaComRankingSeguro(payload));
+        const ranking = extrairRanking(payload);
+        if (ranking.length) renderizarVendedores(ordenarPeloRanking(payload));
       } catch (erro) {
-        console.warn("ranking.json não carregou. Mantendo vendedores do index.html.", erro);
+        console.warn("ranking.json não disponível ou inválido. A ordem manual foi mantida.", erro);
       }
     }
 
     aplicarCacheNasImagensEstaticas();
     atualizarFundoCardEscritorio();
-    carregarRanking();
+    carregarPainel();
   </script>
 
 <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
