@@ -582,6 +582,22 @@
   .vitrine-slide img,.vitrine-slide video{width:100%;height:100%;min-height:310px;object-fit:cover;display:block;background:#061441}.vitrine-texto{width:100%;min-height:310px;padding:82px 32px 58px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at top,#2f58cf,#0a2679 70%)}.vitrine-texto h3{margin:0;color:#ffe27a;font-size:clamp(28px,7vw,54px);line-height:1;font-weight:1000;text-shadow:0 5px 18px rgba(0,0,0,.4)}.vitrine-texto p{margin:14px 0 0;color:#fff;font-size:clamp(15px,3.6vw,22px);font-weight:900;line-height:1.25}
   .vitrine-legenda{position:absolute;left:0;right:0;bottom:0;z-index:7;padding:34px 16px 14px;background:linear-gradient(transparent,rgba(0,0,0,.78));color:#fff;font-weight:900;text-align:left}.vitrine-legenda strong{display:block;color:#ffe27a;font-size:18px;margin-bottom:4px}.vitrine-controles{position:absolute;right:12px;bottom:14px;z-index:9;display:flex;gap:8px}.vitrine-btn{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.42);color:#fff;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;cursor:pointer}.vitrine-vazia{min-height:310px;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;color:#fff2ca;font-weight:900}
   @media(max-width:560px){.vitrine-digital,.vitrine-palco,.vitrine-slide img,.vitrine-slide video,.vitrine-texto,.vitrine-vazia{min-height:270px}.vitrine-texto{padding:76px 22px 56px}.vitrine-legenda{font-size:13px}.vitrine-legenda strong{font-size:16px}}
+
+  /* CENTRAL DE MÍDIAS AUTOMÁTICA — encaixe sem cortes */
+  .vitrine-digital{min-height:clamp(390px,68vw,610px);background:#030b25}
+  .vitrine-palco,.vitrine-vazia{min-height:clamp(390px,68vw,610px)}
+  .vitrine-slide{isolation:isolate;background:radial-gradient(circle at center,#163f9f 0%,#061441 72%)}
+  .vitrine-fundo{position:absolute;inset:-24px;z-index:-2;background-position:center;background-size:cover;filter:blur(22px) brightness(.42);transform:scale(1.12);opacity:.9}
+  .vitrine-fundo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(1,7,25,.24),rgba(1,7,25,.54))}
+  .vitrine-midia{position:absolute;inset:0;width:100%;height:100%;min-height:clamp(390px,68vw,610px);object-fit:contain!important;object-position:center;background:transparent!important;z-index:1}
+  .vitrine-slide.tipo-texto{background:radial-gradient(circle at 50% 18%,#3866dc,#0a2679 68%)}
+  .vitrine-texto{min-height:clamp(390px,68vw,610px);padding:94px 34px 72px;background:transparent;z-index:1}
+  .vitrine-texto h3{max-width:760px}.vitrine-texto p{max-width:720px}
+  .vitrine-legenda{pointer-events:none;z-index:6;padding-right:145px}
+  .vitrine-toque{position:absolute;top:54px;bottom:0;z-index:5;border:0;background:transparent;padding:0;cursor:pointer}.vitrine-toque.esquerda{left:0;width:34%}.vitrine-toque.direita{right:0;width:34%}
+  .vitrine-status{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);z-index:9;padding:6px 10px;border-radius:999px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.18);font-size:10px;font-weight:900;color:#fff;white-space:nowrap;pointer-events:none}
+  .vitrine-carregando{min-height:clamp(390px,68vw,610px);display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;color:#fff2ca;font-weight:900}
+  @media(max-width:560px){.vitrine-digital,.vitrine-palco,.vitrine-vazia,.vitrine-carregando{min-height:420px}.vitrine-midia,.vitrine-texto{min-height:420px}.vitrine-texto{padding:90px 22px 72px}.vitrine-legenda{padding-right:112px}.vitrine-status{bottom:10px}}
 </style>
 </head>
 
@@ -635,8 +651,13 @@
 
     <section class="vitrine-digital" id="vitrineDigital" aria-label="Vitrine Digital Reino da Sorte">
       <div class="vitrine-topo"><div class="vitrine-progressos" id="vitrineProgressos"></div><div class="vitrine-identidade"><img src="logo-reino.png" alt=""><span>VITRINE DIGITAL • REINO DA SORTE</span></div></div>
-      <div class="vitrine-palco" id="vitrinePalco"></div>
-      <div class="vitrine-controles"><button class="vitrine-btn" id="vitrineAnterior" type="button">‹</button><button class="vitrine-btn" id="vitrineSom" type="button">🔇</button><button class="vitrine-btn" id="vitrineProximo" type="button">›</button></div>
+      <div class="vitrine-palco" id="vitrinePalco">
+        <div class="vitrine-carregando">Carregando a Central de Mídias…</div>
+      </div>
+      <button class="vitrine-toque esquerda" id="vitrineToqueEsquerda" type="button" aria-label="Slide anterior"></button>
+      <button class="vitrine-toque direita" id="vitrineToqueDireita" type="button" aria-label="Próximo slide"></button>
+      <div class="vitrine-status" id="vitrineStatus">Central de Mídias</div>
+      <div class="vitrine-controles"><button class="vitrine-btn" id="vitrineAnterior" type="button" aria-label="Anterior">‹</button><button class="vitrine-btn" id="vitrineSom" type="button" aria-label="Ativar ou desativar som">🔇</button><button class="vitrine-btn" id="vitrineProximo" type="button" aria-label="Próximo">›</button></div>
     </section>
 
     <section class="office-card" id="officeCard">
@@ -694,14 +715,23 @@
     const MODO_ORDEM = "ranking"; // "ranking" ou "manual"
     const CACHE_VERSION = Date.now();
     const FOTO_PADRAO = "images/vendedora-semfoto.jpg";
+    /* ==========================================================
+       CENTRAL DE MÍDIAS AUTOMÁTICA
+       Basta enviar para a pasta slides usando nomes como:
+       slide01.txt, slide02.jpg, slide03.mp4, slide04.webp...
+       A ordem é definida pelo número do nome do arquivo.
+       ========================================================== */
     const VITRINE_DIGITAL = {
       ativa: true,
       repetir: true,
-      slides: [
-        { ativo: true, tipo: "texto", duracao: 7, titulo: "REINO DA SORTE", texto: "Garanta seus bilhetes com nossos vendedores autorizados!", legenda: "Atendimento oficial, rápido e seguro." },
-        { ativo: true, tipo: "imagem", duracao: 8, arquivo: "sorteio-atual.png", titulo: "PRÓXIMO SORTEIO", legenda: "Toque em COMPRAR e fale com um vendedor autorizado." },
-        { ativo: false, tipo: "video", duracao: 12, arquivo: "midia/propaganda.mp4", poster: "sorteio-atual.png", titulo: "VÍDEO PROMOCIONAL", legenda: "Arquivo MP4 dentro da pasta midia." }
-      ]
+      duracaoImagem: 8,
+      duracaoTexto: 8,
+      pasta: "slides",
+      github: {
+        usuario: "bancareinodasorte-tech",
+        repositorio: "vendedores-reino",
+        branch: "main"
+      }
     };
     const mensagem = encodeURIComponent(`Olá! Quero comprar bilhetes
 
@@ -750,7 +780,55 @@ Telefone:`);
     function esc(v){return String(v||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
     function renderizar(vendedores){if(!lista)return;lista.innerHTML="";vendedores.forEach((v,index)=>{const card=document.createElement("article");card.className="card";card.style.animationDelay=`${Math.min(.05+index*.025,.5)}s`;const nome=esc(v.nome),foto=cacheImg(v.foto||FOTO_PADRAO),padrao=cacheImg(FOTO_PADRAO);card.innerHTML=`<div class="photo-wrap"><img class="photo zoomable-img" src="${foto}" alt="${nome}" loading="lazy" data-fallback="${padrao}" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fallback}else{this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="fallback">${iniciais(v.nome)}</div></div><h2 class="name">${nome}</h2><a class="btn" href="${linkDoWhatsapp(v)}" target="_blank" rel="noopener noreferrer"><span>COMPRAR</span></a>`;lista.appendChild(card)})}
     async function carregarPainel(){const manual=ordemManual();renderizar(manual);if(MODO_ORDEM!=="ranking")return;try{const r=await fetch(`./ranking.json?nocache=${Date.now()}`,{cache:"no-store"});if(!r.ok)throw new Error(`HTTP ${r.status}`);const p=await r.json();if(extrairRanking(p).length)renderizar(ordenarRanking(p))}catch(e){console.warn("ranking.json indisponível. Mantida ordem manual.",e)}}
-    function iniciarVitrine(){const box=document.getElementById("vitrineDigital"),palco=document.getElementById("vitrinePalco"),progs=document.getElementById("vitrineProgressos"),btnSom=document.getElementById("vitrineSom");if(!box||!palco||!VITRINE_DIGITAL.ativa){if(box)box.style.display="none";return}const slides=VITRINE_DIGITAL.slides.filter(s=>s.ativo!==false);if(!slides.length){palco.innerHTML='<div class="vitrine-vazia">Vitrine sem propagandas ativas.</div>';return}let atual=0,timer=null,muted=true;palco.innerHTML="";progs.innerHTML="";slides.forEach(s=>{const el=document.createElement("article");el.className=`vitrine-slide tipo-${s.tipo}`;let conteudo="";if(s.tipo==="video")conteudo=`<video playsinline muted preload="metadata" ${s.poster?`poster="${cacheImg(s.poster)}"`:""}><source src="${cacheImg(s.arquivo)}" type="video/mp4"></video>`;else if(s.tipo==="imagem")conteudo=`<img src="${cacheImg(s.arquivo)}" alt="${esc(s.titulo||"Propaganda")}">`;else conteudo=`<div class="vitrine-texto"><h3>${esc(s.titulo||"")}</h3><p>${esc(s.texto||"")}</p></div>`;el.innerHTML=conteudo+((s.titulo||s.legenda)?`<div class="vitrine-legenda"><strong>${esc(s.titulo||"")}</strong>${esc(s.legenda||"")}</div>`:"");palco.appendChild(el);const p=document.createElement("div");p.className="vitrine-progresso";p.innerHTML="<span></span>";progs.appendChild(p)});const els=[...palco.children],barras=[...progs.children];function mostrar(indice){clearTimeout(timer);els.forEach((e,i)=>{e.classList.toggle("ativo",i===indice);const v=e.querySelector("video");if(v){v.pause();v.currentTime=0;v.muted=muted;if(i===indice)v.play().catch(()=>{})}});barras.forEach((b,i)=>{const s=b.firstElementChild;s.style.transition="none";s.style.width=i<indice?"100%":"0%"});requestAnimationFrame(()=>{const s=barras[indice].firstElementChild;s.style.transition=`width ${Math.max(2,Number(slides[indice].duracao)||7)}s linear`;s.style.width="100%"});timer=setTimeout(()=>ir(indice+1),Math.max(2,Number(slides[indice].duracao)||7)*1000)}function ir(n){if(n>=slides.length){if(!VITRINE_DIGITAL.repetir)return;n=0}if(n<0)n=slides.length-1;atual=n;mostrar(atual)}document.getElementById("vitrineAnterior").onclick=()=>ir(atual-1);document.getElementById("vitrineProximo").onclick=()=>ir(atual+1);btnSom.onclick=()=>{muted=!muted;btnSom.textContent=muted?"🔇":"🔊";const v=els[atual].querySelector("video");if(v){v.muted=muted;v.play().catch(()=>{})}};mostrar(0)}
+    function extensaoDoArquivo(nome){return String(nome||"").split(".").pop().toLowerCase()}
+    function numeroDoSlide(nome){const m=String(nome||"").match(/slide\s*0*(\d+)/i);return m?Number(m[1]):9999}
+    function tipoDoSlide(nome){const e=extensaoDoArquivo(nome);if(["mp4","webm","ogg","mov","m4v"].includes(e))return"video";if(["jpg","jpeg","png","webp","gif","avif"].includes(e))return"imagem";if(e==="txt")return"texto";return null}
+    async function buscarSlidesAutomaticos(){
+      const g=VITRINE_DIGITAL.github;
+      const api=`https://api.github.com/repos/${encodeURIComponent(g.usuario)}/${encodeURIComponent(g.repositorio)}/contents/${encodeURIComponent(VITRINE_DIGITAL.pasta)}?ref=${encodeURIComponent(g.branch)}&nocache=${Date.now()}`;
+      const resposta=await fetch(api,{cache:"no-store",headers:{Accept:"application/vnd.github+json"}});
+      if(!resposta.ok)throw new Error(`Não foi possível ler a pasta slides (HTTP ${resposta.status})`);
+      const arquivos=(await resposta.json()).filter(a=>a&&a.type==="file"&&/^slide\s*\d+/i.test(a.name||""));
+      const slides=arquivos.map(a=>({nome:a.name,url:a.download_url,tipo:tipoDoSlide(a.name),numero:numeroDoSlide(a.name)})).filter(s=>s.tipo).sort((a,b)=>a.numero-b.numero||a.nome.localeCompare(b.nome,"pt-BR"));
+      for(const slide of slides){if(slide.tipo==="texto"){try{const r=await fetch(`${slide.url}?v=${Date.now()}`,{cache:"no-store"});slide.texto=(await r.text()).trim()}catch{slide.texto=""}}}
+      return slides;
+    }
+    async function iniciarVitrine(){
+      const box=document.getElementById("vitrineDigital"),palco=document.getElementById("vitrinePalco"),progs=document.getElementById("vitrineProgressos"),btnSom=document.getElementById("vitrineSom"),status=document.getElementById("vitrineStatus");
+      if(!box||!palco||!VITRINE_DIGITAL.ativa){if(box)box.style.display="none";return}
+      let slides=[];
+      try{slides=await buscarSlidesAutomaticos()}catch(erro){console.warn(erro);palco.innerHTML='<div class="vitrine-vazia">A pasta <strong>slides</strong> ainda não possui mídias válidas.<br>Envie arquivos como slide01.txt, slide02.jpg e slide03.mp4.</div>';if(status)status.textContent="Sem mídias";return}
+      if(!slides.length){palco.innerHTML='<div class="vitrine-vazia">Nenhuma mídia encontrada.<br>Use nomes como slide01.txt, slide02.jpg e slide03.mp4.</div>';if(status)status.textContent="Sem mídias";return}
+      let atual=0,timer=null,muted=true,inicioToqueX=0;
+      palco.innerHTML="";progs.innerHTML="";
+      slides.forEach(slide=>{
+        const el=document.createElement("article");el.className=`vitrine-slide tipo-${slide.tipo}`;
+        if(slide.tipo==="video"){
+          el.innerHTML=`<div class="vitrine-fundo"></div><video class="vitrine-midia" playsinline muted preload="metadata"><source src="${slide.url}"></video>`;
+        }else if(slide.tipo==="imagem"){
+          el.style.setProperty("--arquivo-slide",`url("${slide.url}")`);el.innerHTML=`<div class="vitrine-fundo" style="background-image:url('${slide.url.replace(/'/g,"%27")}')"></div><img class="vitrine-midia" src="${slide.url}" alt="Propaganda ${slide.numero}" loading="eager">`;
+        }else{
+          const linhas=String(slide.texto||"").split(/\r?\n/).map(l=>l.trim()).filter(Boolean),titulo=linhas.shift()||"REINO DA SORTE",texto=linhas.join(" ")||"Confira nossas novidades e promoções.";
+          el.innerHTML=`<div class="vitrine-texto"><h3>${esc(titulo)}</h3><p>${esc(texto)}</p></div>`;
+        }
+        palco.appendChild(el);const p=document.createElement("div");p.className="vitrine-progresso";p.innerHTML="<span></span>";progs.appendChild(p)
+      });
+      const els=[...palco.children],barras=[...progs.children];
+      function limpar(){clearTimeout(timer);els.forEach(e=>{const v=e.querySelector("video");if(v){v.pause();v.onended=null;v.onloadedmetadata=null}})}
+      function prepararBarra(indice,duracao){barras.forEach((b,i)=>{const s=b.firstElementChild;s.style.transition="none";s.style.width=i<indice?"100%":"0%"});requestAnimationFrame(()=>{const s=barras[indice].firstElementChild;s.style.transition=`width ${Math.max(.2,duracao)}s linear`;s.style.width="100%"})}
+      function mostrar(indice){
+        limpar();atual=indice;els.forEach((e,i)=>e.classList.toggle("ativo",i===indice));const slide=slides[indice],el=els[indice],video=el.querySelector("video");if(status)status.textContent=`${indice+1} de ${slides.length} • ${slide.tipo.toUpperCase()}`;
+        if(video){video.currentTime=0;video.muted=muted;const iniciarVideo=()=>{const dur=Number.isFinite(video.duration)&&video.duration>0?video.duration:30;prepararBarra(indice,dur);video.play().catch(()=>{});video.onended=()=>ir(indice+1)};if(video.readyState>=1)iniciarVideo();else video.onloadedmetadata=iniciarVideo;video.onerror=()=>{prepararBarra(indice,8);timer=setTimeout(()=>ir(indice+1),8000)}}
+        else{const dur=slide.tipo==="texto"?VITRINE_DIGITAL.duracaoTexto:VITRINE_DIGITAL.duracaoImagem;prepararBarra(indice,dur);timer=setTimeout(()=>ir(indice+1),dur*1000)}
+      }
+      function ir(n){if(n>=slides.length){if(!VITRINE_DIGITAL.repetir){limpar();return}n=0}if(n<0)n=slides.length-1;mostrar(n)}
+      const anterior=()=>ir(atual-1),proximo=()=>ir(atual+1);
+      document.getElementById("vitrineAnterior").onclick=anterior;document.getElementById("vitrineProximo").onclick=proximo;document.getElementById("vitrineToqueEsquerda").onclick=anterior;document.getElementById("vitrineToqueDireita").onclick=proximo;
+      btnSom.onclick=()=>{muted=!muted;btnSom.textContent=muted?"🔇":"🔊";const v=els[atual].querySelector("video");if(v){v.muted=muted;v.play().catch(()=>{})}};
+      palco.addEventListener("touchstart",e=>{inicioToqueX=e.changedTouches[0].clientX},{passive:true});palco.addEventListener("touchend",e=>{const d=e.changedTouches[0].clientX-inicioToqueX;if(Math.abs(d)>55)(d>0?anterior:proximo)()},{passive:true});
+      document.addEventListener("visibilitychange",()=>{const v=els[atual]&&els[atual].querySelector("video");if(document.hidden){clearTimeout(timer);if(v)v.pause()}else mostrar(atual)});
+      mostrar(0)
+    }
     document.querySelectorAll("img[src]").forEach(img=>{const o=img.getAttribute("src");if(o)img.src=cacheImg(o)});const imgSorteio=document.querySelector(".highlights .mini-card:first-child .mini-photo"),office=document.getElementById("officeCard");if(imgSorteio&&office)office.style.setProperty("--office-bg",`url("${imgSorteio.src}")`);iniciarVitrine();carregarPainel();
   </script>
 
