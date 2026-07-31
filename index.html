@@ -681,7 +681,7 @@
        true  = usa a ordem do ranking.json quando ele estiver válido
        false = usa ordemManual + promoverPara definidos abaixo
        ========================================================== */
-    const USAR_RANKING_JSON = true;
+    const USAR_RANKING_JSON = false;
     const CACHE_VERSION = Date.now();
     const FOTO_PADRAO = "images/vendedora-semfoto.jpg";
 
@@ -701,15 +701,15 @@ Telefone:`);
     */
     const vendedoresBase = [
       { ativo: true, ordemManual: 1, promoverPara: null, id: "alice", nome: "Alice Nabor (Jardim/Ce)", telefone: "5588988172685", foto: "images/alice-nabor.jpg", aliases: ["alice", "alice nabor"] },
-      { ativo: true, ordemManual: 2, promoverPara: null, id: "dan", nome: "Dam (Jardim/Ce)", telefone: "5588981703564", foto: "images/dan.jpg", aliases: ["dam", "dan"] },
-      { ativo: true, ordemManual: 3, promoverPara: null, id: "tamiles", nome: "Tamiles Mimi (Jardim/Ce)", telefone: "5588981243042", foto: "images/tamiles-mimi.jpg", aliases: ["tamilles", "tamilles mimi", "tamiles mimi"] },
-      { ativo: true, ordemManual: 4, promoverPara: null, id: "jamilles", nome: "Jamilles Izidório (Jardim/Ce)", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg", aliases: ["jamilles", "jamilles izidorio", "jamilles izidório"] },
+      { ativo: true, ordemManual: 2, promoverPara: 3, id: "dan", nome: "Dam (Jardim/Ce)", telefone: "5588981703564", foto: "images/dan.jpg", aliases: ["dam", "dan"] },
+      { ativo: true, ordemManual: 3, promoverPara: 2, id: "tamiles", nome: "Tamiles Mimi (Jardim/Ce)", telefone: "5588981243042", foto: "images/tamiles-mimi.jpg", aliases: ["tamilles", "tamilles mimi", "tamiles mimi"] },
+      { ativo: true, ordemManual: 4, promoverPara: 6, id: "jamilles", nome: "Jamilles Izidório (Jardim/Ce)", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg", aliases: ["jamilles", "jamilles izidorio", "jamilles izidório"] },
       { ativo: true, ordemManual: 5, promoverPara: null, id: "aline", nome: "Aline dos Maroto (Jardim/Ce)", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg", aliases: ["aline", "aline dos maroto", "aline vendas online"] },
       { ativo: true, ordemManual: 6, promoverPara: null, id: "taina", nome: "Taína Fideles (Jardim/Ce)", telefone: "5588981805250", foto: "images/taina-fideles.jpg", aliases: ["taina", "taina fideles", "taína fideles"] },
-      { ativo: true, ordemManual: 7, promoverPara: null, id: "maria", nome: "Maria Oliveira (Jardim/Ce)", telefone: "5588996263082", foto: "images/maria-oliveira.jpg", aliases: ["maria", "maria oliveira"] },
+      { ativo: true, ordemManual: 7, promoverPara: 17, id: "maria", nome: "Maria Oliveira (Jardim/Ce)", telefone: "5588996263082", foto: "images/maria-oliveira.jpg", aliases: ["maria", "maria oliveira"] },
       { ativo: true, ordemManual: 8, promoverPara: null, id: "ana-raissa", nome: "Ana Raíssa (Jardim/Ce)", telefone: "5588988940412", foto: "images/ana-raissa.jpg", aliases: ["ana raissa", "ana raíssa"] },
-      { ativo: true, ordemManual: 9, promoverPara: null, id: "giovanna", nome: "Giovanna (Jardim/Ce)", telefone: "5588982354554", foto: "images/giovanna.jpg", aliases: ["giovanna", "giovana"] },
-      { ativo: true, ordemManual: 10, promoverPara: null, id: "maria-luana", nome: "Maria Luana (Jardim/Ce)", telefone: "5588988898619", foto: "images/vendedora-semfoto.jpg", aliases: ["maria luana", "luana"] },
+      { ativo: true, ordemManual: 9, promoverPara: 16, id: "giovanna", nome: "Giovanna (Jardim/Ce)", telefone: "5588982354554", foto: "images/giovanna.jpg", aliases: ["giovanna", "giovana"] },
+      { ativo: true, ordemManual: 10, promoverPara: 19, id: "maria-luana", nome: "Maria Luana (Jardim/Ce)", telefone: "5588988898619", foto: "images/vendedora-semfoto.jpg", aliases: ["maria luana", "luana"] },
       { ativo: true, ordemManual: 11, promoverPara: null, id: "fabiola-porteiras", nome: "Fabíola (Porteiras/CE)", telefone: "5588988204146", foto: "images/fabiola-porteiras.jpg", aliases: ["fabiola", "fabíola", "fabiola porteiras", "fabiola-de-porteiras", "fabiola de porteiras", "fabiola de porteiras vendas online"] },
       { ativo: true, ordemManual: 12, promoverPara: null, id: "macilda", nome: "Macilda (Jardim/Ce)", telefone: "5588996137984", foto: "images/marcilda.jpg", aliases: ["macilda", "macilda vendas online", "macilda - vendas online"] },
       { ativo: true, ordemManual: 13, promoverPara: null, id: "fatima-feitosa", nome: "Fatima Feitosa (Jardim/Ce)", telefone: "5588999247023", foto: "images/fatima-feitosa.jpg", aliases: ["fatima", "fátima", "fatima feitosa", "fatima silva", "fátima silva", "fatima-silva"] },
@@ -721,10 +721,10 @@ Telefone:`);
       { ativo: true, ordemManual: 19, promoverPara: null, id: "keke", nome: "Keke (Jardim/Ce)", telefone: "5588988921037", foto: "images/keke.jpg", aliases: ["keke"] },
       { ativo: true, ordemManual: 20, promoverPara: null, id: "adna-novaes", nome: "Ádna Novaes (Jardim/Ce)", telefone: "5588988503130", foto: "images/vendedora-semfoto.jpg", aliases: ["adna novaes", "ádna novaes"] },
       { ativo: true, ordemManual: 21, promoverPara: null, id: "iraneide-vidal", nome: "Iraneide Vidal (Jardim/Ce)", telefone: "5588981303316", foto: "images/vendedora-semfoto.jpg", aliases: ["iraneide vidal"] },
-      { ativo: true, ordemManual: 22, promoverPara: null, id: "marcos", nome: "Marcos (Jardim/Ce)", telefone: "5588981901358", foto: "images/vendedora-semfoto.jpg", aliases: ["marcos"] },
+      { ativo: true, ordemManual: 22, promoverPara: null, id: "marcos", nome: "Marcos (Jardim/Ce)", telefone: "5588981901358", foto: "images/marcos.jpg", aliases: ["marcos"] },
       { ativo: true, ordemManual: 23, promoverPara: null, id: "damiana-goncalves", nome: "Damiana Gonçalves (Jardim/Ce)", telefone: "5588997156753", foto: "images/vendedora-semfoto.jpg", aliases: ["damiana goncalves", "damiana gonçalves"] },
       { ativo: true, ordemManual: 24, promoverPara: null, id: "marcia-silva", nome: "Márcia Silva (Jardim/Ce)", telefone: "5588988216885", foto: "images/marcia-silva.jpg", aliases: ["marcia silva", "márcia silva"] },
-      { ativo: true, ordemManual: 25, promoverPara: null, id: "eliane-sitio-bom-sucesso", nome: "Eliane - Sítio Bom Sucesso (Jardim/Ce)", telefone: "5561981438605", foto: "images/vendedora-semfoto.jpg", aliases: ["eliane", "eliane sitio bom sucesso"] }
+      { ativo: false, ordemManual: 25, promoverPara: null, id: "eliane-sitio-bom-sucesso", nome: "Eliane - Sítio Bom Sucesso (Jardim/Ce)", telefone: "5561981438605", foto: "images/vendedora-semfoto.jpg", aliases: ["eliane", "eliane sitio bom sucesso"] }
     ];
 
     const lista = document.getElementById("lista");
