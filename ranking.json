@@ -1,110 +1,110 @@
 {
-  "sorteio": "Moto Jet 50cc 2025",
-  "dataInicial": "2026-07-26",
+  "sorteio": "Uma moto Jet 50c 2025",
+  "dataInicial": "2026-07-25",
   "dataSorteio": "2026-08-01",
-  "ciclo": "moto-jet-50cc-2025_2026-07-26_2026-08-01",
-  "atualizadoEm": "31/07/2026, 09:16:50",
+  "ciclo": "uma-moto-jet-50c-2025_2026-07-25_2026-08-01",
+  "atualizadoEm": "31/07/2026, 11:13:16",
   "diaAtualizacao": "2026-07-31",
-  "totalVendidoCalculado": 1225,
-  "totalVendidoUsadoNoPercentual": 1225,
+  "totalVendidoCalculado": 1276,
+  "totalVendidoUsadoNoPercentual": 1276,
   "ranking": [
     {
       "id": "tamiles",
       "nome": "Tamiles Mimi",
       "posicao": 1,
-      "percentual": 19.2,
-      "participacao": "19.2%"
+      "percentual": 18.7,
+      "participacao": "18.7%"
     },
     {
       "id": "alice",
       "nome": "Alice Nabor",
       "posicao": 2,
-      "percentual": 17.7,
-      "participacao": "17.7%"
+      "percentual": 18.5,
+      "participacao": "18.5%"
     },
     {
       "id": "tailane",
       "nome": "Tailane - Vendas Online",
       "posicao": 3,
-      "percentual": 9.7,
-      "participacao": "9.7%"
+      "percentual": 9.4,
+      "participacao": "9.4%"
     },
     {
       "id": "iraneide-vidal",
       "nome": "Iraneide Vidal - Online",
       "posicao": 4,
-      "percentual": 7.8,
-      "participacao": "7.8%"
+      "percentual": 8.2,
+      "participacao": "8.2%"
     },
     {
       "id": "aline",
       "nome": "Aline dos Maroto",
       "posicao": 5,
-      "percentual": 7.4,
-      "participacao": "7.4%"
+      "percentual": 7.1,
+      "participacao": "7.1%"
     },
     {
       "id": "keke",
       "nome": "Keke - Online",
       "posicao": 6,
-      "percentual": 6.1,
-      "participacao": "6.1%"
+      "percentual": 6,
+      "participacao": "6.0%"
     },
     {
       "id": "dan",
       "nome": "Dam",
       "posicao": 7,
-      "percentual": 4.9,
-      "participacao": "4.9%"
+      "percentual": 5.4,
+      "participacao": "5.4%"
     },
     {
       "id": "jamilles",
       "nome": "Jamilles Izidório",
       "posicao": 8,
-      "percentual": 4.6,
-      "participacao": "4.6%"
+      "percentual": 4.4,
+      "participacao": "4.4%"
     },
     {
       "id": "wedna-sitio-bom-sucesso",
       "nome": "Wedna -sitio bom sucesso - vendas Online",
       "posicao": 9,
-      "percentual": 4.2,
-      "participacao": "4.2%"
+      "percentual": 4,
+      "participacao": "4.0%"
     },
     {
       "id": "marcia",
       "nome": "Márcia Silva",
       "posicao": 10,
-      "percentual": 3.4,
-      "participacao": "3.4%"
+      "percentual": 3.5,
+      "participacao": "3.5%"
     },
     {
       "id": "taina",
       "nome": "Taína Fideles",
       "posicao": 11,
-      "percentual": 2.9,
-      "participacao": "2.9%"
+      "percentual": 3,
+      "participacao": "3.0%"
     },
     {
       "id": "adna-novaes",
       "nome": "ADNA NOVAES- M",
       "posicao": 12,
-      "percentual": 2.9,
-      "participacao": "2.9%"
+      "percentual": 2.7,
+      "participacao": "2.7%"
     },
     {
       "id": "nadja",
       "nome": "Nadja - Vendas Online",
       "posicao": 13,
-      "percentual": 2.9,
-      "participacao": "2.9%"
+      "percentual": 2.7,
+      "participacao": "2.7%"
     },
     {
       "id": "macilda",
       "nome": "Macilda - vendas online",
       "posicao": 14,
-      "percentual": 1.5,
-      "participacao": "1.5%"
+      "percentual": 1.6,
+      "participacao": "1.6%"
     },
     {
       "id": "on-line-escritorio-laiane",
@@ -117,8 +117,8 @@
       "id": "ana-kaline",
       "nome": "Ana Kaline",
       "posicao": 16,
-      "percentual": 1.1,
-      "participacao": "1.1%"
+      "percentual": 1,
+      "participacao": "1.0%"
     },
     {
       "id": "fatima-silva",
@@ -131,15 +131,15 @@
       "id": "ana-raissa",
       "nome": "Ana Raíssa",
       "posicao": 18,
-      "percentual": 0.7,
-      "participacao": "0.7%"
+      "percentual": 0.6,
+      "participacao": "0.6%"
     },
     {
       "id": "marcos",
       "nome": "Marcos - Vendas online",
       "posicao": 19,
-      "percentual": 0.6,
-      "participacao": "0.6%"
+      "percentual": 0.5,
+      "participacao": "0.5%"
     },
     {
       "id": "escritorio-rua-laiane",
