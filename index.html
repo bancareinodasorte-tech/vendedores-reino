@@ -573,6 +573,16 @@
   }
 </style>
 
+<style>
+  .vitrine-digital{margin:0 0 20px;border-radius:30px;overflow:hidden;border:2px solid rgba(255,215,108,.9);background:#071a56;box-shadow:0 20px 44px rgba(0,0,0,.34),inset 0 1px 0 rgba(255,255,255,.16);position:relative;min-height:310px}
+  .vitrine-topo{position:absolute;top:0;left:0;right:0;z-index:8;padding:10px 12px 0;background:linear-gradient(180deg,rgba(0,0,0,.68),transparent)}
+  .vitrine-progressos{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:5px}.vitrine-progresso{height:4px;border-radius:999px;background:rgba(255,255,255,.32);overflow:hidden}.vitrine-progresso span{display:block;width:0;height:100%;background:#fff}
+  .vitrine-identidade{display:flex;align-items:center;gap:8px;margin-top:9px;color:#fff;font-size:12px;font-weight:900;text-shadow:0 2px 8px rgba(0,0,0,.65)}.vitrine-identidade img{width:30px;height:30px;object-fit:contain;border-radius:50%;background:rgba(255,255,255,.92);padding:2px}
+  .vitrine-palco{position:relative;min-height:310px;background:linear-gradient(135deg,#061441,#0b36a5 55%,#143fcc);display:flex;align-items:center;justify-content:center}.vitrine-slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .38s ease;display:flex;align-items:center;justify-content:center;overflow:hidden}.vitrine-slide.ativo{opacity:1;pointer-events:auto}
+  .vitrine-slide img,.vitrine-slide video{width:100%;height:100%;min-height:310px;object-fit:cover;display:block;background:#061441}.vitrine-texto{width:100%;min-height:310px;padding:82px 32px 58px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at top,#2f58cf,#0a2679 70%)}.vitrine-texto h3{margin:0;color:#ffe27a;font-size:clamp(28px,7vw,54px);line-height:1;font-weight:1000;text-shadow:0 5px 18px rgba(0,0,0,.4)}.vitrine-texto p{margin:14px 0 0;color:#fff;font-size:clamp(15px,3.6vw,22px);font-weight:900;line-height:1.25}
+  .vitrine-legenda{position:absolute;left:0;right:0;bottom:0;z-index:7;padding:34px 16px 14px;background:linear-gradient(transparent,rgba(0,0,0,.78));color:#fff;font-weight:900;text-align:left}.vitrine-legenda strong{display:block;color:#ffe27a;font-size:18px;margin-bottom:4px}.vitrine-controles{position:absolute;right:12px;bottom:14px;z-index:9;display:flex;gap:8px}.vitrine-btn{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(0,0,0,.42);color:#fff;font-size:18px;font-weight:900;display:flex;align-items:center;justify-content:center;cursor:pointer}.vitrine-vazia{min-height:310px;display:flex;align-items:center;justify-content:center;text-align:center;padding:30px;color:#fff2ca;font-weight:900}
+  @media(max-width:560px){.vitrine-digital,.vitrine-palco,.vitrine-slide img,.vitrine-slide video,.vitrine-texto,.vitrine-vazia{min-height:270px}.vitrine-texto{padding:76px 22px 56px}.vitrine-legenda{font-size:13px}.vitrine-legenda strong{font-size:16px}}
+</style>
 </head>
 
 <body>
@@ -621,6 +631,12 @@
         <div class="mini-sub">🍀Vendedor(a): Aline - Vendas Online</div>
       </article>
       
+    </section>
+
+    <section class="vitrine-digital" id="vitrineDigital" aria-label="Vitrine Digital Reino da Sorte">
+      <div class="vitrine-topo"><div class="vitrine-progressos" id="vitrineProgressos"></div><div class="vitrine-identidade"><img src="logo-reino.png" alt=""><span>VITRINE DIGITAL • REINO DA SORTE</span></div></div>
+      <div class="vitrine-palco" id="vitrinePalco"></div>
+      <div class="vitrine-controles"><button class="vitrine-btn" id="vitrineAnterior" type="button">‹</button><button class="vitrine-btn" id="vitrineSom" type="button">🔇</button><button class="vitrine-btn" id="vitrineProximo" type="button">›</button></div>
     </section>
 
     <section class="office-card" id="officeCard">
@@ -675,245 +691,67 @@
 
   <script>
     "use strict";
-
-    /* ==========================================================
-       CONFIGURAÇÃO SIMPLES DO PAINEL
-       true  = usa a ordem do ranking.json quando ele estiver válido
-       false = usa ordemManual + promoverPara definidos abaixo
-       ========================================================== */
-    const USAR_RANKING_JSON = true;
+    const MODO_ORDEM = "ranking"; // "ranking" ou "manual"
     const CACHE_VERSION = Date.now();
     const FOTO_PADRAO = "images/vendedora-semfoto.jpg";
-
+    const VITRINE_DIGITAL = {
+      ativa: true,
+      repetir: true,
+      slides: [
+        { ativo: true, tipo: "texto", duracao: 7, titulo: "REINO DA SORTE", texto: "Garanta seus bilhetes com nossos vendedores autorizados!", legenda: "Atendimento oficial, rápido e seguro." },
+        { ativo: true, tipo: "imagem", duracao: 8, arquivo: "sorteio-atual.png", titulo: "PRÓXIMO SORTEIO", legenda: "Toque em COMPRAR e fale com um vendedor autorizado." },
+        { ativo: false, tipo: "video", duracao: 12, arquivo: "midia/propaganda.mp4", poster: "sorteio-atual.png", titulo: "VÍDEO PROMOCIONAL", legenda: "Arquivo MP4 dentro da pasta midia." }
+      ]
+    };
     const mensagem = encodeURIComponent(`Olá! Quero comprar bilhetes
 
 Quantidade:
 Nome:
 Telefone:`);
-
-    /*
-      COMO ADMINISTRAR CADA VENDEDOR:
-      ativo: true   -> aparece no painel
-      ativo: false  -> fica guardado no index.html, mas não aparece
-      ordemManual: 1, 2, 3... -> ordem normal usada quando USAR_RANKING_JSON = false
-      promoverPara: null -> não promove; coloque um número (ex.: 4) para mover SOMENTE esse vendedor à posição desejada
-      Exemplo: promoverPara: 4 move o vendedor para a posição 4 e empurra os demais automaticamente
-    */
     const vendedoresBase = [
-      { ativo: true, ordemManual: 1, promoverPara: null, id: "alice", nome: "Alice Nabor (Jardim/Ce)", telefone: "5588988172685", foto: "images/alice-nabor.jpg", aliases: ["alice", "alice nabor"] },
-      { ativo: true, ordemManual: 2, promoverPara: null, id: "dan", nome: "Dam (Jardim/Ce)", telefone: "5588981703564", foto: "images/dan.jpg", aliases: ["dam", "dan"] },
-      { ativo: true, ordemManual: 3, promoverPara: null, id: "tamiles", nome: "Tamiles Mimi (Jardim/Ce)", telefone: "5588981243042", foto: "images/tamiles-mimi.jpg", aliases: ["tamilles", "tamilles mimi", "tamiles mimi"] },
-      { ativo: true, ordemManual: 4, promoverPara: null, id: "jamilles", nome: "Jamilles Izidório (Jardim/Ce)", telefone: "5588981477848", foto: "images/jamilles-izidorio.jpg", aliases: ["jamilles", "jamilles izidorio", "jamilles izidório"] },
-      { ativo: true, ordemManual: 5, promoverPara: null, id: "aline", nome: "Aline dos Maroto (Jardim/Ce)", telefone: "5588981176361", foto: "images/aline-dos-maroto.jpg", aliases: ["aline", "aline dos maroto", "aline vendas online"] },
-      { ativo: true, ordemManual: 6, promoverPara: null, id: "taina", nome: "Taína Fideles (Jardim/Ce)", telefone: "5588981805250", foto: "images/taina-fideles.jpg", aliases: ["taina", "taina fideles", "taína fideles"] },
-      { ativo: false, ordemManual: 7, promoverPara: null, id: "maria", nome: "Maria Oliveira (Jardim/Ce)", telefone: "5588996263082", foto: "images/maria-oliveira.jpg", aliases: ["maria", "maria oliveira"] },
-      { ativo: true, ordemManual: 8, promoverPara: null, id: "ana-raissa", nome: "Ana Raíssa (Jardim/Ce)", telefone: "5588988940412", foto: "images/ana-raissa.jpg", aliases: ["ana raissa", "ana raíssa"] },
-      { ativo: true, ordemManual: 9, promoverPara: null, id: "giovanna", nome: "Giovanna (Jardim/Ce)", telefone: "5588982354554", foto: "images/giovanna.jpg", aliases: ["giovanna", "giovana"] },
-      { ativo: true, ordemManual: 10, promoverPara: null, id: "maria-luana", nome: "Maria Luana (Jardim/Ce)", telefone: "5588988898619", foto: "images/vendedora-semfoto.jpg", aliases: ["maria luana", "luana"] },
-      { ativo: true, ordemManual: 11, promoverPara: null, id: "fabiola-porteiras", nome: "Fabíola (Porteiras/CE)", telefone: "5588988204146", foto: "images/fabiola-porteiras.jpg", aliases: ["fabiola", "fabíola", "fabiola porteiras", "fabiola-de-porteiras", "fabiola de porteiras", "fabiola de porteiras vendas online"] },
-      { ativo: true, ordemManual: 12, promoverPara: null, id: "macilda", nome: "Macilda (Jardim/Ce)", telefone: "5588996137984", foto: "images/marcilda.jpg", aliases: ["macilda", "macilda vendas online", "macilda - vendas online"] },
-      { ativo: true, ordemManual: 13, promoverPara: null, id: "fatima-feitosa", nome: "Fatima Feitosa (Jardim/Ce)", telefone: "5588999247023", foto: "images/fatima-feitosa.jpg", aliases: ["fatima", "fátima", "fatima feitosa", "fatima silva", "fátima silva", "fatima-silva"] },
-      { ativo: true, ordemManual: 14, promoverPara: null, id: "nadja-myrnna", nome: "Nadja Myrnna (Jardim/Ce)", telefone: "5588981336570", foto: "images/vendedora-semfoto.jpg", aliases: ["nadja myrnna"] },
-      { ativo: true, ordemManual: 15, promoverPara: null, id: "ivina", nome: "Ivina (Cedro/PE)", telefone: "5587981623301", foto: "images/vendedora-semfoto.jpg", aliases: ["ivina"] },
-      { ativo: true, ordemManual: 16, promoverPara: null, id: "ana-kaline", nome: "Ana Kaline (Jardim/Ce)", telefone: "5588981750512", foto: "images/ana-Kaline.jpg", aliases: ["ana kaline", "ana-kaline"] },
-      { ativo: true, ordemManual: 17, promoverPara: null, id: "tailane", nome: "Tailane (Jardim/Ce)", telefone: "5588981997692", foto: "images/tailane.jpg", aliases: ["tailane"] },
-      { ativo: true, ordemManual: 18, promoverPara: null, id: "wedna-sitio-bom-sucesso", nome: "Wedna - Sítio Bom Sucesso (Jardim/Ce)", telefone: "5588981973062", foto: "images/vendedora-semfoto.jpg", aliases: ["wedna", "wedna sitio bom sucesso", "wedna-sitio-bom-sucesso"] },
-      { ativo: true, ordemManual: 19, promoverPara: null, id: "keke", nome: "Keke (Jardim/Ce)", telefone: "5588988921037", foto: "images/keke.jpg", aliases: ["keke"] },
-      { ativo: true, ordemManual: 20, promoverPara: null, id: "adna-novaes", nome: "Ádna Novaes (Jardim/Ce)", telefone: "5588988503130", foto: "images/vendedora-semfoto.jpg", aliases: ["adna novaes", "ádna novaes"] },
-      { ativo: true, ordemManual: 21, promoverPara: null, id: "iraneide-vidal", nome: "Iraneide Vidal (Jardim/Ce)", telefone: "5588981303316", foto: "images/vendedora-semfoto.jpg", aliases: ["iraneide vidal"] },
-      { ativo: true, ordemManual: 22, promoverPara: null, id: "marcos", nome: "Marcos (Jardim/Ce)", telefone: "5588981901358", foto: "images/marcos.jpg", aliases: ["marcos"] },
-      { ativo: true, ordemManual: 23, promoverPara: null, id: "damiana-gonçalves", nome: "Damiana Gonçalves (Jardim/Ce)", telefone: "5588997156753", foto: "images/vendedora-semfoto.jpg", aliases: ["damiana gonçalves", "damiana gonçalves"] },
-      { ativo: true, ordemManual: 24, promoverPara: null, id: "marcia-silva", nome: "Márcia Silva (Jardim/Ce)", telefone: "5588988216885", foto: "images/marcia-silva.jpg", aliases: ["marcia silva", "márcia silva"] },
-      { ativo: false, ordemManual: 25, promoverPara: null, id: "eliane-sitio-bom-sucesso", nome: "Eliane - Sítio Bom Sucesso (Jardim/Ce)", telefone: "5561981438605", foto: "images/vendedora-semfoto.jpg", aliases: ["eliane", "eliane sitio bom sucesso"] }
+      { ativo:true, ordemManual:1, promoverPara:null, id:"alice", nome:"Alice Nabor (Jardim/Ce)", telefone:"5588988172685", foto:"images/alice-nabor.jpg", aliases:["alice","alice nabor"] },
+      { ativo:true, ordemManual:2, promoverPara:null, id:"dan", nome:"Dam (Jardim/Ce)", telefone:"5588981703564", foto:"images/dan.jpg", aliases:["dam","dan"] },
+      { ativo:true, ordemManual:3, promoverPara:null, id:"tamiles", nome:"Tamiles Mimi (Jardim/Ce)", telefone:"5588981243042", foto:"images/tamiles-mimi.jpg", aliases:["tamilles","tamilles mimi","tamiles mimi"] },
+      { ativo:true, ordemManual:4, promoverPara:null, id:"jamilles", nome:"Jamilles Izidório (Jardim/Ce)", telefone:"5588981477848", foto:"images/jamilles-izidorio.jpg", aliases:["jamilles","jamilles izidorio"] },
+      { ativo:true, ordemManual:5, promoverPara:null, id:"aline", nome:"Aline dos Maroto (Jardim/Ce)", telefone:"5588981176361", foto:"images/aline-dos-maroto.jpg", aliases:["aline","aline dos maroto"] },
+      { ativo:true, ordemManual:6, promoverPara:null, id:"taina", nome:"Taína Fideles (Jardim/Ce)", telefone:"5588981805250", foto:"images/taina-fideles.jpg", aliases:["taina","taina fideles"] },
+      { ativo:true, ordemManual:7, promoverPara:null, id:"maria", nome:"Maria Oliveira (Jardim/Ce)", telefone:"5588996263082", foto:"images/maria-oliveira.jpg", aliases:["maria","maria oliveira"] },
+      { ativo:true, ordemManual:8, promoverPara:null, id:"ana-raissa", nome:"Ana Raíssa (Jardim/Ce)", telefone:"5588988940412", foto:"images/ana-raissa.jpg", aliases:["ana raissa"] },
+      { ativo:true, ordemManual:9, promoverPara:null, id:"giovanna", nome:"Giovanna (Jardim/Ce)", telefone:"5588982354554", foto:"images/giovanna.jpg", aliases:["giovanna","giovana"] },
+      { ativo:true, ordemManual:10, promoverPara:null, id:"maria-luana", nome:"Maria Luana (Jardim/Ce)", telefone:"5588988898619", foto:FOTO_PADRAO, aliases:["maria luana","luana"] },
+      { ativo:true, ordemManual:11, promoverPara:null, id:"fabiola-de-porteiras", nome:"Fabíola (Porteiras/CE)", telefone:"5588988204146", foto:"images/fabiola-porteiras.jpg", aliases:["fabiola","fabiola de porteiras","fabiola-porteiras"] },
+      { ativo:true, ordemManual:12, promoverPara:null, id:"macilda", nome:"Macilda (Jardim/Ce)", telefone:"5588996137984", foto:"images/marcilda.jpg", aliases:["macilda","macilda vendas online"] },
+      { ativo:true, ordemManual:13, promoverPara:null, id:"fatima-silva", nome:"Fatima Feitosa (Jardim/Ce)", telefone:"5588999247023", foto:"images/fatima-feitosa.jpg", aliases:["fatima","fatima feitosa","fatima silva"] },
+      { ativo:true, ordemManual:14, promoverPara:null, id:"nadja", nome:"Nadja Myrnna (Jardim/Ce)", telefone:"5588981336570", foto:FOTO_PADRAO, aliases:["nadja","nadja myrnna","nadja-myrnna"] },
+      { ativo:true, ordemManual:15, promoverPara:null, id:"ivina", nome:"Ivina (Cedro/PE)", telefone:"5587981623301", foto:FOTO_PADRAO, aliases:["ivina"] },
+      { ativo:true, ordemManual:16, promoverPara:null, id:"ana-kaline", nome:"Ana Kaline (Jardim/Ce)", telefone:"5588981750512", foto:"images/ana-Kaline.jpg", aliases:["ana kaline"] },
+      { ativo:true, ordemManual:17, promoverPara:null, id:"tailane", nome:"Tailane (Jardim/Ce)", telefone:"5588981997692", foto:"images/tailane.jpg", aliases:["tailane"] },
+      { ativo:true, ordemManual:18, promoverPara:null, id:"wedna-sitio-bom-sucesso", nome:"Wedna - Sítio Bom Sucesso (Jardim/Ce)", telefone:"5588981973062", foto:FOTO_PADRAO, aliases:["wedna","wedna sitio bom sucesso"] },
+      { ativo:true, ordemManual:19, promoverPara:null, id:"keke", nome:"Keke (Jardim/Ce)", telefone:"5588988921037", foto:"images/keke.jpg", aliases:["keke"] },
+      { ativo:true, ordemManual:20, promoverPara:null, id:"adna-novaes", nome:"Ádna Novaes (Jardim/Ce)", telefone:"5588988503130", foto:FOTO_PADRAO, aliases:["adna novaes"] },
+      { ativo:true, ordemManual:21, promoverPara:null, id:"iraneide-vidal", nome:"Iraneide Vidal (Jardim/Ce)", telefone:"5588981303316", foto:FOTO_PADRAO, aliases:["iraneide vidal"] },
+      { ativo:true, ordemManual:22, promoverPara:null, id:"marcos", nome:"Marcos (Jardim/Ce)", telefone:"5588981901358", foto:FOTO_PADRAO, aliases:["marcos"] },
+      { ativo:true, ordemManual:23, promoverPara:null, id:"damiana-goncalves", nome:"Damiana Gonçalves (Jardim/Ce)", telefone:"5588997156753", foto:FOTO_PADRAO, aliases:["damiana","damiana goncalves","damiana gonçalves","damiana-goncalves"] },
+      { ativo:true, ordemManual:24, promoverPara:null, id:"marcia", nome:"Márcia Silva (Jardim/Ce)", telefone:"5588988216885", foto:"images/marcia-silva.jpg", aliases:["marcia","marcia silva"] },
+      { ativo:true, ordemManual:25, promoverPara:null, id:"eliane-sitio-bom-sucesso", nome:"Eliane - Sítio Bom Sucesso (Jardim/Ce)", telefone:"5561981438605", foto:FOTO_PADRAO, aliases:["eliane","eliane sitio bom sucesso"] }
     ];
-
-    const lista = document.getElementById("lista");
-
-    function cacheImg(caminho) {
-      const valor = String(caminho || "").trim();
-      if (!valor || valor.startsWith("data:") || valor.startsWith("blob:") || /^(https?:)?\/\//i.test(valor)) return valor;
-      return valor + (valor.includes("?") ? "&" : "?") + "v=" + CACHE_VERSION;
-    }
-
-    function aplicarCacheNasImagensEstaticas() {
-      document.querySelectorAll("img[src]").forEach(img => {
-        const original = img.getAttribute("src");
-        if (original) img.src = cacheImg(original);
-      });
-    }
-
-    function atualizarFundoCardEscritorio() {
-      const imagem = document.querySelector(".highlights .mini-card:first-child .mini-photo");
-      const card = document.getElementById("officeCard");
-      if (imagem && card) card.style.setProperty("--office-bg", `url("${imagem.src}")`);
-    }
-
-    function limparTelefone(numero) {
-      return String(numero || "").replace(/\D/g, "");
-    }
-
-    function linkDoWhatsapp(vendedor) {
-      return `https://wa.me/${limparTelefone(vendedor.telefone)}?text=${mensagem}`;
-    }
-
-    function normalizar(texto) {
-      return String(texto || "")
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .toLowerCase()
-        .replace(/\([^)]*\)/g, " ")
-        .replace(/vendas? online/g, " ")
-        .replace(/online/g, " ")
-        .replace(/[^a-z0-9]+/g, " ")
-        .trim();
-    }
-
-    function ativosEmOrdemManual() {
-      const ativos = vendedoresBase
-        .filter(v => v.ativo !== false)
-        .slice()
-        .sort((a, b) => {
-          const ordemA = Number(a.ordemManual);
-          const ordemB = Number(b.ordemManual);
-          const valorA = Number.isFinite(ordemA) && ordemA > 0 ? ordemA : 9999;
-          const valorB = Number.isFinite(ordemB) && ordemB > 0 ? ordemB : 9999;
-          if (valorA !== valorB) return valorA - valorB;
-          return String(a.nome || "").localeCompare(String(b.nome || ""), "pt-BR");
-        });
-
-      /*
-        PROMOÇÃO MANUAL SEM CONFLITO:
-        - Deixe promoverPara: null para manter a ordem normal.
-        - Coloque promoverPara: 4 para mover somente esse vendedor à posição 4.
-        - Os demais são empurrados automaticamente; não é necessário renumerar ninguém.
-        - Esta promoção só é usada quando USAR_RANKING_JSON = false ou quando ranking.json não carregar.
-      */
-      const promovidos = ativos
-        .filter(v => {
-          const posicao = Number(v.promoverPara);
-          return Number.isInteger(posicao) && posicao > 0;
-        })
-        .sort((a, b) => {
-          const diferenca = Number(a.promoverPara) - Number(b.promoverPara);
-          if (diferenca !== 0) return diferenca;
-          return Number(a.ordemManual || 9999) - Number(b.ordemManual || 9999);
-        });
-
-      promovidos.forEach(vendedor => {
-        const indiceAtual = ativos.findIndex(item => item.id === vendedor.id);
-        if (indiceAtual < 0) return;
-        ativos.splice(indiceAtual, 1);
-        const destino = Math.min(Math.max(Number(vendedor.promoverPara), 1), ativos.length + 1) - 1;
-        ativos.splice(destino, 0, vendedor);
-      });
-
-      return ativos;
-    }
-
-    function extrairRanking(payload) {
-      if (Array.isArray(payload)) return payload;
-      return payload && Array.isArray(payload.ranking) ? payload.ranking : [];
-    }
-
-    function chavesDoVendedor(vendedor) {
-      return [vendedor.id, vendedor.nome, ...(vendedor.aliases || [])]
-        .map(normalizar)
-        .filter(Boolean);
-    }
-
-    function encontrarVendedor(itemRanking) {
-      const chavesRanking = [itemRanking && itemRanking.id, itemRanking && itemRanking.nome]
-        .map(normalizar)
-        .filter(Boolean);
-      return vendedoresBase.find(v => v.ativo !== false && chavesDoVendedor(v).some(chave => chavesRanking.includes(chave)));
-    }
-
-    function ordenarPeloRanking(payload) {
-      const ranking = extrairRanking(payload);
-      if (!ranking.length) return ativosEmOrdemManual();
-
-      const usados = new Set();
-      const resultado = [];
-
-      ranking.slice().sort((a, b) => {
-        const posA = Number(a.posicao);
-        const posB = Number(b.posicao);
-        const aValida = Number.isFinite(posA) && posA > 0 ? posA : 9999;
-        const bValida = Number.isFinite(posB) && posB > 0 ? posB : 9999;
-        if (aValida !== bValida) return aValida - bValida;
-        return Number(b.percentual || 0) - Number(a.percentual || 0);
-      }).forEach(item => {
-        const vendedor = encontrarVendedor(item);
-        if (vendedor && !usados.has(vendedor.id)) {
-          resultado.push(vendedor);
-          usados.add(vendedor.id);
-        }
-      });
-
-      ativosEmOrdemManual().forEach(vendedor => {
-        if (!usados.has(vendedor.id)) resultado.push(vendedor);
-      });
-
-      return resultado;
-    }
-
-    function iniciaisDoNome(nome) {
-      return String(nome || "VS").split(" ").filter(Boolean).slice(0, 2).map(p => p[0]).join("").toUpperCase();
-    }
-
-    function escaparHtml(valor) {
-      return String(valor || "").replace(/[&<>"']/g, caractere => ({
-        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#039;"
-      }[caractere]));
-    }
-
-    function renderizarVendedores(vendedores) {
-      if (!lista) return;
-      lista.innerHTML = "";
-
-      vendedores.forEach((vendedor, index) => {
-        const nomeSeguro = escaparHtml(vendedor.nome);
-        const foto = cacheImg(vendedor.foto || FOTO_PADRAO);
-        const fotoPadrao = cacheImg(FOTO_PADRAO);
-        const card = document.createElement("article");
-        card.className = "card";
-        card.style.animationDelay = `${Math.min(0.05 + index * 0.025, 0.5)}s`;
-        card.innerHTML = `
-          <div class="photo-wrap" data-zoom-title="${nomeSeguro}">
-            <img class="photo zoomable-img" src="${foto}" alt="${nomeSeguro}" loading="lazy"
-              data-fallback="${fotoPadrao}"
-              onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fallback;}else{this.style.display='none';this.nextElementSibling.style.display='flex';}" />
-            <div class="fallback">${iniciaisDoNome(vendedor.nome)}</div>
-          </div>
-          <h2 class="name">${nomeSeguro}</h2>
-          <a class="btn" href="${linkDoWhatsapp(vendedor)}" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp com ${nomeSeguro}">
-            <svg class="btn-icon" viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.24c-.29-.15-1.69-.83-1.95-.92-.26-.1-.45-.15-.64.15-.19.29-.73.92-.9 1.11-.16.19-.33.22-.62.07-.29-.15-1.2-.44-2.28-1.39-.84-.75-1.4-1.66-1.56-1.95-.16-.29-.02-.44.12-.58.12-.12.29-.33.43-.49.14-.16.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.64-1.55-.88-2.12-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.49.07-.75.36-.26.29-.98.95-.98 2.31s1 2.67 1.14 2.86c.14.19 1.96 2.99 4.76 4.19.67.29 1.19.46 1.6.59.67.21 1.28.18 1.77.11.54-.08 1.69-.69 1.93-1.35.24-.66.24-1.22.17-1.34-.07-.12-.26-.19-.55-.34z"/><path fill="currentColor" d="M16.02 3.2c-7.05 0-12.76 5.7-12.76 12.73 0 2.24.59 4.43 1.7 6.35L3.2 28.8l6.72-1.75a12.8 12.8 0 0 0 6.1 1.55h.01c7.04 0 12.77-5.7 12.77-12.73A12.75 12.75 0 0 0 16.02 3.2zm0 23.25h-.01c-1.92 0-3.8-.52-5.45-1.51l-.39-.23-3.99 1.04 1.07-3.89-.25-.4a10.54 10.54 0 0 1-1.63-5.61c0-5.83 4.76-10.58 10.62-10.58 2.83 0 5.48 1.1 7.48 3.09a10.47 10.47 0 0 1 3.11 7.49c0 5.83-4.77 10.58-10.56 10.58z"/></svg>
-            <span>COMPRAR</span>
-          </a>`;
-        lista.appendChild(card);
-      });
-    }
-
-    async function carregarPainel() {
-      const ordemManual = ativosEmOrdemManual();
-      renderizarVendedores(ordemManual);
-
-      if (!USAR_RANKING_JSON) return;
-
-      try {
-        const resposta = await fetch(`./ranking.json?nocache=${Date.now()}`, { cache: "no-store" });
-        if (!resposta.ok) throw new Error(`HTTP ${resposta.status}`);
-        const payload = await resposta.json();
-        const ranking = extrairRanking(payload);
-        if (ranking.length) renderizarVendedores(ordenarPeloRanking(payload));
-      } catch (erro) {
-        console.warn("ranking.json não disponível ou inválido. A ordem manual foi mantida.", erro);
-      }
-    }
-
-    aplicarCacheNasImagensEstaticas();
-    atualizarFundoCardEscritorio();
-    carregarPainel();
+    const lista=document.getElementById("lista");
+    function cacheImg(c){const v=String(c||"").trim();if(!v||v.startsWith("data:")||v.startsWith("blob:")||/^(https?:)?\/\//i.test(v))return v;return v+(v.includes("?")?"&":"?")+"v="+CACHE_VERSION}
+    function limparTelefone(n){return String(n||"").replace(/\D/g,"")}
+    function linkDoWhatsapp(v){return `https://wa.me/${limparTelefone(v.telefone)}?text=${mensagem}`}
+    function normalizar(t){return String(t||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\([^)]*\)/g," ").replace(/vendas? on-?line/g," ").replace(/online/g," ").replace(/[^a-z0-9]+/g," ").trim()}
+    function ativos(){return vendedoresBase.filter(v=>v.ativo!==false)}
+    function ordemManual(){const base=ativos().slice().sort((a,b)=>(Number(a.ordemManual)||9999)-(Number(b.ordemManual)||9999));base.filter(v=>Number.isInteger(Number(v.promoverPara))&&Number(v.promoverPara)>0).sort((a,b)=>Number(a.promoverPara)-Number(b.promoverPara)).forEach(v=>{const i=base.findIndex(x=>x.id===v.id);if(i<0)return;base.splice(i,1);base.splice(Math.min(Math.max(Number(v.promoverPara),1),base.length+1)-1,0,v)});return base}
+    function extrairRanking(p){return Array.isArray(p)?p:(p&&Array.isArray(p.ranking)?p.ranking:[])}
+    function chavesVendedor(v){return [v.id,v.nome,...(v.aliases||[])].map(normalizar).filter(Boolean)}
+    function encontrarVendedor(item){const chaves=[item&&item.id,item&&item.nome].map(normalizar).filter(Boolean);return ativos().find(v=>chavesVendedor(v).some(k=>chaves.includes(k)))||ativos().find(v=>chaves.some(r=>chavesVendedor(v).some(k=>k&&r&&(k.includes(r)||r.includes(k)))))}
+    function ordenarRanking(payload){const usados=new Set(),resultado=[];extrairRanking(payload).slice().sort((a,b)=>(Number(a.posicao)||9999)-(Number(b.posicao)||9999)).forEach(item=>{const v=encontrarVendedor(item);if(v&&!usados.has(v.id)){resultado.push(v);usados.add(v.id)}});ordemManual().forEach(v=>{if(!usados.has(v.id))resultado.push(v)});return resultado}
+    function iniciais(nome){return String(nome||"VS").split(" ").filter(Boolean).slice(0,2).map(p=>p[0]).join("").toUpperCase()}
+    function esc(v){return String(v||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+    function renderizar(vendedores){if(!lista)return;lista.innerHTML="";vendedores.forEach((v,index)=>{const card=document.createElement("article");card.className="card";card.style.animationDelay=`${Math.min(.05+index*.025,.5)}s`;const nome=esc(v.nome),foto=cacheImg(v.foto||FOTO_PADRAO),padrao=cacheImg(FOTO_PADRAO);card.innerHTML=`<div class="photo-wrap"><img class="photo zoomable-img" src="${foto}" alt="${nome}" loading="lazy" data-fallback="${padrao}" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src=this.dataset.fallback}else{this.style.display='none';this.nextElementSibling.style.display='flex'}"><div class="fallback">${iniciais(v.nome)}</div></div><h2 class="name">${nome}</h2><a class="btn" href="${linkDoWhatsapp(v)}" target="_blank" rel="noopener noreferrer"><span>COMPRAR</span></a>`;lista.appendChild(card)})}
+    async function carregarPainel(){const manual=ordemManual();renderizar(manual);if(MODO_ORDEM!=="ranking")return;try{const r=await fetch(`./ranking.json?nocache=${Date.now()}`,{cache:"no-store"});if(!r.ok)throw new Error(`HTTP ${r.status}`);const p=await r.json();if(extrairRanking(p).length)renderizar(ordenarRanking(p))}catch(e){console.warn("ranking.json indisponível. Mantida ordem manual.",e)}}
+    function iniciarVitrine(){const box=document.getElementById("vitrineDigital"),palco=document.getElementById("vitrinePalco"),progs=document.getElementById("vitrineProgressos"),btnSom=document.getElementById("vitrineSom");if(!box||!palco||!VITRINE_DIGITAL.ativa){if(box)box.style.display="none";return}const slides=VITRINE_DIGITAL.slides.filter(s=>s.ativo!==false);if(!slides.length){palco.innerHTML='<div class="vitrine-vazia">Vitrine sem propagandas ativas.</div>';return}let atual=0,timer=null,muted=true;palco.innerHTML="";progs.innerHTML="";slides.forEach(s=>{const el=document.createElement("article");el.className=`vitrine-slide tipo-${s.tipo}`;let conteudo="";if(s.tipo==="video")conteudo=`<video playsinline muted preload="metadata" ${s.poster?`poster="${cacheImg(s.poster)}"`:""}><source src="${cacheImg(s.arquivo)}" type="video/mp4"></video>`;else if(s.tipo==="imagem")conteudo=`<img src="${cacheImg(s.arquivo)}" alt="${esc(s.titulo||"Propaganda")}">`;else conteudo=`<div class="vitrine-texto"><h3>${esc(s.titulo||"")}</h3><p>${esc(s.texto||"")}</p></div>`;el.innerHTML=conteudo+((s.titulo||s.legenda)?`<div class="vitrine-legenda"><strong>${esc(s.titulo||"")}</strong>${esc(s.legenda||"")}</div>`:"");palco.appendChild(el);const p=document.createElement("div");p.className="vitrine-progresso";p.innerHTML="<span></span>";progs.appendChild(p)});const els=[...palco.children],barras=[...progs.children];function mostrar(indice){clearTimeout(timer);els.forEach((e,i)=>{e.classList.toggle("ativo",i===indice);const v=e.querySelector("video");if(v){v.pause();v.currentTime=0;v.muted=muted;if(i===indice)v.play().catch(()=>{})}});barras.forEach((b,i)=>{const s=b.firstElementChild;s.style.transition="none";s.style.width=i<indice?"100%":"0%"});requestAnimationFrame(()=>{const s=barras[indice].firstElementChild;s.style.transition=`width ${Math.max(2,Number(slides[indice].duracao)||7)}s linear`;s.style.width="100%"});timer=setTimeout(()=>ir(indice+1),Math.max(2,Number(slides[indice].duracao)||7)*1000)}function ir(n){if(n>=slides.length){if(!VITRINE_DIGITAL.repetir)return;n=0}if(n<0)n=slides.length-1;atual=n;mostrar(atual)}document.getElementById("vitrineAnterior").onclick=()=>ir(atual-1);document.getElementById("vitrineProximo").onclick=()=>ir(atual+1);btnSom.onclick=()=>{muted=!muted;btnSom.textContent=muted?"🔇":"🔊";const v=els[atual].querySelector("video");if(v){v.muted=muted;v.play().catch(()=>{})}};mostrar(0)}
+    document.querySelectorAll("img[src]").forEach(img=>{const o=img.getAttribute("src");if(o)img.src=cacheImg(o)});const imgSorteio=document.querySelector(".highlights .mini-card:first-child .mini-photo"),office=document.getElementById("officeCard");if(imgSorteio&&office)office.style.setProperty("--office-bg",`url("${imgSorteio.src}")`);iniciarVitrine();carregarPainel();
   </script>
 
 <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
