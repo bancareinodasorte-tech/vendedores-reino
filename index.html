@@ -725,7 +725,7 @@
       ativa: true,
       repetir: true,
       duracaoImagem: 8,
-      duracaoTexto: 8,
+      duracaoTexto: 10,
       pasta: "slides",
       github: {
         usuario: "bancareinodasorte-tech",
@@ -745,7 +745,7 @@ Telefone:`);
       { ativo:true, ordemManual:4, promoverPara:null, id:"jamilles", nome:"Jamilles Izidório (Jardim/Ce)", telefone:"5588981477848", foto:"images/jamilles-izidorio.jpg", aliases:["jamilles","jamilles izidorio"] },
       { ativo:true, ordemManual:5, promoverPara:null, id:"aline", nome:"Aline dos Maroto (Jardim/Ce)", telefone:"5588981176361", foto:"images/aline-dos-maroto.jpg", aliases:["aline","aline dos maroto"] },
       { ativo:true, ordemManual:6, promoverPara:null, id:"taina", nome:"Taína Fideles (Jardim/Ce)", telefone:"5588981805250", foto:"images/taina-fideles.jpg", aliases:["taina","taina fideles"] },
-      { ativo:true, ordemManual:7, promoverPara:null, id:"maria", nome:"Maria Oliveira (Jardim/Ce)", telefone:"5588996263082", foto:"images/maria-oliveira.jpg", aliases:["maria","maria oliveira"] },
+      { ativo:false, ordemManual:7, promoverPara:null, id:"maria", nome:"Maria Oliveira (Jardim/Ce)", telefone:"5588996263082", foto:"images/maria-oliveira.jpg", aliases:["maria","maria oliveira"] },
       { ativo:true, ordemManual:8, promoverPara:null, id:"ana-raissa", nome:"Ana Raíssa (Jardim/Ce)", telefone:"5588988940412", foto:"images/ana-raissa.jpg", aliases:["ana raissa"] },
       { ativo:true, ordemManual:9, promoverPara:null, id:"giovanna", nome:"Giovanna (Jardim/Ce)", telefone:"5588982354554", foto:"images/giovanna.jpg", aliases:["giovanna","giovana"] },
       { ativo:true, ordemManual:10, promoverPara:null, id:"maria-luana", nome:"Maria Luana (Jardim/Ce)", telefone:"5588988898619", foto:FOTO_PADRAO, aliases:["maria luana","luana"] },
@@ -753,7 +753,7 @@ Telefone:`);
       { ativo:true, ordemManual:12, promoverPara:null, id:"macilda", nome:"Macilda (Jardim/Ce)", telefone:"5588996137984", foto:"images/marcilda.jpg", aliases:["macilda","macilda vendas online"] },
       { ativo:true, ordemManual:13, promoverPara:null, id:"fatima-silva", nome:"Fatima Feitosa (Jardim/Ce)", telefone:"5588999247023", foto:"images/fatima-feitosa.jpg", aliases:["fatima","fatima feitosa","fatima silva"] },
       { ativo:true, ordemManual:14, promoverPara:null, id:"nadja", nome:"Nadja Myrnna (Jardim/Ce)", telefone:"5588981336570", foto:FOTO_PADRAO, aliases:["nadja","nadja myrnna","nadja-myrnna"] },
-      { ativo:true, ordemManual:15, promoverPara:null, id:"ivina", nome:"Ivina (Cedro/PE)", telefone:"5587981623301", foto:FOTO_PADRAO, aliases:["ivina"] },
+      { ativo:false, ordemManual:15, promoverPara:null, id:"ivina", nome:"Ivina (Cedro/PE)", telefone:"5587981623301", foto:FOTO_PADRAO, aliases:["ivina"] },
       { ativo:true, ordemManual:16, promoverPara:null, id:"ana-kaline", nome:"Ana Kaline (Jardim/Ce)", telefone:"5588981750512", foto:"images/ana-Kaline.jpg", aliases:["ana kaline"] },
       { ativo:true, ordemManual:17, promoverPara:null, id:"tailane", nome:"Tailane (Jardim/Ce)", telefone:"5588981997692", foto:"images/tailane.jpg", aliases:["tailane"] },
       { ativo:true, ordemManual:18, promoverPara:null, id:"wedna-sitio-bom-sucesso", nome:"Wedna - Sítio Bom Sucesso (Jardim/Ce)", telefone:"5588981973062", foto:FOTO_PADRAO, aliases:["wedna","wedna sitio bom sucesso"] },
@@ -763,7 +763,7 @@ Telefone:`);
       { ativo:true, ordemManual:22, promoverPara:null, id:"marcos", nome:"Marcos (Jardim/Ce)", telefone:"5588981901358", foto:FOTO_PADRAO, aliases:["marcos"] },
       { ativo:true, ordemManual:23, promoverPara:null, id:"damiana-goncalves", nome:"Damiana Gonçalves (Jardim/Ce)", telefone:"5588997156753", foto:FOTO_PADRAO, aliases:["damiana","damiana goncalves","damiana gonçalves","damiana-goncalves"] },
       { ativo:true, ordemManual:24, promoverPara:null, id:"marcia", nome:"Márcia Silva (Jardim/Ce)", telefone:"5588988216885", foto:"images/marcia-silva.jpg", aliases:["marcia","marcia silva"] },
-      { ativo:true, ordemManual:25, promoverPara:null, id:"eliane-sitio-bom-sucesso", nome:"Eliane - Sítio Bom Sucesso (Jardim/Ce)", telefone:"5561981438605", foto:FOTO_PADRAO, aliases:["eliane","eliane sitio bom sucesso"] }
+      { ativo:false, ordemManual:25, promoverPara:null, id:"eliane-sitio-bom-sucesso", nome:"Eliane - Sítio Bom Sucesso (Jardim/Ce)", telefone:"5561981438605", foto:FOTO_PADRAO, aliases:["eliane","eliane sitio bom sucesso"] }
     ];
     const lista=document.getElementById("lista");
     function cacheImg(c){const v=String(c||"").trim();if(!v||v.startsWith("data:")||v.startsWith("blob:")||/^(https?:)?\/\//i.test(v))return v;return v+(v.includes("?")?"&":"?")+"v="+CACHE_VERSION}
