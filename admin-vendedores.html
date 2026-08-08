@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cadastro de Vendedores | Reino da Sorte</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#eef3fb;color:#10213f}header{background:linear-gradient(180deg,#123ca7,#08266f);color:#fff;padding:20px 14px;text-align:center}header img{width:74px;height:74px;object-fit:contain}header h1{margin:8px 0 5px;font-size:23px}header p{margin:0 auto;max-width:760px;color:#dce8ff;font-size:14px;line-height:1.4}main{max-width:1050px;margin:auto;padding:16px 12px 40px}.card{background:#fff;border:1px solid #dce5f5;border-radius:18px;padding:16px;margin-bottom:15px;box-shadow:0 8px 24px rgba(14,34,82,.08)}h2{margin:0 0 12px;color:#123ca7;font-size:18px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}input,select{width:100%;border:1px solid #ccd8ee;border-radius:12px;padding:12px;font-size:15px;background:#fff}button{border:0;border-radius:13px;padding:12px 15px;font-weight:900;cursor:pointer;font-size:14px}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:13px}.primary{background:#1677ff;color:#fff}.success{background:#20b455;color:#fff}.warning{background:#ffb020;color:#1d2a3d}.danger{background:#ff4d4f;color:#fff}.muted{background:#e8eefb;color:#123ca7}.notice{padding:12px 14px;border-radius:14px;background:#fff7df;border:1px solid #ffd46b;color:#5e4200;font-size:13px;line-height:1.45}.table-wrap{overflow:auto;border:1px solid #dce5f5;border-radius:14px}table{width:100%;border-collapse:collapse;min-width:850px}th,td{padding:10px;border-bottom:1px solid #e8eef8;text-align:left;font-size:13px}th{background:#f4f7fd;color:#18386f}.pill{display:inline-block;padding:4px 8px;border-radius:999px;font-weight:900;font-size:11px}.on{background:#eafaf0;color:#087a2f}.off{background:#ffeaea;color:#a51e22}.small{font-size:12px;color:#65738e;line-height:1.4}.full{grid-column:1/-1}@media(max-width:700px){.grid{grid-template-columns:1fr}.actions button{width:100%}}
+</style>
+</head>
+<body>
+<header>
+<img src="logo-reino.png" alt="Logo" onerror="this.style.display='none'">
+<h1>Cadastro Fácil de Vendedores</h1>
+<p>Adicione, edite, ative ou desative vendedores sem mexer no código do index.html.</p>
+</header>
+<main>
+<section class="card">
+<h2>1. Cadastro do vendedor</h2>
+<div class="grid">
+<div><label>Nome completo e cidade</label><input id="nome" placeholder="Ex.: Daiane Oliveira (Jardim/Ce)"></div>
+<div><label>WhatsApp com DDI 55</label><input id="telefone" inputmode="numeric" placeholder="Ex.: 5588999999999"></div>
+<div><label>ID do ranking</label><input id="id" placeholder="Ex.: daiane-oliveira"></div>
+<div><label>Arquivo da foto</label><input id="foto" value="images/vendedora-semfoto.jpg"></div>
+<div><label>Ativo no painel?</label><select id="ativo"><option value="true">Sim</option><option value="false">Não</option></select></div>
+<div><label>Ordem manual</label><input id="ordem" type="number" min="1" placeholder="Ex.: 27"></div>
+<div><label>Promover para posição</label><input id="promover" type="number" min="1" placeholder="Opcional"></div>
+<div><label>Apelidos separados por vírgula</label><input id="aliases" placeholder="Ex.: daiane, daiane oliveira, daiane online"></div>
+</div>
+<div class="actions">
+<button class="primary" id="salvar">ADICIONAR VENDEDOR</button>
+<button class="muted" id="cancelar" style="display:none">CANCELAR EDIÇÃO</button>
+<button class="danger" id="limpar">LIMPAR CAMPOS</button>
+</div>
+</section>
+
+<section class="card">
+<h2>2. Arquivo de vendedores</h2>
+<div class="notice">O painel tenta carregar automaticamente o arquivo <strong>vendedores.json</strong> do GitHub. Depois de alterar, clique em <strong>BAIXAR vendedores.json</strong> e substitua somente esse arquivo no repositório.</div>
+<div class="actions">
+<button class="success" id="baixar">BAIXAR vendedores.json</button>
+<button class="warning" id="recarregar">RECARREGAR DO GITHUB</button>
+<label class="muted" style="display:inline-flex;align-items:center;justify-content:center;padding:12px 15px;border-radius:13px;font-weight:900;cursor:pointer">ABRIR JSON DO APARELHO<input id="abrir" type="file" accept=".json,application/json" hidden></label>
+</div>
+<p class="small" id="status"></p>
+</section>
+
+<section class="card">
+<h2>3. Vendedores cadastrados</h2>
+<div class="table-wrap"><table>
+<thead><tr><th>Ordem</th><th>Vendedor</th><th>ID</th><th>WhatsApp</th><th>Status</th><th>Ações</th></tr></thead>
+<tbody id="tabela"></tbody>
+</table></div>
+</section>
+</main>
+<script>
+"use strict";
+let vendedores=[];
+let editando=-1;
+const $=id=>document.getElementById(id);
+function normalizarId(t){return String(t||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/\([^)]*\)/g," ").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"")}
+function esc(t){return String(t||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
+function limparForm(){editando=-1;["nome","telefone","id","aliases","promover"].forEach(id=>$(id).value="");$("foto").value="images/vendedora-semfoto.jpg";$("ativo").value="true";$("ordem").value=vendedores.length+1;$("salvar").textContent="ADICIONAR VENDEDOR";$("cancelar").style.display="none"}
+function render(){
+  vendedores.sort((a,b)=>(Number(a.ordemManual)||9999)-(Number(b.ordemManual)||9999));
+  $("tabela").innerHTML="";
+  vendedores.forEach((v,i)=>{
+    const tr=document.createElement("tr");
+    tr.innerHTML=`<td>${v.ordemManual||i+1}</td><td><strong>${esc(v.nome)}</strong><br><span class="small">${esc(v.foto||"")}</span></td><td>${esc(v.id)}</td><td>${esc(v.telefone)}</td><td><span class="pill ${v.ativo!==false?"on":"off"}">${v.ativo!==false?"ATIVO":"INATIVO"}</span></td><td><button class="primary" onclick="editar(${i})">EDITAR</button> <button class="${v.ativo!==false?"warning":"success"}" onclick="alternar(${i})">${v.ativo!==false?"DESATIVAR":"ATIVAR"}</button> <button class="danger" onclick="excluir(${i})">EXCLUIR</button></td>`;
+    $("tabela").appendChild(tr);
+  });
+  $("status").textContent=`${vendedores.length} vendedor(es) no arquivo.`;
+}
+function dadosForm(){
+  const nome=$("nome").value.trim(),telefone=$("telefone").value.replace(/\D/g,""),id=($("id").value.trim()||normalizarId(nome));
+  if(!nome){alert("Informe o nome.");return null}
+  if(telefone.length<12){alert("Informe o WhatsApp completo com DDI 55.");return null}
+  if(!id){alert("Informe o ID.");return null}
+  const duplicado=vendedores.findIndex((v,i)=>v.id===id&&i!==editando);
+  if(duplicado>=0){alert("Já existe vendedor com esse ID.");return null}
+  return {ativo:$("ativo").value==="true",ordemManual:Number($("ordem").value)||vendedores.length+1,promoverPara:Number($("promover").value)>0?Number($("promover").value):null,id,nome,telefone,foto:$("foto").value.trim()||"images/vendedora-semfoto.jpg",aliases:$("aliases").value.split(",").map(x=>x.trim()).filter(Boolean)}
+}
+$("salvar").onclick=()=>{const d=dadosForm();if(!d)return;if(editando>=0)vendedores[editando]=d;else vendedores.push(d);limparForm();render()}
+$("cancelar").onclick=limparForm;$("limpar").onclick=limparForm;
+window.editar=i=>{const v=vendedores[i];editando=i;$("nome").value=v.nome||"";$("telefone").value=v.telefone||"";$("id").value=v.id||"";$("foto").value=v.foto||"images/vendedora-semfoto.jpg";$("ativo").value=v.ativo!==false?"true":"false";$("ordem").value=v.ordemManual||i+1;$("promover").value=v.promoverPara||"";$("aliases").value=(v.aliases||[]).join(", ");$("salvar").textContent="SALVAR ALTERAÇÕES";$("cancelar").style.display="inline-block";window.scrollTo({top:0,behavior:"smooth"})}
+window.alternar=i=>{vendedores[i].ativo=vendedores[i].ativo===false;render()}
+window.excluir=i=>{if(confirm(`Excluir ${vendedores[i].nome}?`)){vendedores.splice(i,1);render()}}
+function baixar(){
+  const blob=new Blob([JSON.stringify(vendedores,null,2)],{type:"application/json;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");
+  a.href=url;a.download="vendedores.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)
+}
+$("baixar").onclick=baixar;
+async function carregar(){
+  try{
+    $("status").textContent="Carregando vendedores.json...";
+    const r=await fetch(`./vendedores.json?nocache=${Date.now()}`,{cache:"no-store"});
+    if(!r.ok)throw new Error(`HTTP ${r.status}`);
+    const d=await r.json();if(!Array.isArray(d))throw new Error("Formato inválido");
+    vendedores=d;limparForm();render()
+  }catch(e){$("status").textContent="Não foi possível carregar automaticamente. Use ABRIR JSON DO APARELHO.";console.warn(e)}
+}
+$("recarregar").onclick=carregar;
+$("abrir").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const d=JSON.parse(await f.text());if(!Array.isArray(d))throw new Error();vendedores=d;limparForm();render()}catch{alert("Arquivo JSON inválido.")}}
+carregar();
+</script>
+</body>
+</html>
