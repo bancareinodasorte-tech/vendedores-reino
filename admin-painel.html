@@ -11,36 +11,26 @@
 @media(max-width:760px){.media-controls{grid-template-columns:1fr 1fr}.media-controls .wide{grid-column:1/3}.media-head{grid-template-columns:80px 1fr}.media-thumb{width:80px;height:80px}}
 @keyframes marqueePreview{from{transform:translateX(100%)}to{transform:translateX(-100%)}}</style>
 <script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
+
+<style>
+.publicacao-completa{border:2px solid #2f7df4!important;background:linear-gradient(180deg,#f8fbff,#eef5ff)!important}
+.publicacao-completa h2{display:flex;align-items:center;gap:8px}
+.publicacao-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.publicacao-status{margin-top:8px;font-size:12px;color:#51617d;line-height:1.4}
+.btn-completa{width:100%;font-size:17px!important;padding:16px!important;background:linear-gradient(180deg,#1677ff,#0d55c9)!important;color:#fff!important;box-shadow:0 10px 22px rgba(22,119,255,.25)}
+@media(max-width:780px){.publicacao-grid{grid-template-columns:1fr}}
+</style>
+
 </head><body>
 <div class="top"><div class="top-in"><img src="logo-reino.png" onerror="this.style.display='none'"><div><h1>Central Administrativa • Reino da Sorte</h1><p>Edite, pré-visualize e só depois baixe os arquivos de configuração para o GitHub.</p></div></div></div>
 <div class="wrap">
 <div class="nav"><button class="ativo" data-tab="geral">Painel público</button><button data-tab="vitrine">Vitrine Digital</button><button data-tab="preview">Pré-visualização</button><button data-tab="atalhos">Atalhos</button></div>
 <section class="tab ativo" id="tab-geral">
 <div class="card"><h2>Configurações gerais</h2><div class="grid3"><div><label>WhatsApp oficial</label><input id="gWhatsapp"></div><div><label>Instagram (URL completa)</label><input id="gInstagram"></div><div><label>Modo dos vendedores</label><select id="gModo"><option value="ranking">Ranking automático</option><option value="manual">Ordem manual</option></select></div></div><div style="margin-top:12px"><label>Texto abaixo do título</label><input id="gSubtitulo"></div></div>
-<div class="card"><h2>Próximo Sorteio</h2><div class="checks"><label><input type="checkbox" id="pAtivo"> Exibir card</label></div><div class="grid" style="margin-top:10px"><div><label>Título</label><input id="pTitulo"></div><div><label>Nome do arquivo da imagem</label><input id="pImagem" placeholder="sorteio-atual.png"><div class="file-preview">Envie/substitua essa imagem na raiz do GitHub.</div></div></div><div class="grid3" style="margin-top:10px"><div><label>Linha 1</label><input id="pL1"></div><div><label>Linha 2</label><input id="pL2"></div><div><label>Linha 3</label><input id="pL3"></div></div><div style="margin-top:10px"><label>Selecionar imagem apenas para pré-visualizar neste aparelho (opcional)</label><input id="pLocal" type="file" accept="image/*"></div></div>
-<div class="card"><h2>Último Ganhador</h2><div class="checks"><label><input type="checkbox" id="uAtivo"> Exibir card</label></div><div class="grid" style="margin-top:10px"><div><label>Título</label><input id="uTitulo"></div><div><label>Nome do arquivo da imagem</label><input id="uImagem" placeholder="ganhador-atual.png"></div></div><div class="grid3" style="margin-top:10px"><div><label>Linha 1</label><input id="uL1"></div><div><label>Linha 2</label><input id="uL2"></div><div><label>Linha 3</label><input id="uL3"></div></div><div style="margin-top:10px"><label>Selecionar imagem apenas para pré-visualizar neste aparelho (opcional)</label><input id="uLocal" type="file" accept="image/*"></div></div>
+<div class="card"><h2>Próximo Sorteio</h2><div class="checks"><label><input type="checkbox" id="pAtivo"> Exibir card</label></div><div class="grid" style="margin-top:10px"><div><label>Título</label><input id="pTitulo"></div><div><label>Nome do arquivo da imagem</label><input id="pImagem" placeholder="sorteio-atual.png"><div class="file-preview">Envie/substitua essa imagem na raiz do GitHub.</div></div></div><div class="grid3" style="margin-top:10px"><div><label>Linha 1</label><input id="pL1"></div><div><label>Linha 2</label><input id="pL2"></div><div><label>Linha 3</label><input id="pL3"></div></div><div style="margin-top:10px"><label>Selecionar nova imagem (pré-visualização + publicação)</label><input id="pLocal" type="file" accept="image/*"></div></div>
+<div class="card"><h2>Último Ganhador</h2><div class="checks"><label><input type="checkbox" id="uAtivo"> Exibir card</label></div><div class="grid" style="margin-top:10px"><div><label>Título</label><input id="uTitulo"></div><div><label>Nome do arquivo da imagem</label><input id="uImagem" placeholder="ganhador-atual.png"></div></div><div class="grid3" style="margin-top:10px"><div><label>Linha 1</label><input id="uL1"></div><div><label>Linha 2</label><input id="uL2"></div><div><label>Linha 3</label><input id="uL3"></div></div><div style="margin-top:10px"><label>Selecionar nova imagem (pré-visualização + publicação)</label><input id="uLocal" type="file" accept="image/*"></div></div>
 <div class="card"><h2>Canal Oficial e Conferência</h2><div class="grid"><div><label>WhatsApp do Canal Oficial</label><input id="cWhatsapp"></div><div><label>Chamada do botão/card</label><input id="cChamada"></div></div><div class="grid" style="margin-top:10px"><div><label>Link da Conferência Oficial</label><input id="confUrl"></div><div><label>Arquivo do QR Code</label><input id="confQr"></div></div><div style="margin-top:10px"><label>Texto da Conferência</label><textarea id="confTexto"></textarea></div></div>
 <div class="card"><h2>Salvar configuração</h2><div class="notice">Use <b>Pré-visualizar</b> antes de baixar. O botão “Salvar rascunho” guarda somente neste iPhone/navegador. Para publicar no site, baixe <b>painel-config.json</b> e substitua no GitHub.</div><div class="actions"><button class="btn primary" id="btnPreview">PRÉ-VISUALIZAR</button><button class="btn muted" id="btnRascunho">SALVAR RASCUNHO</button><button class="btn success" id="btnPainelJson">BAIXAR painel-config.json</button><button class="btn dark" id="btnRecarregar">RECARREGAR DO GITHUB</button></div></div>
-</section>
-
-<section class="card">
-  <h2>Mídias dos cards</h2>
-  <p class="small">Escolha as imagens que serão usadas em “Próximo Sorteio” e “Ganhador Atual”. A prévia usa os arquivos escolhidos antes da publicação.</p>
-  <div class="grid">
-    <div>
-      <label>Imagem do Próximo Sorteio</label>
-      <input id="arquivoProximoSorteio" type="file" accept="image/*">
-      <div id="prevProximoSorteio" class="small"></div>
-    </div>
-    <div>
-      <label>Imagem do Ganhador Atual</label>
-      <input id="arquivoGanhadorAtual" type="file" accept="image/*">
-      <div id="prevGanhadorAtual" class="small"></div>
-    </div>
-  </div>
-  <div class="actions">
-    <button class="success" type="button" id="baixarPacotePainelBtn">BAIXAR PACOTE DO PAINEL (.zip)</button>
-  </div>
 </section>
 
 <section class="tab" id="tab-vitrine">
@@ -48,15 +38,40 @@
 <div class="card"><h2>Adicionar nova mídia</h2><div class="media-add"><h3>+ NOVO SLIDE</h3><div class="grid3"><div><label>Tipo</label><select id="novoTipo"><option value="imagem">Imagem</option><option value="video">Vídeo</option><option value="texto">Texto / Letreiro</option></select></div><div id="novoArquivoBox"><label>Escolher arquivo</label><input id="novoArquivo" type="file" accept="image/*,video/*"><div class="drop-hint">Imagem: JPG/PNG/WEBP. Vídeo: MP4 recomendado.</div></div><div><label>Duração (imagem/texto)</label><input id="novoDuracao" type="number" min="0" value="0" placeholder="0 = padrão"></div></div><div class="text-editor" id="novoTextoBox"><div class="grid"><div><label>Título do letreiro</label><input id="novoTitulo" placeholder="REINO DA SORTE"></div><div><label>Estilo</label><select id="novoTextoEstilo"><option value="fixo">Texto fixo</option><option value="movimento">Letreiro em movimento</option></select></div></div><div style="margin-top:10px"><label>Mensagem</label><textarea id="novoTexto" placeholder="Digite a mensagem que será exibida..."></textarea></div></div><div class="actions"><button class="btn primary" id="btnAdicionarMidia">ADICIONAR À VITRINE</button></div></div></div>
 <div class="card"><h2>Mídias da Vitrine</h2><div class="small">Aqui aparecem as mídias que já estão no GitHub e também as novas escolhidas neste aparelho. Você pode ordenar, ativar, desativar, excluir da configuração e pré-visualizar antes de publicar.</div><div id="slidesLista"><div class="small">Carregando mídias…</div></div><div class="actions"><button class="btn primary" id="btnBuscarSlides">ATUALIZAR DO GITHUB</button><button class="btn success" id="btnPacoteVitrine">BAIXAR PACOTE DA VITRINE (.zip)</button><button class="btn muted" id="btnSlidesJson">BAIXAR SÓ slides-config.json</button></div><div class="pack-box"><b>Pacote da Vitrine:</b> inclui o <b>slides-config.json</b> e todas as mídias novas que você selecionou nesta Central, já dentro da pasta <b>slides/</b>. Depois, basta enviar esses arquivos ao GitHub. As mídias antigas que já estão no repositório não precisam ser baixadas novamente.</div></div>
 </section>
+
+<section class="card publicacao-completa">
+  <h2>📦 Publicação Completa</h2>
+  <div class="notice">
+    Faça todas as alterações, confira em <b>Pré-visualização</b> e use este botão como etapa final.
+    Ele reúne em um único ZIP as configurações dos cards, Vitrine Digital, vendedores, ranking e novas mídias.
+  </div>
+  <div class="publicacao-grid" style="margin-top:12px">
+    <div>
+      <label>vendedores.json atualizado (opcional)</label>
+      <input id="importVendedores" type="file" accept=".json,application/json">
+      <div class="publicacao-status" id="statusVendedores">Se não escolher, será usada a versão atual publicada no GitHub.</div>
+    </div>
+    <div>
+      <label>ranking.json atualizado (opcional)</label>
+      <input id="importRanking" type="file" accept=".json,application/json">
+      <div class="publicacao-status" id="statusRanking">Se não escolher, será usada a versão atual publicada no GitHub.</div>
+    </div>
+  </div>
+  <div class="actions" style="margin-top:14px">
+    <button class="btn btn-completa" id="btnPacoteCompleto" type="button">BAIXAR ATUALIZAÇÃO COMPLETA (.zip)</button>
+  </div>
+  <p class="small">O ZIP será a única pasta de atualização que você precisa guardar. Dentro dele ficam os arquivos da raiz e, quando houver novas propagandas, a pasta <b>slides</b>.</p>
+</section>
+
 <section class="tab" id="tab-preview">
 <div class="card"><h2>Pré-visualização antes de publicar <span class="badge">NÃO ALTERA O SITE</span></h2><div class="preview-toolbar"><button class="btn primary" id="prevAtualizar">ATUALIZAR PRÉVIA</button><button class="btn muted" id="prevAnt">‹ SLIDE</button><button class="btn muted" id="prevProx">SLIDE ›</button></div><div class="preview-shell"><div class="preview-title">REINO DA SORTE • PAINEL DE VENDEDORES</div><div class="preview-cards"><div class="p-card" id="prevPCard"><h3 id="prevPTitulo"></h3><img class="p-img" id="prevPImg"><div class="p-line" id="prevPL1"></div><div class="p-line" id="prevPL2"></div><div class="p-line" id="prevPL3"></div></div><div class="p-card" id="prevUCard"><h3 id="prevUTitulo"></h3><img class="p-img" id="prevUImg"><div class="p-line" id="prevUL1"></div><div class="p-line" id="prevUL2"></div><div class="p-line" id="prevUL3"></div></div></div><div class="p-vitrine" id="prevVitrine"><div class="txt"><b>VITRINE DIGITAL</b><span>Carregue os slides para conferir.</span></div><div class="p-status" id="prevStatus">Prévia</div></div></div><p class="small">A prévia usa as configurações atuais e mostra também as <b>novas mídias escolhidas neste aparelho</b>, antes de qualquer publicação no GitHub.</p></div>
 </section>
-<section class="tab" id="tab-atalhos"><div class="card"><h2>Áreas administrativas</h2><div class="links"><a href="admin-vendedores.html">👥 Vendedores</a><a href="admin-ranking.html">🏆 Ranking / Prestação</a><a href="index.html" target="_blank">🌐 Abrir Painel Público</a></div></div><div class="card"><h2>Fluxo recomendado</h2><div class="notice">1. Faça as alterações nesta Central.<br>2. Abra a aba <b>Pré-visualização</b> e confira.<br>3. Baixe o JSON correspondente.<br>4. Substitua o arquivo no GitHub e faça Commit changes.<br>5. Aguarde o GitHub Pages atualizar e abra o Painel Público.</div></div></section>
+<section class="tab" id="tab-atalhos"><div class="card"><h2>Áreas administrativas</h2><div class="links"><a href="admin-vendedores.html">👥 Vendedores</a><a href="admin-ranking.html">🏆 Ranking / Prestação</a><a href="index.html" target="_blank">🌐 Abrir Painel Público</a></div></div><div class="card"><h2>Fluxo recomendado</h2><div class="notice">1. Atualize vendedores e ranking, se necessário.<br>2. Faça as alterações dos cards e da Vitrine nesta Central.<br>3. Abra <b>Pré-visualização</b> e confira tudo.<br>4. Importe os novos vendedores.json/ranking.json na área <b>Publicação Completa</b> (se foram alterados).<br>5. Toque em <b>BAIXAR ATUALIZAÇÃO COMPLETA</b>.<br>6. Descompacte, substitua os arquivos no GitHub e faça Commit changes.</div></div></section>
 </div>
 <script>
 'use strict';
 const PADRAO={versao:1,geral:{subtitulo:'VALOR DE CADA BILHETE - APENAS R$ 3,00',whatsapp:'5587981545492',instagram:'https://www.instagram.com/reinodasorteoficial',cadastroUrl:'./cadastro.html',modoOrdem:'ranking'},proximoSorteio:{ativo:true,titulo:'PRÓXIMO SORTEIO',imagem:'sorteio-atual.png',linhas:['🎁 PRÊMIO PRINCIPAL','🎟️ Bilhetes: R$ 3,00','📆 Sorteio: --/--/----']},ultimoGanhador:{ativo:true,titulo:'ÚLTIMO GANHADOR',imagem:'ganhador-atual.png',linhas:['🏆Ganhador:','💰Prêmio:','🍀Vendedor(a):']},canalOficial:{ativo:true,whatsapp:'5587981545492',chamada:'COMPRE DIRETO\nPELO SITE'},conferencia:{ativo:true,texto:'Consulte o resultado oficial do sorteio.',qr:'qr-conferencia.png',url:''},vitrine:{ativa:true,repetir:true,duracaoImagem:8,duracaoTexto:30,pasta:'slides',github:{usuario:'bancareinodasorte-tech',repositorio:'vendedores-reino',branch:'main'}}};
-let cfg=structuredClone(PADRAO),slidesCfg={versao:1,slides:[]},slidesGit=[],prevIndex=0,localP='',localU='';
+let cfg=structuredClone(PADRAO),slidesCfg={versao:1,slides:[]},slidesGit=[],prevIndex=0,localP='',localU='',arquivoCardP=null,arquivoCardU=null,arquivoVendedoresImportado=null,arquivoRankingImportado=null;
 const $=id=>document.getElementById(id); function val(id){return $(id).value.trim()} function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 async function getJson(nome,fb){try{const r=await fetch(`./${nome}?v=${Date.now()}`,{cache:'no-store'});if(!r.ok)throw 0;return await r.json()}catch{return structuredClone(fb)}}
 function fill(c){cfg=c||structuredClone(PADRAO);$('gWhatsapp').value=cfg.geral?.whatsapp||'';$('gInstagram').value=cfg.geral?.instagram||'';$('gModo').value=cfg.geral?.modoOrdem||'ranking';$('gSubtitulo').value=cfg.geral?.subtitulo||'';const p=cfg.proximoSorteio||{};$('pAtivo').checked=p.ativo!==false;$('pTitulo').value=p.titulo||'';$('pImagem').value=p.imagem||'';[1,2,3].forEach((n,i)=>$(`pL${n}`).value=(p.linhas||[])[i]||'');const u=cfg.ultimoGanhador||{};$('uAtivo').checked=u.ativo!==false;$('uTitulo').value=u.titulo||'';$('uImagem').value=u.imagem||'';[1,2,3].forEach((n,i)=>$(`uL${n}`).value=(u.linhas||[])[i]||'');const ca=cfg.canalOficial||{};$('cWhatsapp').value=ca.whatsapp||'';$('cChamada').value=(ca.chamada||'').replace(/\n/g,' ');const co=cfg.conferencia||{};$('confUrl').value=co.url||'';$('confQr').value=co.qr||'';$('confTexto').value=co.texto||'';const v=cfg.vitrine||{};$('vAtiva').value=v.ativa===false?'false':'true';$('vImg').value=v.duracaoImagem||8;$('vTxt').value=v.duracaoTexto||30}
@@ -81,118 +96,110 @@ function u16(n){return new Uint8Array([n&255,(n>>>8)&255])}function u32(n){retur
 function dosDateTime(){const d=new Date(),time=((d.getHours()&31)<<11)|((d.getMinutes()&63)<<5)|((Math.floor(d.getSeconds()/2))&31),date=(((d.getFullYear()-1980)&127)<<9)|(((d.getMonth()+1)&15)<<5)|(d.getDate()&31);return{time,date}}
 async function criarZipArquivos(items){const enc=new TextEncoder(),local=[],central=[];let offset=0;const dt=dosDateTime();for(const item of items){const name=enc.encode(item.name),data=new Uint8Array(await item.blob.arrayBuffer()),crc=crc32(data);const lh=new Blob([u32(0x04034b50),u16(20),u16(0x0800),u16(0),u16(dt.time),u16(dt.date),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),name,data]);local.push(lh);const ch=new Blob([u32(0x02014b50),u16(20),u16(20),u16(0x0800),u16(0),u16(dt.time),u16(dt.date),u32(crc),u32(data.length),u32(data.length),u16(name.length),u16(0),u16(0),u16(0),u16(0),u32(0),u32(offset),name]);central.push(ch);offset+=lh.size}const csize=central.reduce((s,b)=>s+b.size,0),end=new Blob([u32(0x06054b50),u16(0),u16(0),u16(items.length),u16(items.length),u32(csize),u32(offset),u16(0)]);return new Blob([...local,...central,end],{type:'application/zip'})}
 async function baixarPacoteVitrine(){atualizarSlidesCfg();const configBlob=new Blob([JSON.stringify(slidesCfg,null,2)],{type:'application/json;charset=utf-8'}),instr=`PACOTE DA VITRINE DIGITAL - REINO DA SORTE\n\n1. Envie slides-config.json para a raiz do repositório vendedores-reino.\n2. Envie todos os arquivos que estão dentro da pasta slides/ deste pacote para a pasta slides/ no GitHub.\n3. Não apague as mídias antigas que ainda estão sendo usadas.\n4. Faça Commit changes e aguarde o GitHub Pages atualizar.\n`;const items=[{name:'slides-config.json',blob:configBlob},{name:'LEIA-ME-VITRINE.txt',blob:new Blob([instr],{type:'text/plain;charset=utf-8'})}];slidesGit.filter(s=>s.novo&&s.localFile&&s.ativo!==false).forEach(s=>items.push({name:'slides/'+s.arquivo,blob:s.localFile}));const zip=await criarZipArquivos(items),u=URL.createObjectURL(zip),a=document.createElement('a');a.href=u;a.download='vitrine-digital-atualizacao.zip';a.click();setTimeout(()=>URL.revokeObjectURL(u),1500)}
+
+function extensaoSegura(file,padrao='png'){
+  const m=String(file&&file.name||'').match(/\.([a-zA-Z0-9]+)$/);
+  return (m?m[1]:padrao).toLowerCase().replace(/[^a-z0-9]/g,'')||padrao;
+}
+async function blobJsonAtual(nome,fallback){
+  try{
+    const r=await fetch(`./${nome}?nocache=${Date.now()}`,{cache:'no-store'});
+    if(r.ok) return new Blob([JSON.stringify(await r.json(),null,2)],{type:'application/json;charset=utf-8'});
+  }catch(e){}
+  return new Blob([JSON.stringify(fallback||{},null,2)],{type:'application/json;charset=utf-8'});
+}
+async function baixarAtualizacaoCompleta(){
+  atualizarSlidesCfg();
+  const painel=collect();
+  const items=[];
+
+  // Imagens dos cards: usa nome fixo por tipo e atualiza o JSON automaticamente.
+  if(arquivoCardP){
+    const nome=`sorteio-atual.${extensaoSegura(arquivoCardP)}`;
+    painel.proximoSorteio.imagem=nome;
+    $('pImagem').value=nome;
+    items.push({name:nome,blob:arquivoCardP});
+  }
+  if(arquivoCardU){
+    const nome=`ganhador-atual.${extensaoSegura(arquivoCardU)}`;
+    painel.ultimoGanhador.imagem=nome;
+    $('uImagem').value=nome;
+    items.push({name:nome,blob:arquivoCardU});
+  }
+
+  items.unshift(
+    {name:'painel-config.json',blob:new Blob([JSON.stringify(painel,null,2)],{type:'application/json;charset=utf-8'})},
+    {name:'slides-config.json',blob:new Blob([JSON.stringify(slidesCfg,null,2)],{type:'application/json;charset=utf-8'})}
+  );
+
+  // Vendedores e ranking: usa o arquivo importado ou a versão atual do GitHub.
+  if(arquivoVendedoresImportado){
+    items.push({name:'vendedores.json',blob:arquivoVendedoresImportado});
+  }else{
+    items.push({name:'vendedores.json',blob:await blobJsonAtual('vendedores.json',[])});
+  }
+  if(arquivoRankingImportado){
+    items.push({name:'ranking.json',blob:arquivoRankingImportado});
+  }else{
+    items.push({name:'ranking.json',blob:await blobJsonAtual('ranking.json',{ranking:[]})});
+  }
+
+  // Novas mídias da Vitrine
+  slidesGit.filter(s=>s.novo&&s.localFile&&s.ativo!==false&&!s.removido)
+    .forEach(s=>items.push({name:'slides/'+s.arquivo,blob:s.localFile}));
+
+  const manifesto={
+    geradoEm:new Date().toLocaleString('pt-BR'),
+    arquivosRaiz:items.filter(x=>!x.name.startsWith('slides/')).map(x=>x.name),
+    novasMidiasSlides:items.filter(x=>x.name.startsWith('slides/')).map(x=>x.name),
+    observacao:'Substitua os arquivos da raiz no GitHub e envie as novas mídias para a pasta slides.'
+  };
+  items.push({name:'MANIFESTO-ATUALIZACAO.json',blob:new Blob([JSON.stringify(manifesto,null,2)],{type:'application/json;charset=utf-8'})});
+  const instr=`ATUALIZAÇÃO COMPLETA - REINO DA SORTE
+
+PASSO 1
+Descompacte este ZIP no iPhone.
+
+PASSO 2 - RAIZ DO REPOSITÓRIO vendedores-reino
+Substitua os arquivos JSON deste pacote:
+- painel-config.json
+- slides-config.json
+- vendedores.json
+- ranking.json
+
+Se existirem no pacote, envie também:
+- sorteio-atual.*
+- ganhador-atual.*
+
+PASSO 3 - PASTA slides
+Se o ZIP tiver a pasta slides, envie somente os arquivos que estão dentro dela para a pasta slides do GitHub.
+
+PASSO 4
+Faça Commit changes e aguarde o GitHub Pages atualizar.
+
+IMPORTANTE
+Não envie o ZIP fechado para o GitHub.
+`;
+  items.push({name:'LEIA-ME-ATUALIZACAO-COMPLETA.txt',blob:new Blob([instr],{type:'text/plain;charset=utf-8'})});
+
+  const zip=await criarZipArquivos(items);
+  const u=URL.createObjectURL(zip),a=document.createElement('a');
+  a.href=u;a.download='atualizacao-completa-reino-da-sorte.zip';a.click();
+  setTimeout(()=>URL.revokeObjectURL(u),1600);
+  alert('Pacote completo criado. Agora descompacte no iPhone e envie os arquivos ao GitHub.');
+}
+
 function tab(nome){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('ativo'));document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('ativo'));$('tab-'+nome).classList.add('ativo');document.querySelector(`[data-tab="${nome}"]`).classList.add('ativo');if(nome==='preview')preview()}
 document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>tab(b.dataset.tab));$('btnPreview').onclick=()=>{preview();tab('preview')};$('prevAtualizar').onclick=preview;$('prevAnt').onclick=()=>{prevIndex--;renderPrevSlide()};$('prevProx').onclick=()=>{prevIndex++;renderPrevSlide()};$('btnPainelJson').onclick=()=>download('painel-config.json',collect());$('btnSlidesJson').onclick=()=>{slidesCfg={versao:1,slides:slidesGit.map(x=>({arquivo:x.arquivo,ativo:x.ativo,ordem:x.ordem,duracao:x.duracao}))};download('slides-config.json',slidesCfg)};$('btnRascunho').onclick=()=>{localStorage.setItem('reino_admin_painel_draft',JSON.stringify(collect()));alert('Rascunho salvo neste navegador.')};$('btnRecarregar').onclick=async()=>{cfg=await getJson('painel-config.json',PADRAO);fill(cfg);slidesCfg=await getJson('slides-config.json',{versao:1,slides:[]});await buscarSlides();alert('Configuração recarregada do GitHub.')};$('btnBuscarSlides').onclick=buscarSlides;$('btnAdicionarMidia').onclick=adicionarNovaMidia;$('btnPacoteVitrine').onclick=baixarPacoteVitrine;$('novoTipo').onchange=()=>{const t=$('novoTipo').value;$('novoArquivoBox').style.display=t==='texto'?'none':'block';$('novoTextoBox').classList.toggle('show',t==='texto');$('novoArquivo').accept=t==='video'?'video/*':'image/*'};
-$('pLocal').onchange=e=>{const f=e.target.files[0];if(f){localP=URL.createObjectURL(f);preview()}};$('uLocal').onchange=e=>{const f=e.target.files[0];if(f){localU=URL.createObjectURL(f);preview()}};
+$('pLocal').onchange=e=>{const f=e.target.files[0];arquivoCardP=f||null;if(f){if(localP&&localP.startsWith('blob:'))URL.revokeObjectURL(localP);localP=URL.createObjectURL(f);preview()}};$('uLocal').onchange=e=>{const f=e.target.files[0];arquivoCardU=f||null;if(f){if(localU&&localU.startsWith('blob:'))URL.revokeObjectURL(localU);localU=URL.createObjectURL(f);preview()}};
+
+const impVend=$('importVendedores'),impRank=$('importRanking');
+if(impVend)impVend.onchange=e=>{arquivoVendedoresImportado=e.target.files[0]||null;$('statusVendedores').textContent=arquivoVendedoresImportado?`Selecionado: ${arquivoVendedoresImportado.name}`:'Será usada a versão publicada no GitHub.'};
+if(impRank)impRank.onchange=e=>{arquivoRankingImportado=e.target.files[0]||null;$('statusRanking').textContent=arquivoRankingImportado?`Selecionado: ${arquivoRankingImportado.name}`:'Será usada a versão publicada no GitHub.'};
+if($('btnPacoteCompleto'))$('btnPacoteCompleto').onclick=baixarAtualizacaoCompleta;
+
 (async()=>{const draft=localStorage.getItem('reino_admin_painel_draft');cfg=draft?JSON.parse(draft):await getJson('painel-config.json',PADRAO);slidesCfg=await getJson('slides-config.json',{versao:1,slides:[]});fill(cfg);await buscarSlides();preview()})();
 </script>
-<script>
-(function(){
-  let arquivoProximo=null, arquivoGanhador=null;
 
-  function nomeSeguro(ext, base){
-    ext=(ext||"png").toLowerCase().replace(/[^a-z0-9]/g,"") || "png";
-    return `${base}.${ext}`;
-  }
-  function extArquivo(file){
-    const n=(file&&file.name)||"";
-    const m=n.match(/\.([a-zA-Z0-9]+)$/);
-    return m?m[1]:"png";
-  }
-  function mostrarPrev(inputId, boxId, setter){
-    const input=document.getElementById(inputId), box=document.getElementById(boxId);
-    if(!input) return;
-    input.addEventListener("change",()=>{
-      const f=input.files&&input.files[0];
-      setter(f||null);
-      if(!box) return;
-      box.innerHTML="";
-      if(!f) return;
-      const u=URL.createObjectURL(f);
-      box.innerHTML=`<div style="margin-top:8px"><img src="${u}" alt="" style="max-width:180px;max-height:180px;object-fit:contain;border-radius:12px;border:1px solid #dce5f5;background:#fff"></div><div>${f.name}</div>`;
-    });
-  }
-  mostrarPrev("arquivoProximoSorteio","prevProximoSorteio",f=>arquivoProximo=f);
-  mostrarPrev("arquivoGanhadorAtual","prevGanhadorAtual",f=>arquivoGanhador=f);
-
-  async function obterPainelConfigAtual(){
-    // Try common global config objects/functions first
-    if(window.painelConfig && typeof window.painelConfig==="object") return JSON.parse(JSON.stringify(window.painelConfig));
-    try{
-      const r=await fetch(`./painel-config.json?nocache=${Date.now()}`,{cache:"no-store"});
-      if(r.ok) return await r.json();
-    }catch(e){}
-    return {};
-  }
-
-  function lerValor(ids){
-    for(const id of ids){
-      const el=document.getElementById(id);
-      if(el) return el.value;
-    }
-    return "";
-  }
-
-  async function gerarPacotePainel(){
-    if(!window.JSZip){ alert("Não foi possível carregar o gerador ZIP. Tente novamente com internet ativa."); return; }
-    const zip=new JSZip();
-    const cfg=await obterPainelConfigAtual();
-
-    cfg.proximoSorteio = cfg.proximoSorteio || {};
-    cfg.ganhadorAtual = cfg.ganhadorAtual || {};
-
-    // Read the current form values when ids exist in this admin version.
-    const principal=lerValor(["proximoPrincipal","premioProximo","principalSorteio"]);
-    const bilhetes=lerValor(["proximoBilhetes","bilhetesProximo","valorBilheteTexto"]);
-    const data=lerValor(["proximoData","dataProximo","dataSorteioTexto"]);
-    if(principal) cfg.proximoSorteio.principal=principal;
-    if(bilhetes) cfg.proximoSorteio.bilhetes=bilhetes;
-    if(data) cfg.proximoSorteio.data=data;
-
-    const ganhador=lerValor(["ganhadorNome","nomeGanhador"]);
-    const premio=lerValor(["ganhadorPremio","premioGanhador"]);
-    const vendedor=lerValor(["ganhadorVendedor","vendedorGanhador"]);
-    if(ganhador) cfg.ganhadorAtual.ganhador=ganhador;
-    if(premio) cfg.ganhadorAtual.premio=premio;
-    if(vendedor) cfg.ganhadorAtual.vendedor=vendedor;
-
-    if(arquivoProximo){
-      const nome=nomeSeguro(extArquivo(arquivoProximo),"sorteio-atual");
-      cfg.proximoSorteio.imagem=nome;
-      zip.file(nome, arquivoProximo);
-    } else if(!cfg.proximoSorteio.imagem){
-      cfg.proximoSorteio.imagem="sorteio-atual.png";
-    }
-
-    if(arquivoGanhador){
-      const nome=nomeSeguro(extArquivo(arquivoGanhador),"ganhador-atual");
-      cfg.ganhadorAtual.imagem=nome;
-      zip.file(nome, arquivoGanhador);
-    } else if(!cfg.ganhadorAtual.imagem){
-      cfg.ganhadorAtual.imagem="ganhador-atual.png";
-    }
-
-    zip.file("painel-config.json", JSON.stringify(cfg,null,2));
-    zip.file("LEIA-ME-PAINEL.txt",
-`PACOTE DO PAINEL - REINO DA SORTE
-
-1. Descompacte este ZIP no iPhone.
-2. No GitHub, substitua painel-config.json.
-3. Se existirem no pacote, envie também sorteio-atual.* e ganhador-atual.* para a raiz do repositório.
-4. Os nomes dos arquivos precisam permanecer exatamente como estão.
-5. Faça Commit changes e aguarde o GitHub Pages atualizar.
-`);
-    const blob=await zip.generateAsync({type:"blob"});
-    const a=document.createElement("a");
-    a.href=URL.createObjectURL(blob);
-    a.download="painel-atualizacao.zip";
-    document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(()=>URL.revokeObjectURL(a.href),1200);
-  }
-
-  const btn=document.getElementById("baixarPacotePainelBtn");
-  if(btn) btn.addEventListener("click",gerarPacotePainel);
-})();
-</script>
 
 </body></html>

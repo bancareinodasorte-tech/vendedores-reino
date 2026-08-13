@@ -1,27 +1,27 @@
-CENTRAL ADMINISTRATIVA REINO DA SORTE — V2
+CENTRAL ADMINISTRATIVA REINO DA SORTE - V4
+
+CORREÇÕES
+- Corrigida a atualização dos textos de Próximo Sorteio e Último Ganhador.
+- Mantida atualização das imagens dos cards com cache-busting.
+- Criada Publicação Completa em um único pacote ZIP.
+- O pacote pode reunir painel-config.json, slides-config.json, vendedores.json, ranking.json,
+  imagens novas dos cards e novas mídias da Vitrine.
 
 INSTALAÇÃO
-1. Faça backup do repositório vendedores-reino.
-2. Na raiz do GitHub, substitua admin-painel.html pelo novo arquivo.
-3. O index.html público deste pacote pode permanecer como está se sua versão atual já está funcionando.
-4. Mantenha painel-config.json, slides-config.json, vendedores.json, ranking.json e a pasta slides/.
-5. Faça Commit changes e aguarde o GitHub Pages atualizar.
+1. Substitua index.html e admin-painel.html no GitHub.
+2. Faça Commit changes.
+3. Aguarde o GitHub Pages atualizar.
 
-NOVA VITRINE DIGITAL
-- Abra admin-painel.html e entre em Vitrine Digital.
-- Toque em + NOVO SLIDE.
-- Escolha Imagem, Vídeo ou Texto/Letreiro.
-- Para imagem/vídeo, selecione o arquivo do iPhone/computador.
-- Para texto, escreva título e mensagem.
-- Clique ADICIONAR À VITRINE.
-- Use SUBIR/DESCER, Ativo e Duração.
-- Clique PRÉVIA para conferir.
-- Quando estiver correto, clique BAIXAR PACOTE DA VITRINE (.zip).
-- O ZIP terá slides-config.json e as novas mídias dentro da pasta slides/.
-- No GitHub, envie os novos arquivos para slides/ e substitua slides-config.json na raiz.
+USO DIÁRIO
+1. Atualize vendedores no admin-vendedores.html e baixe vendedores.json, quando necessário.
+2. Atualize ranking no admin-ranking.html e baixe ranking.json, quando necessário.
+3. Abra admin-painel.html e atualize cards e Vitrine.
+4. Faça a Pré-visualização.
+5. Na área Publicação Completa, selecione vendedores.json e ranking.json se eles foram atualizados.
+6. Toque BAIXAR ATUALIZAÇÃO COMPLETA (.zip).
+7. Descompacte no iPhone.
+8. Na raiz do GitHub substitua os JSONs e as imagens de cards incluídas.
+9. Se houver pasta slides no pacote, envie seus arquivos para a pasta slides do GitHub.
+10. Faça Commit changes.
 
-VÍDEOS
-Vídeos tocam até terminar, mesmo acima de 30 segundos. MP4 é recomendado.
-
-IMPORTANTE
-O navegador não publica diretamente no GitHub por segurança. A etapa final continua sendo enviar os arquivos baixados e fazer Commit changes.
+NÃO envie o ZIP fechado ao GitHub.
