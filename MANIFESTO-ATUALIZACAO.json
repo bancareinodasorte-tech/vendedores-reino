@@ -1,0 +1,17 @@
+{
+  "geradoEm": "13/08/2026, 17:34:27",
+  "arquivosRaiz": [
+    "painel-config.json",
+    "slides-config.json",
+    "sorteio-atual.png",
+    "ganhador-atual.jpeg",
+    "vendedores.json",
+    "ranking.json"
+  ],
+  "novasMidiasSlides": [
+    "slides/slide06.png",
+    "slides/slide04.jpeg",
+    "slides/slide05.jpeg"
+  ],
+  "observacao": "Substitua os arquivos da raiz no GitHub e envie as novas mídias para a pasta slides."
+}

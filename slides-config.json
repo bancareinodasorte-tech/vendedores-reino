@@ -1,4 +1,47 @@
 {
-  "versao": 1,
-  "slides": []
+  "versao": 2,
+  "slides": [
+    {
+      "arquivo": "slide06.png",
+      "ativo": true,
+      "ordem": 1,
+      "duracao": 10,
+      "estiloTexto": "fixo"
+    },
+    {
+      "arquivo": "slide01.txt",
+      "ativo": false,
+      "ordem": 2,
+      "duracao": 0,
+      "estiloTexto": "fixo"
+    },
+    {
+      "arquivo": "slide02.mp4",
+      "ativo": true,
+      "ordem": 3,
+      "duracao": 0,
+      "estiloTexto": "fixo"
+    },
+    {
+      "arquivo": "slide03.mov",
+      "ativo": true,
+      "ordem": 4,
+      "duracao": 0,
+      "estiloTexto": "fixo"
+    },
+    {
+      "arquivo": "slide04.jpeg",
+      "ativo": true,
+      "ordem": 5,
+      "duracao": 10,
+      "estiloTexto": "fixo"
+    },
+    {
+      "arquivo": "slide05.jpeg",
+      "ativo": true,
+      "ordem": 6,
+      "duracao": 10,
+      "estiloTexto": "fixo"
+    }
+  ]
 }

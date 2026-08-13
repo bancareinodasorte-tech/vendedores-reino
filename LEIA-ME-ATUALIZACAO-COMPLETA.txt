@@ -1,0 +1,24 @@
+ATUALIZAÇÃO COMPLETA - REINO DA SORTE
+
+PASSO 1
+Descompacte este ZIP no iPhone.
+
+PASSO 2 - RAIZ DO REPOSITÓRIO vendedores-reino
+Substitua os arquivos JSON deste pacote:
+- painel-config.json
+- slides-config.json
+- vendedores.json
+- ranking.json
+
+Se existirem no pacote, envie também:
+- sorteio-atual.*
+- ganhador-atual.*
+
+PASSO 3 - PASTA slides
+Se o ZIP tiver a pasta slides, envie somente os arquivos que estão dentro dela para a pasta slides do GitHub.
+
+PASSO 4
+Faça Commit changes e aguarde o GitHub Pages atualizar.
+
+IMPORTANTE
+Não envie o ZIP fechado para o GitHub.

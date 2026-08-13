@@ -12,31 +12,31 @@
     "titulo": "PRÓXIMO SORTEIO",
     "imagem": "sorteio-atual.png",
     "linhas": [
-      "🎁 UMA MOTO HONDA POP 110i 2017",
+      "🎁 R$ 3 Mil + 2 Giros de 100",
       "🎟️ Bilhetes: R$ 3,00",
-      "📆 Sorteio: 08/08/2026"
+      "📆 Sorteio: 15/08/2026"
     ]
   },
   "ultimoGanhador": {
     "ativo": true,
-    "titulo": "ÚLTIMO GANHADOR",
-    "imagem": "ganhador-atual.png",
+    "titulo": "GANHADOR ATUAL",
+    "imagem": "ganhador-atual.jpeg",
     "linhas": [
-      "🏆Ganhador: Adeilson de Jardim/CE",
-      "💰Prêmio: Uma moto Jet-50c 2025",
-      "🍀Vendedor(a): Tamilis mimi - Online"
+      "🏆Ganhador: Arlande - Jardim/CE",
+      "💰Prêmio: 1 Moto Honda POP110i 2017",
+      "🍀Vendedor(a): Daiane Oliveira"
     ]
   },
   "canalOficial": {
     "ativo": true,
     "whatsapp": "5587981545492",
-    "chamada": "COMPRE DIRETO\nPELO SITE"
+    "chamada": "COMPRE DIRETO PELO SITE"
   },
   "conferencia": {
     "ativo": true,
     "texto": "Perdeu o bilhete ou não acompanhou ao vivo? Consulte o resultado oficial do sorteio pelo QR Code ou botão abaixo.",
     "qr": "qr-conferencia.png",
-    "url": "https://admin.reinodasorte.com.br/sorteio/3qiKGzkQytpPtzZSdcc8BzXHmk8CKCStKySsHB3-Q-0"
+    "url": "https://admin.reinodasorte.com.br/sorteio/WtBJf7Xb8M4Ej206v6suqtd0mioo9c7abAXzGxf6huc"
   },
   "vitrine": {
     "ativa": true,
