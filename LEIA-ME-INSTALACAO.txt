@@ -1,43 +1,27 @@
-CENTRAL ADMINISTRATIVA — REINO DA SORTE
-
-ARQUIVOS NOVOS/ATUALIZADOS
-- index.html
-- admin-painel.html
-- painel-config.json
-- slides-config.json
-- vendedores.json
-- admin-vendedores.html
-- admin-ranking.html
+CENTRAL ADMINISTRATIVA REINO DA SORTE — V2
 
 INSTALAÇÃO
-1. Faça backup do repositório atual.
-2. Na raiz do repositório vendedores-reino, substitua index.html e envie os demais arquivos acima.
-3. Mantenha a pasta slides e a pasta images como já estão.
-4. Faça Commit changes.
-5. Aguarde o GitHub Pages publicar.
-6. Abra: https://bancareinodasorte-tech.github.io/vendedores-reino/admin-painel.html
+1. Faça backup do repositório vendedores-reino.
+2. Na raiz do GitHub, substitua admin-painel.html pelo novo arquivo.
+3. O index.html público deste pacote pode permanecer como está se sua versão atual já está funcionando.
+4. Mantenha painel-config.json, slides-config.json, vendedores.json, ranking.json e a pasta slides/.
+5. Faça Commit changes e aguarde o GitHub Pages atualizar.
 
-USO DIÁRIO
-1. Edite Próximo Sorteio, Último Ganhador, links ou Vitrine.
-2. Abra a aba Pré-visualização. Nada ali altera o site.
-3. Se estiver correto, baixe painel-config.json e/ou slides-config.json.
-4. Substitua somente esses JSONs no GitHub.
-5. Se a imagem mudou, substitua também o arquivo da imagem indicado no formulário.
-6. Faça Commit changes e aguarde a publicação.
+NOVA VITRINE DIGITAL
+- Abra admin-painel.html e entre em Vitrine Digital.
+- Toque em + NOVO SLIDE.
+- Escolha Imagem, Vídeo ou Texto/Letreiro.
+- Para imagem/vídeo, selecione o arquivo do iPhone/computador.
+- Para texto, escreva título e mensagem.
+- Clique ADICIONAR À VITRINE.
+- Use SUBIR/DESCER, Ativo e Duração.
+- Clique PRÉVIA para conferir.
+- Quando estiver correto, clique BAIXAR PACOTE DA VITRINE (.zip).
+- O ZIP terá slides-config.json e as novas mídias dentro da pasta slides/.
+- No GitHub, envie os novos arquivos para slides/ e substitua slides-config.json na raiz.
 
-VENDEDORES
-- Use admin-vendedores.html, baixe vendedores.json e substitua no GitHub.
+VÍDEOS
+Vídeos tocam até terminar, mesmo acima de 30 segundos. MP4 é recomendado.
 
-RANKING
-- Use admin-ranking.html, baixe ranking.json e substitua no GitHub.
-
-VITRINE
-- Envie mídias para slides com nomes slide01.jpg, slide02.txt, slide03.mp4 etc.
-- Abra admin-painel.html > Vitrine Digital > Atualizar lista.
-- Ative/desative, mude ordem e duração de imagens/textos.
-- Vídeos executam até o fim; duração pode ficar 0.
-- Baixe slides-config.json e substitua no GitHub.
-
-SEGURANÇA
-- A Central não grava diretamente no GitHub e não pede token/senha.
-- O botão Salvar rascunho grava somente no navegador local.
+IMPORTANTE
+O navegador não publica diretamente no GitHub por segurança. A etapa final continua sendo enviar os arquivos baixados e fazer Commit changes.
