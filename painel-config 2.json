@@ -1,0 +1,53 @@
+{
+  "versao": 1,
+  "geral": {
+    "subtitulo": "VALOR DE CADA BILHETE - APENAS R$ 3,00",
+    "whatsapp": "5587981545492",
+    "instagram": "https://www.instagram.com/reinodasorteoficial?igsh=MWw4endwd3Joczc4dg==",
+    "cadastroUrl": "./cadastro.html",
+    "modoOrdem": "ranking"
+  },
+  "proximoSorteio": {
+    "ativo": true,
+    "titulo": "PRÓXIMO SORTEIO",
+    "imagem": "sorteio-atual.png",
+    "linhas": [
+      "🎁 R$ 3 Mil + 2 Giros de 100 ✅NÃO ACUMULA",
+      "🎟️ Bilhetes: R$ 3,00",
+      "📆 Sorteio: 15/08/2026"
+    ]
+  },
+  "ultimoGanhador": {
+    "ativo": true,
+    "titulo": "GANHADOR ATUAL",
+    "imagem": "ganhador-atual.png",
+    "linhas": [
+      "🏆Ganhador: ARLANDE - Jardim/CE",
+      "💰Prêmio: Moto Honda POP110i 2017",
+      "🍀Vendedor(a): Daiane Oliveira"
+    ]
+  },
+  "canalOficial": {
+    "ativo": true,
+    "whatsapp": "5587981545492",
+    "chamada": "COMPRE DIRETO PELO SITE"
+  },
+  "conferencia": {
+    "ativo": true,
+    "texto": "Perdeu o bilhete ou não acompanhou ao vivo? Consulte o resultado oficial do sorteio pelo QR Code ou botão abaixo.",
+    "qr": "qr-conferencia.png",
+    "url": "https://admin.reinodasorte.com.br/sorteio/WtBJf7Xb8M4Ej206v6suqtd0mioo9c7abAXzGxf6huc"
+  },
+  "vitrine": {
+    "ativa": true,
+    "repetir": true,
+    "duracaoImagem": 8,
+    "duracaoTexto": 30,
+    "pasta": "slides",
+    "github": {
+      "usuario": "bancareinodasorte-tech",
+      "repositorio": "vendedores-reino",
+      "branch": "main"
+    }
+  }
+}

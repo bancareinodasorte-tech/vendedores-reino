@@ -1,0 +1,6 @@
+PACOTE DA VITRINE DIGITAL - REINO DA SORTE
+
+1. Envie slides-config.json para a raiz do repositório vendedores-reino.
+2. Envie todos os arquivos que estão dentro da pasta slides/ deste pacote para a pasta slides/ no GitHub.
+3. Não apague as mídias antigas que ainda estão sendo usadas.
+4. Faça Commit changes e aguarde o GitHub Pages atualizar.

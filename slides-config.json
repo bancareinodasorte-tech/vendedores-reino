@@ -1,4 +1,26 @@
 {
-  "versao": 1,
-  "slides": []
+  "versao": 2,
+  "slides": [
+    {
+      "arquivo": "slide01.txt",
+      "ativo": true,
+      "ordem": 1,
+      "duracao": 0,
+      "estiloTexto": "fixo"
+    },
+    {
+      "arquivo": "slide03.mov",
+      "ativo": true,
+      "ordem": 2,
+      "duracao": 0,
+      "estiloTexto": "fixo"
+    },
+    {
+      "arquivo": "slide02.mp4",
+      "ativo": false,
+      "ordem": 3,
+      "duracao": 0,
+      "estiloTexto": "fixo"
+    }
+  ]
 }
