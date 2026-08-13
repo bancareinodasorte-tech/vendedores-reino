@@ -1,0 +1,43 @@
+CENTRAL ADMINISTRATIVA — REINO DA SORTE
+
+ARQUIVOS NOVOS/ATUALIZADOS
+- index.html
+- admin-painel.html
+- painel-config.json
+- slides-config.json
+- vendedores.json
+- admin-vendedores.html
+- admin-ranking.html
+
+INSTALAÇÃO
+1. Faça backup do repositório atual.
+2. Na raiz do repositório vendedores-reino, substitua index.html e envie os demais arquivos acima.
+3. Mantenha a pasta slides e a pasta images como já estão.
+4. Faça Commit changes.
+5. Aguarde o GitHub Pages publicar.
+6. Abra: https://bancareinodasorte-tech.github.io/vendedores-reino/admin-painel.html
+
+USO DIÁRIO
+1. Edite Próximo Sorteio, Último Ganhador, links ou Vitrine.
+2. Abra a aba Pré-visualização. Nada ali altera o site.
+3. Se estiver correto, baixe painel-config.json e/ou slides-config.json.
+4. Substitua somente esses JSONs no GitHub.
+5. Se a imagem mudou, substitua também o arquivo da imagem indicado no formulário.
+6. Faça Commit changes e aguarde a publicação.
+
+VENDEDORES
+- Use admin-vendedores.html, baixe vendedores.json e substitua no GitHub.
+
+RANKING
+- Use admin-ranking.html, baixe ranking.json e substitua no GitHub.
+
+VITRINE
+- Envie mídias para slides com nomes slide01.jpg, slide02.txt, slide03.mp4 etc.
+- Abra admin-painel.html > Vitrine Digital > Atualizar lista.
+- Ative/desative, mude ordem e duração de imagens/textos.
+- Vídeos executam até o fim; duração pode ficar 0.
+- Baixe slides-config.json e substitua no GitHub.
+
+SEGURANÇA
+- A Central não grava diretamente no GitHub e não pede token/senha.
+- O botão Salvar rascunho grava somente no navegador local.

@@ -605,7 +605,7 @@
   <main class="app">
     <div class="topbar">
       <div class="topbar-inner">
-        <a class="top-link left" href="https://wa.me/5587981545492?text=Olá!%20Quero%20comprar%20bilhetes%20🎟️%0A%0AQuantidade%20de%20bilhetes:%0ANome:%0ATelefone:" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+        <a class="top-link left" id="linkWhatsappTopo" href="https://wa.me/5587981545492?text=Olá!%20Quero%20comprar%20bilhetes%20🎟️%0A%0AQuantidade%20de%20bilhetes:%0ANome:%0ATelefone:" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
           <img src="icon-whatsapp.png" alt="WhatsApp">
           <span>WhatsApp</span>
         </a>
@@ -614,37 +614,37 @@
           <img class="zoomable-img" src="logo-reino.png" alt="Logo Reino da Sorte">
         </div>
 
-        <a class="top-link right" href="https://www.instagram.com/reinodasorteoficial?igsh=MWw4endwd3Joczc4dg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <a class="top-link right" id="linkInstagramTopo" href="https://www.instagram.com/reinodasorteoficial?igsh=MWw4endwd3Joczc4dg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
           <span>@Instagram</span>
           <img src="icon-instagram.png" alt="Instagram">
         </a>
       </div>
     </div>
 
-    <a class="cta-cadastro" href="./cadastro.html">QUERO SER VENDEDOR AUTORIZADO</a>
+    <a class="cta-cadastro" id="linkCadastro" href="./cadastro.html">QUERO SER VENDEDOR AUTORIZADO</a>
 
     <section class="hero">
       <div class="brand">REINO DA SORTE</div>
       <h1>PAINEL DE VENDEDORES</h1>
 
-      <div class="subtitle">VALOR DE CADA BILHETE - APENAS R$ 3,00</div>
+      <div class="subtitle" id="textoSubtitulo">VALOR DE CADA BILHETE - APENAS R$ 3,00</div>
     </section>
 
     <section class="highlights">
-      <article class="mini-card">
-        <div class="mini-title">PRÓXIMO SORTEIO</div>
-        <div class="mini-photo-wrap" data-zoom-src="sorteio-atual.png" data-zoom-title="Próximo sorteio"><img class="mini-photo zoomable-img" src="sorteio-atual.png" alt="Próximo sorteio" onerror="this.style.display='none';" /></div>
-        <div class="mini-sub">🎁 UMA MOTO HONDA POP 110i 2017</div>
-        <div class="mini-sub">🎟️ Bilhetes: R$ 3,00</div>
-        <div class="mini-sub">📆 Sorteio: 08/08/2026</div>
+      <article class="mini-card" id="cardProximoSorteio">
+        <div class="mini-title" id="proximoTitulo">PRÓXIMO SORTEIO</div>
+        <div class="mini-photo-wrap" id="proximoFotoWrap" data-zoom-src="sorteio-atual.png" data-zoom-title="Próximo sorteio"><img id="proximoFoto" class="mini-photo zoomable-img" src="sorteio-atual.png" alt="Próximo sorteio" onerror="this.style.display='none';" /></div>
+        <div class="mini-sub" id="proximoLinha1">🎁 UMA MOTO HONDA POP 110i 2017</div>
+        <div class="mini-sub" id="proximoLinha2">🎟️ Bilhetes: R$ 3,00</div>
+        <div class="mini-sub" id="proximoLinha3">📆 Sorteio: 08/08/2026</div>
       </article>
 
-      <article class="mini-card">
-        <div class="mini-title">ÚLTIMO GANHADOR</div>
-        <div class="mini-photo-wrap" data-zoom-src="ganhador-atual.png" data-zoom-title="Último ganhador"><img class="mini-photo zoomable-img" src="ganhador-atual.png" alt="Ganhador recente" onerror="this.style.display='none';" /></div>
-        <div class="mini-sub">🏆Ganhador: Adeilson de Jardim/CE</div>
-        <div class="mini-sub">💰Prêmio: Uma moto Jet-50c 2025</div>
-        <div class="mini-sub">🍀Vendedor(a): Tamilis mimi - Online</div>
+      <article class="mini-card" id="cardUltimoGanhador">
+        <div class="mini-title" id="ganhadorTitulo">ÚLTIMO GANHADOR</div>
+        <div class="mini-photo-wrap" id="ganhadorFotoWrap" data-zoom-src="ganhador-atual.png" data-zoom-title="Último ganhador"><img id="ganhadorFoto" class="mini-photo zoomable-img" src="ganhador-atual.png" alt="Ganhador recente" onerror="this.style.display='none';" /></div>
+        <div class="mini-sub" id="ganhadorLinha1">🏆Ganhador: Adeilson de Jardim/CE</div>
+        <div class="mini-sub" id="ganhadorLinha2">💰Prêmio: Uma moto Jet-50c 2025</div>
+        <div class="mini-sub" id="ganhadorLinha3">🍀Vendedor(a): Tamilis mimi - Online</div>
       </article>
       
     </section>
@@ -674,8 +674,8 @@
       <div class="office-divider"></div>
 
       <div class="office-right">
-        <div class="office-call">COMPRE DIRETO<br>PELO SITE</div>
-        <a class="office-btn" href="https://wa.me/5587981545492?text=Olá!%20Quero%20comprar%20bilhetes%20🎟️%0A%0A🔢Quantidade:%0A✍️Nome:%0A📱Telefone:" target="_blank" rel="noopener noreferrer">
+        <div class="office-call" id="textoCanalOficial">COMPRE DIRETO<br>PELO SITE</div>
+        <a class="office-btn" id="linkCanalOficial" href="https://wa.me/5587981545492?text=Olá!%20Quero%20comprar%20bilhetes%20🎟️%0A%0A🔢Quantidade:%0A✍️Nome:%0A📱Telefone:" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M19.11 17.24c-.29-.15-1.69-.83-1.95-.92-.26-.1-.45-.15-.64.15-.19.29-.73.92-.9 1.11-.16.19-.33.22-.62.07-.29-.15-1.2-.44-2.28-1.39-.84-.75-1.4-1.66-1.56-1.95-.16-.29-.02-.44.12-.58.12-.12.29-.33.43-.49.14-.16.19-.29.29-.49.1-.19.05-.36-.02-.51-.07-.15-.64-1.55-.88-2.12-.23-.55-.47-.47-.64-.48h-.55c-.19 0-.49.07-.75.36-.26.29-.98.95-.98 2.31s1 2.67 1.14 2.86c.14.19 1.96 2.99 4.76 4.19.67.29 1.19.46 1.6.59.67.21 1.28.18 1.77.11.54-.08 1.69-.69 1.93-1.35.24-.66.24-1.22.17-1.34-.07-.12-.26-.19-.55-.34z"/><path fill="currentColor" d="M16.02 3.2c-7.05 0-12.76 5.7-12.76 12.73 0 2.24.59 4.43 1.7 6.35L3.2 28.8l6.72-1.75a12.8 12.8 0 0 0 6.1 1.55h.01c7.04 0 12.77-5.7 12.77-12.73A12.75 12.75 0 0 0 16.02 3.2zm0 23.25h-.01c-1.92 0-3.8-.52-5.45-1.51l-.39-.23-3.99 1.04 1.07-3.89-.25-.4a10.54 10.54 0 0 1-1.63-5.61c0-5.83 4.76-10.58 10.62-10.58 2.83 0 5.48 1.1 7.48 3.09a10.47 10.47 0 0 1 3.11 7.49c0 5.83-4.77 10.58-10.56 10.58z"/></svg>
           <span>COMPRAR AQUI</span>
         </a>
@@ -687,15 +687,15 @@
 
 <section class="conference-card" id="conferencia-oficial">
   <h2>🔎 Conferência Oficial</h2>
-  <p>Perdeu o bilhete ou não acompanhou ao vivo? Consulte o resultado oficial do sorteio pelo QR Code ou botão abaixo.</p>
+  <p id="conferenciaTexto">Perdeu o bilhete ou não acompanhou ao vivo? Consulte o resultado oficial do sorteio pelo QR Code ou botão abaixo.</p>
   <div class="conference-content">
     <div class="conference-qr-wrap">
-      <img class="conference-qr zoomable-img" src="qr-conferencia.png" alt="QR Code para conferência oficial do resultado">
+      <img id="conferenciaQr" class="conference-qr zoomable-img" src="qr-conferencia.png" alt="QR Code para conferência oficial do resultado">
     </div>
     <div class="conference-actions">
       <span class="conference-seal">✅ Resultado oficial e seguro</span>
-      <a class="conference-btn" href="https://admin.reinodasorte.com.br/sorteio/3qiKGzkQytpPtzZSdcc8BzXHmk8CKCStKySsHB3-Q-0" target="_blank" rel="noopener">CONFERIR RESULTADO</a>
-      <button class="conference-copy" type="button" data-copy-link="https://admin.reinodasorte.com.br/sorteio/3qiKGzkQytpPtzZSdcc8BzXHmk8CKCStKySsHB3-Q-0">COPIAR LINK</button>
+      <a class="conference-btn" id="conferenciaLink" href="https://admin.reinodasorte.com.br/sorteio/3qiKGzkQytpPtzZSdcc8BzXHmk8CKCStKySsHB3-Q-0" target="_blank" rel="noopener">CONFERIR RESULTADO</a>
+      <button class="conference-copy" id="conferenciaCopiar" type="button" data-copy-link="https://admin.reinodasorte.com.br/sorteio/3qiKGzkQytpPtzZSdcc8BzXHmk8CKCStKySsHB3-Q-0">COPIAR LINK</button>
       <div class="conference-note">Use o mesmo QR Code impresso no bilhete. Link oficial do Reino da Sorte.</div>
     </div>
   </div>
@@ -712,7 +712,7 @@
 
   <script>
     "use strict";
-    const MODO_ORDEM = "ranking"; // "ranking" ou "manual"
+    let MODO_ORDEM = "ranking"; // carregado também por painel-config.json
     const CACHE_VERSION = Date.now();
     const FOTO_PADRAO = "images/vendedora-semfoto.jpg";
     /* ==========================================================
@@ -733,6 +733,64 @@
         branch: "main"
       }
     };
+    let PAINEL_CONFIG = {};
+    let SLIDES_CONFIG = {slides:[]};
+
+    function textoSeguro(valor, fallback="") { return String(valor ?? fallback); }
+    function setTexto(id, valor){ const el=document.getElementById(id); if(el && valor!==undefined && valor!==null) el.textContent=String(valor); }
+    function setImagem(id, wrapId, caminho){
+      const img=document.getElementById(id), wrap=document.getElementById(wrapId);
+      if(!img || !caminho) return;
+      const src=cacheImg(String(caminho));
+      img.src=src; img.style.display="block";
+      if(wrap) wrap.setAttribute("data-zoom-src",src);
+    }
+    function linkWhatsapp(numero){
+      const limpo=limparTelefone(numero);
+      return `https://wa.me/${limpo}?text=${encodeURIComponent(`Olá! Quero comprar bilhetes\n\nQuantidade:\nNome:\nTelefone:`)}`;
+    }
+    async function carregarJsonOpcional(arquivo, fallback){
+      try{const r=await fetch(`./${arquivo}?nocache=${Date.now()}`,{cache:"no-store"}); if(!r.ok) throw new Error(`HTTP ${r.status}`); return await r.json();}
+      catch(e){console.warn(`${arquivo} não carregou; usando configuração padrão.`,e); return fallback;}
+    }
+    function aplicarPainelConfig(cfg){
+      PAINEL_CONFIG=cfg||{};
+      const geral=cfg.geral||{}, prox=cfg.proximoSorteio||{}, gan=cfg.ultimoGanhador||{}, canal=cfg.canalOficial||{}, conf=cfg.conferencia||{}, vit=cfg.vitrine||{};
+      if(geral.modoOrdem) MODO_ORDEM=geral.modoOrdem;
+      setTexto("textoSubtitulo",geral.subtitulo);
+      const topWa=document.getElementById("linkWhatsappTopo"); if(topWa&&geral.whatsapp) topWa.href=linkWhatsapp(geral.whatsapp);
+      const topIg=document.getElementById("linkInstagramTopo"); if(topIg&&geral.instagram) topIg.href=geral.instagram;
+      const cad=document.getElementById("linkCadastro"); if(cad&&geral.cadastroUrl) cad.href=geral.cadastroUrl;
+
+      const cardP=document.getElementById("cardProximoSorteio"); if(cardP) cardP.style.display=prox.ativo===false?"none":"flex";
+      setTexto("proximoTitulo",prox.titulo); setImagem("proximoFoto","proximoFotoWrap",prox.imagem);
+      (prox.linhas||[]).slice(0,3).forEach((v,i)=>setTexto(`proximoLinha${i+1}`,v));
+
+      const cardG=document.getElementById("cardUltimoGanhador"); if(cardG) cardG.style.display=gan.ativo===false?"none":"flex";
+      setTexto("ganhadorTitulo",gan.titulo); setImagem("ganhadorFoto","ganhadorFotoWrap",gan.imagem);
+      (gan.linhas||[]).slice(0,3).forEach((v,i)=>setTexto(`ganhadorLinha${i+1}`,v));
+
+      const office=document.getElementById("officeCard"); if(office) office.style.display=canal.ativo===false?"none":"grid";
+      if(canal.chamada){ const el=document.getElementById("textoCanalOficial"); if(el) el.innerHTML=String(canal.chamada).replace(/\n/g,"<br>"); }
+      const linkCanal=document.getElementById("linkCanalOficial"); if(linkCanal&&canal.whatsapp) linkCanal.href=linkWhatsapp(canal.whatsapp);
+
+      const cbox=document.getElementById("conferencia-oficial"); if(cbox) cbox.style.display=conf.ativo===false?"none":"block";
+      setTexto("conferenciaTexto",conf.texto); if(conf.qr) document.getElementById("conferenciaQr").src=cacheImg(conf.qr);
+      const cl=document.getElementById("conferenciaLink"); if(cl&&conf.url) cl.href=conf.url;
+      const cc=document.getElementById("conferenciaCopiar"); if(cc&&conf.url) cc.setAttribute("data-copy-link",conf.url);
+
+      if(Object.prototype.hasOwnProperty.call(vit,"ativa")) VITRINE_DIGITAL.ativa=vit.ativa!==false;
+      if(vit.repetir!==undefined) VITRINE_DIGITAL.repetir=vit.repetir!==false;
+      if(Number(vit.duracaoImagem)>0) VITRINE_DIGITAL.duracaoImagem=Number(vit.duracaoImagem);
+      if(Number(vit.duracaoTexto)>0) VITRINE_DIGITAL.duracaoTexto=Number(vit.duracaoTexto);
+      if(vit.pasta) VITRINE_DIGITAL.pasta=vit.pasta;
+      if(vit.github){Object.assign(VITRINE_DIGITAL.github,vit.github);}
+    }
+    async function carregarConfiguracoes(){
+      const cfg=await carregarJsonOpcional("painel-config.json",{}); aplicarPainelConfig(cfg);
+      SLIDES_CONFIG=await carregarJsonOpcional("slides-config.json",{slides:[]});
+    }
+
     const mensagem = encodeURIComponent(`Olá! Quero comprar bilhetes
 
 Quantidade:
@@ -792,7 +850,11 @@ Telefone:`);
       const resposta=await fetch(api,{cache:"no-store",headers:{Accept:"application/vnd.github+json"}});
       if(!resposta.ok)throw new Error(`Não foi possível ler a pasta slides (HTTP ${resposta.status})`);
       const arquivos=(await resposta.json()).filter(a=>a&&a.type==="file"&&/^slide\s*\d+/i.test(a.name||""));
-      const slides=arquivos.map(a=>({nome:a.name,url:a.download_url,tipo:tipoDoSlide(a.name),numero:numeroDoSlide(a.name)})).filter(s=>s.tipo).sort((a,b)=>a.numero-b.numero||a.nome.localeCompare(b.nome,"pt-BR"));
+      const regras=new Map(((SLIDES_CONFIG&&Array.isArray(SLIDES_CONFIG.slides))?SLIDES_CONFIG.slides:[]).map(s=>[String(s.arquivo||"").toLowerCase(),s]));
+      const slides=arquivos.map(a=>{
+        const regra=regras.get(String(a.name||"").toLowerCase())||{};
+        return {nome:a.name,url:a.download_url,tipo:tipoDoSlide(a.name),numero:numeroDoSlide(a.name),ativo:regra.ativo!==false,ordem:Number(regra.ordem)||numeroDoSlide(a.name),duracao:Number(regra.duracao)||0};
+      }).filter(s=>s.tipo&&s.ativo).sort((a,b)=>a.ordem-b.ordem||a.numero-b.numero||a.nome.localeCompare(b.nome,"pt-BR"));
       for(const slide of slides){if(slide.tipo==="texto"){try{const r=await fetch(`${slide.url}?v=${Date.now()}`,{cache:"no-store"});slide.texto=(await r.text()).trim()}catch{slide.texto=""}}}
       return slides;
     }
@@ -822,7 +884,7 @@ Telefone:`);
       function mostrar(indice){
         limpar();atual=indice;els.forEach((e,i)=>e.classList.toggle("ativo",i===indice));const slide=slides[indice],el=els[indice],video=el.querySelector("video");if(status)status.textContent=`${indice+1} de ${slides.length} • ${slide.tipo.toUpperCase()}`;
         if(video){video.currentTime=0;video.muted=muted;const iniciarVideo=()=>{const dur=Number.isFinite(video.duration)&&video.duration>0?video.duration:30;prepararBarra(indice,dur);video.play().catch(()=>{});video.onended=()=>ir(indice+1)};if(video.readyState>=1)iniciarVideo();else video.onloadedmetadata=iniciarVideo;video.onerror=()=>{prepararBarra(indice,8);timer=setTimeout(()=>ir(indice+1),8000)}}
-        else{const dur=slide.tipo==="texto"?VITRINE_DIGITAL.duracaoTexto:VITRINE_DIGITAL.duracaoImagem;prepararBarra(indice,dur);timer=setTimeout(()=>ir(indice+1),dur*1000)}
+        else{const dur=slide.duracao>0?slide.duracao:(slide.tipo==="texto"?VITRINE_DIGITAL.duracaoTexto:VITRINE_DIGITAL.duracaoImagem);prepararBarra(indice,dur);timer=setTimeout(()=>ir(indice+1),dur*1000)}
       }
       function ir(n){if(n>=slides.length){if(!VITRINE_DIGITAL.repetir){limpar();return}n=0}if(n<0)n=slides.length-1;mostrar(n)}
       const anterior=()=>ir(atual-1),proximo=()=>ir(atual+1);
@@ -832,7 +894,13 @@ Telefone:`);
       document.addEventListener("visibilitychange",()=>{const v=els[atual]&&els[atual].querySelector("video");if(document.hidden){clearTimeout(timer);if(v)v.pause()}else mostrar(atual)});
       mostrar(0)
     }
-    document.querySelectorAll("img[src]").forEach(img=>{const o=img.getAttribute("src");if(o)img.src=cacheImg(o)});const imgSorteio=document.querySelector(".highlights .mini-card:first-child .mini-photo"),office=document.getElementById("officeCard");if(imgSorteio&&office)office.style.setProperty("--office-bg",`url("${imgSorteio.src}")`);iniciarVitrine();iniciarPainelVendedores();
+    async function iniciarAplicacao(){
+      await carregarConfiguracoes();
+      document.querySelectorAll("img[src]").forEach(img=>{const o=img.getAttribute("src");if(o&&!/[?&]v=/.test(o))img.src=cacheImg(o)});
+      const imgSorteio=document.getElementById("proximoFoto"),office=document.getElementById("officeCard");if(imgSorteio&&office)office.style.setProperty("--office-bg",`url("${imgSorteio.src}")`);
+      iniciarVitrine(); iniciarPainelVendedores();
+    }
+    iniciarAplicacao();
   </script>
 
 <div class="image-lightbox" id="imageLightbox" aria-hidden="true">

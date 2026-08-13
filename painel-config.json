@@ -1,0 +1,53 @@
+{
+  "versao": 1,
+  "geral": {
+    "subtitulo": "VALOR DE CADA BILHETE - APENAS R$ 3,00",
+    "whatsapp": "5587981545492",
+    "instagram": "https://www.instagram.com/reinodasorteoficial?igsh=MWw4endwd3Joczc4dg==",
+    "cadastroUrl": "./cadastro.html",
+    "modoOrdem": "ranking"
+  },
+  "proximoSorteio": {
+    "ativo": true,
+    "titulo": "PRÓXIMO SORTEIO",
+    "imagem": "sorteio-atual.png",
+    "linhas": [
+      "🎁 UMA MOTO HONDA POP 110i 2017",
+      "🎟️ Bilhetes: R$ 3,00",
+      "📆 Sorteio: 08/08/2026"
+    ]
+  },
+  "ultimoGanhador": {
+    "ativo": true,
+    "titulo": "ÚLTIMO GANHADOR",
+    "imagem": "ganhador-atual.png",
+    "linhas": [
+      "🏆Ganhador: Adeilson de Jardim/CE",
+      "💰Prêmio: Uma moto Jet-50c 2025",
+      "🍀Vendedor(a): Tamilis mimi - Online"
+    ]
+  },
+  "canalOficial": {
+    "ativo": true,
+    "whatsapp": "5587981545492",
+    "chamada": "COMPRE DIRETO\nPELO SITE"
+  },
+  "conferencia": {
+    "ativo": true,
+    "texto": "Perdeu o bilhete ou não acompanhou ao vivo? Consulte o resultado oficial do sorteio pelo QR Code ou botão abaixo.",
+    "qr": "qr-conferencia.png",
+    "url": "https://admin.reinodasorte.com.br/sorteio/3qiKGzkQytpPtzZSdcc8BzXHmk8CKCStKySsHB3-Q-0"
+  },
+  "vitrine": {
+    "ativa": true,
+    "repetir": true,
+    "duracaoImagem": 8,
+    "duracaoTexto": 30,
+    "pasta": "slides",
+    "github": {
+      "usuario": "bancareinodasorte-tech",
+      "repositorio": "vendedores-reino",
+      "branch": "main"
+    }
+  }
+}
