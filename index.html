@@ -714,6 +714,11 @@
     "use strict";
     let MODO_ORDEM = "ranking"; // carregado também por painel-config.json
     const CACHE_VERSION = Date.now();
+    function urlComCacheConfig(caminho){
+      const v=String(caminho||"").trim();
+      if(!v)return v;
+      return v+(v.includes("?")?"&":"?")+"v="+Date.now();
+    }
     const FOTO_PADRAO = "images/vendedora-semfoto.jpg";
     /* ==========================================================
        CENTRAL DE MÍDIAS AUTOMÁTICA
@@ -858,6 +863,50 @@ Telefone:`);
       for(const slide of slides){if(slide.tipo==="texto"){try{const r=await fetch(`${slide.url}?v=${Date.now()}`,{cache:"no-store"});slide.texto=(await r.text()).trim()}catch{slide.texto=""}}}
       return slides;
     }
+    
+    async function aplicarPainelConfig(){
+      try{
+        const r=await fetch(`./painel-config.json?nocache=${Date.now()}`,{cache:"no-store"});
+        if(!r.ok) return;
+        const c=await r.json();
+
+        const cards=document.querySelectorAll(".highlights .mini-card");
+        const prox=cards[0], ganh=cards[1];
+
+        if(prox && c.proximoSorteio){
+          const p=c.proximoSorteio;
+          const img=prox.querySelector(".mini-photo");
+          const wrap=prox.querySelector(".mini-photo-wrap");
+          if(img && p.imagem){
+            const u=urlComCacheConfig(p.imagem);
+            img.src=u;
+            if(wrap) wrap.setAttribute("data-zoom-src",u);
+          }
+          const subs=prox.querySelectorAll(".mini-sub");
+          if(subs[0] && p.principal!=null) subs[0].textContent=p.principal;
+          if(subs[1] && p.bilhetes!=null) subs[1].textContent=p.bilhetes;
+          if(subs[2] && p.data!=null) subs[2].textContent=p.data;
+        }
+
+        if(ganh && c.ganhadorAtual){
+          const g=c.ganhadorAtual;
+          const img=ganh.querySelector(".mini-photo");
+          const wrap=ganh.querySelector(".mini-photo-wrap");
+          if(img && g.imagem){
+            const u=urlComCacheConfig(g.imagem);
+            img.src=u;
+            if(wrap) wrap.setAttribute("data-zoom-src",u);
+          }
+          const title=ganh.querySelector(".mini-title");
+          if(title && g.titulo) title.textContent=g.titulo;
+          const subs=ganh.querySelectorAll(".mini-sub");
+          if(subs[0] && g.ganhador!=null) subs[0].textContent=g.ganhador;
+          if(subs[1] && g.premio!=null) subs[1].textContent=g.premio;
+          if(subs[2] && g.vendedor!=null) subs[2].textContent=g.vendedor;
+        }
+      }catch(e){ console.warn("painel-config.json indisponível",e); }
+    }
+
     async function iniciarVitrine(){
       const box=document.getElementById("vitrineDigital"),palco=document.getElementById("vitrinePalco"),progs=document.getElementById("vitrineProgressos"),btnSom=document.getElementById("vitrineSom"),status=document.getElementById("vitrineStatus");
       if(!box||!palco||!VITRINE_DIGITAL.ativa){if(box)box.style.display="none";return}
