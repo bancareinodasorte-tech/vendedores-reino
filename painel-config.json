@@ -49,8 +49,5 @@
       "repositorio": "vendedores-reino",
       "branch": "main"
     }
-  },
-  "ganhadorAtual": {
-    "imagem": "ganhador-atual.jpeg"
   }
 }
