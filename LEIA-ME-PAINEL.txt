@@ -1,0 +1,7 @@
+PACOTE DO PAINEL - REINO DA SORTE
+
+1. Descompacte este ZIP no iPhone.
+2. No GitHub, substitua painel-config.json.
+3. Se existirem no pacote, envie também sorteio-atual.* e ganhador-atual.* para a raiz do repositório.
+4. Os nomes dos arquivos precisam permanecer exatamente como estão.
+5. Faça Commit changes e aguarde o GitHub Pages atualizar.
