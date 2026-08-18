@@ -2,7 +2,7 @@
   "versao": 1,
   "geral": {
     "subtitulo": "VALOR DE CADA BILHETE - APENAS R$ 3,00",
-    "whatsapp": "5587981545492",
+    "whatsapp": "5588988072177",
     "instagram": "https://www.instagram.com/reinodasorteoficial?igsh=MWw4endwd3Joczc4dg==",
     "cadastroUrl": "./cadastro.html",
     "modoOrdem": "ranking"
@@ -12,9 +12,9 @@
     "titulo": "PRÓXIMO SORTEIO",
     "imagem": "sorteio-atual.png",
     "linhas": [
-      "🎁 R$ 3 Mil + 2 Giros de 100",
+      "🎁 R$ 1.000,00 + 2 Giros de 100,00",
       "🎟️ Bilhetes: R$ 3,00",
-      "📆 Sorteio: 15/08/2026"
+      "📆 Sorteio: 19/08/2026"
     ]
   },
   "ultimoGanhador": {
@@ -22,21 +22,21 @@
     "titulo": "GANHADOR ATUAL",
     "imagem": "ganhador-atual.jpeg",
     "linhas": [
-      "🏆Ganhador: Arlande - Jardim/CE",
-      "💰Prêmio: 1 Moto Honda POP110i 2017",
-      "🍀Vendedor(a): Daiane Oliveira"
+      "🏆Ganhador: Fátima Silva - Jardim/CE",
+      "💰Prêmio: R$ 3.000,00",
+      "🍀Vendedor(a): Fátima Silva - Online"
     ]
   },
   "canalOficial": {
     "ativo": true,
-    "whatsapp": "5587981545492",
+    "whatsapp": "5588988072177",
     "chamada": "COMPRE DIRETO PELO SITE"
   },
   "conferencia": {
     "ativo": true,
     "texto": "Perdeu o bilhete ou não acompanhou ao vivo? Consulte o resultado oficial do sorteio pelo QR Code ou botão abaixo.",
     "qr": "qr-conferencia.png",
-    "url": "https://admin.reinodasorte.com.br/sorteio/WtBJf7Xb8M4Ej206v6suqtd0mioo9c7abAXzGxf6huc"
+    "url": "https://admin.reinodasorte.com.br/sorteio/65_4byAhMfNVOnM8jBTFIBFWKXTHZA41DFvyDu8G6QM"
   },
   "vitrine": {
     "ativa": true,

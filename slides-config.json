@@ -2,10 +2,10 @@
   "versao": 2,
   "slides": [
     {
-      "arquivo": "slide06.png",
+      "arquivo": "slide06.mov",
       "ativo": true,
       "ordem": 1,
-      "duracao": 10,
+      "duracao": 0,
       "estiloTexto": "fixo"
     },
     {
@@ -31,14 +31,14 @@
     },
     {
       "arquivo": "slide04.jpeg",
-      "ativo": true,
+      "ativo": false,
       "ordem": 5,
       "duracao": 10,
       "estiloTexto": "fixo"
     },
     {
       "arquivo": "slide05.jpeg",
-      "ativo": true,
+      "ativo": false,
       "ordem": 6,
       "duracao": 10,
       "estiloTexto": "fixo"
