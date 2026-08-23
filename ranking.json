@@ -1,269 +1,304 @@
 {
-  "sorteio": "R$ 1.000,00 + 2 Giros de R$ 100,00",
-  "dataInicial": "2026-08-17",
-  "dataSorteio": "2026-08-19",
-  "ciclo": "00-2-giros-de_2026-08-17_2026-08-19",
-  "atualizadoEm": "18/08/2026, 16:37:02",
-  "diaAtualizacao": "2026-08-18",
-  "totalVendidoCalculado": 117,
-  "totalVendidoUsadoNoPercentual": 117,
+  "sorteio": "R$ 1.500,00 - SABADOUUUU > NAO ACUMULATIVO <",
+  "dataInicial": "2026-08-23",
+  "dataSorteio": "2026-08-23",
+  "ciclo": "00-sabadouuuu-nao-acumulativo_2026-08-23_2026-08-23",
+  "atualizadoEm": "22/08/2026, 21:43:07",
+  "diaAtualizacao": "2026-08-23",
+  "totalVendidoCalculado": 1201,
+  "totalVendidoUsadoNoPercentual": 1201,
   "ranking": [
-    {
-      "id": "alice",
-      "nome": "Alice Nabor",
-      "posicao": 1,
-      "percentual": 17.9,
-      "participacao": "17.9%"
-    },
-    {
-      "id": "macilda",
-      "nome": "Macilda",
-      "posicao": 2,
-      "percentual": 12,
-      "participacao": "12.0%"
-    },
     {
       "id": "tamiles",
       "nome": "Tamiles Mimi",
+      "posicao": 1,
+      "percentual": 23.6,
+      "participacao": "23.6%"
+    },
+    {
+      "id": "alice",
+      "nome": "Alice Nabor",
+      "posicao": 2,
+      "percentual": 15.5,
+      "participacao": "15.5%"
+    },
+    {
+      "id": "daiane-oliveira",
+      "nome": "Daiane Oliveira - M",
       "posicao": 3,
-      "percentual": 12,
-      "participacao": "12.0%"
-    },
-    {
-      "id": "adna-novaes",
-      "nome": "Ádna Novaes",
-      "posicao": 4,
-      "percentual": 8.5,
-      "participacao": "8.5%"
-    },
-    {
-      "id": "ana-kaline",
-      "nome": "Ana Kaline",
-      "posicao": 5,
-      "percentual": 8.5,
-      "participacao": "8.5%"
-    },
-    {
-      "id": "damiana-goncalves",
-      "nome": "Damiana Gonçalves",
-      "posicao": 6,
-      "percentual": 7.7,
-      "participacao": "7.7%"
-    },
-    {
-      "id": "wedna-sitio-bom-sucesso",
-      "nome": "Wedna - Sítio Bom Sucesso",
-      "posicao": 7,
-      "percentual": 6.8,
-      "participacao": "6.8%"
-    },
-    {
-      "id": "taina",
-      "nome": "Taína Fideles",
-      "posicao": 8,
-      "percentual": 5.1,
-      "participacao": "5.1%"
-    },
-    {
-      "id": "aline",
-      "nome": "Aline dos Maroto",
-      "posicao": 9,
-      "percentual": 4.3,
-      "participacao": "4.3%"
-    },
-    {
-      "id": "tailane",
-      "nome": "Tailane",
-      "posicao": 10,
-      "percentual": 4.3,
-      "participacao": "4.3%"
-    },
-    {
-      "id": "fatima-silva",
-      "nome": "Fátima Silva",
-      "posicao": 11,
-      "percentual": 3.4,
-      "participacao": "3.4%"
+      "percentual": 11.6,
+      "participacao": "11.6%"
     },
     {
       "id": "iraneide-vidal",
       "nome": "Iraneide Vidal",
-      "posicao": 12,
-      "percentual": 3.4,
-      "participacao": "3.4%"
+      "posicao": 4,
+      "percentual": 8.4,
+      "participacao": "8.4%"
     },
     {
-      "id": "keke",
-      "nome": "Keke",
-      "posicao": 13,
-      "percentual": 3.4,
-      "participacao": "3.4%"
+      "id": "jamilles",
+      "nome": "Jamilles Izidório",
+      "posicao": 5,
+      "percentual": 6.2,
+      "participacao": "6.2%"
+    },
+    {
+      "id": "aline",
+      "nome": "Aline dos Maroto",
+      "posicao": 6,
+      "percentual": 4.1,
+      "participacao": "4.1%"
     },
     {
       "id": "nadja",
       "nome": "Nadja",
+      "posicao": 7,
+      "percentual": 3.4,
+      "participacao": "3.4%"
+    },
+    {
+      "id": "wedna-sitio-bom-sucesso",
+      "nome": "Wedna - Sítio Bom Sucesso",
+      "posicao": 8,
+      "percentual": 3.4,
+      "participacao": "3.4%"
+    },
+    {
+      "id": "damiana-goncalves",
+      "nome": "Damiana Gonçalves",
+      "posicao": 9,
+      "percentual": 3.3,
+      "participacao": "3.3%"
+    },
+    {
+      "id": "fatima-silva",
+      "nome": "Fátima Silva",
+      "posicao": 10,
+      "percentual": 2.9,
+      "participacao": "2.9%"
+    },
+    {
+      "id": "marcia",
+      "nome": "Márcia Silva",
+      "posicao": 11,
+      "percentual": 2.5,
+      "participacao": "2.5%"
+    },
+    {
+      "id": "natali-carnauba-jati",
+      "nome": "Natali (Carnauba-Jati) Online",
+      "posicao": 12,
+      "percentual": 2.5,
+      "participacao": "2.5%"
+    },
+    {
+      "id": "tailane",
+      "nome": "Tailane",
+      "posicao": 13,
+      "percentual": 2.4,
+      "participacao": "2.4%"
+    },
+    {
+      "id": "taina",
+      "nome": "Taína Fideles",
       "posicao": 14,
-      "percentual": 2.6,
-      "participacao": "2.6%"
+      "percentual": 2.3,
+      "participacao": "2.3%"
+    },
+    {
+      "id": "adna-novaes",
+      "nome": "Ádna Novaes",
+      "posicao": 15,
+      "percentual": 2.2,
+      "participacao": "2.2%"
+    },
+    {
+      "id": "macilda",
+      "nome": "Macilda",
+      "posicao": 16,
+      "percentual": 2.2,
+      "participacao": "2.2%"
+    },
+    {
+      "id": "keke",
+      "nome": "Keke",
+      "posicao": 17,
+      "percentual": 1.6,
+      "participacao": "1.6%"
+    },
+    {
+      "id": "ana-kaline",
+      "nome": "Ana Kaline",
+      "posicao": 18,
+      "percentual": 0.8,
+      "participacao": "0.8%"
+    },
+    {
+      "id": "marcos",
+      "nome": "Marcos",
+      "posicao": 19,
+      "percentual": 0.7,
+      "participacao": "0.7%"
+    },
+    {
+      "id": "gisa-sousa",
+      "nome": "Gisa Sousa - Online",
+      "posicao": 20,
+      "percentual": 0.1,
+      "participacao": "0.1%"
+    },
+    {
+      "id": "maria-luana",
+      "nome": "Maria Luana",
+      "posicao": 21,
+      "percentual": 0.1,
+      "participacao": "0.1%"
     },
     {
       "id": "ana-raissa",
       "nome": "Ana Raíssa",
-      "posicao": 15,
+      "posicao": 22,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "beta",
       "nome": "Beta",
-      "posicao": 16,
+      "posicao": 23,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "caeline",
       "nome": "Caeline",
-      "posicao": 17,
+      "posicao": 24,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "carro-som",
       "nome": "Carro de Som - Reino da Sorte",
-      "posicao": 18,
-      "percentual": 0,
-      "participacao": "0.0%"
-    },
-    {
-      "id": "daiane-oliveira",
-      "nome": "Daiane Oliveira - M",
-      "posicao": 19,
+      "posicao": 25,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "dan",
       "nome": "Dam",
-      "posicao": 20,
+      "posicao": 26,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "elaine",
       "nome": "Elaine Mariano",
-      "posicao": 21,
+      "posicao": 27,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "eliane-sitio-bom-sucesso",
       "nome": "Eliane - Sítio Bom Sucesso",
-      "posicao": 22,
+      "posicao": 28,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "fabiola-de-porteiras",
       "nome": "Fabíola de Porteiras",
-      "posicao": 23,
+      "posicao": 29,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "giovanna",
       "nome": "Giovanna",
-      "posicao": 24,
+      "posicao": 30,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "ivina",
       "nome": "Ivina",
-      "posicao": 25,
+      "posicao": 31,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
-      "id": "jamilles",
-      "nome": "Jamilles Izidório",
-      "posicao": 26,
+      "id": "ivoneide-silva",
+      "nome": "Ivoneide Silva - vendas online",
+      "posicao": 32,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "jessica",
       "nome": "Jéssica Ferreira",
-      "posicao": 27,
+      "posicao": 33,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "kyara",
       "nome": "Kyara",
-      "posicao": 28,
-      "percentual": 0,
-      "participacao": "0.0%"
-    },
-    {
-      "id": "marcia",
-      "nome": "Márcia Silva",
-      "posicao": 29,
-      "percentual": 0,
-      "participacao": "0.0%"
-    },
-    {
-      "id": "marcos",
-      "nome": "Marcos",
-      "posicao": 30,
-      "percentual": 0,
-      "participacao": "0.0%"
-    },
-    {
-      "id": "maria-luana",
-      "nome": "Maria Luana",
-      "posicao": 31,
+      "posicao": 34,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "maria",
       "nome": "Maria Oliveira",
-      "posicao": 32,
+      "posicao": 35,
+      "percentual": 0,
+      "participacao": "0.0%"
+    },
+    {
+      "id": "reino-da-sorte-adm",
+      "nome": "REINO DA SORTE ADM",
+      "posicao": 36,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "samara",
       "nome": "Samara",
-      "posicao": 33,
+      "posicao": 37,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "taty",
       "nome": "Taty",
-      "posicao": 34,
+      "posicao": 38,
+      "percentual": 0,
+      "participacao": "0.0%"
+    },
+    {
+      "id": "escritorio-rua-laiane",
+      "nome": "VENDAS ESCRITORIO-RUA - LAIANE",
+      "posicao": 39,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "on-line-escritorio-laiane",
       "nome": "VENDAS ON-LINE ESCRITORIO- LAIANE",
-      "posicao": 35,
+      "posicao": 40,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "viviane",
       "nome": "Viviane - online",
-      "posicao": 36,
+      "posicao": 41,
       "percentual": 0,
       "participacao": "0.0%"
     },
     {
       "id": "yohani",
       "nome": "Yohani",
-      "posicao": 37,
+      "posicao": 42,
       "percentual": 0,
       "participacao": "0.0%"
     }
