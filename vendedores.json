@@ -40,7 +40,7 @@
     ]
   },
   {
-    "ativo": true,
+    "ativo": false,
     "ordemManual": 4,
     "promoverPara": null,
     "id": "jamilles",
@@ -342,7 +342,7 @@
     "promoverPara": null,
     "id": "naely",
     "nome": "Naely",
-    "telefone": "8855993051506",
+    "telefone": "5588993051506",
     "foto": "images/naely.jpg",
     "aliases": []
   },
