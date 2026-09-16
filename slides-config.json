@@ -3,28 +3,28 @@
   "slides": [
     {
       "arquivo": "slide06.mov",
-      "ativo": true,
+      "ativo": false,
       "ordem": 1,
       "duracao": 0,
       "estiloTexto": "fixo"
     },
     {
       "arquivo": "slide01.txt",
-      "ativo": false,
+      "ativo": true,
       "ordem": 2,
       "duracao": 0,
       "estiloTexto": "fixo"
     },
     {
       "arquivo": "slide02.mp4",
-      "ativo": true,
+      "ativo": false,
       "ordem": 3,
       "duracao": 0,
       "estiloTexto": "fixo"
     },
     {
       "arquivo": "slide03.mov",
-      "ativo": true,
+      "ativo": false,
       "ordem": 4,
       "duracao": 0,
       "estiloTexto": "fixo"
@@ -41,6 +41,13 @@
       "ativo": false,
       "ordem": 6,
       "duracao": 10,
+      "estiloTexto": "fixo"
+    },
+    {
+      "arquivo": "slide07.png",
+      "ativo": true,
+      "ordem": 7,
+      "duracao": 30,
       "estiloTexto": "fixo"
     }
   ]

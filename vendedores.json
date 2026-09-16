@@ -335,5 +335,25 @@
       "daiane oliveira",
       "daiane oliveira online"
     ]
+  },
+  {
+    "ativo": true,
+    "ordemManual": 27,
+    "promoverPara": null,
+    "id": "naely",
+    "nome": "Naely",
+    "telefone": "8855993051506",
+    "foto": "images/naely.jpg",
+    "aliases": []
+  },
+  {
+    "ativo": true,
+    "ordemManual": 28,
+    "promoverPara": null,
+    "id": "nataly",
+    "nome": "Nataly (Carnauba, Jati-CE)",
+    "telefone": "5588988201431",
+    "foto": "images/nataly.jpg",
+    "aliases": []
   }
 ]

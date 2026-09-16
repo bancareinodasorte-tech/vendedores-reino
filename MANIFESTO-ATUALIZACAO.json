@@ -1,5 +1,5 @@
 {
-  "geradoEm": "18/08/2026, 16:46:52",
+  "geradoEm": "16/09/2026, 09:47:10",
   "arquivosRaiz": [
     "painel-config.json",
     "slides-config.json",
@@ -9,7 +9,7 @@
     "ranking.json"
   ],
   "novasMidiasSlides": [
-    "slides/slide06.mov"
+    "slides/slide07.png"
   ],
   "observacao": "Substitua os arquivos da raiz no GitHub e envie as novas mídias para a pasta slides."
 }
