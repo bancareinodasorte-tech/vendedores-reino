@@ -41,7 +41,7 @@ input:focus,textarea:focus,select:focus{border-color:#1677ff;box-shadow:0 0 0 3p
 <strong id="cicloTitulo">Novo fechamento</strong><span id="statusGeral" class="status">AGUARDANDO DADOS</span>
 </div>
 <div class="nav">
-<button onclick="ir('oficial')">🔗 Oficial</button><button onclick="ir('config')">⚙️ Configuração</button><button onclick="ir('importar')">📥 Importar</button><button onclick="ir('preview')">🔎 Conferência</button><button onclick="ir('ranking')">🏆 Ranking</button><button onclick="ir('prestacao')">💰 Prestação</button><button onclick="ir('vendedores')">👤 Vendedores</button><button onclick="ir('historico')">🕘 Histórico</button>
+<button onclick="ir('oficial')">🔗 Oficial</button><button onclick="ir('config')">⚙️ Configuração</button><button onclick="ir('importar')">📥 Importar</button><button onclick="ir('preview')">🔎 Conferência</button><button onclick="ir('ranking')">🏆 Ranking</button><button onclick="ir('prestacao')">💰 Prestação</button><button onclick="ir('vendedores')">👤 Vendedores</button><button onclick="ir('desempenho')">📈 Desenvolvimento</button><button onclick="ir('historico')">🕘 Histórico</button>
 </div>
 
 <section id="oficial" class="card">
@@ -362,7 +362,7 @@ function baixarJSON(){if(!estado.pacote){alert("Processe os dados primeiro.");re
 async function copiarJSON(){if(!estado.pacote){alert("Processe os dados primeiro.");return}let t=JSON.stringify(estado.pacote,null,2);try{await navigator.clipboard.writeText(t);alert("ranking.json copiado.")}catch{download("ranking.json",t,"application/json")}}
 function csv(){let cab=["Posição","Vendedor","Bilhetes","Bruto","Comissão","Bônus","Desconto bônus","Total vendedor","Banca"];return [cab,...estado.ranking.map(v=>[v.posicao,v.nome,v.sold,v.bruto.toFixed(2),v.comissao.toFixed(2),v.bonus,v.descontoBonus.toFixed(2),v.totalVendedor.toFixed(2),v.banca.toFixed(2)])].map(a=>a.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(";")).join("\n")}
 function baixarCSV(){if(!estado.ranking.length){alert("Processe os dados primeiro.");return}download("prestacao-contas.csv","\ufeff"+csv(),"text/csv;charset=utf-8")}
-function baixarHistorico(i){let h=JSON.parse(localStorage.getItem(historyKey())||"[]"),x=h[i];if(x)download("ranking.json",JSON.stringify(x.pacote,null,2),"application/json")}
+function baixarHistorico(i){const h=getHistory().slice().reverse(),x=h[i];if(x)download("fechamento-"+slug(x.pacote?.sorteio||"sorteio")+".json",JSON.stringify(x,null,2),"application/json")}
 function exemplo(){
  document.getElementById("entrada").value="Status\tVendedor\tBilhetes Distribuídos\tBilhetes Vendidos\tValor Total\tSituação\nPendente\tTAMILES mimi\t110\t21\tR$ 42,00\tPendente\nPendente\tTAMILES mimi - Online\t110\t36\tR$ 72,00\tPendente\nPendente\tALICE NABOR - Online\t110\t74\tR$ 148,00\tPendente\nPendente\tDAM- VENDAS ONLINE\t110\t36\tR$ 72,00\tPendente\nPendente\tJAMILLES IZIDORO\t110\t33\tR$ 66,00\tPendente\nPendente\tJamilles Izidorio - Online\t110\t94\tR$ 188,00\tPendente\nPendente\tDAMIANА GONCALVES\t110\t10\tR$ 20,00\tPendente\nPendente\tMARIA OLIVEIRA\t110\t6\tR$ 12,00\tPendente";
  showAnalysis("Exemplo carregado. Toque em ANALISAR DADOS.","ok");
@@ -374,6 +374,6 @@ carregarConfigLocal();renderHistory();if(!document.getElementById("dataInicial")
 setTimeout(()=>consultarOficial().catch(()=>{}),350);
 setInterval(()=>{if(document.visibilityState==="visible")consultarOficial().catch(()=>{})},60000);
 </script>
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./central-pro-sw.js?v=20260918-1300").catch(()=>{}));}</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./central-pro-sw.js?v=20260918-1400").catch(()=>{}));}</script>
 </body>
 </html>
