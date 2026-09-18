@@ -45,7 +45,7 @@
 <div class="card"><h2>Último Ganhador</h2><div class="checks"><label><input type="checkbox" id="uAtivo"> Exibir card</label></div><div class="grid" style="margin-top:10px"><div><label>Título</label><input id="uTitulo"></div><div><label>Nome do arquivo da imagem</label><input id="uImagem" placeholder="ganhador-atual.png"></div></div><div class="grid3" style="margin-top:10px"><div><label>Linha 1</label><input id="uL1"></div><div><label>Linha 2</label><input id="uL2"></div><div><label>Linha 3</label><input id="uL3"></div></div><div style="margin-top:10px"><label>Selecionar nova imagem (pré-visualização + publicação)</label><input id="uLocal" type="file" accept="image/*"></div></div>
 <div class="card"><h2>Canal Oficial e Conferência</h2><div class="grid"><div><label>WhatsApp do Canal Oficial</label><input id="cWhatsapp"></div><div><label>Chamada do botão/card</label><input id="cChamada"></div></div><div class="grid" style="margin-top:10px"><div><label>Link da Conferência Oficial</label><input id="confUrl"></div><div><label>Arquivo do QR Code</label><input id="confQr"></div></div><div style="margin-top:10px"><label>Texto da Conferência</label><textarea id="confTexto"></textarea></div></div>
 <div class="card"><h2>Salvar configuração</h2><div class="notice">Use <b>Pré-visualizar</b> antes de baixar. O botão “Salvar rascunho” guarda somente neste iPhone/navegador. Para publicar no site, baixe <b>painel-config.json</b> e substitua no GitHub.</div><div class="actions"><button class="btn primary" id="btnPreview">PRÉ-VISUALIZAR</button><button class="btn muted" id="btnRascunho">SALVAR RASCUNHO</button><button class="btn success" id="btnPainelJson">BAIXAR painel-config.json</button><button class="btn dark" id="btnRecarregar">RECARREGAR DO GITHUB</button></div></div>
-<div class="v6tabs"><button class="on" data-v6="config">CONFIGURAÇÕES</button><button data-v6="sellers">VENDEDORES</button><button data-v6="rank">RANKING</button></div>
+<div class="v6tabs"><button class="on" data-v6="sellers">VENDEDORES</button><button data-v6="rank">RANKING</button></div>
 <div id="v6-sellers" class="v6sub"><div class="card"><h2>👥 Vendedores <span class="badge" id="v6count"></span></h2><div class="notice">Edite aqui os vendedores. <b>Ativo</b> controla a exibição. <b>Ordem manual</b> define a base. <b>Promover para</b> move diretamente para uma posição.</div><div class="actions"><button class="btn primary" id="v6new">+ NOVO VENDEDOR</button></div></div><div class="card v6hide" id="v6newbox"><h2>Novo vendedor</h2><div class="v6fields"><div><label>ID</label><input id="nsi"></div><div><label>Nome</label><input id="nsn"></div><div><label>Telefone</label><input id="nst"></div><div><label>Foto</label><input id="nsf" placeholder="images/nome.jpg"></div><div class="v6wide"><label>Apelidos</label><input id="nsa"></div><div class="v6wide"><label>Nova foto</label><input id="nsfile" type="file" accept="image/*"></div></div><div class="actions"><button class="btn success" id="v6add">ADICIONAR</button><button class="btn muted" id="v6cancel">CANCELAR</button></div></div><div class="card"><div id="v6sellerlist" class="v6sellergrid"></div></div></div>
 <div id="v6-rank" class="v6sub"><div class="card"><h2>🏆 Ranking / Prestação</h2><div class="notice">O ranking pode conter participantes sem cadastro. O <b>ID</b> é usado primeiro para a correspondência no painel.</div><div class="v6sum" style="margin-top:10px"><div><b id="v6rt">0</b><span>posições</span></div><div><b id="v6rs">0%</b><span>percentuais</span></div><div><b id="v6rd">-</b><span>atualização</span></div><div><b id="v6rm">0</b><span>IDs cadastrados</span></div></div><div class="actions"><button class="btn primary" id="v6rnew">+ NOVA LINHA</button><button class="btn orange" id="v6rnum">RENUMERAR POSIÇÕES</button></div></div><div class="card"><div id="v6ranklist"></div></div></div></section>
 
@@ -369,5 +369,27 @@ Q('ghPublish').onclick=publishV6;
 document.querySelectorAll('[data-v6]').forEach(function(b){b.onclick=function(){document.querySelectorAll('[data-v6]').forEach(function(x){x.classList.remove('on')});document.querySelectorAll('.v6sub').forEach(function(x){x.classList.remove('on')});b.classList.add('on');Q('v6-'+b.dataset.v6).classList.add('on')}})
 var old=document.getElementById('slidesLista');if(old){old.classList.add('v6hide');var card=old.closest('.card');if(card){var p=document.createElement('div');p.id='v6slides';old.parentNode.insertBefore(p,old)}}var pk=Q('btnPacoteVitrine'),sj=Q('btnSlidesJson'),pb=document.querySelector('.pack-box');if(pk)pk.classList.add('v6hide');if(sj)sj.classList.add('v6hide');if(pb)pb.classList.add('v6hide');Q('btnAdicionarMidia').onclick=adicionarNovaMidia;
 (async function(){S=await J('vendedores.json',[]);R=await J('ranking.json',{ranking:[]});if(Array.isArray(R))R={ranking:R};rs();rr();rv();sum()})();
+})();
+</script><script id="v6fix">
+(function(){
+function Q6(i){return document.getElementById(i)} function V6(i){return (Q6(i)?.value||'').trim()}
+function addMediaV6(){
+ var tp=Q6('novoTipo').value,d=Number(V6('novoDuracao'))||0;
+ if(tp==='texto'){
+  var title=V6('novoTitulo')||'REINO DA SORTE',msg=V6('novoTexto');if(!msg)return alert('Digite a mensagem.');
+  var n=1,ar;do{ar='slide'+String(n).padStart(2,'0')+'.txt';n++}while(slidesGit.some(function(x){return x.arquivo===ar}));
+  var tx=title+'\n'+msg,f=new File([tx],ar,{type:'text/plain'});
+  slidesGit.push({arquivo:ar,tipo:'texto',url:URL.createObjectURL(f),texto:tx,localFile:f,novo:true,ativo:true,ordem:slidesGit.length+1,duracao:d,estiloTexto:Q6('novoTextoEstilo').value});
+ }else{
+  var f=Q6('novoArquivo').files[0];if(!f)return alert('Escolha o arquivo.');
+  var n=1,e=(f.name.split('.').pop()||'jpg').toLowerCase(),ar;
+  do{ar='slide'+String(n).padStart(2,'0')+'.'+e;n++}while(slidesGit.some(function(x){return x.arquivo===ar}));
+  slidesGit.push({arquivo:ar,tipo:tp,url:URL.createObjectURL(f),localFile:f,novo:true,ativo:true,ordem:slidesGit.length+1,duracao:d,estiloTexto:'fixo'});
+ }
+ Q6('novoArquivo').value='';Q6('novoTexto').value='';atualizarSlidesCfg();if(typeof rv==='function')rv();if(typeof renderV6Slides==='function')renderV6Slides();renderPrevV6();sum();
+}
+Q6('btnAdicionarMidia').onclick=addMediaV6;
+Q6('pLocal').addEventListener('change',function(e){pf=e.target.files[0]||null;if(pf){var old=V6('pImagem');if(old)oldp.add(old);var ex=(pf.name.split('.').pop()||'jpg').toLowerCase();Q6('pImagem').value='sorteio-atual.'+ex;preview();sum()}});
+Q6('uLocal').addEventListener('change',function(e){uf=e.target.files[0]||null;if(uf){var old=V6('uImagem');if(old)oldp.add(old);var ex=(uf.name.split('.').pop()||'jpg').toLowerCase();Q6('uImagem').value='ganhador-atual.'+ex;preview();sum()}});
 })();
 </script></body></html>
