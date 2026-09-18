@@ -1,0 +1,14 @@
+{
+  "name":"Reino da Sorte — Central PRO",
+  "short_name":"Central PRO",
+  "description":"Central administrativa de vendas, ranking, conferência e prestação de contas do Reino da Sorte.",
+  "start_url":"./admin-ranking-v2.html",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#eef3fb",
+  "theme_color":"#08266f",
+  "orientation":"portrait-primary",
+  "icons":[
+    {"src":"logo-reino.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ]
+}
