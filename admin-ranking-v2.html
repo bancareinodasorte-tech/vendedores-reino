@@ -15,7 +15,7 @@ header{background:linear-gradient(135deg,#08266f,#176cff);color:#fff;padding:20p
 header img{width:72px;height:72px;object-fit:contain;margin:auto;display:block}header h1{margin:8px 0 4px;font-size:24px}header p{margin:0;color:#dce8ff;font-size:13px}
 main{max-width:1250px;margin:auto;padding:16px 12px 50px}.topbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap}
 .status{padding:9px 13px;border-radius:999px;font-weight:900;font-size:12px;background:#fff7df;color:#805b00;border:1px solid #ffd46b}.status.ok{background:#eafaf0;color:#14652d;border-color:#a9ebbf}.status.err{background:#fff0ef;color:#9b2020;border-color:#ffb7b2}
-.nav{display:flex;gap:8px;overflow:auto;margin-bottom:14px}.nav button{white-space:nowrap;background:#fff;color:#123ca7;border:1px solid #d7e2f5}
+.nav{display:flex;gap:8px;overflow:auto;margin-bottom:14px;position:sticky;top:0;z-index:20;padding:8px 0;background:#eef3fb}.nav button.active{background:#1677ff;color:#fff;border-color:#1677ff}.actions button:disabled{opacity:.45;cursor:not-allowed}.nav button{white-space:nowrap;background:#fff;color:#123ca7;border:1px solid #d7e2f5}
 .card{background:#fff;border:1px solid #dce5f5;border-radius:18px;box-shadow:0 7px 22px rgba(14,34,82,.07);padding:16px;margin-bottom:15px}
 .card h2{margin:0 0 12px;color:#123ca7;font-size:18px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
 label{display:block;font-size:12px;font-weight:900;margin-bottom:5px}input,textarea,select{width:100%;border:1px solid #cfdaf0;border-radius:11px;padding:11px;font-size:14px;background:#fff;color:#10213f;outline:none}
@@ -24,7 +24,7 @@ input:focus,textarea:focus,select:focus{border-color:#1677ff;box-shadow:0 0 0 3p
 .summary{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.metric{background:#f6f9ff;border:1px solid #dce5f5;border-radius:13px;padding:12px}.metric span{display:block;color:#66758f;font-size:11px;margin-bottom:6px}.metric strong{font-size:19px;color:#123ca7}.green strong{color:#087a2f}.orange strong{color:#b66b00}
 .notice{padding:11px 13px;border-radius:13px;background:#fff7df;border:1px solid #ffd46b;color:#624600;font-size:13px;line-height:1.4}.notice.ok{background:#eafaf0;border-color:#a9ebbf;color:#145d29}.notice.err{background:#fff0ef;border-color:#ffb7b2;color:#8c2020}
 .table-wrap{overflow:auto;border:1px solid #dce5f5;border-radius:13px}table{width:100%;border-collapse:collapse;min-width:850px}th,td{padding:9px;border-bottom:1px solid #e8eef8;text-align:left;font-size:12px}th{background:#f4f7fd;color:#18386f;position:sticky;top:0;font-weight:900}tr:last-child td{border:0}.rank{font-weight:900;color:#123ca7}.money{font-weight:900;color:#087a2f}.pill{display:inline-block;padding:4px 7px;border-radius:99px;background:#eaf4ff;color:#123ca7;font-weight:900}.pill.ok{background:#eafaf0;color:#087a2f}.pill.err{background:#fff0ef;color:#9b2020}
-#preview{display:none}.checklist{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.check{padding:9px 10px;border-radius:10px;background:#f5f8fd;border:1px solid #dce5f5;font-size:12px}.check.ok{background:#eafaf0;border-color:#b9e9c7;color:#17642e}.check.err{background:#fff0ef;border-color:#ffc0bb;color:#8e2020}
+#preview{display:block}.checklist{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.check{padding:9px 10px;border-radius:10px;background:#f5f8fd;border:1px solid #dce5f5;font-size:12px}.check.ok{background:#eafaf0;border-color:#b9e9c7;color:#17642e}.check.err{background:#fff0ef;border-color:#ffc0bb;color:#8e2020}
 .history{display:grid;gap:8px}.history-item{padding:11px;border:1px solid #dce5f5;border-radius:12px;background:#f8fbff}.history-title{font-weight:900;color:#123ca7}.small{font-size:11px;color:#66758f;line-height:1.4}
 @media(max-width:950px){.summary{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr 1fr}.checklist{grid-template-columns:1fr 1fr}}
 @media(max-width:650px){.summary,.grid,.checklist{grid-template-columns:1fr}header h1{font-size:20px}button{width:100%}}
@@ -71,8 +71,8 @@ input:focus,textarea:focus,select:focus{border-color:#1677ff;box-shadow:0 0 0 3p
 <div><label>Valor do bilhete</label><input id="valorBilhete" type="number" min="0" step=".01" value="2"></div>
 <div><label>Comissão padrão (%)</label><input id="comissao" type="number" min="0" max="100" step=".01" value="30"></div>
 <div><label>Total geral manual (opcional)</label><input id="totalManual" type="number" min="0" placeholder="Use somente se necessário"></div>
-<div><label>Meta para bônus (bilhetes)</label><input id="metaBase" type="number" min="0" value="100"></div>
-<div><label>Máximo de bônus (bilhetes)</label><input id="bonusMaximo" type="number" min="0" value="10"></div>
+<div><label>Meta para bônus (bilhetes)</label><input id="metaBase" type="number" min="0" value="0"></div>
+<div><label>Máximo de bônus (bilhetes)</label><input id="bonusMaximo" type="number" min="0" value="0"></div>
 <div><label>ID do ciclo</label><input id="chaveCiclo" readonly></div>
 </div>
 <div id="configAviso" class="notice" style="margin-top:11px">O sistema não publica nada nesta etapa. Primeiro processamos e conferimos os dados.</div>
@@ -81,7 +81,7 @@ input:focus,textarea:focus,select:focus{border-color:#1677ff;box-shadow:0 0 0 3p
 <section id="importar" class="card">
 <h2>2. Importação inteligente</h2>
 <div class="notice">Cole exatamente a tabela copiada do ADM. A Central PRO tenta reconhecer vendedores, somar nomes repetidos e bloquear a publicação quando houver inconsistências importantes.</div>
-<textarea id="entrada" placeholder="Cole aqui a prestação de contas..."></textarea>
+<input id="arquivoADM" type="file" accept=".txt,.csv,text/plain,text/csv" style="margin:10px 0"><textarea id="entrada" placeholder="Cole aqui a prestação de contas..."></textarea>
 <div class="actions">
 <button class="primary" onclick="analisar()">🔎 ANALISAR DADOS</button>
 <button class="muted" onclick="exemplo()">CARREGAR EXEMPLO</button>
@@ -193,19 +193,20 @@ function findVendor(nome){
 function isStatus(x){return /^(prestar contas|prestado|pendente|finalizado|pago|atrasado|cancelado)$/i.test(String(x||"").trim())}
 function parse(text){
  const lines=String(text||"").replace(/\r/g,"").split("\n").map(x=>x.trim()).filter(Boolean),out=[];
- for(let i=0;i<lines.length;i++){
-  let line=lines[i]; if(/status vendedor|bilhetes distribuidos|bilhetes vendidos|^prestar contas$/i.test(norm(line)))continue;
-  let p=line.split("\t").map(x=>x.trim()).filter(Boolean),name="",sold=0;
+ for(const raw of lines){
+  const line=raw.replace(/\s+/g," ").trim(); if(!line) continue;
+  const nline=norm(line);
+  if(/status\s+vendedor|vendedor.*bilhetes.*vendidos|bilhetes.*distribuidos|bilhetes.*vendidos/.test(nline)) continue;
+  const p=raw.split("\t").map(x=>x.trim()); let name="",sold=0;
   if(p.length>=4){
-   if(isStatus(p[0])){name=p[1]||"";sold=parseInt(String(p[3]||"").replace(/\D/g,""),10)||0}
-   else{name=p[0]||"";sold=parseInt(String(p[2]||"").replace(/\D/g,""),10)||0}
+   if(isStatus(p[0])){name=p[1]||"";sold=parseInt(String(p[3]).replace(/\D/g,""),10)||0}
+   else{name=p[0]||"";sold=parseInt(String(p[2]).replace(/\D/g,""),10)||0}
   }else{
-   line=line.replace(/^\s*(prestar contas|prestado|pendente|finalizado|pago|atrasado|cancelado)\s*/i,"").trim();
    const m=[...line.matchAll(/\b\d+\b/g)];
-   if(m.length>=2){name=line.slice(0,m[0].index).trim();sold=parseInt(m[1][0],10)||0}
+   if(m.length){name=line.slice(0,m[0].index).replace(/^[-:|]+|[-:|]+$/g,"").trim();sold=m.length>1?parseInt(m[1][0],10):parseInt(m[0][0],10);}
   }
-  name=name.replace(/^[-:]+|[-:]+$/g,"").replace(/\s+/g," ").trim();
-  if(name.length>=2)out.push({name,sold});
+  name=name.replace(/^[-:|]+|[-:|]+$/g,"").replace(/\s+/g," ").trim();
+  if(name.length>=2&&!/^(status|vendedor|bilhetes|prestar contas)$/i.test(name)&&Number.isFinite(sold)&&sold>=0) out.push({name,sold});
  }
  return out;
 }
@@ -219,9 +220,9 @@ function build(){
  estado.ranking=rows;estado.pendencias=[...new Set(unknown)];
  estado.pacote={versao:2,sorteio:document.getElementById("nomeSorteio").value,dataInicial:document.getElementById("dataInicial").value,dataSorteio:document.getElementById("dataSorteio").value,ciclo:ciclo(),atualizadoEm:nowBR(),totalVendidoCalculado:total,totalVendidoUsadoNoPercentual:base,valorBilhete:vb,comissaoPercentual:cp,metaBase:meta,bonusMaximo:max,ranking:rows.map(v=>({id:v.id,nome:v.nome,posicao:v.posicao,percentual:Number(v.percentual.toFixed(1)),participacao:v.percentual.toFixed(1)+"%"}))};
 }
-function analisar(){
+document.getElementById("arquivoADM").addEventListener("change",async e=>{const file=e.target.files?.[0];if(!file)return;try{document.getElementById("entrada").value=await file.text();showAnalysis("Arquivo carregado. Toque em ANALISAR DADOS.","ok")}catch(err){showAnalysis("Erro ao ler arquivo: "+(err.message||err),"err")}});function analisar(){
  const t=document.getElementById("entrada").value;if(!t.trim()){showAnalysis("Cole os dados antes de analisar.","err");return}
- estado.registros=parse(t);estado.analisado=true;estado.salvo=false;build();renderAll();renderChecks();
+ estado.registros=parse(t);estado.analisado=true;estado.salvo=false;build();renderAll();renderChecks();showAnalysis("<b>"+num(estado.registros.length)+"</b> registro(s) lido(s) • <b>"+num(estado.ranking.length)+"</b> vendedor(es) agrupado(s) • <b>"+num(estado.pacote.totalVendidoCalculado)+"</b> bilhete(s).","ok");ir("preview");
 }
 function renderChecks(){
  const r=estado.ranking,p=estado.pacote||{valorBilhete:Number(document.getElementById("valorBilhete").value||0),comissaoPercentual:Number(document.getElementById("comissao").value||0),totalVendidoCalculado:0},checks=[
@@ -308,19 +309,14 @@ async function copiarJSON(){if(!estado.pacote){alert("Processe os dados primeiro
 function csv(){let cab=["Posição","Vendedor","Bilhetes","Bruto","Comissão","Bônus","Desconto bônus","Total vendedor","Banca"];return [cab,...estado.ranking.map(v=>[v.posicao,v.nome,v.sold,v.bruto.toFixed(2),v.comissao.toFixed(2),v.bonus,v.descontoBonus.toFixed(2),v.totalVendedor.toFixed(2),v.banca.toFixed(2)])].map(a=>a.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(";")).join("\n")}
 function baixarCSV(){if(!estado.ranking.length){alert("Processe os dados primeiro.");return}download("prestacao-contas.csv","\ufeff"+csv(),"text/csv;charset=utf-8")}
 function baixarHistorico(i){let h=JSON.parse(localStorage.getItem(historyKey())||"[]"),x=h[i];if(x)download("ranking.json",JSON.stringify(x.pacote,null,2),"application/json")}
-function exemplo(){document.getElementById("entrada").value=`Status\tVendedor\tBilhetes Distribuídos\tBilhetes Vendidos\tValor Total\tSituação
-TAMILES mimi\t110\t21\tR$ 42.00\tPendente
-TAMILES mimi - Online\t110\t36\tR$ 72.00\tPendente
-ALICE NABOR - Online\t110\t74\tR$ 148.00\tPendente
-DAM- VENDAS ONLINE\t110\t36\tR$ 72.00\tPendente
-JAMILLES IZIDORO\t110\t33\tR$ 66.00\tPendente
-Jamilles Izidorio - Online\t110\t94\tR$ 188.00\tPendente
-DAMIANА GONCALVES\t110\t10\tR$ 20.00\tPendente
-MARIA OLIVEIRA\t110\t6\tR$ 12.00\tPendente`;showAnalysis("Exemplo carregado. Toque em ANALISAR DADOS.","ok")}
+function exemplo(){
+ document.getElementById("entrada").value="Status\tVendedor\tBilhetes Distribuídos\tBilhetes Vendidos\tValor Total\tSituação\nPendente\tTAMILES mimi\t110\t21\tR$ 42,00\tPendente\nPendente\tTAMILES mimi - Online\t110\t36\tR$ 72,00\tPendente\nPendente\tALICE NABOR - Online\t110\t74\tR$ 148,00\tPendente\nPendente\tDAM- VENDAS ONLINE\t110\t36\tR$ 72,00\tPendente\nPendente\tJAMILLES IZIDORO\t110\t33\tR$ 66,00\tPendente\nPendente\tJamilles Izidorio - Online\t110\t94\tR$ 188,00\tPendente\nPendente\tDAMIANА GONCALVES\t110\t10\tR$ 20,00\tPendente\nPendente\tMARIA OLIVEIRA\t110\t6\tR$ 12,00\tPendente";
+ showAnalysis("Exemplo carregado. Toque em ANALISAR DADOS.","ok");
+}
 function limpar(){document.getElementById("entrada").value="";estado={registros:[],ranking:[],pacote:null,pendencias:[],analisado:false,salvo:false};renderAll();renderChecks();document.getElementById("analise").innerHTML="";document.getElementById("statusGeral").textContent="AGUARDANDO DADOS";document.getElementById("statusGeral").className="status";renderHistory()}
-function ir(id){document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"})}
-["nomeSorteio","dataInicial","dataSorteio"].forEach(id=>document.getElementById(id).addEventListener("input",()=>{ciclo();renderHistory()}));
-document.getElementById("dataInicial").value=dateISO();document.getElementById("dataSorteio").value=dateISO();ciclo();renderHistory();renderChecks();
+function ir(id){const el=document.getElementById(id);if(!el){alert("Área não encontrada: "+id);return}el.style.display="block";el.scrollIntoView({behavior:"smooth",block:"start"});document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));const b=[...document.querySelectorAll(".nav button")].find(x=>String(x.getAttribute("onclick")||"").includes("'"+id+"'"));if(b)b.classList.add("active")}
+["nomeSorteio","dataInicial","dataSorteio","valorBilhete","comissao","totalManual","metaBase","bonusMaximo","backendOficial"].forEach(id=>document.getElementById(id).addEventListener("input",()=>{ciclo();renderHistory();salvarConfigLocal()}));function salvarConfigLocal(){const ids=["nomeSorteio","dataInicial","dataSorteio","valorBilhete","comissao","totalManual","metaBase","bonusMaximo","backendOficial"],x={};ids.forEach(id=>x[id]=document.getElementById(id)?.value??"");localStorage.setItem("rds_central_config",JSON.stringify(x))}function carregarConfigLocal(){try{const x=JSON.parse(localStorage.getItem("rds_central_config")||"{}");Object.entries(x).forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.value=v});}catch(e){}}
+if(!document.getElementById("dataInicial").value)document.getElementById("dataInicial").value=dateISO();if(!document.getElementById("dataSorteio").value)document.getElementById("dataSorteio").value=dateISO();ciclo();renderHistory();renderChecks();ir("config");
 </script>
 <script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./central-pro-sw.js").catch(()=>{}));}</script>
 </body>
