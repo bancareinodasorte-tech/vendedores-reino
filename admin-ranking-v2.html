@@ -311,7 +311,7 @@ function usarDadosOficiais(){
  document.getElementById("configAviso").textContent="Dados oficiais transferidos para a configuração. Confira os campos antes de analisar e salvar.";
  ir("config");
 }
-\nfunction showAnalysis(msg,type){document.getElementById("analise").innerHTML='<div class="notice '+(type||"")+'">'+msg+"</div>"}
+function showAnalysis(msg,type){document.getElementById("analise").innerHTML='<div class="notice '+(type||"")+'">'+msg+"</div>"}
 function salvarFechamento(){
  if(document.getElementById("btnSalvar").disabled)return;
  const key="reino_pro_"+estado.pacote.ciclo,h=JSON.parse(localStorage.getItem(key)||"[]");h.push({pacote:estado.pacote,privado:estado.ranking.map(v=>({id:v.id,vendedor:v.nome,sold:v.sold,bruto:v.bruto,comissao:v.comissao,bonus:v.bonus,descontoBonus:v.descontoBonus,totalVendedor:v.totalVendedor,banca:v.banca})),salvoEmISO:new Date().toISOString()});
