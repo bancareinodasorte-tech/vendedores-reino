@@ -262,7 +262,7 @@ async function consultarOficial(){
  st.value="Consultando...";
  av.className="notice";av.textContent="Consultando o sorteio oficial sem alterar o fechamento atual...";
  try{
-  const r=await fetch(base+"/api/v1/central-pro/official-draw",{cache:"no-store",headers:{Accept:"application/json"}});
+  const ctl=new AbortController();const timer=setTimeout(()=>ctl.abort(),25000);let r;try{r=await fetch(base+"/api/v1/central-pro/official-draw?t="+Date.now(),{cache:"no-store",headers:{Accept:"application/json"},signal:ctl.signal})}finally{clearTimeout(timer)}
   const d=await r.json().catch(()=>({}));
   if(!r.ok||!d.success)throw new Error(d.message||"Falha na consulta oficial.");
   const x=d.data||{};
@@ -276,7 +276,7 @@ async function consultarOficial(){
  }catch(e){
   st.value="Falha na consulta";
   av.className="notice err";
-  av.textContent="Não foi possível consultar o backend oficial: "+(e.message||e);
+  av.textContent="Não foi possível consultar o backend oficial: "+(e.name==="AbortError"?"tempo limite de 25s excedido":(e.message||e));
  }
 }
 function usarDadosOficiais(){
