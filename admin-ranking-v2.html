@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#08266f">
+<title>Reino da Sorte | Central PRO</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#eef3fb;color:#10213f}
+header{background:linear-gradient(135deg,#08266f,#176cff);color:#fff;padding:20px 14px;text-align:center}
+header img{width:72px;height:72px;object-fit:contain;margin:auto;display:block}header h1{margin:8px 0 4px;font-size:24px}header p{margin:0;color:#dce8ff;font-size:13px}
+main{max-width:1250px;margin:auto;padding:16px 12px 50px}.topbar{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap}
+.status{padding:9px 13px;border-radius:999px;font-weight:900;font-size:12px;background:#fff7df;color:#805b00;border:1px solid #ffd46b}.status.ok{background:#eafaf0;color:#14652d;border-color:#a9ebbf}.status.err{background:#fff0ef;color:#9b2020;border-color:#ffb7b2}
+.nav{display:flex;gap:8px;overflow:auto;margin-bottom:14px}.nav button{white-space:nowrap;background:#fff;color:#123ca7;border:1px solid #d7e2f5}
+.card{background:#fff;border:1px solid #dce5f5;border-radius:18px;box-shadow:0 7px 22px rgba(14,34,82,.07);padding:16px;margin-bottom:15px}
+.card h2{margin:0 0 12px;color:#123ca7;font-size:18px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+label{display:block;font-size:12px;font-weight:900;margin-bottom:5px}input,textarea,select{width:100%;border:1px solid #cfdaf0;border-radius:11px;padding:11px;font-size:14px;background:#fff;color:#10213f;outline:none}
+input:focus,textarea:focus,select:focus{border-color:#1677ff;box-shadow:0 0 0 3px rgba(22,119,255,.12)}textarea{min-height:220px;resize:vertical;font-family:Consolas,monospace;line-height:1.35}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:11px}button{border:0;border-radius:12px;padding:11px 14px;font-size:13px;font-weight:900;cursor:pointer}.primary{background:#1677ff;color:#fff}.success{background:#20b455;color:#fff}.warning{background:#ffb020;color:#1d2a3d}.danger{background:#ef4444;color:#fff}.muted{background:#e7eefc;color:#123ca7}.dark{background:#071d4f;color:#fff}
+.summary{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}.metric{background:#f6f9ff;border:1px solid #dce5f5;border-radius:13px;padding:12px}.metric span{display:block;color:#66758f;font-size:11px;margin-bottom:6px}.metric strong{font-size:19px;color:#123ca7}.green strong{color:#087a2f}.orange strong{color:#b66b00}
+.notice{padding:11px 13px;border-radius:13px;background:#fff7df;border:1px solid #ffd46b;color:#624600;font-size:13px;line-height:1.4}.notice.ok{background:#eafaf0;border-color:#a9ebbf;color:#145d29}.notice.err{background:#fff0ef;border-color:#ffb7b2;color:#8c2020}
+.table-wrap{overflow:auto;border:1px solid #dce5f5;border-radius:13px}table{width:100%;border-collapse:collapse;min-width:850px}th,td{padding:9px;border-bottom:1px solid #e8eef8;text-align:left;font-size:12px}th{background:#f4f7fd;color:#18386f;position:sticky;top:0;font-weight:900}tr:last-child td{border:0}.rank{font-weight:900;color:#123ca7}.money{font-weight:900;color:#087a2f}.pill{display:inline-block;padding:4px 7px;border-radius:99px;background:#eaf4ff;color:#123ca7;font-weight:900}.pill.ok{background:#eafaf0;color:#087a2f}.pill.err{background:#fff0ef;color:#9b2020}
+#preview{display:none}.checklist{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.check{padding:9px 10px;border-radius:10px;background:#f5f8fd;border:1px solid #dce5f5;font-size:12px}.check.ok{background:#eafaf0;border-color:#b9e9c7;color:#17642e}.check.err{background:#fff0ef;border-color:#ffc0bb;color:#8e2020}
+.history{display:grid;gap:8px}.history-item{padding:11px;border:1px solid #dce5f5;border-radius:12px;background:#f8fbff}.history-title{font-weight:900;color:#123ca7}.small{font-size:11px;color:#66758f;line-height:1.4}
+@media(max-width:950px){.summary{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr 1fr}.checklist{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){.summary,.grid,.checklist{grid-template-columns:1fr}header h1{font-size:20px}button{width:100%}}
+</style>
+</head>
+<body>
+<header>
+<img src="logo-reino.png" alt="Reino da Sorte" onerror="this.style.display='none'">
+<h1>👑 REINO DA SORTE — CENTRAL PRO</h1>
+<p>Painel administrativo de vendas, ranking, conferência e prestação de contas</p>
+</header>
+<main>
+<div class="topbar">
+<strong id="cicloTitulo">Novo fechamento</strong><span id="statusGeral" class="status">AGUARDANDO DADOS</span>
+</div>
+<div class="nav">
+<button onclick="ir('config')">⚙️ Configuração</button><button onclick="ir('importar')">📥 Importar</button><button onclick="ir('preview')">🔎 Conferência</button><button onclick="ir('ranking')">🏆 Ranking</button><button onclick="ir('prestacao')">💰 Prestação</button><button onclick="ir('historico')">🕘 Histórico</button>
+</div>
+
+<section id="config" class="card">
+<h2>1. Configuração do sorteio</h2>
+<div class="grid">
+<div><label>Nome do sorteio</label><input id="nomeSorteio" value="R$ 1.500,00 - SABADOUUUU > NAO ACUMULATIVO <"></div>
+<div><label>Data inicial</label><input id="dataInicial" type="date"></div>
+<div><label>Data do sorteio / encerramento</label><input id="dataSorteio" type="date"></div>
+<div><label>Valor do bilhete</label><input id="valorBilhete" type="number" min="0" step=".01" value="2"></div>
+<div><label>Comissão padrão (%)</label><input id="comissao" type="number" min="0" max="100" step=".01" value="30"></div>
+<div><label>Total geral manual (opcional)</label><input id="totalManual" type="number" min="0" placeholder="Use somente se necessário"></div>
+<div><label>Meta para bônus (bilhetes)</label><input id="metaBase" type="number" min="0" value="100"></div>
+<div><label>Máximo de bônus (bilhetes)</label><input id="bonusMaximo" type="number" min="0" value="10"></div>
+<div><label>ID do ciclo</label><input id="chaveCiclo" readonly></div>
+</div>
+<div id="configAviso" class="notice" style="margin-top:11px">O sistema não publica nada nesta etapa. Primeiro processamos e conferimos os dados.</div>
+</section>
+
+<section id="importar" class="card">
+<h2>2. Importação inteligente</h2>
+<div class="notice">Cole exatamente a tabela copiada do ADM. A Central PRO tenta reconhecer vendedores, somar nomes repetidos e bloquear a publicação quando houver inconsistências importantes.</div>
+<textarea id="entrada" placeholder="Cole aqui a prestação de contas..."></textarea>
+<div class="actions">
+<button class="primary" onclick="analisar()">🔎 ANALISAR DADOS</button>
+<button class="muted" onclick="exemplo()">CARREGAR EXEMPLO</button>
+<button class="danger" onclick="limpar()">LIMPAR</button>
+</div>
+<div id="analise" style="margin-top:11px"></div>
+</section>
+
+<section id="preview" class="card">
+<h2>3. Conferência antes de salvar</h2>
+<div id="checks" class="checklist"></div>
+<div id="alertas" style="margin-top:10px"></div>
+<div class="actions">
+<button class="success" id="btnSalvar" onclick="salvarFechamento()" disabled>✅ CONFIRMAR E SALVAR FECHAMENTO</button>
+<button class="warning" onclick="ir('importar')">✏️ VOLTAR PARA CORRIGIR</button>
+</div>
+</section>
+
+<section class="card">
+<h2>4. Dashboard do fechamento</h2>
+<div class="summary">
+<div class="metric"><span>Bilhetes vendidos</span><strong id="mTotal">0</strong></div>
+<div class="metric"><span>Faturamento bruto</span><strong id="mBruto">R$ 0,00</strong></div>
+<div class="metric green"><span>Comissões</span><strong id="mComissao">R$ 0,00</strong></div>
+<div class="metric orange"><span>Bônus</span><strong id="mBonus">R$ 0,00</strong></div>
+<div class="metric green"><span>Volta para banca</span><strong id="mBanca">R$ 0,00</strong></div>
+<div class="metric"><span>Vendedores</span><strong id="mVendedores">0</strong></div>
+</div>
+</section>
+
+<section id="ranking" class="card">
+<h2>5. Ranking público — prévia</h2>
+<div class="notice ok">A saída pública contém somente posição, vendedor e participação. Quantidades e valores ficam na área privada.</div>
+<div class="table-wrap" style="margin-top:10px"><table><thead><tr><th>Posição</th><th>Vendedor</th><th>Participação</th><th>Texto público</th></tr></thead><tbody id="tRanking"></tbody></table></div>
+<div class="actions"><button class="success" onclick="baixarJSON()">⬇️ BAIXAR ranking.json</button><button class="muted" onclick="copiarJSON()">📋 COPIAR ranking.json</button></div>
+</section>
+
+<section id="prestacao" class="card">
+<h2>6. Prestação de contas privada</h2>
+<div class="table-wrap"><table><thead><tr><th>Vendedor</th><th>Bilhetes</th><th>Bruto</th><th>Comissão</th><th>Bônus</th><th>Desconto bônus</th><th>Vendedor</th><th>Banca</th></tr></thead><tbody id="tPrestacao"></tbody></table></div>
+<div class="actions"><button class="muted" onclick="baixarCSV()">⬇️ BAIXAR CSV</button><button class="dark" onclick="window.print()">🖨️ IMPRIMIR</button></div>
+</section>
+
+<section id="historico" class="card">
+<h2>7. Histórico local</h2>
+<div class="notice">Nesta primeira versão PRO o histórico continua local ao navegador. A etapa posterior poderá migrá-lo para banco de dados sem alterar o fluxo de operação.</div>
+<div id="historicoLista" class="history" style="margin-top:10px"></div>
+</section>
+
+<section class="card">
+<h2>8. Saída técnica</h2>
+<textarea id="saidaJson" readonly style="min-height:260px;background:#071d4f;color:#dce8ff"></textarea>
+</section>
+</main>
+
+<script>
+const vendedoresBase=[
+["alice","Alice Nabor",["alice nabor","alice nabor online","alice nabor m","alice nabor banca centro"]],
+["dam","Dam",["dam","dan","dam vendas online"]],
+["tamiles","Tamiles Mimi",["tamiles mimi","tamilles","tamilles mimi","tamiles mimi online"]],
+["jamilles","Jamilles Izidório",["jamilles izidoro","jamilles izidorio","jamilles izidório","jamilles izidorio online"]],
+["aline","Aline dos Maroto",["aline dos maroto","banca aline dos maroto","aline dos maroto online","aline vendas online"]],
+["marcia","Márcia Silva",["marcia silva","márcia silva","marcia silva online"]],
+["taina","Taína Fideles",["taina fideles","taína fideles","taina fideles online"]],
+["ana-raissa","Ana Raíssa",["ana raissa","ana raíssa","ana raissa vendas online"]],
+["giovanna","Giovanna",["giovanna","giovana","giovanna online"]],
+["maria-luana","Maria Luana",["maria luana","maria luana online","luana"]],
+["fabiola-de-porteiras","Fabíola de Porteiras",["fabiola","fabíola","fabiola de porteiras","fabiola porteiras","fabiola de porteiras vendas online"]],
+["macilda","Macilda",["macilda","macilda vendas online"]],
+["fatima-silva","Fátima Silva",["fatima silva","fátima silva","fatima silva vendas online","fatima feitosa"]],
+["nadja","Nadja",["nadja","nadja myrnna","nadja vendas online"]],
+["ivina","Ivina",["ivina"]],
+["ana-kaline","Ana Kaline",["ana kaline","ana-kaline"]],
+["tailane","Tailane",["tailane","tailane vendas online"]],
+["wedna-sitio-bom-sucesso","Wedna - Sítio Bom Sucesso",["wedna","wedna sitio bom sucesso","wedna sitio bom sucesso vendas online"]],
+["keke","Keke",["keke","keke online"]],
+["adna-novaes","Ádna Novaes",["adna novaes","ádna novaes","adna novaes m"]],
+["iraneide-vidal","Iraneide Vidal",["iraneide vidal","iraneide vidal online"]],
+["marcos","Marcos",["marcos","marcos vendas online"]],
+["damiana-goncalves","Damiana Gonçalves",["damiana goncalves","damiana gonçalves","damiana"]],
+["eliane-sitio-bom-sucesso","Eliane - Sítio Bom Sucesso",["eliane sitio bom sucesso","eliane"]],
+["elaine","Elaine Mariano",["elaine mariano","elaine","elaine online","eliane mariano"]],
+["taty","Taty",["taty","banca taty","taty vendas online"]],
+["samara","Samara",["samara","samara online","banca samara"]],
+["caeline","Caeline",["caeline","caeline vendas online"]],
+["kyara","Kyara",["kyara","kyara 2","kyara vendas online"]],
+["jessica","Jéssica Ferreira",["jessica ferreira"]],
+["carro-som","Carro de Som - Reino da Sorte",["carro de som","carro de som reino da sorte"]],
+["beta","Beta",["beta","beta vendas online"]],
+["yohani","Yohani",["yohani","yohani alves","yohani alves online"]],
+["maria","Maria Oliveira",["maria oliveira","maria oliveira vendas online"]]
+].map(v=>({id:v[0],nome:v[1],aliases:v[2]}));
+
+let estado={registros:[],ranking:[],pacote:null,pendencias:[],analisado:false,salvo:false};
+
+function norm(t){return String(t||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]+/g," ").replace(/\b(vendas|venda|banca|online|m)\b/g," ").replace(/\s+/g," ").trim()}
+function money(v){return Number(v||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})}
+function num(v){return Number(v||0).toLocaleString("pt-BR")}
+function dateISO(){return new Date().toISOString().slice(0,10)}
+function nowBR(){return new Date().toLocaleString("pt-BR")}
+function slug(t){return norm(t).replace(/\s+/g,"-").slice(0,70)||"sorteio"}
+function ciclo(){let c=slug(document.getElementById("nomeSorteio").value)+"_"+(document.getElementById("dataInicial").value||"inicio")+"_"+(document.getElementById("dataSorteio").value||"sem-data");document.getElementById("chaveCiclo").value=c;document.getElementById("cicloTitulo").textContent="Ciclo: "+c;return c}
+function findVendor(nome){
+ const n=norm(nome);
+ let v=vendedoresBase.find(x=>norm(x.nome)===n); if(v)return v;
+ v=vendedoresBase.find(x=>x.aliases.map(norm).includes(n)); if(v)return v;
+ v=vendedoresBase.find(x=>{let a=norm(x.nome);return n===a||n.includes(a)||a.includes(n)}); return v||null;
+}
+function isStatus(x){return /^(prestar contas|prestado|pendente|finalizado|pago|atrasado|cancelado)$/i.test(String(x||"").trim())}
+function parse(text){
+ const lines=String(text||"").replace(/\r/g,"").split("\n").map(x=>x.trim()).filter(Boolean),out=[];
+ for(let i=0;i<lines.length;i++){
+  let line=lines[i]; if(/status vendedor|bilhetes distribuidos|bilhetes vendidos|^prestar contas$/i.test(norm(line)))continue;
+  let p=line.split("\t").map(x=>x.trim()).filter(Boolean),name="",sold=0;
+  if(p.length>=4){
+   if(isStatus(p[0])){name=p[1]||"";sold=parseInt(String(p[3]||"").replace(/\D/g,""),10)||0}
+   else{name=p[0]||"";sold=parseInt(String(p[2]||"").replace(/\D/g,""),10)||0}
+  }else{
+   line=line.replace(/^\s*(prestar contas|prestado|pendente|finalizado|pago|atrasado|cancelado)\s*/i,"").trim();
+   const m=[...line.matchAll(/\b\d+\b/g)];
+   if(m.length>=2){name=line.slice(0,m[0].index).trim();sold=parseInt(m[1][0],10)||0}
+  }
+  name=name.replace(/^[-:]+|[-:]+$/g,"").replace(/\s+/g," ").trim();
+  if(name.length>=2)out.push({name,sold});
+ }
+ return out;
+}
+function build(){
+ const vb=Number(document.getElementById("valorBilhete").value||0),cp=Number(document.getElementById("comissao").value||0),meta=Number(document.getElementById("metaBase").value||0),max=Number(document.getElementById("bonusMaximo").value||0),manual=Number(document.getElementById("totalManual").value||0);
+ const map=new Map(),unknown=[];
+ estado.registros.forEach(r=>{let b=findVendor(r.name);if(!b){unknown.push(r.name);b={id:"novo-"+norm(r.name).replace(/\s+/g,"-"),nome:r.name,aliases:[]}}let x=map.get(b.id)||{...b,sold:0,origins:[]};x.sold+=r.sold;x.origins.push(r.name);map.set(b.id,x)});
+ const rows=[...map.values()].map(v=>{let bruto=v.sold*vb,com=bruto*cp/100,bonus=Math.min(Math.max(v.sold-meta,0),max),desc=bonus*vb;return{...v,bruto,comissao:com,bonus,descontoBonus:desc,totalVendedor:com+desc,banca:Math.max(bruto-com-desc,0)}}).sort((a,b)=>b.sold-a.sold||a.nome.localeCompare(b.nome,"pt-BR"));
+ const total=rows.reduce((s,v)=>s+v.sold,0),base=manual>0?manual:total;
+ rows.forEach((v,i)=>v.posicao=i+1,v.percentual=base?(v.sold/base)*100:0);
+ estado.ranking=rows;estado.pendencias=[...new Set(unknown)];
+ estado.pacote={versao:2,sorteio:document.getElementById("nomeSorteio").value,dataInicial:document.getElementById("dataInicial").value,dataSorteio:document.getElementById("dataSorteio").value,ciclo:ciclo(),atualizadoEm:nowBR(),totalVendidoCalculado:total,totalVendidoUsadoNoPercentual:base,valorBilhete:vb,comissaoPercentual:cp,metaBase:meta,bonusMaximo:max,ranking:rows.map(v=>({id:v.id,nome:v.nome,posicao:v.posicao,percentual:Number(v.percentual.toFixed(1)),participacao:v.percentual.toFixed(1)+"%"}))};
+}
+function analisar(){
+ const t=document.getElementById("entrada").value;if(!t.trim()){showAnalysis("Cole os dados antes de analisar.","err");return}
+ estado.registros=parse(t);estado.analisado=true;estado.salvo=false;build();renderAll();renderChecks();
+}
+function renderChecks(){
+ const r=estado.ranking,p=estado.pacote||{valorBilhete:Number(document.getElementById("valorBilhete").value||0),comissaoPercentual:Number(document.getElementById("comissao").value||0),totalVendidoCalculado:0},checks=[
+ ["Dados encontrados",estado.registros.length>0,estado.registros.length+" registro(s)"],
+ ["Vendedores reconhecidos",estado.pendencias.length===0,estado.pendencias.length?estado.pendencias.length+" pendência(s)":"todos reconhecidos"],
+ ["Quantidades válidas",r.every(v=>Number.isInteger(v.sold)&&v.sold>=0),"sem quantidades inválidas"],
+ ["Valor do bilhete",p.valorBilhete>0,"valor configurado"],
+ ["Comissão",p.comissaoPercentual>=0&&p.comissaoPercentual<=100,"percentual válido"],
+ ["Ranking calculado",r.length>0,"ranking pronto"]
+ ];
+ document.getElementById("checks").innerHTML=checks.map(x=>'<div class="check '+(x[1]?"ok":"err")+'">'+(x[1]?"✓":"✕")+" <b>"+x[0]+"</b><br>"+x[2]+"</div>").join("");
+ let alerts=[];
+ if(estado.pendencias.length)alerts.push("Nomes não cadastrados: <b>"+estado.pendencias.join(", ")+"</b>. Eles foram incluídos provisoriamente e exigem revisão.");
+ if(p.totalVendidoCalculado===0)alerts.push("Nenhum bilhete vendido foi identificado.");
+ document.getElementById("alertas").innerHTML=alerts.length?'<div class="notice err">'+alerts.join("<br>")+"</div>":'<div class="notice ok">Conferência básica concluída sem pendências críticas.</div>';
+ const ok=estado.analisado&&estado.registros.length>0&&estado.pendencias.length===0&&r.every(v=>v.sold>=0)&&p.valorBilhete>0&&p.comissaoPercentual>=0&&p.comissaoPercentual<=100;
+ document.getElementById("btnSalvar").disabled=!ok;
+ document.getElementById("statusGeral").textContent=ok?"PRONTO PARA CONFIRMAR":"ATENÇÃO NECESSÁRIA";document.getElementById("statusGeral").className="status "+(ok?"ok":"err");
+}
+function renderAll(){
+ const r=estado.ranking,p=estado.pacote;
+ document.getElementById("mTotal").textContent=num(r.reduce((s,v)=>s+v.sold,0));
+ document.getElementById("mBruto").textContent=money(r.reduce((s,v)=>s+v.bruto,0));
+ document.getElementById("mComissao").textContent=money(r.reduce((s,v)=>s+v.comissao,0));
+ document.getElementById("mBonus").textContent=money(r.reduce((s,v)=>s+v.descontoBonus,0));
+ document.getElementById("mBanca").textContent=money(r.reduce((s,v)=>s+v.banca,0));
+ document.getElementById("mVendedores").textContent=num(r.length);
+ document.getElementById("tRanking").innerHTML=r.map(v=>'<tr><td class="rank">#'+v.posicao+'</td><td>'+esc(v.nome)+'</td><td><span class="pill">'+v.percentual.toFixed(1).replace(".",",")+"%</span></td><td>#"+v.posicao+" • "+esc(v.nome)+" • Participação: "+v.percentual.toFixed(1).replace(".",",")+"%</td></tr>").join("");
+ document.getElementById("tPrestacao").innerHTML=r.map(v=>'<tr><td>'+esc(v.nome)+'</td><td>'+num(v.sold)+'</td><td class="money">'+money(v.bruto)+'</td><td class="money">'+money(v.comissao)+'</td><td><span class="pill '+(v.bonus?"ok":"err")+'">'+v.bonus+"</span></td><td>"+money(v.descontoBonus)+'</td><td class="money">'+money(v.totalVendedor)+'</td><td class="money">'+money(v.banca)+'</td></tr>').join("");
+ document.getElementById("saidaJson").value=p?JSON.stringify(p,null,2):"";
+}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function showAnalysis(msg,type){document.getElementById("analise").innerHTML='<div class="notice '+(type||"")+'">'+msg+"</div>"}
+function salvarFechamento(){
+ if(document.getElementById("btnSalvar").disabled)return;
+ const key="reino_pro_"+estado.pacote.ciclo,h=JSON.parse(localStorage.getItem(key)||"[]");h.push({pacote:estado.pacote,privado:estado.ranking.map(v=>({id:v.id,vendedor:v.nome,sold:v.sold,bruto:v.bruto,comissao:v.comissao,bonus:v.bonus,descontoBonus:v.descontoBonus,totalVendedor:v.totalVendedor,banca:v.banca})),salvoEmISO:new Date().toISOString()});
+ localStorage.setItem(key,JSON.stringify(h.slice(-20)));estado.salvo=true;document.getElementById("statusGeral").textContent="FECHAMENTO SALVO";document.getElementById("statusGeral").className="status ok";showAnalysis("Fechamento salvo com sucesso no histórico local. O ranking.json ainda precisa ser publicado no painel público quando você decidir.","ok");renderHistory();ir("historico");
+}
+function historyKey(){return "reino_pro_"+ciclo()}
+function renderHistory(){
+ const h=JSON.parse(localStorage.getItem(historyKey())||"[]"),box=document.getElementById("historicoLista");
+ if(!h.length){box.innerHTML='<div class="history-item"><b>Nenhum fechamento salvo neste ciclo.</b><div class="small">Depois de confirmar um fechamento ele aparecerá aqui.</div></div>';return}
+ box.innerHTML=h.slice().reverse().map((x,i)=>'<div class="history-item"><div class="history-title">'+(h.length-i)+"ª atualização • "+esc(x.pacote.atualizadoEm)+'</div><div class="small">Bilhetes: '+num(x.pacote.totalVendidoCalculado)+' • Vendedores: '+num(x.pacote.ranking.length)+' • Bruto: '+money(x.privado.reduce((s,v)=>s+v.bruto,0))+'</div><div class="actions"><button class="primary" onclick="abrirHistorico('+(h.length-1-i)+')">REABRIR</button><button class="muted" onclick="baixarHistorico('+(h.length-1-i)+')">JSON</button></div></div>').join("");
+}
+function abrirHistorico(i){let h=JSON.parse(localStorage.getItem(historyKey())||"[]"),x=h[i];if(!x)return;estado.pacote=x.pacote;estado.ranking=x.privado.map(v=>({...v,sold:v.sold,bruto:v.bruto,comissao:v.comissao,bonus:v.bonus,descontoBonus:v.descontoBonus,totalVendedor:v.totalVendedor,banca:v.banca,posicao:0,percentual:x.pacote.totalVendidoUsadoNoPercentual?(v.sold/x.pacote.totalVendidoUsadoNoPercentual)*100:0})).sort((a,b)=>b.sold-a.sold).map((v,i)=>({...v,posicao:i+1}));estado.analisado=true;document.getElementById("nomeSorteio").value=x.pacote.sorteio||"";document.getElementById("dataInicial").value=x.pacote.dataInicial||"";document.getElementById("dataSorteio").value=x.pacote.dataSorteio||"";document.getElementById("valorBilhete").value=x.pacote.valorBilhete||2;document.getElementById("comissao").value=x.pacote.comissaoPercentual||30;document.getElementById("totalManual").value=x.pacote.totalVendidoUsadoNoPercentual||"";ciclo();renderAll();ir("ranking")}
+function download(name,text,type){let a=document.createElement("a"),u=URL.createObjectURL(new Blob([text],{type:type||"text/plain;charset=utf-8"}));a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u)}
+function baixarJSON(){if(!estado.pacote){alert("Processe os dados primeiro.");return}download("ranking.json",JSON.stringify(estado.pacote,null,2),"application/json")}
+async function copiarJSON(){if(!estado.pacote){alert("Processe os dados primeiro.");return}let t=JSON.stringify(estado.pacote,null,2);try{await navigator.clipboard.writeText(t);alert("ranking.json copiado.")}catch{download("ranking.json",t,"application/json")}}
+function csv(){let cab=["Posição","Vendedor","Bilhetes","Bruto","Comissão","Bônus","Desconto bônus","Total vendedor","Banca"];return [cab,...estado.ranking.map(v=>[v.posicao,v.nome,v.sold,v.bruto.toFixed(2),v.comissao.toFixed(2),v.bonus,v.descontoBonus.toFixed(2),v.totalVendedor.toFixed(2),v.banca.toFixed(2)])].map(a=>a.map(x=>'"'+String(x).replace(/"/g,'""')+'"').join(";")).join("\n")}
+function baixarCSV(){if(!estado.ranking.length){alert("Processe os dados primeiro.");return}download("prestacao-contas.csv","\ufeff"+csv(),"text/csv;charset=utf-8")}
+function baixarHistorico(i){let h=JSON.parse(localStorage.getItem(historyKey())||"[]"),x=h[i];if(x)download("ranking.json",JSON.stringify(x.pacote,null,2),"application/json")}
+function exemplo(){document.getElementById("entrada").value=`Status\tVendedor\tBilhetes Distribuídos\tBilhetes Vendidos\tValor Total\tSituação
+TAMILES mimi\t110\t21\tR$ 42.00\tPendente
+TAMILES mimi - Online\t110\t36\tR$ 72.00\tPendente
+ALICE NABOR - Online\t110\t74\tR$ 148.00\tPendente
+DAM- VENDAS ONLINE\t110\t36\tR$ 72.00\tPendente
+JAMILLES IZIDORO\t110\t33\tR$ 66.00\tPendente
+Jamilles Izidorio - Online\t110\t94\tR$ 188.00\tPendente
+DAMIANА GONCALVES\t110\t10\tR$ 20.00\tPendente
+MARIA OLIVEIRA\t110\t6\tR$ 12.00\tPendente`;showAnalysis("Exemplo carregado. Toque em ANALISAR DADOS.","ok")}
+function limpar(){document.getElementById("entrada").value="";estado={registros:[],ranking:[],pacote:null,pendencias:[],analisado:false,salvo:false};renderAll();renderChecks();document.getElementById("analise").innerHTML="";document.getElementById("statusGeral").textContent="AGUARDANDO DADOS";document.getElementById("statusGeral").className="status";renderHistory()}
+function ir(id){document.getElementById(id).scrollIntoView({behavior:"smooth",block:"start"})}
+["nomeSorteio","dataInicial","dataSorteio"].forEach(id=>document.getElementById(id).addEventListener("input",()=>{ciclo();renderHistory()}));
+document.getElementById("dataInicial").value=dateISO();document.getElementById("dataSorteio").value=dateISO();ciclo();renderHistory();renderChecks();
+</script>
+</body>
+</html>
