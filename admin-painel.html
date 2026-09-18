@@ -28,50 +28,7 @@
 .media-compact{border:1px solid #dce5f5;border-radius:14px;margin:8px 0;background:#fff;overflow:hidden}.media-summary{display:grid;grid-template-columns:58px 1fr auto;gap:10px;align-items:center;padding:8px}.media-summary img,.media-summary video{width:58px;height:58px;object-fit:contain;background:#061441;border-radius:10px}.media-summary .name{font-weight:900;color:#123ca7;font-size:12px}.media-summary .meta{font-size:10px;color:#66758f;margin-top:3px}.media-detail{padding:0 10px 10px;border-top:1px solid #e6edf8}.media-detail-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;padding-top:8px}.media-detail-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.media-detail-actions button{padding:7px 9px;font-size:10px}.delete-badge{color:#b00020;font-weight:900;font-size:10px}
 .status-ok{background:#e9f8ef;color:#116b30;border:1px solid #bfe7cc;border-radius:10px;padding:9px;font-size:12px}.status-warn{background:#fff7df;color:#725500;border:1px solid #ffd46b;border-radius:10px;padding:9px;font-size:12px}
 @media(max-width:760px){.media-detail-grid{grid-template-columns:1fr 1fr}}
-</style><style>.publicacao-completa{display:none!important}</style>
-<style id="v6-css">
-.v6hide{display:none!important}
-.v6tabs{display:flex;gap:7px;overflow:auto;margin:0 0 12px}
-.v6tabs button{border:1px solid #d5e0f3;background:#fff;color:#123ca7;border-radius:999px;padding:9px 12px;font-weight:900;white-space:nowrap}
-.v6tabs button.on{background:#123ca7;color:#fff}
-.v6sub{display:none}.v6sub.on{display:block}
-.v6seller-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.v6seller{border:1px solid #dce5f5;border-radius:14px;padding:10px;background:#fbfdff}
-.v6seller-top{display:flex;gap:8px;align-items:center}.v6seller-top img{width:58px;height:58px;object-fit:cover;border-radius:11px;background:#071d4f}
-.v6fields{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.v6wide{grid-column:1/3}
-.v6mini-actions{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}.v6mini-actions button{border:0;border-radius:9px;padding:7px 9px;font-size:10px;font-weight:900}
-.v6slide{border:1px solid #dce5f5;border-radius:14px;padding:9px;margin:8px 0;background:#fff}
-.v6slide-top{display:grid;grid-template-columns:58px 1fr auto;gap:9px;align-items:center}
-.v6thumb{width:58px;height:58px;border-radius:10px;background:#071d4f;overflow:hidden;display:flex;align-items:center;justify-content:center;color:#fff;font-size:9px;text-align:center}
-.v6thumb img,.v6thumb video{width:100%;height:100%;object-fit:contain}
-.v6rank{display:grid;grid-template-columns:58px 1fr 1fr 82px 65px;gap:7px;align-items:end;border-bottom:1px solid #e5edf8;padding:8px 0}
-.v6rank:last-child{border-bottom:0}
-.v6summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.v6sum{background:#f4f7fd;border:1px solid #dce5f5;border-radius:12px;padding:9px;text-align:center}.v6sum b{display:block;color:#123ca7;font-size:18px}.v6sum span{font-size:10px;color:#66758f}
-@media(max-width:760px){.v6seller-grid{grid-template-columns:1fr}.v6rank{grid-template-columns:58px 1fr 1fr}.v6rank .v6pct{grid-column:2}.v6rank .v6del{grid-column:3}.v6summary{grid-template-columns:1fr 1fr}}
-</style>
-
-<div class="v6tabs">
-<button class="on" data-v6sub="config">CONFIGURAÇÕES</button>
-<button data-v6sub="sellers">VENDEDORES</button>
-<button data-v6sub="ranking">RANKING</button>
-</div>
-<div id="v6-sellers" class="v6sub">
-<div class="card"><h2>👥 Vendedores <span class="badge" id="v6SellerCount"></span></h2>
-<div class="notice">Tudo é editado aqui. <b>Ativo</b> mostra/esconde. <b>Ordem manual</b> define a base. <b>Promover para</b> coloca um vendedor naquela posição sem renumerar os outros.</div>
-<div class="actions"><button class="btn primary" id="v6NewSeller">+ NOVO VENDEDOR</button></div></div>
-<div class="card v6hide" id="v6NewSellerBox"><h2>Novo vendedor</h2>
-<div class="v6fields"><div><label>ID único</label><input id="v6sid"></div><div><label>Nome</label><input id="v6sname"></div><div><label>Telefone</label><input id="v6stel"></div><div><label>Foto</label><input id="v6sphoto" placeholder="images/nome.jpg"></div><div class="v6wide"><label>Apelidos, separados por vírgula</label><input id="v6salias"></div><div class="v6wide"><label>Nova foto</label><input id="v6sfile" type="file" accept="image/*"></div></div>
-<div class="actions"><button class="btn success" id="v6AddSeller">ADICIONAR</button><button class="btn muted" id="v6CancelSeller">CANCELAR</button></div></div>
-<div class="card"><div id="v6SellerList" class="v6seller-grid"></div></div>
-</div>
-<div id="v6-ranking" class="v6sub">
-<div class="card"><h2>🏆 Ranking / Prestação</h2>
-<div class="notice">O ranking pode conter participantes que não estão cadastrados como vendedores. O <b>ID</b> é a chave principal para o painel público.</div>
-<div class="v6summary" style="margin-top:10px"><div class="v6sum"><b id="v6RankTotal">0</b><span>posições</span></div><div class="v6sum"><b id="v6RankSum">0%</b><span>percentuais</span></div><div class="v6sum"><b id="v6RankDate">-</b><span>atualização</span></div><div class="v6sum"><b id="v6RankMatched">0</b><span>IDs cadastrados</span></div></div>
-<div class="actions"><button class="btn primary" id="v6NewRank">+ NOVA LINHA</button><button class="btn orange" id="v6Renumber">RENUMERAR POSIÇÕES</button></div></div>
-<div class="card"><div id="v6RankList"></div></div></div>
-
-</head><body>
+</style><style>.publicacao-completa{display:none!important}</style></head><body>
 <div class="top"><div class="top-in"><img src="logo-reino.png" onerror="this.style.display='none'"><div><h1>Central Administrativa • Reino da Sorte</h1><p>Edite tudo em etapas, confira a prévia e publique todas as alterações em um único commit no GitHub.</p></div></div></div>
 <div class="wrap">
 <div class="nav wizard">
@@ -86,27 +43,6 @@
 <div class="card"><h2>Último Ganhador</h2><div class="checks"><label><input type="checkbox" id="uAtivo"> Exibir card</label></div><div class="grid" style="margin-top:10px"><div><label>Título</label><input id="uTitulo"></div><div><label>Nome do arquivo da imagem</label><input id="uImagem" placeholder="ganhador-atual.png"></div></div><div class="grid3" style="margin-top:10px"><div><label>Linha 1</label><input id="uL1"></div><div><label>Linha 2</label><input id="uL2"></div><div><label>Linha 3</label><input id="uL3"></div></div><div style="margin-top:10px"><label>Selecionar nova imagem (pré-visualização + publicação)</label><input id="uLocal" type="file" accept="image/*"></div></div>
 <div class="card"><h2>Canal Oficial e Conferência</h2><div class="grid"><div><label>WhatsApp do Canal Oficial</label><input id="cWhatsapp"></div><div><label>Chamada do botão/card</label><input id="cChamada"></div></div><div class="grid" style="margin-top:10px"><div><label>Link da Conferência Oficial</label><input id="confUrl"></div><div><label>Arquivo do QR Code</label><input id="confQr"></div></div><div style="margin-top:10px"><label>Texto da Conferência</label><textarea id="confTexto"></textarea></div></div>
 <div class="card"><h2>Salvar configuração</h2><div class="notice">Use <b>Pré-visualizar</b> antes de baixar. O botão “Salvar rascunho” guarda somente neste iPhone/navegador. Para publicar no site, baixe <b>painel-config.json</b> e substitua no GitHub.</div><div class="actions"><button class="btn primary" id="btnPreview">PRÉ-VISUALIZAR</button><button class="btn muted" id="btnRascunho">SALVAR RASCUNHO</button><button class="btn success" id="btnPainelJson">BAIXAR painel-config.json</button><button class="btn dark" id="btnRecarregar">RECARREGAR DO GITHUB</button></div></div>
-
-<div class="v6tabs">
-<button class="on" data-v6sub="config">CONFIGURAÇÕES</button>
-<button data-v6sub="sellers">VENDEDORES</button>
-<button data-v6sub="ranking">RANKING</button>
-</div>
-<div id="v6-sellers" class="v6sub">
-<div class="card"><h2>👥 Vendedores <span class="badge" id="v6SellerCount"></span></h2>
-<div class="notice">Tudo é editado aqui. <b>Ativo</b> mostra/esconde. <b>Ordem manual</b> define a base. <b>Promover para</b> coloca um vendedor naquela posição sem renumerar os outros.</div>
-<div class="actions"><button class="btn primary" id="v6NewSeller">+ NOVO VENDEDOR</button></div></div>
-<div class="card v6hide" id="v6NewSellerBox"><h2>Novo vendedor</h2>
-<div class="v6fields"><div><label>ID único</label><input id="v6sid"></div><div><label>Nome</label><input id="v6sname"></div><div><label>Telefone</label><input id="v6stel"></div><div><label>Foto</label><input id="v6sphoto" placeholder="images/nome.jpg"></div><div class="v6wide"><label>Apelidos, separados por vírgula</label><input id="v6salias"></div><div class="v6wide"><label>Nova foto</label><input id="v6sfile" type="file" accept="image/*"></div></div>
-<div class="actions"><button class="btn success" id="v6AddSeller">ADICIONAR</button><button class="btn muted" id="v6CancelSeller">CANCELAR</button></div></div>
-<div class="card"><div id="v6SellerList" class="v6seller-grid"></div></div>
-</div>
-<div id="v6-ranking" class="v6sub">
-<div class="card"><h2>🏆 Ranking / Prestação</h2>
-<div class="notice">O ranking pode conter participantes que não estão cadastrados como vendedores. O <b>ID</b> é a chave principal para o painel público.</div>
-<div class="v6summary" style="margin-top:10px"><div class="v6sum"><b id="v6RankTotal">0</b><span>posições</span></div><div class="v6sum"><b id="v6RankSum">0%</b><span>percentuais</span></div><div class="v6sum"><b id="v6RankDate">-</b><span>atualização</span></div><div class="v6sum"><b id="v6RankMatched">0</b><span>IDs cadastrados</span></div></div>
-<div class="actions"><button class="btn primary" id="v6NewRank">+ NOVA LINHA</button><button class="btn orange" id="v6Renumber">RENUMERAR POSIÇÕES</button></div></div>
-<div class="card"><div id="v6RankList"></div></div></div>
 </section>
 
 <div id="diagnosticoRanking" class="step-note"></div><section class="tab" id="tab-vitrine">
@@ -409,75 +345,4 @@ if($('importRanking'))$('importRanking').addEventListener('change',atualizarDiag
 </script>
 
 
-<script id="v6-script">
-(function(){
-  var VS=[], VR={ranking:[]}, V6slidesDeleted=new Set(), V6oldPaths=new Set(), V6pFile=null, V6uFile=null;
-  function q(id){return document.getElementById(id)}
-  function v(id){return (q(id)?.value||'').trim()}
-  function ee(s){return String(s??'').replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
-  async function j(path,fb){try{var r=await fetch('./'+path+'?v='+Date.now(),{cache:'no-store'});if(!r.ok)throw 0;return await r.json()}catch(e){return fb}}
-  function renderSellers(){
-    q('v6SellerCount').textContent=VS.filter(function(x){return x.ativo!==false}).length+' ativos / '+VS.length+' cadastrados';
-    q('v6SellerList').innerHTML=VS.map(function(s,i){return '<div class="v6seller"><div class="v6seller-top"><img src="'+ee(s.foto||'images/vendedora-semfoto.jpg')+'"><div style="flex:1"><b style="color:#123ca7">'+ee(s.nome||s.id)+'</b><div class="small">ID: '+ee(s.id||'')+' • '+(s.ativo!==false?'ATIVO':'DESATIVADO')+'</div></div><input type="checkbox" data-va="'+i+'" '+(s.ativo!==false?'checked':'')+'></div><div class="v6fields"><div><label>Nome</label><input data-vn="'+i+'" value="'+ee(s.nome||'')+'"></div><div><label>Telefone</label><input data-vt="'+i+'" value="'+ee(s.telefone||'')+'"></div><div><label>Ordem manual</label><input data-vo="'+i+'" type="number" min="1" value="'+(Number(s.ordemManual)||i+1)+'"></div><div><label>Promover para</label><input data-vp="'+i+'" type="number" min="1" value="'+(s.promoverPara??'')+'"></div><div class="v6wide"><label>Foto</label><input data-vf="'+i+'" value="'+ee(s.foto||'')+'"></div><div class="v6wide"><label>Apelidos</label><input data-vl="'+i+'" value="'+ee((s.aliases||[]).join(', '))+'"></div><div class="v6wide"><label>Nova foto</label><input data-vfile="'+i+'" type="file" accept="image/*"></div></div><div class="v6mini-actions"><button class="danger" data-vdel="'+i+'">EXCLUIR CADASTRO</button></div></div>'}).join('');
-    q('v6SellerList').querySelectorAll('[data-va]').forEach(function(x){x.onchange=function(){VS[+x.dataset.va].ativo=x.checked;renderSellers();updateSummary()}})
-    q('v6SellerList').querySelectorAll('[data-vn]').forEach(function(x){x.onchange=function(){VS[+x.dataset.vn].nome=x.value.trim()}})
-    q('v6SellerList').querySelectorAll('[data-vt]').forEach(function(x){x.onchange=function(){VS[+x.dataset.vt].telefone=x.value.trim()}})
-    q('v6SellerList').querySelectorAll('[data-vo]').forEach(function(x){x.onchange=function(){VS[+x.dataset.vo].ordemManual=+x.value||9999;updateSummary()}})
-    q('v6SellerList').querySelectorAll('[data-vp]').forEach(function(x){x.onchange=function(){VS[+x.dataset.vp].promoverPara=x.value?+x.value:null;updateSummary()}})
-    q('v6SellerList').querySelectorAll('[data-vf]').forEach(function(x){x.onchange=function(){VS[+x.dataset.vf].foto=x.value.trim()}})
-    q('v6SellerList').querySelectorAll('[data-vl]').forEach(function(x){x.onchange=function(){VS[+x.dataset.vl].aliases=x.value.split(',').map(function(z){return z.trim()}).filter(Boolean)}})
-    q('v6SellerList').querySelectorAll('[data-vfile]').forEach(function(x){x.onchange=function(){var i=+x.dataset.vfile,f=x.files[0];if(!f)return;var old=VS[i].foto||'';if(old)V6oldPaths.add(old);var path='images/'+VS[i].id+'.'+(f.name.split('.').pop()||'jpg').toLowerCase();VS[i].foto=path;VS[i].localFile=f;renderSellers();updateSummary()}})
-    q('v6SellerList').querySelectorAll('[data-vdel]').forEach(function(x){x.onclick=function(){var i=+x.dataset.vdel;if(confirm('Excluir este vendedor do cadastro?')){if(VS[i].foto)V6slidesDeleted.add(VS[i].foto);VS.splice(i,1);renderSellers();updateSummary()}}})
-  }
-  q('v6NewSeller').onclick=function(){q('v6NewSellerBox').classList.remove('v6hide')}
-  q('v6CancelSeller').onclick=function(){q('v6NewSellerBox').classList.add('v6hide')}
-  q('v6AddSeller').onclick=function(){var id=v('v6sid').toLowerCase().replace(/[^a-z0-9_-]/g,'-'),name=v('v6sname');if(!id||!name)return alert('Informe ID e nome.');if(VS.some(function(x){return x.id===id}))return alert('Esse ID já existe.');var f=q('v6sfile').files[0],path=v('v6sphoto')||('images/'+id+(f?'.'+(f.name.split('.').pop()||'jpg'):'.jpg'));VS.push({ativo:true,ordemManual:VS.length+1,promoverPara:null,id:id,nome:name,telefone:v('v6stel'),foto:path,aliases:v('v6salias').split(',').map(function(x){return x.trim()}).filter(Boolean),localFile:f||null});q('v6NewSellerBox').classList.add('v6hide');['v6sid','v6sname','v6stel','v6sphoto','v6salias'].forEach(function(id){q(id).value=''});q('v6sfile').value='';renderSellers();updateSummary()}
-  function renderRank(){
-    var a=VR.ranking||[],sum=a.reduce(function(t,x){return t+(Number(x.percentual)||0)},0),matched=a.filter(function(x){return VS.some(function(s){return s.id===x.id})}).length;
-    q('v6RankTotal').textContent=a.length;q('v6RankSum').textContent=sum.toFixed(1).replace('.0','')+'%';q('v6RankDate').textContent=VR.atualizadoEm||VR.diaAtualizacao||'-';q('v6RankMatched').textContent=matched;
-    q('v6RankList').innerHTML=a.map(function(x,i){return '<div class="v6rank"><div><label>Pos.</label><input data-rp="'+i+'" type="number" min="1" value="'+(Number(x.posicao)||i+1)+'"></div><div><label>ID</label><input data-ri="'+i+'" value="'+ee(x.id||'')+'"></div><div><label>Nome</label><input data-rn="'+i+'" value="'+ee(x.nome||'')+'"></div><div class="v6pct"><label>%</label><input data-rpc="'+i+'" type="number" min="0" step="0.1" value="'+(Number(x.percentual)||0)+'"></div><div class="v6del"><label>&nbsp;</label><button class="btn danger" data-rd="'+i+'">EXCLUIR</button></div></div>'}).join('');
-    q('v6RankList').querySelectorAll('[data-rp]').forEach(function(x){x.onchange=function(){VR.ranking[+x.dataset.rp].posicao=+x.value||1}})
-    q('v6RankList').querySelectorAll('[data-ri]').forEach(function(x){x.onchange=function(){VR.ranking[+x.dataset.ri].id=x.value.trim()}})
-    q('v6RankList').querySelectorAll('[data-rn]').forEach(function(x){x.onchange=function(){VR.ranking[+x.dataset.rn].nome=x.value.trim()}})
-    q('v6RankList').querySelectorAll('[data-rpc]').forEach(function(x){x.onchange=function(){var z=VR.ranking[+x.dataset.rpc],n=+x.value||0;z.percentual=n;z.participacao=n.toFixed(1)+'%';updateSummary()}})
-    q('v6RankList').querySelectorAll('[data-rd]').forEach(function(x){x.onclick=function(){VR.ranking.splice(+x.dataset.rd,1);renumber();renderRank();updateSummary()}})
-  }
-  function renumber(){VR.ranking.sort(function(a,b){return (Number(a.posicao)||9999)-(Number(b.posicao)||9999)});VR.ranking.forEach(function(x,i){x.posicao=i+1})}
-  q('v6NewRank').onclick=function(){VR.ranking.push({id:'',nome:'',posicao:VR.ranking.length+1,percentual:0,participacao:'0.0%'});renderRank()}
-  q('v6Renumber').onclick=function(){renumber();renderRank();updateSummary()}
-  document.querySelectorAll('[data-v6sub]').forEach(function(b){b.onclick=function(){document.querySelectorAll('[data-v6sub]').forEach(function(x){x.classList.remove('on')});document.querySelectorAll('.v6sub').forEach(function(x){x.classList.remove('on')});b.classList.add('on');q('v6-'+b.dataset.v6sub).classList.add('on')}})
-  q('v6-config')?.classList.add('on')
-  var oldSlideList=q('slidesLista');if(oldSlideList){oldSlideList.classList.add('v6hide');var card=oldSlideList.closest('.card');if(card){var h=card.querySelector('h2');if(h){var n=document.createElement('div');n.id='v6SlidesList';h.insertAdjacentElement('afterend',n)}}}
-  var pkg=q('btnPacoteVitrine'),sj=q('btnSlidesJson'),bx=document.querySelector('.pack-box');if(pkg)pkg.classList.add('v6hide');if(sj)sj.classList.add('v6hide');if(bx)bx.classList.add('v6hide');
-  function slideThumb(s){if(s.tipo==='imagem')return '<img src="'+ee(s.url)+'">';if(s.tipo==='video')return '<video src="'+ee(s.url)+'" muted playsinline preload="metadata"></video>';return '<div>'+ee(String(s.texto||'TEXTO').split(/\r?\n/)[0].slice(0,40))+'</div>'}
-  function renderV6Slides(){if(!q('v6SlidesList'))return;var a=slidesGit.slice().sort(function(x,y){return (Number(x.ordem)||9999)-(Number(y.ordem)||9999)});q('v6SlidesList').innerHTML=a.length?a.map(function(s,i){return '<div class="v6slide"><div class="v6slide-top"><div class="v6thumb">'+slideThumb(s)+'</div><div><b style="color:#123ca7">'+ee(s.arquivo)+'</b><div class="small">posição '+(i+1)+' • '+s.tipo+' • '+(s.ativo!==false?'ATIVA':'DESATIVADA')+(s.removido?' • SERÁ EXCLUÍDA':'')+'</div></div><b style="color:#123ca7">#'+(i+1)+'</b></div><div class="media-controls" style="margin-top:8px"><div><label>Posição</label><input data-sp="'+i+'" type="number" min="1" value="'+(i+1)+'"></div><div><label>Duração</label><input data-sd="'+i+'" type="number" min="0" value="'+(Number(s.duracao)||0)+'"></div><div><label>Status</label><select data-sa="'+i+'"><option value="true" '+(s.ativo!==false?'selected':'')+'>Ativa</option><option value="false" '+(s.ativo===false?'selected':'')+'>Desativada</option></select></div></div><div class="v6mini-actions"><button class="muted" data-su="'+i+'">↑ SUBIR</button><button class="muted" data-sdo="'+i+'">↓ DESCER</button><button class="danger" data-sx="'+i+'">'+(s.removido?'DESFAZER EXCLUSÃO':'EXCLUIR FISICAMENTE')+'</button></div></div>'}).join(''):'<div class="small">Nenhuma mídia encontrada.</div>';
-    q('v6SlidesList').querySelectorAll('[data-sp]').forEach(function(x){x.onchange=function(){var a=slidesGit.slice().sort(function(p,z){return p.ordem-z.ordem}),i=+x.dataset.sp;a[i].ordem=Math.max(1,+x.value||1);a.forEach(function(s,k){s.ordem=k+1});slidesGit=a;renderV6Slides();renderPrevV6();updateSummary()}})
-    q('v6SlidesList').querySelectorAll('[data-sd]').forEach(function(x){x.onchange=function(){var a=slidesGit.slice().sort(function(p,z){return p.ordem-z.ordem});a[+x.dataset.sd].duracao=+x.value||0;slidesGit=a;atualizarSlidesCfg();updateSummary()}})
-    q('v6SlidesList').querySelectorAll('[data-sa]').forEach(function(x){x.onchange=function(){var a=slidesGit.slice().sort(function(p,z){return p.ordem-z.ordem});a[+x.dataset.sa].ativo=x.value==='true';slidesGit=a;atualizarSlidesCfg();renderV6Slides();renderPrevV6();updateSummary()}})
-    q('v6SlidesList').querySelectorAll('[data-su]').forEach(function(x){x.onclick=function(){moveV6Slide(+x.dataset.su,-1)}})
-    q('v6SlidesList').querySelectorAll('[data-sdo]').forEach(function(x){x.onclick=function(){moveV6Slide(+x.dataset.sdo,1)}})
-    q('v6SlidesList').querySelectorAll('[data-sx]').forEach(function(x){x.onclick=function(){var a=slidesGit.slice().sort(function(p,z){return p.ordem-z.ordem}),s=a[+x.dataset.sx];s.removido=!s.removido;if(s.removido){V6slidesDeleted.add('slides/'+s.arquivo);s.ativo=false}else V6slidesDeleted.delete('slides/'+s.arquivo);slidesGit=a;renderV6Slides();renderPrevV6();updateSummary()}})
-  }
-  function moveV6Slide(i,d){var a=slidesGit.slice().sort(function(p,z){return p.ordem-z.ordem}),j=i+d;if(j<0||j>=a.length)return;var t=a[i];a[i]=a[j];a[j]=t;a.forEach(function(s,k){s.ordem=k+1});slidesGit=a;renderV6Slides();renderPrevV6();updateSummary()}
-  function renderPrevV6(){var a=slidesGit.filter(function(s){return s.ativo!==false&&!s.removido}).slice().sort(function(x,y){return x.ordem-y.ordem}),box=q('prevVitrine');if(!box)return;if(!collect().vitrine.ativa){box.innerHTML='<div class="txt"><b>VITRINE DESATIVADA</b></div><div class="p-status">Prévia</div>';return}if(!a.length){box.innerHTML='<div class="txt"><b>VITRINE DIGITAL</b><span>Nenhum slide ativo.</span></div><div class="p-status">Prévia</div>';return}prevIndex=((prevIndex%a.length)+a.length)%a.length;var s=a[prevIndex],h='';if(s.tipo==='imagem')h='<img src="'+ee(s.url)+'">';else if(s.tipo==='video')h='<video src="'+ee(s.url)+'" muted playsinline controls></video>';else{var z=String(s.texto||'').split(/\r?\n/).filter(Boolean),t=z.shift()||'REINO DA SORTE';h='<div class="txt"><b>'+ee(t)+'</b><span>'+ee(z.join(' '))+'</span></div>'}box.innerHTML=h+'<div class="p-status">'+(prevIndex+1)+'/'+a.length+' • '+ee(s.arquivo)+'</div>'}
-  renderPrevSlide=renderPrevV6;
-  function updateSummary(){atualizarSlidesCfg();var active=slidesGit.filter(function(s){return s.ativo!==false&&!s.removido}).length,changes=new Set([].concat(Array.from(V6slidesDeleted),Array.from(V6oldPaths)));slidesGit.forEach(function(s){if(s.localFile)changes.add('slides/'+s.arquivo)});VS.forEach(function(s){if(s.localFile)changes.add(s.foto)});if(V6pFile)changes.add(collect().proximoSorteio.imagem);if(V6uFile)changes.add(collect().ultimoGanhador.imagem);var el=q('ghStatus');q('diagnosticoRanking')?.classList.add('v6hide');if(el&&q('pubSlides')){q('pubSlides').textContent=active;q('pubSellers').textContent=VS.filter(function(s){return s.ativo!==false}).length;q('pubRank').textContent=(VR.ranking||[]).length;q('pubChanges').textContent=changes.size}}
-  async function v6AddMedia(){var tp=q('novoTipo').value,d=+v('novoDuracao')||0;if(tp==='texto'){var title=v('novoTitulo')||'REINO DA SORTE',msg=v('novoTexto');if(!msg)return alert('Digite a mensagem.');var n=1;while(slidesGit.some(function(s){return s.arquivo==='slide'+String(n).padStart(2,'0')+'.txt'}))n++;var ar='slide'+String(n).padStart(2,'0')+'.txt',tx=title+'\n'+msg,f=new File([tx],ar,{type:'text/plain'});slidesGit.push({arquivo:ar,tipo:'texto',url:URL.createObjectURL(f),texto:tx,localFile:f,novo:true,ativo:true,ordem:slidesGit.length+1,duracao:d,estiloTexto:q('novoTextoEstilo').value})}else{var f=q('novoArquivo').files[0];if(!f)return alert('Escolha o arquivo.');var n=1,e=(f.name.split('.').pop()||'jpg').toLowerCase();while(slidesGit.some(function(s){return s.arquivo==='slide'+String(n).padStart(2,'0')+'.'+e}))n++;var ar='slide'+String(n).padStart(2,'0')+'.'+e;slidesGit.push({arquivo:ar,tipo:tp,url:URL.createObjectURL(f),localFile:f,novo:true,ativo:true,ordem:slidesGit.length+1,duracao:d,estiloTexto:'fixo'})}q('novoArquivo').value='';q('novoTexto').value='';atualizarSlidesCfg();renderV6Slides();renderPrevV6();updateSummary()}
-  q('btnAdicionarMidia').onclick=v6AddMedia;
-  async function v6Publish(){var token=v('ghToken');if(!token)return alert('Cole o token do GitHub.');var st=q('ghStatus'),btn=q('ghPublish');btn.disabled=true;try{var ref=await ghReq(token,API+'/git/ref/heads/'+BRANCH),parent=ref.object.sha,cm=await ghReq(token,API+'/git/commits/'+parent),baseTree=cm.tree.sha,tr=await ghReq(token,API+'/git/trees/'+baseTree+'?recursive=1'),existing=new Map((tr.tree||[]).filter(function(x){return x.type==='blob'}).map(function(x){return [x.path,x.sha]})),changes=new Map();function at(p,t){changes.set(p,{content:t})}function af(p,f){changes.set(p,{file:f})}function de(p){changes.set(p,{del:true})}
-    cfg=collect();at('painel-config.json',JSON.stringify(cfg,null,2));atualizarSlidesCfg();at('slides-config.json',JSON.stringify(slidesCfg,null,2));at('vendedores.json',JSON.stringify(VS.map(function(s){var x=Object.assign({},s);delete x.localFile;return x}),null,2));at('ranking.json',JSON.stringify(VR,null,2));
-    if(V6pFile)af(cfg.proximoSorteio.imagem,V6pFile);if(V6uFile)af(cfg.ultimoGanhador.imagem,V6uFile);
-    Array.from(V6oldPaths).forEach(function(p){if(existing.has(p)&&p!==cfg.proximoSorteio.imagem&&p!==cfg.ultimoGanhador.imagem)de(p)});
-    Array.from(V6slidesDeleted).forEach(function(p){de(p)});
-    Array.from(existing.keys()).filter(function(p){return /^sorteio-atual\.[^.]+$/i.test(p)&&p!==cfg.proximoSorteio.imagem}).forEach(de);
-    Array.from(existing.keys()).filter(function(p){return /^ganhador-atual\.[^.]+$/i.test(p)&&p!==cfg.ultimoGanhador.imagem}).forEach(de);
-    slidesGit.forEach(function(s){if(s.removido)de('slides/'+s.arquivo);else if(s.localFile)af('slides/'+s.arquivo,s.localFile)});VS.forEach(function(s){if(s.localFile)af(s.foto,s.localFile)});
-    st.textContent='2/6 • Preparando arquivos…';var entries=[];for(var pair of changes){var path=pair[0],c=pair[1];if(c.del){entries.push({path:path,mode:'100644',type:'blob',sha:null});continue}var b=c.file?await ghReq(token,API+'/git/blobs',{method:'POST',body:JSON.stringify({content:await fileToBase64(c.file),encoding:'base64'})}):await ghReq(token,API+'/git/blobs',{method:'POST',body:JSON.stringify({content:await textToBase64(c.content),encoding:'base64'})});entries.push({path:path,mode:'100644',type:'blob',sha:b.sha})}
-    st.textContent='4/6 • Criando árvore…';var nt=await ghReq(token,API+'/git/trees',{method:'POST',body:JSON.stringify({base_tree:baseTree,tree:entries})});st.textContent='5/6 • Criando um único commit…';var nc=await ghReq(token,API+'/git/commits',{method:'POST',body:JSON.stringify({message:v('ghMessage')||'Atualização completa da Central V6',tree:nt.sha,parents:[parent]})});await ghReq(token,API+'/git/refs/heads/'+BRANCH,{method:'PATCH',body:JSON.stringify({sha:nc.sha,force:false})});st.innerHTML='<span class="status-ok">✓ Publicado em <b>1 commit</b>.<br>Commit: '+ee(nc.sha.slice(0,12))+'<br>Aguarde o GitHub Pages atualizar.</span>';alert('Central V6 publicada no GitHub em um único commit.')}catch(e){st.innerHTML='<span class="status-warn">Falha: '+ee(e.message)+'</span>'}finally{btn.disabled=false}}
-  q('ghPublish').onclick=v6Publish;
-  async function initV6(){VS=await j('vendedores.json',[]);VR=await j('ranking.json',{ranking:[]});if(Array.isArray(VR))VR={ranking:VR};renderSellers();renderRank();renderV6Slides();updateSummary()}
-  q('pLocal').addEventListener('change',function(e){V6pFile=e.target.files[0]||null;if(V6pFile){var old=v('pImagem');if(old)V6oldPaths.add(old);var ex=V6pFile.name.split('.').pop()||'jpg';q('pImagem').value='sorteio-atual.'+ex;preview();updateSummary()}})
-  q('uLocal').addEventListener('change',function(e){V6uFile=e.target.files[0]||null;if(V6uFile){var old=v('uImagem');if(old)V6oldPaths.add(old);var ex=V6uFile.name.split('.').pop()||'jpg';q('uImagem').value='ganhador-atual.'+ex;preview();updateSummary()}})
-  setTimeout(initV6,500);
-})();
-</script></body></html>
+</body></html>
