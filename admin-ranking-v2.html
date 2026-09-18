@@ -202,7 +202,7 @@ function analisar(){
  estado.registros=parse(t);estado.analisado=true;estado.salvo=false;build();renderAll();renderChecks();
 }
 function renderChecks(){
- const r=estado.ranking,p=estado.pacote,checks=[
+ const r=estado.ranking,p=estado.pacote||{valorBilhete:Number(document.getElementById("valorBilhete").value||0),comissaoPercentual:Number(document.getElementById("comissao").value||0),totalVendidoCalculado:0},checks=[
  ["Dados encontrados",estado.registros.length>0,estado.registros.length+" registro(s)"],
  ["Vendedores reconhecidos",estado.pendencias.length===0,estado.pendencias.length?estado.pendencias.length+" pendência(s)":"todos reconhecidos"],
  ["Quantidades válidas",r.every(v=>Number.isInteger(v.sold)&&v.sold>=0),"sem quantidades inválidas"],
