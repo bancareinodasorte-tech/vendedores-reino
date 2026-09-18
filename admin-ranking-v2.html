@@ -41,7 +41,7 @@ input:focus,textarea:focus,select:focus{border-color:#1677ff;box-shadow:0 0 0 3p
 <strong id="cicloTitulo">Novo fechamento</strong><span id="statusGeral" class="status">AGUARDANDO DADOS</span>
 </div>
 <div class="nav">
-<button onclick="ir('oficial')">🔗 Oficial</button><button onclick="ir('config')">⚙️ Configuração</button><button onclick="ir('importar')">📥 Importar</button><button onclick="ir('preview')">🔎 Conferência</button><button onclick="ir('ranking')">🏆 Ranking</button><button onclick="ir('prestacao')">💰 Prestação</button><button onclick="ir('historico')">🕘 Histórico</button>
+<button onclick="ir('oficial')">🔗 Oficial</button><button onclick="ir('config')">⚙️ Configuração</button><button onclick="ir('importar')">📥 Importar</button><button onclick="ir('preview')">🔎 Conferência</button><button onclick="ir('ranking')">🏆 Ranking</button><button onclick="ir('prestacao')">💰 Prestação</button><button onclick="ir('vendedores')">👤 Vendedores</button><button onclick="ir('historico')">🕘 Histórico</button>
 </div>
 
 <section id="oficial" class="card">
@@ -57,7 +57,7 @@ input:focus,textarea:focus,select:focus{border-color:#1677ff;box-shadow:0 0 0 3p
 </div>
 <div id="oficialAviso" class="notice" style="margin-top:11px">Use CONSULTAR OFICIAL para buscar o estado atual. Depois, se desejar, importe a prestação do ADM normalmente.</div>
 <div class="actions">
-<button class="primary" onclick="consultarOficial()">🔄 CONSULTAR OFICIAL</button><button onclick="autorizarDispositivoOficial()">🔐 AUTORIZAR DISPOSITIVO</button>
+<button class="primary" onclick="consultarOficial()">🔄 CONSULTAR OFICIAL</button>
 <button class="muted" onclick="usarDadosOficiais()">↙️ USAR DADOS NO FECHAMENTO</button>
 </div>
 </section>
@@ -80,7 +80,7 @@ input:focus,textarea:focus,select:focus{border-color:#1677ff;box-shadow:0 0 0 3p
 
 <section id="importar" class="card">
 <h2>2. Importação inteligente</h2>
-<div class="notice">Cole exatamente a tabela copiada do ADM. A Central PRO tenta reconhecer vendedores, somar nomes repetidos e bloquear a publicação quando houver inconsistências importantes.</div>
+<div class="notice">Importe a prestação do painel privado do Reino da Sorte em <b>CSV, TXT ou tabela copiada</b>. A Central PRO reconhece vendedores, soma nomes/variações, preserva os valores de prestação quando vierem no arquivo e permite conferência individual e geral.</div>
 <input id="arquivoADM" type="file" accept=".txt,.csv,text/plain,text/csv" style="margin:10px 0"><textarea id="entrada" placeholder="Cole aqui a prestação de contas..."></textarea>
 <div class="actions">
 <button class="primary" onclick="analisar()">🔎 ANALISAR DADOS</button>
@@ -125,14 +125,40 @@ input:focus,textarea:focus,select:focus{border-color:#1677ff;box-shadow:0 0 0 3p
 <div class="actions"><button class="muted" onclick="baixarCSV()">⬇️ BAIXAR CSV</button><button class="dark" onclick="window.print()">🖨️ IMPRIMIR</button></div>
 </section>
 
+<section id="vendedores" class="card">
+<h2>7. Consulta de vendedores e desempenho</h2>
+<div class="grid">
+<div><label>Buscar vendedor</label><input id="buscaVendedor" placeholder="Nome do vendedor..." oninput="renderConsultaVendedor()"></div>
+<div><label>Filtro de situação</label><select id="filtroVendedor" onchange="renderConsultaVendedor()"><option value="TODOS">Todos</option><option value="COM_VENDAS">Com vendas</option><option value="SEM_VENDAS">Sem vendas</option></select></div>
+</div>
+<div id="resumoVendedor" class="notice" style="margin-top:10px">Importe uma prestação para consultar vendedores.</div>
+<div class="table-wrap" style="margin-top:10px"><table><thead><tr><th>Vendedor</th><th>Bilhetes</th><th>Bruto</th><th>Comissão</th><th>Volta banca</th><th>Participação</th></tr></thead><tbody id="tVendedores"></tbody></table></div>
+</section>
+
+<section id="desempenho" class="card">
+<h2>8. Desenvolvimento dos vendedores</h2>
+<div class="notice">A Central calcula a evolução com base nos fechamentos arquivados. Quanto mais sorteios forem registrados, maior será a visão histórica de crescimento, queda e regularidade.</div>
+<div class="summary">
+<div class="metric"><span>Fechamentos arquivados</span><strong id="dFechamentos">0</strong></div>
+<div class="metric"><span>Vendedor em análise</span><strong id="dVendedor">—</strong></div>
+<div class="metric green"><span>Total vendido</span><strong id="dVendas">0</strong></div>
+<div class="metric"><span>Média por sorteio</span><strong id="dMedia">0</strong></div>
+</div>
+<div class="table-wrap" style="margin-top:10px"><table><thead><tr><th>Sorteio</th><th>Data</th><th>Bilhetes</th><th>Bruto</th><th>Comissão</th><th>Volta banca</th></tr></thead><tbody id="tDesempenho"></tbody></table></div>
+</section>
+
 <section id="historico" class="card">
-<h2>7. Histórico local</h2>
-<div class="notice">Nesta primeira versão PRO o histórico continua local ao navegador. A etapa posterior poderá migrá-lo para banco de dados sem alterar o fluxo de operação.</div>
+<h2>9. Histórico de prestações</h2>
+<div class="notice">Cada fechamento confirmado fica organizado por sorteio neste navegador nesta etapa. A próxima camada técnica poderá persistir o mesmo registro no servidor para consulta em qualquer dispositivo.</div>
+<div class="grid">
+<div><label>Buscar sorteio</label><input id="buscaHistorico" placeholder="Nome, ID ou data..." oninput="renderHistory()"></div>
+<div><label>Buscar vendedor no histórico</label><input id="buscaHistoricoVendedor" placeholder="Nome do vendedor..." oninput="renderHistory()"></div>
+</div>
 <div id="historicoLista" class="history" style="margin-top:10px"></div>
 </section>
 
 <section class="card">
-<h2>8. Saída técnica</h2>
+<h2>10. Saída técnica</h2>
 <textarea id="saidaJson" readonly style="min-height:260px;background:#071d4f;color:#dce8ff"></textarea>
 </section>
 </main>
@@ -190,35 +216,49 @@ function findVendor(nome){
  v=vendedoresBase.find(x=>x.aliases.map(norm).includes(n)); if(v)return v;
  v=vendedoresBase.find(x=>{let a=norm(x.nome);return n===a||n.includes(a)||a.includes(n)}); return v||null;
 }
-function isStatus(x){return /^(prestar contas|prestado|pendente|finalizado|pago|atrasado|cancelado)$/i.test(String(x||"").trim())}
+function isStatus(x){return /^(prestar contas|prestado|pendente|finalizado|pago|atrasado|cancelado|0 vendas)$/i.test(String(x||"").trim())}
+function csvFields(line){let out=[],cur="",q=false;for(let i=0;i<line.length;i++){let ch=line[i];if(ch==='"'){if(q&&line[i+1]==='"'){cur+='"';i++;}else q=!q;}else if((ch===";"||ch==="," )&&!q){out.push(cur.trim());cur="";}else cur+=ch;}out.push(cur.trim());return out.map(x=>x.replace(/^"|"$/g,"").trim())}
+function parseMoney(v){let s=String(v??"").replace(/[R$\s]/g,"").trim();if(!s)return null;if(s.includes(",")&&s.includes("."))s=s.replace(/\./g,"").replace(",",".");else if(s.includes(","))s=s.replace(",",".");let n=Number(s);return Number.isFinite(n)?n:null}
 function parse(text){
- const lines=String(text||"").replace(/\r/g,"").split("\n").map(x=>x.trim()).filter(Boolean),out=[];
+ const rawText=String(text||"").replace(/^\uFEFF/,"").replace(/\r/g,""),lines=rawText.split("\n").filter(x=>x.trim());
+ if(!lines.length)return [];
+ const first=lines[0];
+ const looksCsv=/;/.test(first)||(/,/.test(first)&&/vendedor/i.test(first));
+ if(looksCsv){
+  const header=csvFields(first).map(norm),idx={
+   name:header.findIndex(x=>x==="vendedor"),
+   sold:header.findIndex(x=>/bilhetes vendidos/.test(x)),
+   bruto:header.findIndex(x=>/valor bruto/.test(x)),
+   com:header.findIndex(x=>x==="comissao"||/comissao/.test(x)),
+   bonus:header.findIndex(x=>/bonus bilhetes/.test(x)),
+   desc:header.findIndex(x=>/desconto bonus/.test(x)),
+   total:header.findIndex(x=>/total do vendedor/.test(x)),
+   banca:header.findIndex(x=>/total volta banca/.test(x))
+  },out=[];
+  for(const line of lines.slice(1)){const p=csvFields(line);const name=idx.name>=0?p[idx.name]:"";const sold=idx.sold>=0?parseInt(String(p[idx.sold]||"").replace(/\D/g,""),10)||0:0;if(!name||!Number.isFinite(sold))continue;out.push({name,sold,bruto:idx.bruto>=0?parseMoney(p[idx.bruto]):null,comissao:idx.com>=0?parseMoney(p[idx.com]):null,bonus:idx.bonus>=0?parseMoney(p[idx.bonus]):null,descontoBonus:idx.desc>=0?parseMoney(p[idx.desc]):null,totalVendedor:idx.total>=0?parseMoney(p[idx.total]):null,banca:idx.banca>=0?parseMoney(p[idx.banca]):null,source:"csv"});}
+  return out;
+ }
+ const out=[];
  for(const raw of lines){
-  const line=raw.replace(/\s+/g," ").trim(); if(!line) continue;
-  const nline=norm(line);
-  if(/status\s+vendedor|vendedor.*bilhetes.*vendidos|bilhetes.*distribuidos|bilhetes.*vendidos/.test(nline)) continue;
-  const p=raw.split("\t").map(x=>x.trim()); let name="",sold=0;
-  if(p.length>=4){
-   if(isStatus(p[0])){name=p[1]||"";sold=parseInt(String(p[3]).replace(/\D/g,""),10)||0}
-   else{name=p[0]||"";sold=parseInt(String(p[2]).replace(/\D/g,""),10)||0}
-  }else{
-   const m=[...line.matchAll(/\b\d+\b/g)];
-   if(m.length){name=line.slice(0,m[0].index).replace(/^[-:|]+|[-:|]+$/g,"").trim();sold=m.length>1?parseInt(m[1][0],10):parseInt(m[0][0],10);}
-  }
+  const line=raw.replace(/\s+/g," ").trim();if(!line)continue;
+  const nline=norm(line);if(/status\s+vendedor|vendedor.*bilhetes.*vendidos|bilhetes.*distribuidos|bilhetes.*vendidos/.test(nline))continue;
+  const p=raw.split("\t").map(x=>x.trim());let name="",sold=0;
+  if(p.length>=4){if(isStatus(p[0])){name=p[1]||"";sold=parseInt(String(p[3]).replace(/\D/g,""),10)||0}else{name=p[0]||"";sold=parseInt(String(p[2]).replace(/\D/g,""),10)||0}}
+  else{const m=[...line.matchAll(/\b\d+\b/g)];if(m.length){name=line.slice(0,m[0].index).replace(/^[-:|]+|[-:|]+$/g,"").trim();sold=m.length>1?parseInt(m[1][0],10):parseInt(m[0][0],10)}}
   name=name.replace(/^[-:|]+|[-:|]+$/g,"").replace(/\s+/g," ").trim();
-  if(name.length>=2&&!/^(status|vendedor|bilhetes|prestar contas)$/i.test(name)&&Number.isFinite(sold)&&sold>=0) out.push({name,sold});
+  if(name.length>=2&&!/^(status|vendedor|bilhetes|prestar contas)$/i.test(name)&&Number.isFinite(sold)&&sold>=0)out.push({name,sold,source:"text"});
  }
  return out;
 }
 function build(){
  const vb=Number(document.getElementById("valorBilhete").value||0),cp=Number(document.getElementById("comissao").value||0),meta=Number(document.getElementById("metaBase").value||0),max=Number(document.getElementById("bonusMaximo").value||0),manual=Number(document.getElementById("totalManual").value||0);
  const map=new Map(),unknown=[];
- estado.registros.forEach(r=>{let b=findVendor(r.name);if(!b){unknown.push(r.name);b={id:"novo-"+norm(r.name).replace(/\s+/g,"-"),nome:r.name,aliases:[]}}let x=map.get(b.id)||{...b,sold:0,origins:[]};x.sold+=r.sold;x.origins.push(r.name);map.set(b.id,x)});
- const rows=[...map.values()].map(v=>{let bruto=v.sold*vb,com=bruto*cp/100,bonus=Math.min(Math.max(v.sold-meta,0),max),desc=bonus*vb;return{...v,bruto,comissao:com,bonus,descontoBonus:desc,totalVendedor:com+desc,banca:Math.max(bruto-com-desc,0)}}).sort((a,b)=>b.sold-a.sold||a.nome.localeCompare(b.nome,"pt-BR"));
+ estado.registros.forEach(r=>{let b=findVendor(r.name);if(!b){unknown.push(r.name);b={id:"novo-"+norm(r.name).replace(/\s+/g,"-"),nome:r.name,aliases:[]}}let x=map.get(b.id)||{...b,sold:0,origins:[],sourceRows:[]};x.sold+=r.sold;x.origins.push(r.name);x.sourceRows.push(r);map.set(b.id,x)});
+ const rows=[...map.values()].map(v=>{const first=v.sourceRows.find(x=>x.source==="csv"&&x.bruto!==null);let bruto=first?.bruto??v.sold*vb,com=first?.comissao??bruto*cp/100,bonus=first?.bonus??0,desc=first?.descontoBonus??(bonus*vb),totalVendedor=first?.totalVendedor??(com+desc),banca=first?.banca??Math.max(bruto-com-desc,0);return{...v,bruto,comissao:com,bonus,descontoBonus:desc,totalVendedor,banca}}).sort((a,b)=>b.sold-a.sold||a.nome.localeCompare(b.nome,"pt-BR"));
  const total=rows.reduce((s,v)=>s+v.sold,0),base=manual>0?manual:total;
- rows.forEach((v,i)=>v.posicao=i+1,v.percentual=base?(v.sold/base)*100:0);
+ rows.forEach((v,i)=>{v.posicao=i+1;v.percentual=base?(v.sold/base)*100:0});
  estado.ranking=rows;estado.pendencias=[...new Set(unknown)];
- estado.pacote={versao:2,sorteio:document.getElementById("nomeSorteio").value,dataInicial:document.getElementById("dataInicial").value,dataSorteio:document.getElementById("dataSorteio").value,ciclo:ciclo(),atualizadoEm:nowBR(),totalVendidoCalculado:total,totalVendidoUsadoNoPercentual:base,valorBilhete:vb,comissaoPercentual:cp,metaBase:meta,bonusMaximo:max,ranking:rows.map(v=>({id:v.id,nome:v.nome,posicao:v.posicao,percentual:Number(v.percentual.toFixed(1)),participacao:v.percentual.toFixed(1)+"%"}))};
+ estado.pacote={versao:3,sorteio:document.getElementById("nomeSorteio").value,dataInicial:document.getElementById("dataInicial").value,dataSorteio:document.getElementById("dataSorteio").value,ciclo:ciclo(),atualizadoEm:nowBR(),totalVendidoCalculado:total,totalVendidoUsadoNoPercentual:base,valorBilhete:vb,comissaoPercentual:cp,metaBase:meta,bonusMaximo:max,ranking:rows.map(v=>({id:v.id,nome:v.nome,posicao:v.posicao,percentual:Number(v.percentual.toFixed(1)),participacao:v.percentual.toFixed(1)+"%"}))};
 }
 document.getElementById("arquivoADM").addEventListener("change",async e=>{const file=e.target.files?.[0];if(!file)return;try{document.getElementById("entrada").value=await file.text();showAnalysis("Arquivo carregado. Toque em ANALISAR DADOS.","ok")}catch(err){showAnalysis("Erro ao ler arquivo: "+(err.message||err),"err")}});function analisar(){
  const t=document.getElementById("entrada").value;if(!t.trim()){showAnalysis("Cole os dados antes de analisar.","err");return}
@@ -253,6 +293,7 @@ function renderAll(){
  document.getElementById("tRanking").innerHTML=r.map(v=>'<tr><td class="rank">#'+v.posicao+'</td><td>'+esc(v.nome)+'</td><td><span class="pill">'+v.percentual.toFixed(1).replace(".",",")+"%</span></td><td>#"+v.posicao+" • "+esc(v.nome)+" • Participação: "+v.percentual.toFixed(1).replace(".",",")+"%</td></tr>").join("");
  document.getElementById("tPrestacao").innerHTML=r.map(v=>'<tr><td>'+esc(v.nome)+'</td><td>'+num(v.sold)+'</td><td class="money">'+money(v.bruto)+'</td><td class="money">'+money(v.comissao)+'</td><td><span class="pill '+(v.bonus?"ok":"err")+'">'+v.bonus+"</span></td><td>"+money(v.descontoBonus)+'</td><td class="money">'+money(v.totalVendedor)+'</td><td class="money">'+money(v.banca)+'</td></tr>').join("");
  document.getElementById("saidaJson").value=p?JSON.stringify(p,null,2):"";
+ renderConsultaVendedor();renderDesempenho();
 }
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 async function consultarOficial(){
@@ -279,27 +320,6 @@ async function consultarOficial(){
   av.textContent="Não foi possível consultar o backend oficial: "+(e.name==="AbortError"?"tempo limite de 25s excedido":(e.message||e));
  }
 }
-async function autorizarDispositivoOficial(){
- const base=String(document.getElementById("backendOficial").value||"").trim().replace(/\/$/,"");
- const code=prompt("Digite o código de autorização gerado para este dispositivo pelo sistema oficial:");
- if(code===null)return;
- if(!String(code).trim()){alert("Código não informado.");return}
- const st=document.getElementById("oficialStatus"),av=document.getElementById("oficialAviso");
- st.value="Autorizando dispositivo...";
- try{
-  const r=await fetch(base+"/api/v1011/official-sales/authorize?t="+Date.now(),{method:"POST",cache:"no-store",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({authorizationCode:String(code).trim()})});
-  const d=await r.json().catch(()=>({}));
-  if(!r.ok||d.success===false)throw new Error(d.message||"Não foi possível autorizar o dispositivo.");
-  st.value="DISPOSITIVO AUTORIZADO";
-  av.className="notice ok";
-  av.textContent="Dispositivo autorizado no servidor. Consultando o sorteio oficial...";
-  await consultarOficial();
- }catch(e){
-  st.value="DISPOSITIVO NÃO AUTORIZADO";
-  av.className="notice err";
-  av.textContent="Autorização não concluída: "+(e.message||e);
- }
-}
 function usarDadosOficiais(){
  const title=document.getElementById("oficialDrawTitle").value,price=document.getElementById("oficialPrice").value;
  if(title&&title!=="—")document.getElementById("nomeSorteio").value=title;
@@ -312,18 +332,31 @@ function usarDadosOficiais(){
  ir("config");
 }
 function showAnalysis(msg,type){document.getElementById("analise").innerHTML='<div class="notice '+(type||"")+'">'+msg+"</div>"}
+function getHistory(){try{return JSON.parse(localStorage.getItem("rds_pro_history_v3")||"[]")}catch{return[]}}
+function setHistory(h){localStorage.setItem("rds_pro_history_v3",JSON.stringify(h.slice(-100)))}
 function salvarFechamento(){
  if(document.getElementById("btnSalvar").disabled)return;
- const key="reino_pro_"+estado.pacote.ciclo,h=JSON.parse(localStorage.getItem(key)||"[]");h.push({pacote:estado.pacote,privado:estado.ranking.map(v=>({id:v.id,vendedor:v.nome,sold:v.sold,bruto:v.bruto,comissao:v.comissao,bonus:v.bonus,descontoBonus:v.descontoBonus,totalVendedor:v.totalVendedor,banca:v.banca})),salvoEmISO:new Date().toISOString()});
- localStorage.setItem(key,JSON.stringify(h.slice(-20)));estado.salvo=true;document.getElementById("statusGeral").textContent="FECHAMENTO SALVO";document.getElementById("statusGeral").className="status ok";showAnalysis("Fechamento salvo com sucesso no histórico local. O ranking.json ainda precisa ser publicado no painel público quando você decidir.","ok");renderHistory();ir("historico");
+ const h=getHistory(),rec={id:crypto.randomUUID?crypto.randomUUID():String(Date.now()),pacote:estado.pacote,privado:estado.ranking.map(v=>({id:v.id,vendedor:v.nome,sold:v.sold,bruto:v.bruto,comissao:v.comissao,bonus:v.bonus,descontoBonus:v.descontoBonus,totalVendedor:v.totalVendedor,banca:v.banca})),salvoEmISO:new Date().toISOString(),situacao:"FINALIZADO"};
+ h.push(rec);setHistory(h);estado.salvo=true;document.getElementById("statusGeral").textContent="FECHAMENTO SALVO";document.getElementById("statusGeral").className="status ok";showAnalysis("Fechamento arquivado com sucesso. O registro contém a prestação privada do sorteio e poderá ser consultado por vendedor.","ok");renderHistory();renderDesempenho();ir("historico");
 }
-function historyKey(){return "reino_pro_"+ciclo()}
 function renderHistory(){
- const h=JSON.parse(localStorage.getItem(historyKey())||"[]"),box=document.getElementById("historicoLista");
- if(!h.length){box.innerHTML='<div class="history-item"><b>Nenhum fechamento salvo neste ciclo.</b><div class="small">Depois de confirmar um fechamento ele aparecerá aqui.</div></div>';return}
- box.innerHTML=h.slice().reverse().map((x,i)=>'<div class="history-item"><div class="history-title">'+(h.length-i)+"ª atualização • "+esc(x.pacote.atualizadoEm)+'</div><div class="small">Bilhetes: '+num(x.pacote.totalVendidoCalculado)+' • Vendedores: '+num(x.pacote.ranking.length)+' • Bruto: '+money(x.privado.reduce((s,v)=>s+v.bruto,0))+'</div><div class="actions"><button class="primary" onclick="abrirHistorico('+(h.length-1-i)+')">REABRIR</button><button class="muted" onclick="baixarHistorico('+(h.length-1-i)+')">JSON</button></div></div>').join("");
+ const h=getHistory().slice().reverse(),q=norm(document.getElementById("buscaHistorico")?.value||""),qv=norm(document.getElementById("buscaHistoricoVendedor")?.value||""),box=document.getElementById("historicoLista");
+ const filtered=h.filter(x=>{const text=norm([x.pacote?.sorteio,x.pacote?.ciclo,x.pacote?.dataSorteio,x.pacote?.atualizadoEm].join(" "));const sellers=norm((x.privado||[]).map(v=>v.vendedor).join(" "));return(!q||text.includes(q))&&(!qv||sellers.includes(qv))});
+ if(!filtered.length){box.innerHTML='<div class="history-item"><b>Nenhum fechamento encontrado.</b><div class="small">Confirme um fechamento para criar o primeiro registro.</div></div>';return}
+ box.innerHTML=filtered.map(x=>{const total=(x.privado||[]).reduce((s,v)=>s+Number(v.sold||0),0),bruto=(x.privado||[]).reduce((s,v)=>s+Number(v.bruto||0),0);const idx=h.indexOf(x);return '<div class="history-item"><div class="history-title">'+esc(x.pacote?.sorteio||"Sorteio sem nome")+'</div><div class="small">'+esc(x.pacote?.dataSorteio||"")+' • '+num(total)+' bilhetes • '+money(bruto)+' • '+esc(x.situacao||"ARQUIVADO")+'</div><div class="actions"><button class="primary" onclick="abrirHistorico('+idx+')">ABRIR PRESTAÇÃO</button><button class="muted" onclick="baixarHistorico('+idx+')">JSON</button></div></div>'}).join("");
 }
-function abrirHistorico(i){let h=JSON.parse(localStorage.getItem(historyKey())||"[]"),x=h[i];if(!x)return;estado.pacote=x.pacote;estado.ranking=x.privado.map(v=>({...v,sold:v.sold,bruto:v.bruto,comissao:v.comissao,bonus:v.bonus,descontoBonus:v.descontoBonus,totalVendedor:v.totalVendedor,banca:v.banca,posicao:0,percentual:x.pacote.totalVendidoUsadoNoPercentual?(v.sold/x.pacote.totalVendidoUsadoNoPercentual)*100:0})).sort((a,b)=>b.sold-a.sold).map((v,i)=>({...v,posicao:i+1}));estado.analisado=true;document.getElementById("nomeSorteio").value=x.pacote.sorteio||"";document.getElementById("dataInicial").value=x.pacote.dataInicial||"";document.getElementById("dataSorteio").value=x.pacote.dataSorteio||"";document.getElementById("valorBilhete").value=x.pacote.valorBilhete||2;document.getElementById("comissao").value=x.pacote.comissaoPercentual||30;document.getElementById("totalManual").value=x.pacote.totalVendidoUsadoNoPercentual||"";ciclo();renderAll();ir("ranking")}
+function abrirHistorico(i){const h=getHistory(),x=h[i];if(!x)return;estado.pacote=x.pacote;estado.ranking=x.privado.map(v=>({...v,posicao:0,percentual:x.pacote.totalVendidoUsadoNoPercentual?(v.sold/x.pacote.totalVendidoUsadoNoPercentual)*100:0})).sort((a,b)=>b.sold-a.sold).map((v,i)=>({...v,posicao:i+1}));estado.analisado=true;document.getElementById("nomeSorteio").value=x.pacote.sorteio||"";document.getElementById("dataInicial").value=x.pacote.dataInicial||"";document.getElementById("dataSorteio").value=x.pacote.dataSorteio||"";document.getElementById("valorBilhete").value=x.pacote.valorBilhete||2;document.getElementById("comissao").value=x.pacote.comissaoPercentual||30;ciclo();renderAll();renderConsultaVendedor();renderDesempenho();ir("prestacao")}
+function renderConsultaVendedor(){
+ const q=norm(document.getElementById("buscaVendedor")?.value||""),f=document.getElementById("filtroVendedor")?.value||"TODOS",rows=(estado.ranking||[]).filter(v=>(!q||norm(v.nome).includes(q))&&(f==="TODOS"||(f==="COM_VENDAS"?v.sold>0:v.sold===0)));
+ const tb=document.getElementById("tVendedores"),sum=document.getElementById("resumoVendedor");if(!tb||!sum)return;
+ const total=(estado.ranking||[]).reduce((s,v)=>s+v.sold,0),sel=rows.reduce((s,v)=>s+v.sold,0);sum.innerHTML=rows.length+' vendedor(es) encontrado(s) • '+num(sel)+' bilhetes no filtro • '+(total?((sel/total)*100).toFixed(1).replace(".",",")+"% do sorteio":"0,0%");
+ tb.innerHTML=rows.map(v=>'<tr><td><b>'+esc(v.nome)+'</b></td><td>'+num(v.sold)+'</td><td class="money">'+money(v.bruto)+'</td><td class="money">'+money(v.comissao)+'</td><td class="money">'+money(v.banca)+'</td><td><span class="pill">'+v.percentual.toFixed(1).replace(".",",")+"%</span></td></tr>").join("");
+}
+function renderDesempenho(){
+ const h=getHistory(),q=norm(document.getElementById("buscaVendedor")?.value||""),current=(estado.ranking||[]).find(v=>!q||norm(v.nome).includes(q)),name=current?.nome||"—",rows=[];
+ for(const x of h){const v=(x.privado||[]).find(v=>norm(v.vendedor)===norm(name));if(v)rows.push({sorteio:x.pacote?.sorteio||"—",data:x.pacote?.dataSorteio||"—",sold:Number(v.sold||0),bruto:Number(v.bruto||0),comissao:Number(v.comissao||0),banca:Number(v.banca||0)})}
+ const total=rows.reduce((s,v)=>s+v.sold,0);document.getElementById("dFechamentos").textContent=num(rows.length);document.getElementById("dVendedor").textContent=name;document.getElementById("dVendas").textContent=num(total);document.getElementById("dMedia").textContent=num(rows.length?Math.round(total/rows.length):0);document.getElementById("tDesempenho").innerHTML=rows.reverse().map(v=>'<tr><td>'+esc(v.sorteio)+'</td><td>'+esc(v.data)+'</td><td>'+num(v.sold)+'</td><td class="money">'+money(v.bruto)+'</td><td class="money">'+money(v.comissao)+'</td><td class="money">'+money(v.banca)+'</td></tr>').join("");
+}
 function download(name,text,type){let a=document.createElement("a"),u=URL.createObjectURL(new Blob([text],{type:type||"text/plain;charset=utf-8"}));a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u)}
 function baixarJSON(){if(!estado.pacote){alert("Processe os dados primeiro.");return}download("ranking.json",JSON.stringify(estado.pacote,null,2),"application/json")}
 async function copiarJSON(){if(!estado.pacote){alert("Processe os dados primeiro.");return}let t=JSON.stringify(estado.pacote,null,2);try{await navigator.clipboard.writeText(t);alert("ranking.json copiado.")}catch{download("ranking.json",t,"application/json")}}
@@ -334,13 +367,13 @@ function exemplo(){
  document.getElementById("entrada").value="Status\tVendedor\tBilhetes Distribuídos\tBilhetes Vendidos\tValor Total\tSituação\nPendente\tTAMILES mimi\t110\t21\tR$ 42,00\tPendente\nPendente\tTAMILES mimi - Online\t110\t36\tR$ 72,00\tPendente\nPendente\tALICE NABOR - Online\t110\t74\tR$ 148,00\tPendente\nPendente\tDAM- VENDAS ONLINE\t110\t36\tR$ 72,00\tPendente\nPendente\tJAMILLES IZIDORO\t110\t33\tR$ 66,00\tPendente\nPendente\tJamilles Izidorio - Online\t110\t94\tR$ 188,00\tPendente\nPendente\tDAMIANА GONCALVES\t110\t10\tR$ 20,00\tPendente\nPendente\tMARIA OLIVEIRA\t110\t6\tR$ 12,00\tPendente";
  showAnalysis("Exemplo carregado. Toque em ANALISAR DADOS.","ok");
 }
-function limpar(){document.getElementById("entrada").value="";estado={registros:[],ranking:[],pacote:null,pendencias:[],analisado:false,salvo:false};renderAll();renderChecks();document.getElementById("analise").innerHTML="";document.getElementById("statusGeral").textContent="AGUARDANDO DADOS";document.getElementById("statusGeral").className="status";renderHistory()}
+function limpar(){document.getElementById("entrada").value="";estado={registros:[],ranking:[],pacote:null,pendencias:[],analisado:false,salvo:false};renderAll();renderChecks();renderConsultaVendedor();renderDesempenho();document.getElementById("analise").innerHTML="";document.getElementById("statusGeral").textContent="AGUARDANDO DADOS";document.getElementById("statusGeral").className="status";renderHistory()}
 function ir(id){const el=document.getElementById(id);if(!el){alert("Área não encontrada: "+id);return}el.style.display="block";el.scrollIntoView({behavior:"smooth",block:"start"});document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));const b=[...document.querySelectorAll(".nav button")].find(x=>String(x.getAttribute("onclick")||"").includes("'"+id+"'"));if(b)b.classList.add("active")}
 ["nomeSorteio","dataInicial","dataSorteio","valorBilhete","comissao","totalManual","metaBase","bonusMaximo","backendOficial"].forEach(id=>document.getElementById(id).addEventListener("input",()=>{ciclo();renderHistory();salvarConfigLocal()}));function salvarConfigLocal(){const ids=["nomeSorteio","dataInicial","dataSorteio","valorBilhete","comissao","totalManual","metaBase","bonusMaximo","backendOficial"],x={};ids.forEach(id=>x[id]=document.getElementById(id)?.value??"");localStorage.setItem("rds_central_config",JSON.stringify(x))}function carregarConfigLocal(){try{const x=JSON.parse(localStorage.getItem("rds_central_config")||"{}");Object.entries(x).forEach(([id,v])=>{const e=document.getElementById(id);if(e)e.value=v});if(!Object.prototype.hasOwnProperty.call(x,"metaBase"))document.getElementById("metaBase").value="0";if(!Object.prototype.hasOwnProperty.call(x,"bonusMaximo"))document.getElementById("bonusMaximo").value="0";}catch(e){document.getElementById("metaBase").value="0";document.getElementById("bonusMaximo").value="0"}}
-carregarConfigLocal();if(!document.getElementById("dataInicial").value)document.getElementById("dataInicial").value=dateISO();if(!document.getElementById("dataSorteio").value)document.getElementById("dataSorteio").value=dateISO();ciclo();renderHistory();renderChecks();ir("config");
+carregarConfigLocal();renderHistory();if(!document.getElementById("dataInicial").value)document.getElementById("dataInicial").value=dateISO();if(!document.getElementById("dataSorteio").value)document.getElementById("dataSorteio").value=dateISO();ciclo();renderHistory();renderChecks();renderConsultaVendedor();renderDesempenho();ir("config");
 setTimeout(()=>consultarOficial().catch(()=>{}),350);
 setInterval(()=>{if(document.visibilityState==="visible")consultarOficial().catch(()=>{})},60000);
 </script>
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./central-pro-sw.js?v=20260918-1228").catch(()=>{}));}</script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./central-pro-sw.js?v=20260918-1300").catch(()=>{}));}</script>
 </body>
 </html>
