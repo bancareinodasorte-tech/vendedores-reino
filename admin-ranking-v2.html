@@ -37,8 +37,26 @@ input:focus,textarea:focus,select:focus{border-color:#1677ff;box-shadow:0 0 0 3p
 <strong id="cicloTitulo">Novo fechamento</strong><span id="statusGeral" class="status">AGUARDANDO DADOS</span>
 </div>
 <div class="nav">
-<button onclick="ir('config')">⚙️ Configuração</button><button onclick="ir('importar')">📥 Importar</button><button onclick="ir('preview')">🔎 Conferência</button><button onclick="ir('ranking')">🏆 Ranking</button><button onclick="ir('prestacao')">💰 Prestação</button><button onclick="ir('historico')">🕘 Histórico</button>
+<button onclick="ir('oficial')">🔗 Oficial</button><button onclick="ir('config')">⚙️ Configuração</button><button onclick="ir('importar')">📥 Importar</button><button onclick="ir('preview')">🔎 Conferência</button><button onclick="ir('ranking')">🏆 Ranking</button><button onclick="ir('prestacao')">💰 Prestação</button><button onclick="ir('historico')">🕘 Histórico</button>
 </div>
+
+<section id="oficial" class="card">
+<h2>🔗 Integração Oficial — REINO DA SORTE</h2>
+<div class="notice">A Central PRO consulta somente informações seguras do sorteio pelo backend oficial. Credenciais, senha e tokens permanecem no servidor e nunca são colocados neste painel.</div>
+<div class="grid" style="margin-top:11px">
+<div><label>Backend da Central PRO</label><input id="backendOficial" value="https://projeto-zap-4tyg.onrender.com"></div>
+<div><label>Status da conexão</label><input id="oficialStatus" value="Aguardando consulta" readonly></div>
+<div><label>ID do sorteio oficial</label><input id="oficialDrawId" value="—" readonly></div>
+<div><label>Sorteio oficial</label><input id="oficialDrawTitle" value="—" readonly></div>
+<div><label>Valor oficial por bilhete</label><input id="oficialPrice" value="—" readonly></div>
+<div><label>Blocos disponíveis</label><input id="oficialBooklets" value="—" readonly></div>
+</div>
+<div id="oficialAviso" class="notice" style="margin-top:11px">Use CONSULTAR OFICIAL para buscar o estado atual. Depois, se desejar, importe a prestação do ADM normalmente.</div>
+<div class="actions">
+<button class="primary" onclick="consultarOficial()">🔄 CONSULTAR OFICIAL</button>
+<button class="muted" onclick="usarDadosOficiais()">↙️ USAR DADOS NO FECHAMENTO</button>
+</div>
+</section>
 
 <section id="config" class="card">
 <h2>1. Configuração do sorteio</h2>
@@ -232,7 +250,42 @@ function renderAll(){
  document.getElementById("saidaJson").value=p?JSON.stringify(p,null,2):"";
 }
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
-function showAnalysis(msg,type){document.getElementById("analise").innerHTML='<div class="notice '+(type||"")+'">'+msg+"</div>"}
+async function consultarOficial(){
+ const base=String(document.getElementById("backendOficial").value||"").trim().replace(/\/$/,"");
+ const st=document.getElementById("oficialStatus"),av=document.getElementById("oficialAviso");
+ if(!base){st.value="Backend não configurado";av.className="notice err";av.textContent="Informe o endereço do backend da Central PRO.";return}
+ st.value="Consultando...";
+ av.className="notice";av.textContent="Consultando o sorteio oficial sem alterar o fechamento atual...";
+ try{
+  const r=await fetch(base+"/api/v1/central-pro/official-draw",{cache:"no-store",headers:{Accept:"application/json"}});
+  const d=await r.json().catch(()=>({}));
+  if(!r.ok||!d.success)throw new Error(d.message||"Falha na consulta oficial.");
+  const x=d.data||{};
+  document.getElementById("oficialDrawId").value=x.drawId??"—";
+  document.getElementById("oficialDrawTitle").value=x.drawTitle??"—";
+  document.getElementById("oficialPrice").value=x.pricePerTicket!=null?money(x.pricePerTicket):"—";
+  document.getElementById("oficialBooklets").value=x.availableBooklets??x.totalBooklets??"—";
+  st.value=x.isDrawClosed?"SORTEIO ENCERRADO":"SORTEIO OFICIAL DISPONÍVEL";
+  av.className=x.isDrawClosed?"notice err":"notice ok";
+  av.textContent=x.isDrawClosed?"A API oficial respondeu que o sorteio está encerrado.":"Consulta oficial concluída. Nenhum dado do fechamento foi alterado.";
+ }catch(e){
+  st.value="Falha na consulta";
+  av.className="notice err";
+  av.textContent="Não foi possível consultar o backend oficial: "+(e.message||e);
+ }
+}
+function usarDadosOficiais(){
+ const title=document.getElementById("oficialDrawTitle").value,price=document.getElementById("oficialPrice").value;
+ if(title&&title!=="—")document.getElementById("nomeSorteio").value=title;
+ const raw=document.getElementById("oficialPrice").value;
+ const m=String(raw).match(/[\d.]+,\d{2}/);
+ if(m)document.getElementById("valorBilhete").value=m[0].replace(/\./g,"").replace(",",".");
+ ciclo();
+ document.getElementById("configAviso").className="notice ok";
+ document.getElementById("configAviso").textContent="Dados oficiais transferidos para a configuração. Confira os campos antes de analisar e salvar.";
+ ir("config");
+}
+\nfunction showAnalysis(msg,type){document.getElementById("analise").innerHTML='<div class="notice '+(type||"")+'">'+msg+"</div>"}
 function salvarFechamento(){
  if(document.getElementById("btnSalvar").disabled)return;
  const key="reino_pro_"+estado.pacote.ciclo,h=JSON.parse(localStorage.getItem(key)||"[]");h.push({pacote:estado.pacote,privado:estado.ranking.map(v=>({id:v.id,vendedor:v.nome,sold:v.sold,bruto:v.bruto,comissao:v.comissao,bonus:v.bonus,descontoBonus:v.descontoBonus,totalVendedor:v.totalVendedor,banca:v.banca})),salvoEmISO:new Date().toISOString()});
