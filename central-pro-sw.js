@@ -1,4 +1,4 @@
-const CACHE="rds-central-pro-v1";
+const CACHE="rds-central-pro-v2";
 const CORE=["./admin-ranking-v2.html","./central-pro.webmanifest","./logo-reino.png"];
 self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(CORE)).then(()=>self.skipWaiting())));
 self.addEventListener("activate",e=>e.waitUntil(self.clients.claim()));
