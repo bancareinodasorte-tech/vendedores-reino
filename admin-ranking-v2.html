@@ -57,7 +57,7 @@ input:focus,textarea:focus,select:focus{border-color:#1677ff;box-shadow:0 0 0 3p
 </div>
 <div id="oficialAviso" class="notice" style="margin-top:11px">Use CONSULTAR OFICIAL para buscar o estado atual. Depois, se desejar, importe a prestação do ADM normalmente.</div>
 <div class="actions">
-<button class="primary" onclick="consultarOficial()">🔄 CONSULTAR OFICIAL</button>
+<button class="primary" onclick="consultarOficial()">🔄 CONSULTAR OFICIAL</button><button onclick="autorizarDispositivoOficial()">🔐 AUTORIZAR DISPOSITIVO</button>
 <button class="muted" onclick="usarDadosOficiais()">↙️ USAR DADOS NO FECHAMENTO</button>
 </div>
 </section>
@@ -277,6 +277,27 @@ async function consultarOficial(){
   st.value="Falha na consulta";
   av.className="notice err";
   av.textContent="Não foi possível consultar o backend oficial: "+(e.name==="AbortError"?"tempo limite de 25s excedido":(e.message||e));
+ }
+}
+async function autorizarDispositivoOficial(){
+ const base=String(document.getElementById("backendOficial").value||"").trim().replace(/\/$/,"");
+ const code=prompt("Digite o código de autorização gerado para este dispositivo pelo sistema oficial:");
+ if(code===null)return;
+ if(!String(code).trim()){alert("Código não informado.");return}
+ const st=document.getElementById("oficialStatus"),av=document.getElementById("oficialAviso");
+ st.value="Autorizando dispositivo...";
+ try{
+  const r=await fetch(base+"/api/v1011/official-sales/authorize?t="+Date.now(),{method:"POST",cache:"no-store",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({authorizationCode:String(code).trim()})});
+  const d=await r.json().catch(()=>({}));
+  if(!r.ok||d.success===false)throw new Error(d.message||"Não foi possível autorizar o dispositivo.");
+  st.value="DISPOSITIVO AUTORIZADO";
+  av.className="notice ok";
+  av.textContent="Dispositivo autorizado no servidor. Consultando o sorteio oficial...";
+  await consultarOficial();
+ }catch(e){
+  st.value="DISPOSITIVO NÃO AUTORIZADO";
+  av.className="notice err";
+  av.textContent="Autorização não concluída: "+(e.message||e);
  }
 }
 function usarDadosOficiais(){
