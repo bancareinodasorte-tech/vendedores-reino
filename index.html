@@ -811,7 +811,9 @@ Telefone:`);
     function ordemManual(){const base=ativos().slice().sort((a,b)=>(Number(a.ordemManual)||9999)-(Number(b.ordemManual)||9999));base.filter(v=>Number.isInteger(Number(v.promoverPara))&&Number(v.promoverPara)>0).sort((a,b)=>Number(a.promoverPara)-Number(b.promoverPara)).forEach(v=>{const i=base.findIndex(x=>x.id===v.id);if(i<0)return;base.splice(i,1);base.splice(Math.min(Math.max(Number(v.promoverPara),1),base.length+1)-1,0,v)});return base}
     function extrairRanking(p){return Array.isArray(p)?p:(p&&Array.isArray(p.ranking)?p.ranking:[])}
     function chavesVendedor(v){return [v.id,v.nome,...(v.aliases||[])].map(normalizar).filter(Boolean)}
-    function encontrarVendedor(item){const chaves=[item&&item.id,item&&item.nome].map(normalizar).filter(Boolean);return ativos().find(v=>chavesVendedor(v).some(k=>chaves.includes(k)))||ativos().find(v=>chaves.some(r=>chavesVendedor(v).some(k=>k&&r&&(k.includes(r)||r.includes(k)))))}
+    function distanciaEdicao(a,b){a=String(a||'');b=String(b||'');if(a===b)return 0;if(!a)return b.length;if(!b)return a.length;const d=Array.from({length:a.length+1},()=>Array(b.length+1).fill(0));for(let i=0;i<=a.length;i++)d[i][0]=i;for(let j=0;j<=b.length;j++)d[0][j]=j;for(let i=1;i<=a.length;i++)for(let j=1;j<=b.length;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[a.length][b.length]}
+function scoreCorrespondencia(item,v){const refs=[item&&item.id,item&&item.nome].map(normalizar).filter(Boolean);const ks=chavesVendedor(v);let best=0;for(const r of refs)for(const k of ks){if(r===k)return 100;if(r.includes(k)||k.includes(r))best=Math.max(best,75*Math.min(r.length,k.length)/Math.max(r.length,k.length));const rt=r.split(' '),kt=k.split(' ');const inter=rt.filter(x=>kt.includes(x)&&x.length>2).length;best=Math.max(best,inter*22);for(const a of rt)for(const b of kt)if(a.length>=5&&b.length>=5&&distanciaEdicao(a,b)<=1)best=Math.max(best,70)}return best}
+function encontrarVendedor(item){const lista=ativos(),chaves=[item&&item.id,item&&item.nome].map(normalizar).filter(Boolean);const exato=lista.find(v=>chavesVendedor(v).some(k=>chaves.includes(k)));if(exato)return exato;const ranqueados=lista.map(v=>({v,s:scoreCorrespondencia(item,v)})).sort((a,b)=>b.s-a.s);return ranqueados[0]&&ranqueados[0].s>=55?ranqueados[0].v:null}
     function ordenarRanking(payload){const usados=new Set(),resultado=[];extrairRanking(payload).slice().sort((a,b)=>(Number(a.posicao)||9999)-(Number(b.posicao)||9999)).forEach(item=>{const v=encontrarVendedor(item);if(v&&!usados.has(v.id)){resultado.push(v);usados.add(v.id)}});ordemManual().forEach(v=>{if(!usados.has(v.id))resultado.push(v)});return resultado}
     function iniciais(nome){return String(nome||"VS").split(" ").filter(Boolean).slice(0,2).map(p=>p[0]).join("").toUpperCase()}
     function esc(v){return String(v||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]))}
@@ -996,12 +998,3 @@ Telefone:`);
           setTimeout(function(){btn.textContent='COPIAR LINK';},1800);
         }).catch(function(){prompt('Copie o link:',link);});
       }else{prompt('Copie o link:',link);}
-    }
-  });
-
-  function addVendorCounters(){ /* contador por vendedor desativado nesta etapa para não poluir o layout */ }
-})();
-</script>
-
-</body>
-</html>
